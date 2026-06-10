@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P48GRGDB');</script>
+<!-- End Google Tag Manager -->
+
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product | Simple Genius</title>
+  <meta name="description" content="Explore the Simple Genius platform: Business Brain, Competition Hub, and AI Assistants built for every part of your business." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <style>
+    /* ── Product page spacing overrides ── */
+
+    .prod-hero {
+      padding-top: 130px;
+      padding-bottom: clamp(5rem, 10vw, 9rem);
+      text-align: center;
+      background: var(--color-surface);
+      position: relative;
+      overflow: hidden;
+    }
+    .prod-hero__inner {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin-inline: auto;
+      padding-inline: var(--outer-pad);
+    }
+    .prod-hero__eyebrow {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-5);
+    }
+    .prod-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--color-text);
+      margin-bottom: var(--space-6);
+    }
+    .prod-hero__sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--color-text-2);
+      font-weight: 300;
+      line-height: 1.65;
+      max-width: 540px;
+      margin-inline: auto;
+    }
+
+    /* Feature sections — alternating bg */
+    .prod-feature {
+      padding-block: clamp(5rem, 10vw, 8rem);
+      padding-inline: var(--outer-pad);
+    }
+    .prod-feature__inner {
+      max-width: 1100px;
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: center;
+    }
+    .prod-feature__inner--flip {
+      direction: rtl;
+    }
+    .prod-feature__inner--flip > * {
+      direction: ltr;
+    }
+    .prod-feature__label {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-4);
+    }
+    .prod-feature__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-text);
+      margin-bottom: var(--space-5);
+    }
+    .prod-feature__body {
+      font-size: var(--text-base);
+      color: var(--color-text-2);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: var(--space-5);
+    }
+    .prod-feature__bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 var(--space-8);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .prod-feature__bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--color-text-2);
+      font-weight: 400;
+    }
+    .prod-feature__bullets li::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    /* Divider */
+    .prod-divider {
+      max-width: 1100px;
+      margin-inline: auto;
+      border: none;
+      border-top: 1px solid var(--color-divider);
+    }
+
+    /* Assistants section */
+    .prod-assistants {
+      padding-block: clamp(5rem, 10vw, 8rem);
+      padding-inline: var(--outer-pad);
+      background: var(--color-bg);
+    }
+    .prod-assistants__head {
+      max-width: 640px;
+      margin-inline: auto;
+      text-align: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+    .prod-assistants__label {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-4);
+    }
+    .prod-assistants__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-text);
+      margin-bottom: var(--space-4);
+    }
+    .prod-assistants__sub {
+      font-size: var(--text-base);
+      color: var(--color-text-2);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    .prod-assistants__grid {
+      max-width: 1100px;
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+    }
+    .assist-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-divider);
+      border-radius: 14px;
+      padding: var(--space-7);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .assist-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+    .assist-card__tag {
+      display: inline-flex;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      align-self: flex-start;
+    }
+    .assist-card__name {
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text);
+      margin: 0;
+    }
+    .assist-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-2);
+      line-height: 1.7;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    /* CTA banner */
+    .prod-cta {
+      padding-block: clamp(5rem, 10vw, 8rem);
+      padding-inline: var(--outer-pad);
+      background: #1A1A1A;
+      text-align: center;
+    }
+    .prod-cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: var(--space-4);
+    }
+    .prod-cta__sub {
+      font-size: var(--text-base);
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      max-width: 440px;
+      margin-inline: auto;
+      margin-bottom: var(--space-8);
+      line-height: 1.7;
+    }
+    .prod-cta .btn--nav {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      font-size: var(--text-base);
+      padding: 12px 32px;
+    }
+    .prod-cta .btn--nav:hover { opacity: 0.9; }
+
+    @media (max-width: 860px) {
+      .prod-feature__inner,
+      .prod-feature__inner--flip {
+        grid-template-columns: 1fr;
+        direction: ltr;
+      }
+      .prod-assistants__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 560px) {
+      .prod-assistants__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P48GRGDB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<!-- NAV -->
+<header id="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <a href="index.html" class="navbar__logo" aria-label="Simple Genius home">
+      <img src="images/logo-dark.png" alt="Simple Genius" height="20" />
+    </a>
+    <ul class="navbar__links" role="list">
+      <li><a href="about-us.html">About Us</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="product.html" aria-current="page">Product</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+    </ul>
+    <div class="navbar__actions">
+      <a href="index.html#lets-talk" class="btn btn--nav">Let's Talk</a>
+    </div>
+    <button class="navbar__toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile menu">
+  <button class="mobile-menu__close" id="menuClose" aria-label="Close menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <ul class="mobile-menu__links" role="list">
+    <li><a href="about-us.html">About Us</a></li>
+    <li><a href="resources.html">Resources</a></li>
+    <li><a href="product.html">Product</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="index.html#lets-talk" class="btn btn--primary" style="margin-top:1rem;display:inline-block;">Let's Talk</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="prod-hero">
+  <div class="hero__blobs" aria-hidden="true">
+    <div class="hero__blob hero__blob--1" style="opacity:0.18;"></div>
+    <div class="hero__blob hero__blob--3" style="opacity:0.12;"></div>
+  </div>
+  <div class="prod-hero__inner">
+    <h1 class="prod-hero__title">Intelligence Infrastructure For Your Entire Business</h1>
+    <p class="prod-hero__sub">One clear picture of where you stand and where to go next, built on your data, your people, and your strategy.</p>
+  </div>
+</section>
+
+<!-- BUSINESS BRAIN -->
+<section class="prod-feature" style="background:var(--color-bg);">
+  <div class="prod-feature__inner">
+    <div>
+      <p class="prod-feature__label">Business Brain</p>
+      <h2 class="prod-feature__title">Your AI-powered strategic advisor</h2>
+      <p class="prod-feature__body">Ask any business question and get structured, reliable answers built on your company's own data, people, and context.</p>
+      <p class="prod-feature__body">Business Brain doesn't just surface information. It interprets it, synthesizes it across sources, and delivers clear guidance your leadership can act on.</p>
+      <ul class="prod-feature__bullets">
+        <li>Structured answers grounded in your internal data</li>
+        <li>Cross-source synthesis across departments</li>
+        <li>Leadership-ready output without the noise</li>
+      </ul>
+      <a href="index.html#lets-talk" class="btn btn--primary">See It In Action</a>
+    </div>
+    <div class="video-panel">
+      <div class="video-panel__bar">
+        <div class="video-panel__dot"></div>
+        <div class="video-panel__dot"></div>
+        <div class="video-panel__dot"></div>
+        <span class="video-panel__title">Business Brain</span>
+      </div>
+      <div class="video-panel__body video-panel__body--screenshot">
+        <img src="images/product_business_brain.png" alt="Business Brain dashboard preview" style="width:100%;height:auto;display:block;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="prod-divider" />
+
+<!-- COMPETITION HUB -->
+<section class="prod-feature" style="background:var(--color-bg);">
+  <div class="prod-feature__inner prod-feature__inner--flip">
+    <div class="video-panel">
+      <div class="video-panel__bar">
+        <div class="video-panel__dot"></div>
+        <div class="video-panel__dot"></div>
+        <div class="video-panel__dot"></div>
+        <span class="video-panel__title">Competition Hub</span>
+      </div>
+      <div class="video-panel__body video-panel__body--screenshot">
+        <img src="images/product_competition_hub.png" alt="Competition Hub dashboard preview" style="width:100%;height:auto;display:block;" />
+      </div>
+    </div>
+    <div>
+      <p class="prod-feature__label">Competition Hub</p>
+      <h2 class="prod-feature__title">Know every move before it matters</h2>
+      <p class="prod-feature__body">Track every meaningful competitor move, including product changes, pricing shifts, hiring signals, and market activity, in one continuously updated workspace.</p>
+      <p class="prod-feature__body">See competitive pressure before it becomes a crisis. Competition is the first place strategic threats become visible.</p>
+      <ul class="prod-feature__bullets">
+        <li>Continuous monitoring across competitors</li>
+        <li>Pricing and product change alerts</li>
+        <li>Hiring signal tracking for early intel</li>
+      </ul>
+      <a href="index.html#lets-talk" class="btn btn--primary">See It In Action</a>
+    </div>
+  </div>
+</section>
+
+<!-- AI ASSISTANTS -->
+<section class="prod-assistants">
+  <div class="prod-assistants__head">
+    <p class="prod-assistants__label">Specialized Assistance</p>
+    <h2 class="prod-assistants__title">Built for every part of your business</h2>
+    <p class="prod-assistants__sub">Each assistant is trained to support a specific business function and powered by context-aware intelligence unique to your organization.</p>
+  </div>
+  <div class="prod-assistants__grid">
+    <div class="assist-card">
+      <span class="assist-card__tag" style="background:var(--color-pill-green);color:var(--color-pill-green-text);">Marketing</span>
+      <h4 class="assist-card__name">Marketing Assistant</h4>
+      <p class="assist-card__desc">Competitive positioning, campaign intelligence, and market signal tracking for your marketing team.</p>
+    </div>
+    <div class="assist-card">
+      <span class="assist-card__tag" style="background:var(--color-pill-pink);color:var(--color-pill-pink-text);">Sales</span>
+      <h4 class="assist-card__name">Sales Assistant</h4>
+      <p class="assist-card__desc">Competitive battlecards, win/loss intelligence, and deal context to sharpen your sales execution.</p>
+    </div>
+    <div class="assist-card">
+      <span class="assist-card__tag" style="background:var(--color-pill-yellow);color:var(--color-pill-yellow-text);">Finance</span>
+      <h4 class="assist-card__name">Finance Assistant</h4>
+      <p class="assist-card__desc">Strategic financial context, market benchmarks, and competitive cost intelligence for finance leaders.</p>
+    </div>
+    <div class="assist-card">
+      <span class="assist-card__tag" style="background:var(--color-pill-neutral);color:var(--color-pill-neutral-text);">HR</span>
+      <h4 class="assist-card__name">HR Assistant</h4>
+      <p class="assist-card__desc">Talent market signals, competitive hiring intelligence, and organizational benchmarking.</p>
+    </div>
+    <div class="assist-card">
+      <span class="assist-card__tag" style="background:var(--color-pill-blue);color:var(--color-pill-blue-text);">Operations</span>
+      <h4 class="assist-card__name">Operations Assistant</h4>
+      <p class="assist-card__desc">Process intelligence, operational benchmarks, and workflow optimization grounded in competitive context.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="prod-cta">
+  <h2 class="prod-cta__title">See the Full Platform</h2>
+  <p class="prod-cta__sub">Talk to our team and get a walkthrough built around your business.</p>
+  <a href="index.html#lets-talk" class="btn btn--nav">Let's Talk</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" aria-labelledby="footer-brand">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <a href="index.html" class="footer__logo" id="footer-brand" aria-label="Simple Genius home">
+        <img src="images/logo-dark.png" alt="Simple Genius" height="18" />
+      </a>
+      <p class="footer__tagline">The first step for business AI.</p>
+      <div class="footer__socials" aria-label="Social media links">
+        <a href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.75 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg></a>
+        <a href="https://www.linkedin.com/company/112274244/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://www.instagram.com/simplegenius.co/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <p class="footer__col-head">Product</p>
+      <ul class="footer__col-links" role="list">
+        <li><a href="product.html">Business Brain</a></li>
+        <li><a href="product.html">Competition Hub</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <p class="footer__col-head">Company</p>
+      <ul class="footer__col-links" role="list">
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="data-protection.html">Data Protection</a></li>
+        <li><a href="index.html#lets-talk">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>&copy; 2026 Simple Genius. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="https://www.simplegenius.com/js/editor.js"></script>
+<script data-pplx-inline-edit>
+(function () {
+  if (window === window.top) return;
+
+  const allowedParentOrigins = ["https://www.perplexity.ai","https://perplexity.ai","https://testing.perplexity.ai","https://staging.perplexity.ai","https://*.preview.i.perplexity.ai","http://localhost:3000","http://127.0.0.1:3000","http://localhost:5173","http://127.0.0.1:5173"];
+  const MAX_FONT_BYTES = 500 * 1024;
+  const MAX_TOTAL_FONT_BYTES = 2 * 1024 * 1024;
+  let scrollForwarding = false;
+  let scrollRaf = 0;
+  let trustedTopOrigin = null;
+
+  // Allow entries like "https://*.preview.i.perplexity.ai" — the wildcard
+  // matches a single DNS label (no dots), so "https://*.foo" cannot stretch
+  // across multiple labels.
+  function matchesAllowedOrigin(origin) {
+    if (!origin) return false;
+    for (const entry of allowedParentOrigins) {
+      if (!entry.includes("*")) {
+        if (entry === origin) return true;
+        continue;
+      }
+      const pattern = new RegExp(
+        "^" +
+          entry.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^.]+") +
+          "$",
+      );
+      if (pattern.test(origin)) return true;
+    }
+    return false;
+  }
+
+  // Trust decision: when the sender is same-origin-visible (event.origin is a
+  // real origin like https://www.perplexity.ai) we trust event.origin directly.
+  // When event.origin is "null" (opaque broker srcdoc), we fall back to the
+  // broker's stamped `parentOrigin` to identify the top window. The fallback
+  // is claim-only — we rely on the browser's native `targetOrigin` enforcement
+  // on the response path (see postToTrustedTop) to ensure replies can't be
+  // delivered to anyone but the actual top window of that claimed origin.
+  function getTrustedParentOrigin(event) {
+    const forwardedParentOrigin =
+      typeof event.data.parentOrigin === "string" ? event.data.parentOrigin : null;
+    const parentOrigin = event.origin === "null" ? forwardedParentOrigin : event.origin;
+    return matchesAllowedOrigin(parentOrigin) ? parentOrigin : null;
+  }
+
+  // All responses go to window.top with targetOrigin = the allowlisted origin.
+  // An attacker that iframes us inside their own null-origin broker can claim
+  // any parentOrigin they like, but the browser will drop the reply whenever
+  // the real top's origin doesn't match — so the screenshot never leaves.
+  function postToTrustedTop(message) {
+    if (!trustedTopOrigin) return;
+    try {
+      window.top.postMessage(message, trustedTopOrigin);
+    } catch (_error) {}
+  }
+
+  function inlineAll(original, clone) {
+    if (original.nodeType !== 1 || clone.nodeType !== 1) return;
+
+    try {
+      const computedStyle = getComputedStyle(original);
+      // cssText on a computed style is the serialized declaration in modern
+      // Chromium/Safari — a single read beats enumerating ~400 longhand
+      // properties. Firefox returns "" here, so we fall back on empty.
+      const serialized = computedStyle.cssText;
+      if (serialized) {
+        clone.style.cssText = serialized;
+      } else {
+        const parts = new Array(computedStyle.length);
+        for (let index = 0; index < computedStyle.length; index += 1) {
+          const property = computedStyle[index];
+          parts[index] = `${property}:${computedStyle.getPropertyValue(property)};`;
+        }
+        clone.style.cssText = parts.join("");
+      }
+    } catch (_error) {}
+
+    const originalChildren = original.children;
+    const clonedChildren = clone.children;
+    for (
+      let index = 0;
+      index < originalChildren.length && index < clonedChildren.length;
+      index += 1
+    ) {
+      inlineAll(originalChildren[index], clonedChildren[index]);
+    }
+  }
+
+  function extractFontUrl(srcValue) {
+    const matches = [
+      ...srcValue.matchAll(
+        /url\(["']?([^"')]+)["']?\)(?:\s*format\(["']?([^"')]+)["']?\))?/gi,
+      ),
+    ];
+    if (matches.length === 0) return null;
+    const woff2 = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff2"));
+    if (woff2) return woff2[1];
+    const woff = matches.find((m) => m[2] && m[2].toLowerCase().includes("woff"));
+    if (woff) return woff[1];
+    return matches[0][1];
+  }
+
+  // Cache resolved font URL -> data URI across captures. Fonts on a page
+  // essentially never change, and a batch run emits multiple captures back to
+  // back — without this we'd refetch + re-base64 every time.
+  const fontDataUriCache = new Map();
+  const SRC_DECLARATION_RE = /src\s*:\s*[^;}]+/i;
+
+  async function fetchAsDataUri(url) {
+    if (fontDataUriCache.has(url)) return fontDataUriCache.get(url);
+    let dataUri = null;
+    try {
+      const response = await fetch(url, { mode: "cors", credentials: "omit" });
+      if (response.ok) {
+        const blob = await response.blob();
+        if (blob.size <= MAX_FONT_BYTES) {
+          dataUri = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () =>
+              resolve(typeof reader.result === "string" ? reader.result : null);
+            reader.onerror = () => resolve(null);
+            reader.readAsDataURL(blob);
+          });
+        }
+      }
+    } catch (_error) {
+      dataUri = null;
+    }
+    fontDataUriCache.set(url, dataUri);
+    return dataUri;
+  }
+
+  function collectFontFaceRuleTexts() {
+    const rules = [];
+    for (const sheet of document.styleSheets) {
+      let cssRules;
+      try {
+        cssRules = sheet.cssRules;
+      } catch (_error) {
+        continue;
+      }
+      if (!cssRules) continue;
+      for (const rule of cssRules) {
+        const cssText = rule.cssText || "";
+        if (cssText.startsWith("@font-face")) rules.push(cssText);
+      }
+    }
+    return rules;
+  }
+
+  async function buildInlinedFontCss() {
+    const ruleTexts = collectFontFaceRuleTexts();
+    if (ruleTexts.length === 0) return null;
+
+    const resolved = ruleTexts.map((cssText) => {
+      if (!SRC_DECLARATION_RE.test(cssText)) return null;
+      const srcMatch = cssText.match(/src\s*:\s*([^;}]+)[;}]/i);
+      if (!srcMatch) return null;
+      const url = extractFontUrl(srcMatch[1]);
+      if (!url) return null;
+      try {
+        return { cssText, url: new URL(url, document.baseURI).href };
+      } catch (_error) {
+        return null;
+      }
+    });
+
+    const dataUris = await Promise.all(
+      resolved.map((entry) => (entry ? fetchAsDataUri(entry.url) : Promise.resolve(null))),
+    );
+
+    const inlined = [];
+    let totalBytes = 0;
+    for (let index = 0; index < resolved.length; index += 1) {
+      const entry = resolved[index];
+      const dataUri = dataUris[index];
+      if (!entry || !dataUri) continue;
+      const approxBytes = dataUri.length * 0.75;
+      if (totalBytes + approxBytes > MAX_TOTAL_FONT_BYTES) break;
+      totalBytes += approxBytes;
+      inlined.push(entry.cssText.replace(SRC_DECLARATION_RE, `src: url("${dataUri}")`));
+    }
+    return inlined.length > 0 ? inlined.join("\n") : null;
+  }
+
+  function stripExternal(clone) {
+    const images = clone.querySelectorAll("img");
+    for (let index = 0; index < images.length; index += 1) {
+      const src = images[index].getAttribute("src");
+      if (src && !src.startsWith("data:")) images[index].removeAttribute("src");
+    }
+
+    const elements = clone.querySelectorAll("*");
+    for (let index = 0; index < elements.length; index += 1) {
+      const style = elements[index].style.cssText;
+      if (style && style.includes("url(")) {
+        elements[index].style.cssText = style.replace(
+          /url\(["']?(?!data:)[^)"']*["']?\)/gi,
+          "none",
+        );
+      }
+    }
+  }
+
+  function emitScroll() {
+    scrollRaf = 0;
+    if (!scrollForwarding) return;
+    postToTrustedTop({
+      type: "INLINE_EDIT_SCROLL",
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    });
+  }
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!scrollForwarding || scrollRaf) return;
+      scrollRaf = requestAnimationFrame(emitScroll);
+    },
+    { passive: true, capture: true },
+  );
+
+  async function handleCaptureRequest(event) {
+    const requestId = event.data.requestId;
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function postResult(dataUrl) {
+      postToTrustedTop({
+        type: "INLINE_EDIT_SCREENSHOT_RESULT",
+        requestId,
+        dataUrl,
+        scrollX,
+        scrollY,
+      });
+    }
+
+    try {
+      // Wait for any pending web fonts to resolve so both inline metrics and
+      // the @font-face inlining below see the same loaded faces.
+      if (document.fonts && document.fonts.ready) {
+        try {
+          await document.fonts.ready;
+        } catch (_error) {}
+      }
+
+      const clone = document.documentElement.cloneNode(true);
+      inlineAll(document.documentElement, clone);
+
+      const removedNodes = clone.querySelectorAll("script,link[rel=\"stylesheet\"],style");
+      for (let index = 0; index < removedNodes.length; index += 1) {
+        removedNodes[index].remove();
+      }
+
+      stripExternal(clone);
+
+      // Re-embed web fonts as data-URI @font-face rules so the SVG rasterizer
+      // can resolve them — external font URLs aren't fetched during
+      // foreignObject rendering, which would otherwise force a fallback face
+      // and change text metrics.
+      const inlinedFontCss = await buildInlinedFontCss();
+      if (inlinedFontCss) {
+        const styleEl = document.createElement("style");
+        styleEl.textContent = inlinedFontCss;
+        const head = clone.querySelector("head");
+        if (head) head.appendChild(styleEl);
+        else clone.insertBefore(styleEl, clone.firstChild);
+      }
+
+      const html = new XMLSerializer().serializeToString(clone);
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">` +
+        '<foreignObject width="100%" height="100%">' +
+        `<div xmlns="http://www.w3.org/1999/xhtml" style="width:${width}px;height:${height}px;overflow:hidden">` +
+        `<div style="position:relative;left:-${scrollX}px;top:-${scrollY}px">` +
+        html +
+        "</div></div></foreignObject></svg>";
+      const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+      const image = new Image();
+      image.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(image, 0, 0);
+        postResult(canvas.toDataURL("image/png"));
+      };
+      image.onerror = function () {
+        postResult(null);
+      };
+      image.src = svgUrl;
+    } catch (_error) {
+      postResult(null);
+    }
+  }
+
+  window.addEventListener("message", function (event) {
+    if (!event.data) return;
+    // Only accept messages from the direct parent frame. Blocks sibling /
+    // unrelated-window postMessage senders that could otherwise reach us.
+    if (event.source !== window.parent) return;
+
+    const trustedParentOrigin = getTrustedParentOrigin(event);
+    if (!trustedParentOrigin) return;
+    trustedTopOrigin = trustedParentOrigin;
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_START") {
+      scrollForwarding = true;
+      emitScroll();
+      return;
+    }
+
+    if (event.data.type === "INLINE_EDIT_SCROLL_STOP") {
+      scrollForwarding = false;
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      return;
+    }
+
+    if (event.data.type !== "INLINE_EDIT_CAPTURE_REQUEST") return;
+
+    handleCaptureRequest(event);
+  });
+})();
+
+
+</script></body>
+</html>

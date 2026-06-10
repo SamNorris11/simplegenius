@@ -1,0 +1,79 @@
+/* === Cluely-style intro overlay — additive only, no edits to existing CSS === */
+
+/* Hide hero headline/subhead until JS splits them. Using opacity not visibility
+   so layout is preserved and we don't get height jumps. */
+html.cluely-ready .hero__heading,
+html.cluely-ready .hero__sub {
+  opacity: 0;
+}
+html.cluely-ready .hero__heading[data-cl-split="1"],
+html.cluely-ready .hero__sub[data-cl-split="1"] {
+  opacity: 1;
+}
+
+/* Below-fold H2s — fade in via opacity, no layout shift */
+html.cluely-ready h2 {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+html.cluely-ready h2[data-cl-split="1"] {
+  opacity: 1;
+}
+
+/* Per-word mask wrapper (outer) */
+.cl-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  /* pb + -mb prevents descenders (g, y, p) from being clipped by overflow */
+  padding-bottom: 0.22em;
+  margin-bottom: -0.22em;
+  vertical-align: bottom;
+  line-height: inherit;
+}
+
+/* Per-word animated inner span — JS sets transform in px to match font-size */
+.cl-word {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* CTA fade/slide-up initial state */
+html.cluely-ready .hero__cta {
+  opacity: 0;
+  transform: translateY(16px);
+  will-change: opacity, transform;
+}
+
+/* Hero graphic Z-axis fly-in setup */
+html.cluely-ready .hero {
+  perspective: 1600px;
+}
+/* Scoped to the OUTER .sgui (direct child of .hero) only — the page has a
+   nested duplicate .sgui inside, and we must not touch the inner one. */
+html.cluely-ready .hero > .sgui {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+html.cluely-ready .hero > .sgui .sgui {
+  opacity: 1 !important;
+}
+
+/* Below-fold section H2s — start hidden, IntersectionObserver reveals */
+html.cluely-ready h2:not(.cl-revealed) .cl-word {
+  /* same initial as hero subhead — soft rise */
+  transform: translateY(0.6em);
+}
+
+/* Reduced motion — short-circuit everything to final state */
+@media (prefers-reduced-motion: reduce) {
+  html.cluely-ready .cl-word,
+  html.cluely-ready .hero__cta,
+  html.cluely-ready .sgui {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}
+
+/* Mobile keeps the Cluely intro — the JS uses gentler params (shorter travel,
+   longer duration, tighter stagger) so it reads as smooth, not jumpy. */
