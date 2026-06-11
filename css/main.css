@@ -336,6 +336,7 @@ header.scrolled {
   font-style: italic;
   font-variant-caps: all-small-caps;
   letter-spacing: 0.03em;
+  color: var(--color-accent);
 }
 @media (max-width: 768px) {
   /* Editorial mobile hero: two-row stacked headline, AI rendered distinctly */
