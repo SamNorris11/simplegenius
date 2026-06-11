@@ -338,7 +338,7 @@ header.scrolled {
   letter-spacing: 0.03em;
 }
 @media (max-width: 768px) {
-  /* Editorial mobile hero: eyebrow over a bold italic headline */
+  /* Editorial mobile hero: two-row stacked headline, AI rendered distinctly */
   .hero__heading {
     font-size: clamp(1.9rem, 7vw, 2.5rem);
     font-weight: 500;
@@ -357,6 +357,19 @@ header.scrolled {
     letter-spacing: -0.035em;
     line-height: 1.02;
     white-space: normal;
+  }
+  /* On mobile, AI rendered as uppercase non-italic, distinctly styled so it never reads as "1". */
+  .hero__heading em .hero__ai {
+    font-style: normal;
+    font-variant-caps: normal;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    font-family: var(--font-body);
+    font-size: 0.78em;
+    vertical-align: 0.06em;
+    margin-right: 0.04em;
   }
   /* Render SGUI at desktop dimensions and scale to fit viewport width,
      preserving desktop card proportions on mobile. Forced centering via
@@ -1254,6 +1267,65 @@ header.scrolled {
 .ai-pill--finance    { background: var(--color-pill-yellow);  color: var(--color-pill-yellow-text);  bottom: 12%; right: 4%; }
 .ai-pill--hr         { background: var(--color-pill-neutral); color: var(--color-pill-neutral-text); bottom: 12%; left: 4%; }
 .ai-pill--operations { background: var(--color-pill-blue);    color: var(--color-pill-blue-text);    top: 50%; left: 0%; transform: translateY(-50%); }
+
+/* ─── Mobile: orbit-style AI hub ─────────────────────────────────────
+   Pills float around a smaller center bubble, fully clear of overlap.
+   Each pill rides a positioned wrapper; gentle drift adds life. */
+@media (max-width: 768px) {
+  .ai-hub__diagram {
+    min-height: 440px;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+  .ai-hub__svg-lines { display: none; }
+  .ai-hub__center {
+    width: 76px; height: 76px;
+    box-shadow:
+      0 0 0 14px rgba(31,31,31,0.04),
+      0 0 0 28px rgba(31,31,31,0.025),
+      0 0 0 44px rgba(31,31,31,0.015),
+      var(--shadow-md);
+  }
+  .ai-hub__center::before {
+    /* faint orbital ring */
+    content: '';
+    position: absolute;
+    inset: -90px;
+    border-radius: 50%;
+    border: 1px dashed rgba(212,175,55,0.28);
+    pointer-events: none;
+  }
+  .ai-hub__center::after {
+    content: '';
+    position: absolute;
+    inset: -150px;
+    border-radius: 50%;
+    border: 1px dashed rgba(31,31,31,0.06);
+    pointer-events: none;
+  }
+  .ai-pill {
+    font-size: 11px;
+    padding: 6px 12px;
+    box-shadow: 0 4px 14px rgba(29,29,29,0.10), var(--shadow-sm);
+    animation: ai-orbit-float 6s ease-in-out infinite;
+  }
+  /* Reset desktop transforms and reposition pills around the center bubble
+     so none overlap the inner ring. */
+  .ai-pill--marketing  { top: 0;    left: 50%; right: auto; bottom: auto; transform: translateX(-50%); animation-delay: 0s; }
+  .ai-pill--sales      { top: 38%;  right: 0;  left: auto;  bottom: auto; transform: none;                animation-delay: 1.2s; }
+  .ai-pill--finance    { bottom: 4%; right: 12%; top: auto; left: auto;   transform: none;                animation-delay: 2.4s; }
+  .ai-pill--hr         { bottom: 4%; left: 12%;  top: auto; right: auto;  transform: none;                animation-delay: 3.6s; }
+  .ai-pill--operations { top: 38%;  left: 0;   right: auto; bottom: auto; transform: none;                animation-delay: 4.8s; }
+}
+@keyframes ai-orbit-float {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ai-pill { animation: none; }
+}
 
 /* ============ CLARITY / REAL CHALLENGE ============ */
 .clarity {
