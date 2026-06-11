@@ -157,7 +157,13 @@ function runHeroIntro() {
 function setupScrollReveals() {
   // On mobile, scroll-reveal animations on section headings feel like too much.
   // Disable entirely — desktop keeps the full intro feel.
-  if (IS_MOBILE) return;
+  if (IS_MOBILE) {
+    // Mobile bails on the reveal animation, but the global rule
+    // `html.cluely-ready h2 { opacity:0 }` would leave headings invisible.
+    // Set every h2 to fully visible so nothing is hidden.
+    document.querySelectorAll("h2").forEach((h) => { h.style.opacity = "1"; });
+    return;
+  }
 
   const headings = document.querySelectorAll("h2");
   if (!headings.length || !("IntersectionObserver" in window)) {
