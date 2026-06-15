@@ -41,6 +41,38 @@
   // ── Newsletter form (real submission handled inline in resources.html) ──
   // (left empty — page-level script POSTs to /api/newsletter-subscribe)
 
+  // ── Attribution capture (runs every page) ──
+  // Persists UTMs + click IDs + first-touch landing/referrer in sessionStorage so the
+  // homepage form picks them up even if the user navigates around before submitting.
+  (function captureAttribution() {
+    try {
+      var qp = new URLSearchParams(window.location.search);
+      var trackKeys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid','li_fat_id'];
+      var store = JSON.parse(sessionStorage.getItem('sg_attr') || '{}');
+
+      // First-touch landing page + referrer (only set once per session)
+      if (!store.landing_page) store.landing_page = window.location.href;
+      if (!store.referrer)     store.referrer     = document.referrer || '';
+      if (!store.first_visit)  store.first_visit  = new Date().toISOString();
+
+      // Last-touch UTMs / click IDs (overwrite if present in current URL)
+      trackKeys.forEach(function (k) {
+        var v = qp.get(k);
+        if (v) store[k] = v;
+      });
+
+      sessionStorage.setItem('sg_attr', JSON.stringify(store));
+    } catch (e) { /* sessionStorage blocked → silent */ }
+  })();
+
+  // GA4 client_id pulled from _ga cookie (format: GA1.1.<cid>.<ts>)
+  function getGaClientId() {
+    try {
+      var m = document.cookie.match(/_ga=GA\d\.\d\.([0-9.]+)/);
+      return m ? m[1] : '';
+    } catch (e) { return ''; }
+  }
+
   // ── Let's Talk form (home page) ──
   var lt = document.getElementById('letsTalkForm');
   if (lt) {
@@ -61,6 +93,19 @@
         lt.reportValidity();
         return;
       }
+      // Populate hidden tracking fields from sessionStorage + live cookies
+      try {
+        var attr = JSON.parse(sessionStorage.getItem('sg_attr') || '{}');
+        ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid','li_fat_id','landing_page','referrer','first_visit'].forEach(function (k) {
+          var el = document.getElementById(k);
+          if (el) el.value = attr[k] || '';
+        });
+        var pageUrlEl = document.getElementById('page_url');
+        if (pageUrlEl) pageUrlEl.value = window.location.href;
+        var gaEl = document.getElementById('ga_client_id');
+        if (gaEl) gaEl.value = getGaClientId();
+      } catch (e) { /* non-fatal */ }
+
       var fd = new FormData(lt);
       var payload = {};
       fd.forEach(function (v, k) { payload[k] = v; });

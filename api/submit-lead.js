@@ -26,8 +26,39 @@ module.exports = async (req, res) => {
       how_heard = '',
       hearAboutUs = '',
       solve = '',
-      challenge = ''
+      challenge = '',
+      // Attribution / tracking (hidden form fields)
+      utm_source = '',
+      utm_medium = '',
+      utm_campaign = '',
+      utm_term = '',
+      utm_content = '',
+      gclid = '',
+      fbclid = '',
+      li_fat_id = '',
+      page_url = '',
+      referrer = '',
+      ga_client_id = '',
+      landing_page = '',
+      first_visit = ''
     } = body;
+
+    // Build a compact attribution block to append to descriptions
+    const attrLines = [];
+    if (utm_source)   attrLines.push('UTM Source: ' + utm_source);
+    if (utm_medium)   attrLines.push('UTM Medium: ' + utm_medium);
+    if (utm_campaign) attrLines.push('UTM Campaign: ' + utm_campaign);
+    if (utm_term)     attrLines.push('UTM Term: ' + utm_term);
+    if (utm_content)  attrLines.push('UTM Content: ' + utm_content);
+    if (gclid)        attrLines.push('gclid: ' + gclid);
+    if (fbclid)       attrLines.push('fbclid: ' + fbclid);
+    if (li_fat_id)    attrLines.push('li_fat_id: ' + li_fat_id);
+    if (page_url)     attrLines.push('Page URL: ' + page_url);
+    if (referrer)     attrLines.push('Referrer: ' + referrer);
+    if (landing_page) attrLines.push('Landing Page: ' + landing_page);
+    if (first_visit)  attrLines.push('First Visit: ' + first_visit);
+    if (ga_client_id) attrLines.push('GA Client ID: ' + ga_client_id);
+    const attrBlock = attrLines.length ? ('\n\n--- Attribution ---\n' + attrLines.join('\n')) : '';
 
     // Coalesce the variants
     const titleVal       = title       || role          || '';
@@ -56,7 +87,7 @@ module.exports = async (req, res) => {
       zohoParams.append('Lead Source', 'Direct Inbound');
       zohoParams.append('Industry', industry || '-None-');
       zohoParams.append('LEADCF1', companySizeVal || '-None-');
-      zohoParams.append('Description', solveVal || '');
+      zohoParams.append('Description', (solveVal || '') + attrBlock);
       zohoParams.append('zc_gad', '');
       zohoParams.append('aG9uZXlwb3Q', '');
 
@@ -85,7 +116,7 @@ module.exports = async (req, res) => {
             { field: '28', value: titleVal },
             { field: '29', value: companySizeVal },
             { field: '30', value: howHeardVal },
-            { field: '31', value: solveVal },
+            { field: '31', value: (solveVal || '') + attrBlock },
             { field: '9',  value: industry },
             { field: '3',  value: 'Direct Inbound' },
           ]
