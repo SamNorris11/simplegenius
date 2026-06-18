@@ -827,38 +827,12 @@ header.scrolled {
   border-top: none;
 }
 
-/* ============ SCROLL ANIMATIONS ============ */
-.fade-up {
-  opacity: 0;
-  transform: translate3d(0, 24px, 0);
-  transition:
-    opacity 0.55s cubic-bezier(.21,.6,.35,1),
-    transform 0.6s cubic-bezier(.21,.6,.35,1);
-  will-change: opacity, transform;
-  backface-visibility: hidden;
-}
+/* ============ SCROLL ANIMATIONS (disabled — elements stay in place) ============ */
+.fade-up,
 .fade-up.is-visible {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-/* Mobile: subtle fade-up — short travel, smooth easing. Adds "alive" feel
-   without the harshness. Same direction as desktop but gentler in every way. */
-@media (max-width: 768px) {
-  .fade-up {
-    transform: translate3d(0, 10px, 0);
-    transition:
-      opacity 0.7s cubic-bezier(.21,.6,.35,1),
-      transform 0.7s cubic-bezier(.21,.6,.35,1);
-  }
-}
-/* Respect users who prefer no motion */
-@media (prefers-reduced-motion: reduce) {
-  .fade-up,
-  .fade-up.is-visible {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+  transform: none;
+  transition: none;
 }
 /* Mobile: keep ultra-slow ambient mesh drift (26s+, imperceptible motion = "alive")
    but kill the faster decorative loops that caused harshness. */
@@ -1873,3 +1847,42 @@ textarea.form-control { resize: vertical; line-height: 1.6; }
   .hero-mesh-c { max-width: 100%; overflow: hidden; }
 }
 html, body { overflow-x: hidden; }
+
+/* --------------------------------------------------------------
+   Unified page header sizing
+   Used by interior pages (about, pricing, product, resources,
+   articles, contact, data-protection, book) so every page H1
+   and H2 reads at the same scale.
+   index.html hero uses the larger .hero__heading by design.
+--------------------------------------------------------------- */
+.page-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4.2vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: var(--color-text);
+  margin: 0 0 var(--space-5);
+  text-wrap: balance;
+}
+.page-hero__sub {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  line-height: 1.55;
+  color: var(--color-text-muted, #4A5568);
+  margin: 0 0 var(--space-6);
+}
+.page-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--color-text);
+  margin: var(--space-12) 0 var(--space-5);
+}
+@media (max-width: 600px) {
+  .page-hero__title { font-size: clamp(1.9rem, 7vw, 2.6rem); }
+  .page-section__title { font-size: clamp(1.35rem, 5.5vw, 1.75rem); margin-top: var(--space-10); }
+}
+
