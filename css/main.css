@@ -105,6 +105,12 @@ header.scrolled {
   color: var(--color-text);
   text-decoration: none;
 }
+.mobile-menu__links a.btn--primary {
+  color: var(--color-primary-text);
+}
+.mobile-menu__links a.btn--primary:hover {
+  color: var(--color-primary-text);
+}
 
 /* ============ BUTTONS ============ */
 .btn {
