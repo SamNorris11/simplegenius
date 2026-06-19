@@ -1404,6 +1404,26 @@ html, body { overflow-x: clip !important; }
     border-color: var(--color-accent, #C8A84B);
   }
 
+  /* M. Pullquote box — tighten on mobile so it doesn't crowd the edges */
+  .pullquote {
+    padding: 56px 32px !important;
+  }
+  .pullquote__inner {
+    max-width: 100% !important;
+  }
+  .pullquote__mark {
+    font-size: 2.5rem !important;
+    margin-bottom: 12px !important;
+  }
+  .pullquote__text {
+    font-size: 1.125rem !important;
+    line-height: 1.45 !important;
+  }
+  .pullquote__cite {
+    font-size: 0.75rem !important;
+    letter-spacing: 0.12em !important;
+  }
+
   /* M. "The first step in AI for Business" — match desktop styling, single line */
   .why-sg__close {
     font-family: var(--font-display, Playfair), Playfair, Georgia, serif !important;
