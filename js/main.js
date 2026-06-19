@@ -2,6 +2,24 @@
 (function () {
   'use strict';
 
+  // Safe storage shim: real sessionStorage on live domains, in-memory fallback
+  // in sandboxed preview iframes where storage APIs are blocked.
+  var sessionStorage = (function () {
+    try {
+      var t = '__sg_t__';
+      window.sessionStorage.setItem(t, '1');
+      window.sessionStorage.removeItem(t);
+      return window.sessionStorage;
+    } catch (e) {
+      var mem = {};
+      return {
+        getItem: function (k) { return Object.prototype.hasOwnProperty.call(mem, k) ? mem[k] : null; },
+        setItem: function (k, v) { mem[k] = String(v); },
+        removeItem: function (k) { delete mem[k]; }
+      };
+    }
+  })();
+
   // Force light mode always
   document.documentElement.setAttribute('data-theme', 'light');
 

@@ -20,6 +20,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/enhance.css" />
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -74,31 +75,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- CONTACT OPTIONS -->
-<section style="padding-top: 7rem;" style="background:var(--color-bg);">
-  <div class="container" style="max-width:720px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin-bottom:var(--space-12);">
-      <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);padding:var(--space-8);text-align:center;">
-        <div style="width:48px;height:48px;background:var(--color-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+<section style="padding-top:6rem;padding-bottom:var(--section-y);background:var(--color-bg);">
+  <div class="container" style="max-width:var(--content-wide);">
+    <div class="contact-cards">
+      <div class="contact-card" data-lift>
+        <div class="contact-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect class="ico-stroke" x="5" y="7" width="15" height="15" rx="2.5"/>
+            <path class="ico-stroke" d="M5 12h15M9 5v4M16 5v4" opacity="0.55"/>
+            <path class="ico-fill" d="M8 15h2.4v2.4H8zM12 15h2.4v2.4H12z"/>
+            <circle class="ico-stroke" cx="23" cy="21" r="6"/>
+            <path class="ico-dark" d="M23 18.4V21l1.9 1.6"/>
+          </svg>
         </div>
-        <h3 style="font-size:var(--text-base);font-family:var(--font-display);font-weight:700;margin-bottom:var(--space-2);">Let's Talk</h3>
-        <p style="font-size:var(--text-sm);color:var(--color-text-2);line-height:1.6;margin-bottom:var(--space-5);">Ready to explore Simple Genius? Schedule a conversation with our team.</p>
-        <a href="index.html#lets-talk" class="btn btn--primary" style="width:100%;justify-content:center;">Schedule a Call</a>
+        <h3>Schedule a Call</h3>
+        <p>Ready to explore Simple Genius? Book a conversation with our team and we will walk you through the platform.</p>
+        <a href="index.html#lets-talk" class="btn btn--primary" style="margin-top:auto;align-self:flex-start;">Schedule a Call</a>
       </div>
-      <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-2xl);padding:var(--space-8);text-align:center;">
-        <div style="width:48px;height:48px;background:var(--color-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-4);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <div class="contact-card" data-lift>
+        <div class="contact-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect class="ico-stroke" x="4" y="8" width="24" height="17" rx="2.5"/>
+            <path class="ico-dark" d="M5 9.5l11 8 11-8" opacity="0.55"/>
+            <circle class="ico-stroke" cx="16" cy="16.5" r="3.4"/>
+            <path class="ico-fill" d="M19.4 16.5c0 1.9-1.5 3.4-3.4 3.4v-1.5a1.9 1.9 0 1 0-1.9-1.9h-1.5a3.4 3.4 0 0 1 6.8 0z"/>
+          </svg>
         </div>
-        <h3 style="font-size:var(--text-base);font-family:var(--font-display);font-weight:700;margin-bottom:var(--space-2);">Email Us</h3>
-        <p style="font-size:var(--text-sm);color:var(--color-text-2);line-height:1.6;margin-bottom:var(--space-5);">Have a quick question or a security inquiry? Reach us directly.</p>
-        <a href="https://www.simplegenius.com/cdn-cgi/l/email-protection#18707d747477586b717568747d7f7d76716d6b367b7775" class="btn btn--outline-dark" style="width:100%;justify-content:center;"><span class="__cf_email__" data-cfemail="38505d545457784b515548545d5f5d56514d4b165b5755">[email&#160;protected]</span></a>
+        <h3>Email Us</h3>
+        <p>Have a quick question or a security inquiry? Reach us directly and we will respond within one business day.</p>
+        <a href="https://www.simplegenius.com/cdn-cgi/l/email-protection#18707d747477586b717568747d7f7d76716d6b367b7775" style="margin-top:auto;"><span class="__cf_email__" data-cfemail="38505d545457784b515548545d5f5d56514d4b165b5755">[email&#160;protected]</span></a>
       </div>
-    </div>
-
-    <!-- Data protection note -->
-    <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);display:flex;gap:var(--space-4);align-items:flex-start;">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:2px;color:var(--color-text-2);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <p style="font-size:var(--text-sm);color:var(--color-text-2);line-height:1.6;">All communications are protected. Review our <a href="data-protection.html" style="color:var(--color-text);text-decoration:underline;text-underline-offset:2px;">Data Protection &amp; Trust</a> policy to understand how we handle your information.</p>
+      <div class="contact-card" data-lift>
+        <div class="contact-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="ico-stroke" d="M16 3l9 4.5v7c0 6.4-4.2 10.4-9 11.8C11.2 24.9 7 20.9 7 14.5v-7L16 3z"/>
+            <path class="ico-stroke" d="M16 3v22.3" opacity="0.35"/>
+            <path class="ico-fill" d="M12.3 15.2l2.6 2.6 4.9-5.2 1.5 1.4-6.4 6.8-4-4z"/>
+          </svg>
+        </div>
+        <h3>Data Protection &amp; Trust</h3>
+        <p>Every communication is protected. Read how we handle your information before you share anything sensitive.</p>
+        <a href="data-protection.html" style="margin-top:auto;">Read the policy</a>
+      </div>
     </div>
   </div>
 </section>
@@ -108,36 +126,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="footer__inner">
     <div class="footer__brand">
       <a href="index.html" class="footer__logo" id="footer-brand" aria-label="Simple Genius home">
-        <img src="images/logo-dark.png" alt="Simple Genius" height="42" />
+        <img src="images/logo-dark.png" alt="Simple Genius" height="26" />
       </a>
       <p class="footer__tagline">The first step for business AI.</p>
       <div class="footer__socials" aria-label="Social media links">
-        <a href="contact-us.html#" class="footer__social" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.75 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg></a>
-        <a href="contact-us.html#" class="footer__social" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-        <a href="contact-us.html#" class="footer__social" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-        <a href="contact-us.html#" class="footer__social" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.75 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg></a>
+        <a href="https://www.linkedin.com/company/112274244/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://www.instagram.com/simplegenius.co/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
       </div>
     </div>
+
+    <div class="footer__col">
+      <h5>Product</h5>
+      <ul role="list">
+        <li><a href="product.html">Product</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+
     <div class="footer__col">
       <h5>Company</h5>
-      <ul>
+      <ul role="list">
         <li><a href="about-us.html">About Us</a></li>
-        <li><a href="product.html">Product</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
         <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact-us.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h5>Legal &amp; Trust</h5>
+      <ul role="list">
+        <li><a href="data-protection.html">Data Protection</a></li>
         <li><a href="index.html#lets-talk">Let's Talk</a></li>
       </ul>
     </div>
-    <div class="footer__col">
-      <h5>Legal &amp; Trust</h5>
-      <ul>
-        <li><a href="data-protection.html">Data Protection &amp; Trust</a></li>
-        <li><a href="contact-us.html">Contact Us</a></li>
-      </ul>
-    </div>
   </div>
+
   <div class="footer__bottom">
-    <p class="footer__copy">© 2026 Simple Genius. All rights reserved.</p>
+    <p class="footer__copy">&copy; 2026 Simple Genius. All rights reserved.</p>
     <div class="footer__links">
       <a href="data-protection.html">Data Protection &amp; Trust</a>
       <a href="contact-us.html">Contact Us</a>
@@ -146,6 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script data-cfasync="false" src="https://www.simplegenius.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/main.js"></script>
+<script src="js/enhance.js" defer></script>
 
 <script data-pplx-inline-edit>
 (function () {

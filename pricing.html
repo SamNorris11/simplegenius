@@ -24,6 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/enhance.css" />
   <style>
     /* ── Pricing page extras ── */
     .pricing-hero {
@@ -323,23 +324,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-size: var(--text-sm);
       border-bottom: 1px solid var(--color-divider);
     }
+    /* R3: solid, well-styled sticky header that never covers rows */
     .compare-table thead th {
-      font-weight: 600;
+      font-weight: 700;
+      font-size: var(--text-base);
+      letter-spacing: -0.01em;
       color: var(--color-text);
-      background: var(--color-bg);
+      background: var(--color-surface-2);   /* SOLID off-white panel, not translucent */
       position: sticky;
       top: 72px;
-      z-index: 2;
+      z-index: 8;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--color-border-strong);
     }
     .compare-table thead th:first-child {
-      border-radius: 8px 0 0 0;
+      border-radius: 10px 0 0 0;
     }
     .compare-table thead th:last-child {
-      border-radius: 0 8px 0 0;
+      border-radius: 0 10px 0 0;
     }
+    /* brand-yellow underline accent under the active Organizational column */
     .compare-table thead th.col-featured {
       background: #1A1A1A;
       color: #fff;
+      box-shadow: inset 0 -3px 0 0 var(--color-accent);
+    }
+    /* drop shadow on the underside of the whole header when the page is scrolled */
+    .compare-table.is-stuck thead th {
+      box-shadow: 0 8px 20px rgba(26,26,26,0.14);
+    }
+    .compare-table.is-stuck thead th.col-featured {
+      box-shadow: inset 0 -3px 0 0 var(--color-accent), 0 8px 20px rgba(26,26,26,0.18);
     }
     .compare-table .section-row td {
       font-size: 11px;
@@ -472,7 +488,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button class="pricing-tiers__tab active" data-tier="self" role="tab" aria-selected="true">Self-Guided</button>
       <button class="pricing-tiers__tab" data-tier="expert" role="tab" aria-selected="false">Expert-Guided</button>
     </div>
-    <p class="tier-desc" id="tierDesc">You run it. We power it. Full platform access with no services layer.</p>
+    <p class="tier-desc" id="tierDesc">You run it. We power it. Full platform access.</p>
   </div>
 </section>
 
@@ -904,7 +920,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <tr><td>Custom APIs / integrations</td><td><span class="ic-x">&#10005;</span></td><td class="col-featured"><span class="ic-x">&#10005;</span></td><td><span class="ic-check">&#10003;</span></td></tr>
       </tbody>
     </table>
-    <p style="margin-top:var(--space-4);font-size:var(--text-xs);color:var(--color-text-3);text-align:center;">Expert-Guided plans include personalized onboarding and monthly account meetings across all tiers.</p>
+    <p style="margin-top:var(--space-4);font-size:var(--text-xs);color:var(--color-text-3);text-align:center;">Every plan includes the full platform: Business Brain, Competition Hub, Module Library, and the Board Dashboard.</p>
   </div>
 </section>
 
@@ -920,41 +936,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="footer__inner">
     <div class="footer__brand">
       <a href="index.html" class="footer__logo" id="footer-brand" aria-label="Simple Genius home">
-        <img src="images/logo-dark.png" alt="Simple Genius" height="42" />
+        <img src="images/logo-dark.png" alt="Simple Genius" height="26" />
       </a>
       <p class="footer__tagline">The first step for business AI.</p>
       <div class="footer__socials" aria-label="Social media links">
-        <a href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.75 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg></a>
-        <a href="https://www.linkedin.com/company/112274244/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-        <a href="https://www.instagram.com/simplegenius.co/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-        <a href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.75 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg></a>
+        <a href="https://www.linkedin.com/company/112274244/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://www.instagram.com/simplegenius.co/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
       </div>
     </div>
+
     <div class="footer__col">
-      <p class="footer__col-head">Product</p>
-      <ul class="footer__col-links" role="list">
-        <li><a href="product.html">Business Brain</a></li>
-        <li><a href="product.html">Competition Hub</a></li>
+      <h5>Product</h5>
+      <ul role="list">
+        <li><a href="product.html">Product</a></li>
         <li><a href="pricing.html">Pricing</a></li>
       </ul>
     </div>
+
     <div class="footer__col">
-      <p class="footer__col-head">Company</p>
-      <ul class="footer__col-links" role="list">
+      <h5>Company</h5>
+      <ul role="list">
         <li><a href="about-us.html">About Us</a></li>
         <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact-us.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h5>Legal &amp; Trust</h5>
+      <ul role="list">
         <li><a href="data-protection.html">Data Protection</a></li>
-        <li><a href="index.html#lets-talk">Contact</a></li>
+        <li><a href="index.html#lets-talk">Let's Talk</a></li>
       </ul>
     </div>
   </div>
+
   <div class="footer__bottom">
-    <p>&copy; 2025 Simple Genius. All rights reserved.</p>
+    <p class="footer__copy">&copy; 2026 Simple Genius. All rights reserved.</p>
+    <div class="footer__links">
+      <a href="data-protection.html">Data Protection &amp; Trust</a>
+      <a href="contact-us.html">Contact Us</a>
+    </div>
   </div>
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/enhance.js" defer></script>
 <script>
+  // R3: toggle a drop shadow under the sticky comparison header once it sticks
+  (function () {
+    var table = document.getElementById('compareTable');
+    if (!table) return;
+    var thead = table.querySelector('thead');
+    var STICK_TOP = 72; // matches CSS top offset
+    function onScroll() {
+      var rect = thead.getBoundingClientRect();
+      // header is "stuck" when its top reaches the sticky offset
+      table.classList.toggle('is-stuck', rect.top <= STICK_TOP + 1);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
   // Billing + tier toggle
   const billingOpts = document.querySelectorAll('.pricing-toggle__opt');
   const tierTabs = document.querySelectorAll('.pricing-tiers__tab');
@@ -962,7 +1007,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   const tierDesc = document.getElementById('tierDesc');
 
   const tierDescriptions = {
-    self: 'You run it. We power it. Full platform access with no services layer.',
+    self: 'You run it. We power it. Full platform access.',
     expert: 'We guide you through setup, strategy, and ongoing intelligence reviews.'
   };
 

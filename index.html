@@ -29,6 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/enhance.css" />
   <link rel="stylesheet" href="css/cluely-intro.css" />
   <script src="js/cluely-intro.js" defer></script>
 </head>
@@ -163,24 +164,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </section>
 
-<!-- ===================== INTRO / 3-COL ===================== -->
-<section class="intro" aria-label="Why Simple Genius">
-  <div class="intro__inner">
-    <p class="intro__lead">The infrastructure layer that makes AI actually work for your business.</p>
-
-    <div class="intro__col fade-up">
-      <p class="intro__col-label">Built on Your Context</p>
-      <p>AI is only as useful as the context you give it. We capture the data, conversations, and judgment that live inside your company, so AI stops being generic.</p>
-    </div>
-
-    <div class="intro__col fade-up">
-      <p class="intro__col-label">One Secure Platform</p>
-      <p>Company knowledge, strategy, employee AI, competitive intel, and executive visibility. All in one place. SOC 2, HIPAA/HITECH, end-to-end encrypted. Your data never trains public models.</p>
-    </div>
-
-    <div class="intro__col fade-up">
-      <p class="intro__col-label">Built by Operators</p>
-      <p>Founded by leaders who built, scaled, and exited multiple companies. We built Simple Genius because we needed it and it didn't exist.</p>
+<!-- ===================== INTRO / STATEMENT ===================== -->
+<section class="intro intro--statement" aria-label="Why Simple Genius">
+  <div class="intro__inner intro__inner--statement">
+    <h2 class="intro__headline fade-up">The infrastructure layer underneath your AI.</h2>
+    <p class="intro__subline fade-up">We capture what your company actually knows — then every AI decision runs on top of it, securely.</p>
+    <div class="intro__props fade-up" role="list">
+      <span class="intro__prop" role="listitem">Context</span>
+      <span class="intro__prop" role="listitem">Security</span>
+      <span class="intro__prop" role="listitem">Operators</span>
     </div>
   </div>
 </section>
@@ -202,23 +194,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="feature-section__body">Not quarterly. Not at the annual summit. Continuously. We monitor new hires, new pages, new products, keyword rankings, branding changes, and pricing shifts so leadership always knows exactly where the market is open.</p>
 
       <div class="feature-section__items">
-        <div class="feature-item fade-up">
-          <span class="feature-item__num">&#9733;</span>
-          <span class="feature-item__title">Product Moves</span>
+        <div class="feature-item fade-up" data-lift>
+          <span class="feature-item__num">Product Move</span>
+          <span class="feature-item__title">Launches &amp; Roadmap</span>
           <span class="feature-item__desc">See competitor launches, page changes, and roadmap signals as they happen.</span>
         </div>
-        <div class="feature-item fade-up">
-          <span class="feature-item__num">&#9733;</span>
+        <div class="feature-item fade-up" data-lift>
+          <span class="feature-item__num">Pricing Shift</span>
           <span class="feature-item__title">Pricing &amp; Branding</span>
           <span class="feature-item__desc">Detect pricing changes and brand shifts before they hit your pipeline.</span>
         </div>
-        <div class="feature-item fade-up">
-          <span class="feature-item__num">&#9733;</span>
+        <div class="feature-item fade-up" data-lift>
+          <span class="feature-item__num">Hiring</span>
           <span class="feature-item__title">Hiring Signals</span>
           <span class="feature-item__desc">Track where competitors are investing by who they're hiring.</span>
         </div>
-        <div class="feature-item fade-up">
-          <span class="feature-item__num">&#9733;</span>
+        <div class="feature-item fade-up" data-lift>
+          <span class="feature-item__num">SEO</span>
           <span class="feature-item__title">Keyword &amp; SEO Shifts</span>
           <span class="feature-item__desc">Monitor ranking changes and search positioning across the market.</span>
         </div>
@@ -256,23 +248,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="feature-section__body">Business Brain connects to your CRM, accounting, and Drive, then runs AI-led interviews with your leadership and team to capture what only lives in people's heads. We consolidate it into a verified business profile your team signs off on. Every AI output in the platform runs on top of it.</p>
 
       <div class="feature-section__items">
-        <div class="feature-item fade-up">
-          <span class="feature-item__num">&#9733;</span>
+        <div class="feature-item fade-up" data-lift>
+          <span class="feature-item__num">Connect</span>
           <span class="feature-item__title">Connected Data</span>
           <span class="feature-item__desc">Pulls from CRM, accounting, Drive, and the systems you already use.</span>
         </div>
-        <div class="feature-item fade-up">
-          <span class="feature-item__num">&#9733;</span>
+        <div class="feature-item fade-up" data-lift>
+          <span class="feature-item__num">Capture</span>
           <span class="feature-item__title">AI-Led Interviews</span>
           <span class="feature-item__desc">Captures the context locked inside your people, not just your spreadsheets.</span>
         </div>
-        <div class="feature-item fade-up">
-          <span class="feature-item__num">&#9733;</span>
+        <div class="feature-item fade-up" data-lift>
+          <span class="feature-item__num">Verify</span>
           <span class="feature-item__title">Verified Findings</span>
           <span class="feature-item__desc">Leadership reviews, corrects, and signs off. The living source of truth.</span>
         </div>
-        <div class="feature-item fade-up">
-          <span class="feature-item__num">&#9733;</span>
+        <div class="feature-item fade-up" data-lift>
+          <span class="feature-item__num">Act</span>
           <span class="feature-item__title">Strategic Insights</span>
           <span class="feature-item__desc">Continuous recommendations and initiatives, grounded in your verified context.</span>
         </div>
@@ -370,48 +362,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="clarity" aria-labelledby="clarity-heading">
   <div class="clarity__inner">
 
-    <div>
+    <div class="clarity__panel glow-panel fade-up">
       <p class="section-label">The Real Problem</p>
-      <h2 class="section-heading" id="clarity-heading">The problem isn't AI. It's the missing foundation.</h2>
-      <p class="section-sub">Most companies dabble with one-off tools, dump money into custom dev work, or quietly let employees pipe company data into public chatbots. None of it works. Simple Genius is the foundation that does.</p>
-
-      <p style="font-size: var(--text-xs); font-weight: 600; color: #2A2A2A; margin-top: var(--space-8); margin-bottom: var(--space-2); text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--font-body);">Built for</p>
-      <p style="font-size: var(--text-base); font-weight: 600; color: #1A1A1A; margin-bottom: var(--space-10); font-family: var(--font-body);">Executives, strategists, and decision-makers</p>
-
-      <div class="clarity__values">
-        <div class="clarity__value fade-up">
-          <div class="clarity__value-body">
-            <h5>Context</h5>
-            <p>A brilliant consultant spends months learning your business before they're useful. We give AI that same context, in days.</p>
-          </div>
-        </div>
-        <div class="clarity__value fade-up">
-          <div class="clarity__value-body">
-            <h5>Consolidation</h5>
-            <p>Strategy, employee AI, competitor intel, and exec visibility in one place. No more fragmented tools.</p>
-          </div>
-        </div>
-        <div class="clarity__value fade-up">
-          <div class="clarity__value-body">
-            <h5>Compounding</h5>
-            <p>The platform gets smarter every day. As your business changes, the system grows with it.</p>
-          </div>
-        </div>
+      <h2 class="clarity__panel-heading" id="clarity-heading">The problem isn't AI. It's the missing foundation.</h2>
+      <p class="clarity__panel-sub">Companies buy one-off tools, pour cash into custom builds, or quietly let staff paste company data into public chatbots. None of it compounds. Simple Genius is the foundation that does.</p>
+      <div class="clarity__builtfor">
+        <p class="clarity__builtfor-label">Built for</p>
+        <p class="clarity__builtfor-text">Executives, strategists, and decision-makers</p>
       </div>
     </div>
 
-    <div class="clarity__cards">
-      <div class="clarity__card fade-up">
-        <h4>One-Off Tools Don't Connect</h4>
-        <p>A dozen AI subscriptions with no shared context produce a dozen disconnected outputs.</p>
+    <div class="clarity__points">
+      <div class="clarity__point fade-up" data-lift>
+        <span class="clarity__point-num">1</span>
+        <div>
+          <h4>One-off tools don't connect</h4>
+          <p>A dozen AI subscriptions with no shared context produce a dozen disconnected outputs.</p>
+        </div>
       </div>
-      <div class="clarity__card fade-up">
-        <h4>Internal Builds Burn Cash</h4>
-        <p>Dev teams spend years and millions on systems that never quite ship.</p>
+      <div class="clarity__point fade-up" data-lift>
+        <span class="clarity__point-num">2</span>
+        <div>
+          <h4>Internal builds burn cash</h4>
+          <p>Dev teams spend years and millions on systems that never quite ship.</p>
+        </div>
       </div>
-      <div class="clarity__card fade-up">
-        <h4>Shadow AI Leaks IP</h4>
-        <p>Your team is already using AI. Without the right platform, your company knowledge is leaving with them.</p>
+      <div class="clarity__point fade-up" data-lift>
+        <span class="clarity__point-num">3</span>
+        <div>
+          <h4>Shadow AI leaks IP</h4>
+          <p>Your team is already using AI. Without the right platform, your company knowledge walks out the door with them.</p>
+        </div>
       </div>
     </div>
 
@@ -427,38 +408,108 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="section-sub">From foundational business intelligence to executive board view, every layer feeds the next.</p>
     </div>
 
-    <div class="how-it-works__steps">
-      <div class="step-card" data-step="Step 1">
-        <h4>Business Intelligence</h4>
-        <p>Connect CRM, accounting, and Drive. AI-led interviews capture what only lives in people's heads.</p>
+    <div class="stepper" data-stepper>
+      <div class="stepper__track" role="tablist" aria-label="How it works steps">
+        <span class="stepper__line" aria-hidden="true"></span>
+        <button class="stepper__node is-active" role="tab" aria-selected="true" data-index="0" id="step-tab-0" aria-controls="step-panel-0"><span class="stepper__dot" aria-hidden="true">1</span><span class="stepper__label">Business Intelligence</span></button>
+        <button class="stepper__node" role="tab" aria-selected="false" data-index="1" id="step-tab-1" aria-controls="step-panel-1"><span class="stepper__dot" aria-hidden="true">2</span><span class="stepper__label">Initial Findings</span></button>
+        <button class="stepper__node" role="tab" aria-selected="false" data-index="2" id="step-tab-2" aria-controls="step-panel-2"><span class="stepper__dot" aria-hidden="true">3</span><span class="stepper__label">Strategic Insights</span></button>
+        <button class="stepper__node" role="tab" aria-selected="false" data-index="3" id="step-tab-3" aria-controls="step-panel-3"><span class="stepper__dot" aria-hidden="true">4</span><span class="stepper__label">Initiative Tracking</span></button>
+        <button class="stepper__node" role="tab" aria-selected="false" data-index="4" id="step-tab-4" aria-controls="step-panel-4"><span class="stepper__dot" aria-hidden="true">5</span><span class="stepper__label">Team Chat</span></button>
+        <button class="stepper__node" role="tab" aria-selected="false" data-index="5" id="step-tab-5" aria-controls="step-panel-5"><span class="stepper__dot" aria-hidden="true">6</span><span class="stepper__label">Competition Hub</span></button>
+        <button class="stepper__node" role="tab" aria-selected="false" data-index="6" id="step-tab-6" aria-controls="step-panel-6"><span class="stepper__dot" aria-hidden="true">7</span><span class="stepper__label">Module Library</span></button>
+        <button class="stepper__node" role="tab" aria-selected="false" data-index="7" id="step-tab-7" aria-controls="step-panel-7"><span class="stepper__dot" aria-hidden="true">8</span><span class="stepper__label">Board Dashboard</span></button>
       </div>
-      <div class="step-card" data-step="Step 2">
-        <h4>Initial Business Findings</h4>
-        <p>Everything consolidated into a verified report. Your team reviews, corrects, and signs off.</p>
-      </div>
-      <div class="step-card" data-step="Step 3">
-        <h4>Strategic Insights</h4>
-        <p>Continuous, consultant-grade recommendations grounded in your verified business context.</p>
-      </div>
-      <div class="step-card" data-step="Step 4">
-        <h4>Initiative Tracking</h4>
-        <p>Turn insights into initiatives. Assign owners. Track progress in one place.</p>
-      </div>
-      <div class="step-card" data-step="Step 5">
-        <h4>Team Chat</h4>
-        <p>An internal AI assistant for every employee. Your IP stays inside. Knowledge stays when people leave.</p>
-      </div>
-      <div class="step-card" data-step="Step 6">
-        <h4>Competition Hub</h4>
-        <p>Continuous competitor tracking. Hires, pages, products, pricing, keywords, branding.</p>
-      </div>
-      <div class="step-card" data-step="Step 7">
-        <h4>Module Library</h4>
-        <p>Presentations, meeting prep, SEO, marketing. Every output on-brand and informed by your business.</p>
-      </div>
-      <div class="step-card" data-step="Step 8">
-        <h4>Board Dashboard</h4>
-        <p>Executive view of initiatives, progress, and direction. Everything a CEO or board needs in one place.</p>
+
+      <div class="stepper__panels">
+        <div class="stepper__acc-wrap">
+          <button class="stepper__accordion-head is-active" data-index="0" aria-expanded="true" aria-controls="step-panel-0"><span class="stepper__acc-num">1</span> Business Intelligence</button>
+          <div class="stepper__panel is-active glow-panel" id="step-panel-0" role="tabpanel" aria-labelledby="step-tab-0">
+            <div class="stepper__panel-text">
+              <p class="stepper__panel-eyebrow">Step 1</p>
+              <h3 class="stepper__panel-title">Business Intelligence</h3>
+              <p class="stepper__panel-body">Connect to CRM, accounting, and Drive — then we run AI-led interviews and capture everything from leadership and operators that only lives in people's heads. Your foundation, verified and signed off by your team.</p>
+            </div>
+            <div class="stepper__panel-media"><img src="images/sg_business_brain.png" alt="Business intelligence dashboard" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="stepper__acc-wrap">
+          <button class="stepper__accordion-head" data-index="1" aria-expanded="false" aria-controls="step-panel-1"><span class="stepper__acc-num">2</span> Initial Findings</button>
+          <div class="stepper__panel glow-panel" id="step-panel-1" role="tabpanel" aria-labelledby="step-tab-1">
+            <div class="stepper__panel-text">
+              <p class="stepper__panel-eyebrow">Step 2</p>
+              <h3 class="stepper__panel-title">Initial Business Findings</h3>
+              <p class="stepper__panel-body">Everything consolidated into a verified report. Your team reviews, corrects, and signs off.</p>
+            </div>
+            <div class="stepper__panel-media"><img src="images/sg_findings.png" alt="Initial business findings report" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="stepper__acc-wrap">
+          <button class="stepper__accordion-head" data-index="2" aria-expanded="false" aria-controls="step-panel-2"><span class="stepper__acc-num">3</span> Strategic Insights</button>
+          <div class="stepper__panel glow-panel" id="step-panel-2" role="tabpanel" aria-labelledby="step-tab-2">
+            <div class="stepper__panel-text">
+              <p class="stepper__panel-eyebrow">Step 3</p>
+              <h3 class="stepper__panel-title">Strategic Insights</h3>
+              <p class="stepper__panel-body">Continuous, consultant-grade recommendations grounded in your verified business context.</p>
+            </div>
+            <div class="stepper__panel-media"><img src="images/sg_strategic_insights.png" alt="Strategic insights view" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="stepper__acc-wrap">
+          <button class="stepper__accordion-head" data-index="3" aria-expanded="false" aria-controls="step-panel-3"><span class="stepper__acc-num">4</span> Initiative Tracking</button>
+          <div class="stepper__panel glow-panel" id="step-panel-3" role="tabpanel" aria-labelledby="step-tab-3">
+            <div class="stepper__panel-text">
+              <p class="stepper__panel-eyebrow">Step 4</p>
+              <h3 class="stepper__panel-title">Initiative Tracking</h3>
+              <p class="stepper__panel-body">Turn insights into initiatives. Assign owners. Track progress in one place.</p>
+            </div>
+            <div class="stepper__panel-media"><img src="images/sg_initiatives.png" alt="Initiative tracking board" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="stepper__acc-wrap">
+          <button class="stepper__accordion-head" data-index="4" aria-expanded="false" aria-controls="step-panel-4"><span class="stepper__acc-num">5</span> Team Chat</button>
+          <div class="stepper__panel glow-panel" id="step-panel-4" role="tabpanel" aria-labelledby="step-tab-4">
+            <div class="stepper__panel-text">
+              <p class="stepper__panel-eyebrow">Step 5</p>
+              <h3 class="stepper__panel-title">Team Chat</h3>
+              <p class="stepper__panel-body">An internal AI assistant for every employee. Your IP stays inside. Knowledge stays when people leave.</p>
+            </div>
+            <div class="stepper__panel-media"><img src="images/sg_team_chat.png" alt="Team chat assistant" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="stepper__acc-wrap">
+          <button class="stepper__accordion-head" data-index="5" aria-expanded="false" aria-controls="step-panel-5"><span class="stepper__acc-num">6</span> Competition Hub</button>
+          <div class="stepper__panel glow-panel" id="step-panel-5" role="tabpanel" aria-labelledby="step-tab-5">
+            <div class="stepper__panel-text">
+              <p class="stepper__panel-eyebrow">Step 6</p>
+              <h3 class="stepper__panel-title">Competition Hub</h3>
+              <p class="stepper__panel-body">Continuous competitor tracking. Hires, pages, products, pricing, keywords, branding.</p>
+            </div>
+            <div class="stepper__panel-media"><img src="images/sg_competition_hub.png" alt="Competition hub view" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="stepper__acc-wrap">
+          <button class="stepper__accordion-head" data-index="6" aria-expanded="false" aria-controls="step-panel-6"><span class="stepper__acc-num">7</span> Module Library</button>
+          <div class="stepper__panel glow-panel" id="step-panel-6" role="tabpanel" aria-labelledby="step-tab-6">
+            <div class="stepper__panel-text">
+              <p class="stepper__panel-eyebrow">Step 7</p>
+              <h3 class="stepper__panel-title">Module Library</h3>
+              <p class="stepper__panel-body">Presentations, meeting prep, SEO, marketing. Every output on-brand and informed by your business.</p>
+            </div>
+            <div class="stepper__panel-media"><img src="images/sg_modules.png" alt="Module library" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="stepper__acc-wrap">
+          <button class="stepper__accordion-head" data-index="7" aria-expanded="false" aria-controls="step-panel-7"><span class="stepper__acc-num">8</span> Board Dashboard</button>
+          <div class="stepper__panel glow-panel" id="step-panel-7" role="tabpanel" aria-labelledby="step-tab-7">
+            <div class="stepper__panel-text">
+              <p class="stepper__panel-eyebrow">Step 8</p>
+              <h3 class="stepper__panel-title">Board Dashboard</h3>
+              <p class="stepper__panel-body">Executive view of initiatives, progress, and direction. Everything a CEO or board needs in one place.</p>
+            </div>
+            <div class="stepper__panel-media"><img src="images/sg_board.png" alt="Board dashboard" loading="lazy"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -475,32 +526,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="features__grid">
-      <div class="feature-card">
-        <div class="feature-card__icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/></svg>
+      <div class="feature-card" data-lift>
+        <div class="trust-ico" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="ico-stroke" d="M16 3l9 4.5v7c0 6.4-4.2 10.4-9 11.8C11.2 24.9 7 20.9 7 14.5v-7L16 3z"/>
+            <path class="ico-stroke" d="M16 3v22.3M7 7.5l9 4 9-4" opacity="0.45"/>
+            <path class="ico-fill" d="M12.3 15.2l2.6 2.6 4.9-5.2 1.5 1.4-6.4 6.8-4-4z"/>
+          </svg>
         </div>
-        <h4>SOC 2 &amp; HIPAA/HITECH</h4>
-        <p>Certified, compliant, audited. Built for the regulated industries we serve.</p>
+        <h4>SOC 2 Certified</h4>
+        <p>Independently audited controls. Built for the standards our customers answer to.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-card__icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <div class="feature-card" data-lift>
+        <div class="trust-ico" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect class="ico-stroke" x="11" y="6" width="10" height="20" rx="2"/>
+            <path class="ico-fill" d="M14.6 11.2h2.8v2.6H20v2.8h-2.6v2.6h-2.8v-2.6H12v-2.8h2.6z"/>
+            <path class="ico-dark" d="M11 11H6.5M11 16H4M11 21H6.5M21 11h4.5M21 16h7M21 21h4.5" opacity="0.5"/>
+            <circle class="ico-fill" cx="4" cy="16" r="1.5"/>
+            <circle class="ico-fill" cx="28" cy="16" r="1.5"/>
+          </svg>
+        </div>
+        <h4>HIPAA / HITECH</h4>
+        <p>Compatible by design. Health and regulated data handled the way it must be.</p>
+      </div>
+      <div class="feature-card" data-lift>
+        <div class="trust-ico" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle class="ico-stroke" cx="10" cy="11" r="5"/>
+            <path class="ico-stroke" d="M13.6 14.6l8 8M19 20.5l2.5-2.5 2.2 2.2M22.6 23.6l1.8-1.8"/>
+            <circle class="ico-fill" cx="10" cy="11" r="1.8"/>
+            <path class="ico-stroke" d="M24.5 23.5a4 4 0 1 0 3.5-6.8" opacity="0.5"/>
+          </svg>
         </div>
         <h4>End-to-End Encrypted</h4>
-        <p>Your data is encrypted in transit and at rest. Always. No exceptions.</p>
+        <p>Encrypted in transit and at rest. Always, no exceptions.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-card__icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="4" y1="4" x2="20" y2="20"/></svg>
+      <div class="feature-card" data-lift>
+        <div class="trust-ico" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="ico-stroke" d="M11 5L5 7.5v6c0 5 3 8.3 6 9.5 3-1.2 6-4.5 6-9.5v-6L11 5z"/>
+            <path class="ico-stroke" d="M20 9.5a4 4 0 0 1 3.8 2.8A3.3 3.3 0 0 1 24 19h-6.5" opacity="0.5"/>
+            <path class="ico-dark" d="M21.5 14.5l6 6M27.5 14.5l-6 6"/>
+          </svg>
         </div>
-        <h4>Never Trains Public Models</h4>
-        <p>What you put in stays yours. Your data does not train anyone else's AI.</p>
+        <h4>Never Trains Public AI</h4>
+        <p>What you put in stays yours. Your data never trains anyone else's models.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-card__icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <div class="feature-card" data-lift>
+        <div class="trust-ico" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="ico-stroke" d="M6 13v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V13"/>
+            <path class="ico-dark" d="M6 13l3-5h14l3 5" opacity="0.5"/>
+            <path class="ico-fill" d="M16 4.5l4.5 4.5h-3v6h-3v-6h-3z"/>
+          </svg>
         </div>
-        <h4>Export Everything</h4>
+        <h4>Export Anything</h4>
         <p>Your data is your data. Export it, leave with it, take it anywhere. No lock-in.</p>
       </div>
     </div>
@@ -516,22 +597,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="who__grid">
-      <div class="who-card">
-        <h4>CEOs &amp; Founders</h4>
-        <p>Who need one verified view of the business and a platform that lets the whole company use AI safely.</p>
-      </div>
-      <div class="who-card">
-        <h4>Executive Teams</h4>
-        <p>Who make high-stakes decisions and need strategy, intel, and progress in one consolidated place.</p>
-      </div>
-      <div class="who-card">
-        <h4>Boards &amp; Investors</h4>
-        <p>Who need real visibility into initiatives, direction, and execution. Not slide decks. Reality.</p>
-      </div>
-      <div class="who-card">
-        <h4>Companies Done with Shadow AI</h4>
-        <p>Where employees are already using public AI tools. We give you a secure platform that captures the upside.</p>
-      </div>
+      <a class="persona-card" data-lift href="product.html#step-3-strategic-insights">
+        <div class="persona-card__media">
+          <img src="images/persona_ceo.png" alt="Operator dashboard view: revenue snapshot, decisions, week ahead" loading="lazy">
+        </div>
+        <div class="persona-card__body">
+          <h4 class="persona-card__role">CEOs &amp; Founders</h4>
+          <p class="persona-card__outcome">One verified view of the whole business.</p>
+          <p class="persona-card__desc">Run the company on a single source of truth and let every team use AI safely on top of it.</p>
+          <div class="persona-card__chips">
+            <span class="persona-card__chip">Single source of truth</span>
+            <span class="persona-card__chip">Safe team AI</span>
+          </div>
+          <span class="persona-card__cta">View module <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5"/></svg></span>
+        </div>
+      </a>
+
+      <a class="persona-card" data-lift href="product.html#step-5-team-chat">
+        <div class="persona-card__media">
+          <img src="images/persona_exec.png" alt="Executive team view: leadership assistant, action items, alignment threads" loading="lazy">
+        </div>
+        <div class="persona-card__body">
+          <h4 class="persona-card__role">Executive Teams</h4>
+          <p class="persona-card__outcome">Strategy, intel, and progress in one place.</p>
+          <p class="persona-card__desc">Make high-stakes calls with continuously refreshed context instead of stale quarterly snapshots.</p>
+          <div class="persona-card__chips">
+            <span class="persona-card__chip">Consultant-grade insight</span>
+            <span class="persona-card__chip">Tracked initiatives</span>
+          </div>
+          <span class="persona-card__cta">View module <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5"/></svg></span>
+        </div>
+      </a>
+
+      <a class="persona-card" data-lift href="product.html#step-8-board-dashboard">
+        <div class="persona-card__media">
+          <img src="images/persona_board.png" alt="Board view: quarterly KPIs, headline metrics, segment mix" loading="lazy">
+        </div>
+        <div class="persona-card__body">
+          <h4 class="persona-card__role">Boards &amp; Investors</h4>
+          <p class="persona-card__outcome">Real visibility, not slide decks.</p>
+          <p class="persona-card__desc">See initiatives, direction, and competitive position as they actually stand — in real time.</p>
+          <div class="persona-card__chips">
+            <span class="persona-card__chip">Board dashboard</span>
+            <span class="persona-card__chip">24/7 competitive intel</span>
+          </div>
+          <span class="persona-card__cta">View module <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5"/></svg></span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -542,8 +654,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="cta-banner__heading">Built for the future.<br>Available today.</h2>
     <p class="cta-banner__sub">Dive into Simple Genius with someone from our team.</p>
     <div class="cta-banner__actions">
-      <a href="index.html#lets-talk" class="btn btn--primary btn--xl">Let's Talk</a>
-      <a href="product.html" class="btn btn--outline btn--xl">Learn More</a>
+      <a href="product.html" class="btn btn--primary btn--xl">Learn More</a>
     </div>
   </div>
 </section>
@@ -649,47 +760,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="footer__inner">
     <div class="footer__brand">
       <a href="index.html" class="footer__logo" id="footer-brand" aria-label="Simple Genius home">
-        <img src="images/logo-dark.png" alt="Simple Genius" height="42" />
+        <img src="images/logo-dark.png" alt="Simple Genius" height="26" />
       </a>
       <p class="footer__tagline">The first step for business AI.</p>
       <div class="footer__socials" aria-label="Social media links">
-        <a href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="YouTube">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.75 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/company/112274244/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="LinkedIn">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://www.instagram.com/simplegenius.co/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Instagram">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Facebook">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
+        <a href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.75 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg></a>
+        <a href="https://www.linkedin.com/company/112274244/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://www.instagram.com/simplegenius.co/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
       </div>
     </div>
 
     <div class="footer__col">
-      <h5>Company</h5>
-      <ul>
-        <li><a href="about-us.html">About Us</a></li>
+      <h5>Product</h5>
+      <ul role="list">
         <li><a href="product.html">Product</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h5>Company</h5>
+      <ul role="list">
+        <li><a href="about-us.html">About Us</a></li>
         <li><a href="resources.html">Resources</a></li>
-        <li><a href="index.html#lets-talk">Let's Talk</a></li>
+        <li><a href="contact-us.html">Contact</a></li>
       </ul>
     </div>
 
     <div class="footer__col">
       <h5>Legal &amp; Trust</h5>
-      <ul>
-        <li><a href="data-protection.html">Data Protection &amp; Trust</a></li>
-        <li><a href="contact-us.html">Contact Us</a></li>
+      <ul role="list">
+        <li><a href="data-protection.html">Data Protection</a></li>
+        <li><a href="index.html#lets-talk">Let's Talk</a></li>
       </ul>
     </div>
   </div>
 
   <div class="footer__bottom">
-    <p class="footer__copy">© 2026 Simple Genius. All rights reserved.</p>
+    <p class="footer__copy">&copy; 2026 Simple Genius. All rights reserved.</p>
     <div class="footer__links">
       <a href="data-protection.html">Data Protection &amp; Trust</a>
       <a href="contact-us.html">Contact Us</a>
@@ -698,6 +807,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/enhance.js" defer></script>
 <script src="https://www.simplegenius.com/js/editor.js"></script><script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

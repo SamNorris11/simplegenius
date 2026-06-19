@@ -1,0 +1,1120 @@
+/* =============================================
+   SIMPLE GENIUS — Rebuild Enhancements
+   Additive layer. Loaded after main.css.
+   Addresses Trent's review: bigger header logo, compact footer,
+   cursor-reactive cards/pills, interactive stepper, sharper hierarchy,
+   higher-quality trust icons, standout pricing table, redone presentation.
+   Brand tokens unchanged.
+   ============================================= */
+
+/* ============================================================
+   1. HEADER LOGO — bigger (all pages) — R2: bump ~1.5x (34 -> 50)
+   ============================================================ */
+.navbar__logo img { height: 50px !important; }
+@media (max-width: 600px) {
+  .navbar__logo img { height: 40px !important; }
+}
+
+/* ============================================================
+   2. FOOTER — R2: cut ~30% more height, bigger logo, bolder socials
+   ============================================================ */
+.footer {
+  /* R3: trim vertical padding ~15% more (2rem → 1.7rem top, 1.25rem → 1rem bottom) */
+  padding: 1.7rem var(--outer-pad) 1rem !important;
+}
+.footer__inner {
+  grid-template-columns: 1.6fr 1fr 1fr 1fr !important;
+  /* keep COLUMN gaps generous so text never bleeds together; only trim height */
+  column-gap: var(--space-10) !important;
+  row-gap: var(--space-6) !important;
+  margin-bottom: 1rem !important;
+  align-items: start;
+}
+.footer__logo { margin-bottom: var(--space-3) !important; }
+.footer__logo img { height: 36px !important; width: auto; }
+.footer__tagline {
+  font-size: var(--text-xs) !important;
+  margin-bottom: var(--space-4) !important;
+  max-width: 220px;
+}
+.footer__socials { gap: var(--space-3) !important; }
+.footer__social {
+  width: 40px !important; height: 40px !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  color: var(--color-text-2) !important;
+  transition: color 180ms ease-out, border-color 180ms ease-out, background 180ms ease-out, transform 180ms ease-out !important;
+}
+.footer__social svg { width: 24px !important; height: 24px !important; }
+.footer__social:hover {
+  color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  background: var(--color-accent-light) !important;
+  transform: translateY(-2px);
+}
+.footer__col h5 { margin-bottom: 0.6rem !important; line-height: 1.2 !important; }
+/* R3: tighten line-heights so columns are shorter, but rows keep breathing room */
+.footer__col ul { gap: 0.45rem !important; }
+.footer__col a, .footer__col li { font-size: var(--text-xs) !important; line-height: 1.25 !important; }
+.footer__tagline { line-height: 1.45 !important; }
+.footer__bottom {
+  padding-top: 0.85rem !important;
+}
+@media (max-width: 768px) {
+  .footer__inner { grid-template-columns: 1fr 1fr !important; gap: var(--space-6) !important; }
+  .footer__brand { grid-column: 1 / -1; }
+}
+
+/* ============================================================
+   3. EYEBROW / HIERARCHY — make section labels stand out
+   ============================================================ */
+.section-label,
+.feature-section__step {
+  font-size: 0.8125rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  color: var(--color-accent) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before,
+.feature-section__step::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  display: inline-block;
+}
+/* feature-section step previously used ::after empty content; keep clean */
+.feature-section__step::after { content: none !important; }
+
+/* ============================================================
+   4. CURSOR-REACTIVE CARDS / PILLS
+   Subtle lift + accent border + shadow, 200ms ease-out
+   ============================================================ */
+[data-lift] {
+  transition:
+    transform 200ms ease-out,
+    box-shadow 200ms ease-out,
+    border-color 200ms ease-out,
+    background 200ms ease-out !important;
+  will-change: transform;
+}
+[data-lift]:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 10px 30px rgba(200,168,75,0.16), 0 2px 8px rgba(26,26,26,0.06) !important;
+}
+
+/* ============================================================
+   5. INTRO CARD — differentiate label from body (NOT pills)
+   thin accent rule + weight contrast
+   ============================================================ */
+.intro__col { position: relative; }
+.intro__col-label {
+  color: var(--color-text) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  padding-left: 14px;
+  position: relative;
+}
+.intro__col-label::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 1px; bottom: 1px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--color-accent);
+}
+.intro__col p { padding-left: 14px; }
+.intro__lead { padding-right: var(--space-6); }
+
+/* ============================================================
+   6. FEATURE ITEMS — accent label / title / subtext (no asterisks)
+   ============================================================ */
+.feature-item {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+}
+.feature-item__num {
+  /* repurposed as a small accent eyebrow label */
+  font-size: 0.6875rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase;
+  color: var(--color-accent) !important;
+}
+.feature-item__title {
+  font-size: var(--text-base) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+.feature-item__desc {
+  color: var(--color-text-2) !important;
+}
+/* override the old translateX hover from main.css with a clean lift */
+.feature-item:hover {
+  border-left: 1px solid var(--color-accent) !important;
+  transform: translateY(-4px) !important;
+  background: var(--color-surface-2) !important;
+  box-shadow: 0 10px 30px rgba(200,168,75,0.16), 0 2px 8px rgba(26,26,26,0.06) !important;
+}
+/* Reverse (Business Brain): keep text left-aligned inside its column */
+.feature-section__inner--reverse .feature-section__step,
+.feature-section__inner--reverse .feature-section__heading,
+.feature-section__inner--reverse .feature-section__body,
+.feature-section__inner--reverse .feature-item { text-align: left; }
+
+/* ============================================================
+   7. AI HUB — even pills + cursor reactive + sharper eyebrow
+   ============================================================ */
+.ai-pill {
+  cursor: default;
+  min-width: 168px;
+  justify-content: center;
+  padding: 9px 16px !important;
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out !important;
+}
+.ai-pill:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 22px rgba(26,26,26,0.16);
+}
+@media (max-width: 768px) {
+  .ai-pill { min-width: 140px; }
+}
+
+/* ============================================================
+   8. CLARITY ("The Real Problem") — rebuilt presentation
+   dark accent panel + reactive punch cards
+   ============================================================ */
+.clarity__inner { align-items: stretch !important; }
+.clarity__panel {
+  background: #1A1A1A;
+  border-radius: var(--radius-2xl);
+  padding: var(--space-12) var(--space-10);
+  color: #F0EFED;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.clarity__panel .section-label { color: var(--color-accent) !important; }
+.clarity__panel .section-label::before { background: var(--color-accent); }
+.clarity__panel-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin: var(--space-4) 0 var(--space-5);
+}
+.clarity__panel-sub {
+  font-size: var(--text-base);
+  font-weight: 300;
+  color: rgba(240,239,237,0.78);
+  line-height: 1.65;
+  margin-bottom: var(--space-8);
+}
+.clarity__builtfor {
+  margin-top: auto;
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(240,239,237,0.14);
+}
+.clarity__builtfor-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-body);
+}
+.clarity__builtfor-text {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+}
+.clarity__points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.clarity__point {
+  display: flex;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  align-items: flex-start;
+}
+.clarity__point-num {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: var(--radius-lg);
+  background: var(--color-accent);
+  color: #1A1A1A;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+.clarity__point h4 {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+.clarity__point p {
+  font-size: var(--text-sm);
+  color: var(--color-text-2);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   9. INTERACTIVE STEPPER — 8 steps
+   ============================================================ */
+.stepper { margin-top: var(--space-12); }
+.stepper__track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0;
+  margin-bottom: var(--space-10);
+}
+.stepper__line {
+  position: absolute;
+  top: 21px;
+  left: 6%;
+  right: 6%;
+  height: 2px;
+  background: var(--color-border-strong);
+  z-index: 0;
+}
+.stepper__node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 4px;
+  font-family: var(--font-body);
+}
+.stepper__dot {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--color-surface-2);
+  border: 2px solid var(--color-border-strong);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: var(--text-base);
+  color: var(--color-text-3);
+  font-family: var(--font-display);
+  transition: all 200ms ease-out;
+}
+.stepper__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-3);
+  text-align: center;
+  line-height: 1.25;
+  transition: color 200ms ease-out;
+  max-width: 96px;
+}
+.stepper__node:hover .stepper__dot {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+  transform: translateY(-2px);
+}
+.stepper__node[aria-selected="true"] .stepper__dot {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #1A1A1A;
+  box-shadow: 0 6px 18px rgba(200,168,75,0.35);
+}
+.stepper__node[aria-selected="true"] .stepper__label {
+  color: var(--color-text);
+}
+
+.stepper__panels { position: relative; }
+.stepper__panel {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-10);
+  box-shadow: var(--shadow-panel);
+}
+.stepper__panel.is-active {
+  display: grid;
+  animation: stepper-fade 0.35s ease-out;
+}
+@keyframes stepper-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.stepper__panel-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+.stepper__panel-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+}
+.stepper__panel-body {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  color: var(--color-text-2);
+  line-height: 1.65;
+}
+.stepper__panel-text { min-width: 0; }
+.stepper__panel-media {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 12px 36px rgba(26,26,26,0.12);
+}
+.stepper__panel-media img { display: block; width: 100%; height: auto; }
+
+/* Mobile: vertical accordion */
+@media (max-width: 768px) {
+  .stepper__track { display: none; }
+  .stepper__panels { display: flex; flex-direction: column; gap: var(--space-3); }
+  .stepper__panel {
+    display: none;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    padding: var(--space-6);
+  }
+  .stepper__panel.is-active { display: block; }
+  .stepper__accordion-head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    width: 100%;
+    text-align: left;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-4) var(--space-5);
+    cursor: pointer;
+    font-family: var(--font-body);
+  }
+  .stepper__accordion-head .stepper__dot {
+    width: 34px; height: 34px; font-size: var(--text-sm);
+  }
+  .stepper__accordion-head[aria-expanded="true"] .stepper__dot {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #1A1A1A;
+  }
+  .stepper__accordion-head .stepper__acc-title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .stepper__acc-wrap { display: flex; flex-direction: column; gap: var(--space-3); }
+  .stepper__panel-media { margin-top: var(--space-4); }
+}
+/* Desktop hides accordion heads */
+.stepper__accordion-head { display: none; }
+@media (max-width: 768px) { .stepper__accordion-head { display: flex; } }
+
+/* ============================================================
+   10. BUILT FOR TRUST — center-aligned, higher-quality icon tiles
+   ============================================================ */
+.features__intro { max-width: 640px !important; margin-left: auto !important; margin-right: auto !important; text-align: center; }
+.features__intro .section-label { justify-content: center; }
+.features__intro .section-sub { margin-left: auto; margin-right: auto; }
+.features__grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: var(--space-5) !important;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+.feature-card {
+  background: var(--color-surface-2) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-2xl) !important;
+  padding: var(--space-8) var(--space-6) !important;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.feature-card__icon {
+  width: 64px !important; height: 64px !important;
+  border-radius: var(--radius-xl) !important;
+  background: linear-gradient(150deg, #C8A84B 0%, #b3923c 100%) !important;
+  border: none !important;
+  color: #1A1A1A !important;
+  margin-bottom: var(--space-5) !important;
+  box-shadow: 0 8px 22px rgba(200,168,75,0.28);
+}
+.feature-card__icon svg { width: 30px !important; height: 30px !important; stroke-width: 2 !important; }
+.feature-card h4 { font-size: var(--text-base) !important; }
+.feature-card p { color: var(--color-text-2) !important; }
+@media (max-width: 1024px) { .features__grid { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (max-width: 600px) { .features__grid { grid-template-columns: 1fr !important; } }
+
+/* ============================================================
+   11. WHO IT'S FOR — tighter + reactive
+   ============================================================ */
+.who__intro { text-align: left; }
+.who__grid {
+  gap: var(--space-5) !important;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+.who-card {
+  background: var(--color-surface-2) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-xl) !important;
+}
+
+/* ============================================================
+   12. CTA BANNER + dark panels — cursor-aware radial glow
+   ============================================================ */
+.glow-panel { position: relative; overflow: hidden; }
+.glow-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    320px circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(200,168,75,0.18),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+.glow-panel.is-glowing::after { opacity: 1; }
+
+/* ============================================================
+   13. PRICING — standout comparison table
+   (overrides faded table from pricing.html inline styles)
+   ============================================================ */
+/* Wrap the comparison table in a standout card so it no longer reads as faded */
+.pricing-compare__inner .compare-table {
+  border: 1px solid var(--color-border-strong, rgba(26,26,26,0.18)) !important;
+  border-radius: var(--radius-xl) !important;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(26,26,26,0.10) !important;
+  background: #FFFFFF !important;
+}
+.pricing-compare__inner .compare-table td:first-child {
+  color: var(--color-text) !important;
+  font-weight: 500 !important;
+}
+.pricing-compare__inner .compare-table td:not(:first-child) {
+  color: var(--color-text) !important;
+}
+.pricing-compare__inner .compare-table thead th {
+  font-weight: 700 !important;
+}
+.pricing-compare__inner .compare-table tbody tr { transition: background 160ms ease-out; }
+.pricing-compare__inner .compare-table tbody tr:not(.section-row):nth-child(even) td { background: rgba(26,26,26,0.025); }
+.pricing-compare__inner .compare-table tbody tr:not(.section-row):hover td { background: rgba(200,168,75,0.10); }
+/* Make the affirmative checks confident, keep absences quiet but legible */
+.pricing-compare__inner .ic-check { color: var(--color-accent) !important; opacity: 1 !important; }
+.pricing-compare__inner .ic-x { opacity: 0.55 !important; }
+/* Hide Expert-Guided tier UI entirely (default Self-Guided, no switch) */
+.pricing-tiers { display: none !important; }
+/* Hide Expert-Guided plan groups so they never render */
+.plan-group[data-tier="expert"] { display: none !important; }
+
+/* ============================================================
+   14. CONTACT — less bland, structured cards
+   ============================================================ */
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-10);
+}
+.contact-card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+/* R3: branded SVG tiles matching the index "Built for Trust" icon system */
+.contact-card__icon {
+  width: 60px; height: 60px;
+  border-radius: 18px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  box-shadow: inset 0 0 0 4px rgba(200,168,75,0.08), 0 6px 18px rgba(26,26,26,0.06);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--space-3);
+  transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), border-color 220ms var(--ease-out);
+}
+.contact-card__icon svg { width: 32px; height: 32px; display: block; }
+.contact-card__icon svg .ico-stroke { stroke: var(--color-accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.contact-card__icon svg .ico-fill { fill: var(--color-accent); }
+.contact-card__icon svg .ico-dark { stroke: var(--color-text); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.contact-card[data-lift]:hover .contact-card__icon {
+  transform: translateY(-3px) scale(1.04);
+  border-color: var(--color-accent);
+  box-shadow: inset 0 0 0 4px rgba(200,168,75,0.16), 0 12px 26px rgba(200,168,75,0.20);
+}
+.contact-card h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text);
+}
+.contact-card p { font-size: var(--text-sm); color: var(--color-text-2); line-height: 1.6; }
+.contact-card a { color: var(--color-accent); font-weight: 600; text-decoration: none; word-break: break-word; }
+.contact-card a:hover { text-decoration: underline; }
+@media (max-width: 900px) { .contact-cards { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   15. DATA PROTECTION — visual rhythm
+   ============================================================ */
+.dp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+}
+.dp-card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.dp-card__icon {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-lg);
+  background: var(--color-accent-light);
+  border: 1px solid rgba(200,168,75,0.4);
+  color: var(--color-accent);
+  display: flex; align-items: center; justify-content: center;
+}
+.dp-card h3, .dp-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+.dp-card__head { display: flex; gap: var(--space-4); align-items: center; }
+.dp-card p { font-size: var(--text-sm); color: var(--color-text-2); line-height: 1.65; }
+.dp-card ul { margin: 0; padding-left: 1.1em; }
+.dp-card li { font-size: var(--text-sm); color: var(--color-text-2); line-height: 1.6; margin-bottom: 4px; }
+@media (max-width: 768px) { .dp-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   16. RESOURCES — fix misaligned placeholders (equal-height grid)
+   ============================================================ */
+.resource-grid,
+.resources-grid,
+[class*="resource"][class*="grid"] {
+  align-items: stretch;
+}
+.res-card-fix {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100%;
+}
+.res-card-fix .res-thumb,
+.res-card-fix img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================================
+   17. ABOUT — eyebrow enlarge + pattern section structure
+   ============================================================ */
+.about-eyebrow-lg {
+  font-size: var(--text-base) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase;
+  color: var(--color-accent) !important;
+}
+.pattern-lead {
+  font-size: var(--text-lg);
+  font-weight: 400;
+  color: var(--color-text);
+  max-width: 56ch;
+  margin-bottom: var(--space-2);
+}
+.pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+}
+.pattern-card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+}
+.pattern-card__num {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: var(--space-3);
+  display: block;
+}
+.pattern-card h4 {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+.pattern-card p { font-size: var(--text-sm); color: var(--color-text-2); line-height: 1.6; }
+@media (max-width: 900px) { .pattern-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   ============  ROUND 2 ENHANCEMENTS  ========================
+   ============================================================ */
+
+/* ---- R2.1  INTRO STATEMENT (section 2, after hero) ---- */
+.intro--statement { padding-top: var(--space-20); padding-bottom: var(--space-16); }
+.intro__inner--statement {
+  max-width: 880px;
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+.intro__headline {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  max-width: 16ch;
+}
+.intro__subline {
+  font-size: var(--text-xl);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text-2);
+  max-width: 44ch;
+}
+.intro__props {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: var(--space-2);
+}
+.intro__prop {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  position: relative;
+}
+.intro__prop::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  display: inline-block;
+  margin-right: 9px;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+@media (max-width: 600px) {
+  .intro__headline { font-size: var(--text-2xl); }
+  .intro__subline { font-size: var(--text-lg); }
+}
+
+/* ---- R2.2  REAL PROBLEM  side-pill centering + circle markers ---- */
+/* Vertically center the stack of pills relative to the dark box */
+.clarity__points {
+  justify-content: center;
+}
+/* Marker: small gold circle pinned top-left, number centered, text to the right */
+.clarity__point {
+  position: relative;
+  padding-left: var(--space-6);
+}
+.clarity__point-num {
+  width: 32px !important; height: 32px !important;
+  border-radius: 50% !important;
+  align-self: flex-start;
+  /* center the digit perfectly inside the disc */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  /* elevated styling: Playfair display numeral, heavier weight, subtle inner gradient */
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  color: #1A1A1A !important;
+  background: radial-gradient(120% 120% at 30% 25%, #E4C566 0%, var(--color-accent) 55%, #b3923c 100%) !important;
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.18),
+    0 4px 12px rgba(200,168,75,0.32);
+}
+@media (max-width: 900px) {
+  .clarity__points { justify-content: flex-start; }
+}
+
+/* ---- R2.3  BUILT FOR TRUST  custom branded SVG icons ---- */
+.features__grid { grid-template-columns: repeat(5, 1fr) !important; }
+@media (max-width: 1100px) { .features__grid { grid-template-columns: repeat(3, 1fr) !important; } }
+@media (max-width: 760px)  { .features__grid { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (max-width: 480px)  { .features__grid { grid-template-columns: 1fr !important; } }
+.feature-card { padding: var(--space-8) var(--space-5) !important; }
+/* New icon container: off-white card with soft inner ring, NOT a gold block */
+.trust-ico {
+  width: 64px; height: 64px;
+  border-radius: 18px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  box-shadow: inset 0 0 0 4px rgba(200,168,75,0.08), 0 6px 18px rgba(26,26,26,0.06);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--space-5);
+  transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), border-color 220ms var(--ease-out);
+}
+.trust-ico svg { width: 34px; height: 34px; display: block; }
+.trust-ico svg .ico-stroke { stroke: var(--color-accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.trust-ico svg .ico-fill { fill: var(--color-accent); }
+.trust-ico svg .ico-dark { stroke: var(--color-text); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.feature-card:hover .trust-ico {
+  transform: translateY(-3px) scale(1.04);
+  border-color: var(--color-accent);
+  box-shadow: inset 0 0 0 4px rgba(200,168,75,0.16), 0 12px 26px rgba(200,168,75,0.20);
+}
+
+/* ---- R2.4  WHO IT'S FOR  richer persona cards ---- */
+.who__grid { grid-template-columns: repeat(3, 1fr) !important; }
+@media (max-width: 900px) { .who__grid { grid-template-columns: 1fr !important; } }
+.persona-card {
+  background: var(--color-surface-2) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-2xl) !important;
+  padding: 0 !important;
+  overflow: hidden;
+  display: flex !important;
+  flex-direction: column;
+  position: relative;
+  text-align: left;
+}
+.persona-card::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--color-accent), #b3923c);
+  z-index: 2;
+}
+.persona-card__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-offset);
+}
+.persona-card__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center; /* show the interesting top: title + KPI strip */
+  display: block;
+  image-rendering: -webkit-optimize-contrast; /* keep crisp; avoid soft downscale */
+  will-change: auto; /* keep image out of the GPU compositor layer (R4: was blurring) */
+}
+/* R4: removed transform: scale(1.05) on hover — stacked transforms forced a
+   low-quality compositor layer that softened the persona-card images. The parent
+   a.persona-card:hover translateY lift is kept; it does not blur the image. */
+.persona-card__body { padding: var(--space-6) var(--space-6) var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
+.persona-card__role {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+.persona-card__outcome { font-size: var(--text-sm); font-weight: 600; color: var(--color-accent); margin-top: -4px; }
+.persona-card__desc { font-size: var(--text-sm); color: var(--color-text-2); line-height: 1.6; }
+.persona-card__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: var(--space-3); }
+.persona-card__chip {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text-2);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 5px 11px;
+}
+.persona-card[data-lift]:hover { border-color: var(--color-accent) !important; }
+
+/* ---- R3  persona cards are now clickable links to product.html ---- */
+a.persona-card { text-decoration: none; color: inherit; cursor: pointer; transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out), border-color 240ms var(--ease-out); }
+a.persona-card:hover { transform: translateY(-4px); box-shadow: 0 18px 44px rgba(26,26,26,0.13); }
+a.persona-card:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+/* visible "view module →" affordance, bottom-right */
+.persona-card__cta {
+  align-self: flex-end;
+  margin-top: var(--space-2);
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.01em;
+  color: var(--color-accent);
+  opacity: 0.85;
+  transition: gap 200ms var(--ease-out), opacity 200ms var(--ease-out);
+}
+.persona-card__cta svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+a.persona-card:hover .persona-card__cta { opacity: 1; gap: 10px; }
+
+/* ============================================================
+   17. PRICING — Round 2: card lift + table polish
+   ============================================================ */
+/* Stronger plan-card hover: lift, subtle scale, accent border, brighter shadow */
+.pricing-cards__grid .plan-card {
+  transition: transform 220ms var(--ease-out, cubic-bezier(.22,.61,.36,1)),
+              box-shadow 220ms var(--ease-out, cubic-bezier(.22,.61,.36,1)),
+              border-color 220ms ease-out !important;
+  will-change: transform;
+}
+.pricing-cards__grid .plan-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 22px 56px rgba(26,26,26,0.16) !important;
+  border-color: var(--color-accent) !important;
+}
+.pricing-cards__grid .plan-card--featured:hover {
+  box-shadow: 0 24px 60px rgba(0,0,0,0.42) !important;
+  border-color: var(--color-accent) !important;
+}
+
+/* R3: header styling lives in the page-level <style> (solid panel, gold underline,
+   shadow-when-stuck). Here we only keep the section-row treatment and the
+   scroll offset / dramatic row hover. The header sits below the 72px sticky nav. */
+.pricing-compare__inner .compare-table {
+  overflow: visible !important;   /* allow sticky thead to escape any clip */
+}
+.pricing-compare__inner .compare-table thead th {
+  top: 72px !important;
+}
+/* Section labels scroll normally (no second sticky layer that hid rows) */
+.pricing-compare__inner .compare-table .section-row td {
+  position: static;
+  background: var(--color-surface-2) !important;
+  box-shadow: inset 0 -1px 0 var(--color-border);
+}
+/* Give every row room so none lands hidden under the sticky header on jump.
+   Header is ~58px tall + 72px top offset → generous 150px scroll margin. */
+.pricing-compare__inner .compare-table tbody tr { scroll-margin-top: 150px; }
+
+/* R3: DRAMATIC row hover — "comes toward the screen and gets bigger".
+   scale 1.04, lift z-index, strong drop shadow, gold tint, weight 600, 200ms ease-out. */
+.pricing-compare__inner .compare-table tbody tr:not(.section-row) {
+  transition: transform 200ms ease-out, box-shadow 200ms ease-out, background 200ms ease-out;
+  transform-origin: center center;
+}
+.pricing-compare__inner .compare-table tbody tr:not(.section-row):hover {
+  transform: scale(1.04);
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border-radius: 10px;
+}
+.pricing-compare__inner .compare-table tbody tr:not(.section-row):hover td {
+  background: rgba(200,168,75,0.14) !important;
+  font-weight: 600 !important;
+  color: var(--color-text) !important;
+}
+.pricing-compare__inner .compare-table tbody tr:not(.section-row):hover td.col-featured {
+  background: rgba(200,168,75,0.22) !important;
+}
+
+/* ============================================================
+   18. DATA PROTECTION — Round 2: full visual rebuild
+   ============================================================ */
+/* Hero with layered depth + trust chips */
+.dp-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #14151A 0%, #1A1A1A 100%);
+  padding: clamp(6rem, 11vw, 9.5rem) var(--outer-pad) clamp(4rem, 8vw, 6rem);
+  text-align: center;
+}
+.dp-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 120% at 50% -10%, rgba(200,168,75,0.16), transparent 70%);
+  pointer-events: none;
+}
+.dp-hero__inner { position: relative; max-width: 760px; margin-inline: auto; }
+.dp-hero__eyebrow {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 1.1rem;
+}
+.dp-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 1.25rem;
+}
+.dp-hero__sub {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.72);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+.dp-hero__chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.dp-hero__chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(200,168,75,0.35);
+  border-radius: var(--radius-full);
+  padding: 7px 15px;
+}
+.dp-hero__chip svg { color: var(--color-accent); flex-shrink: 0; }
+
+/* Section wrapper */
+.dp-section { padding: clamp(3.5rem, 7vw, 5.5rem) var(--outer-pad); background: var(--color-bg); }
+.dp-section__head { max-width: 640px; margin: 0 auto var(--space-10); text-align: center; }
+.dp-section__eyebrow {
+  color: var(--color-accent); font-size: var(--text-xs); font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 0.75rem;
+}
+.dp-section__title {
+  font-family: var(--font-display); font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700; letter-spacing: -0.02em; color: var(--color-text); margin: 0;
+}
+
+/* Card grid: enrich existing dp-card with hover lift + branded icon */
+.dp-grid { max-width: var(--content-wide); margin-inline: auto; }
+.dp-card {
+  transition: transform 240ms var(--ease-out, cubic-bezier(.22,.61,.36,1)),
+              box-shadow 240ms ease-out, border-color 240ms ease-out;
+}
+.dp-card[data-lift]:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(26,26,26,0.13);
+  border-color: var(--color-accent);
+}
+.dp-card__icon {
+  width: 60px; height: 60px; border-radius: 14px;
+  background: var(--color-accent-light);
+  border: 1px solid rgba(200,168,75,0.4);
+  box-shadow: 0 6px 16px rgba(200,168,75,0.18);
+}
+.dp-card__icon svg { width: 30px; height: 30px; }
+.dp-ico-stroke { stroke: var(--color-accent); stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.dp-ico-fill { fill: var(--color-accent); }
+.dp-ico-dark { stroke: #1A1A1A; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Dark accent stripe section break */
+.dp-stripe {
+  background: #1A1A1A;
+  padding: clamp(3rem, 6vw, 4.5rem) var(--outer-pad);
+  text-align: center;
+}
+.dp-stripe__inner { max-width: 820px; margin-inline: auto; }
+.dp-stripe__eyebrow {
+  color: var(--color-accent); font-size: var(--text-xs); font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 0.85rem;
+}
+.dp-stripe__quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 600; line-height: 1.3; letter-spacing: -0.01em;
+  color: #fff; margin: 0;
+}
+.dp-stripe__quote .accent { color: var(--color-accent); }
+
+/* CTA card */
+.dp-cta {
+  background: var(--color-bg);
+  padding: 0 var(--outer-pad) clamp(4rem, 8vw, 6rem);
+}
+.dp-cta__card {
+  max-width: 720px; margin-inline: auto;
+  padding: clamp(2.5rem, 5vw, 3.5rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  text-align: center;
+  box-shadow: 0 12px 36px rgba(26,26,26,0.08);
+}
+.dp-cta__title {
+  font-family: var(--font-display); font-size: var(--text-2xl);
+  font-weight: 700; letter-spacing: -0.01em; color: var(--color-text);
+  margin: 0 0 var(--space-3);
+}
+.dp-cta__sub {
+  font-size: var(--text-base); color: var(--color-text-2);
+  line-height: 1.6; max-width: 480px; margin: 0 auto var(--space-7);
+}
+
+/* ============================================================
+   R3 GLOBAL FIX — sticky positioning
+   html/body used overflow-x:hidden which creates a scroll container
+   that breaks position:sticky (e.g. the pricing comparison thead).
+   overflow-x:clip prevents horizontal scroll WITHOUT a scroll container.
+   ============================================================ */
+html, body { overflow-x: clip !important; }
+

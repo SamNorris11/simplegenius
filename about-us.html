@@ -24,6 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/enhance.css" />
   <style>
     /* ── About page extras ── */
     .about-hero {
@@ -169,6 +170,247 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @media (max-width: 768px) {
       .founders__grid { grid-template-columns: 1fr; }
     }
+
+    /* ---- R2: bigger hero H1 + subline ---- */
+    .about-hero__inner { max-width: 760px; }
+    .about-hero .page-hero__title {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin-bottom: var(--space-6);
+    }
+    .about-hero .section-sub {
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--color-text-2);
+      max-width: 30ch;
+    }
+    @media (max-width: 600px) {
+      .about-hero .page-hero__title { font-size: var(--text-3xl); }
+      .about-hero .section-sub { font-size: var(--text-lg); }
+    }
+
+    /* ---- R2: clean pull-quote treatment ---- */
+    .pullquote__inner { position: relative; padding-top: 3.5rem; }
+    .pullquote__mark {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      font-size: 5rem;
+      margin-bottom: 0;
+      opacity: 0.9;
+    }
+    .pullquote__text { font-style: italic; }
+    .pullquote__cite {
+      display: block;
+      margin-top: var(--space-5);
+      font-family: var(--font-body);
+      font-style: normal;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-3);
+    }
+
+    /* ---- R2: interactive Pattern component (stepper energy) ---- */
+    .pattern-x { max-width: var(--content-wide); margin-inline: auto; margin-top: var(--space-10); }
+    .pattern-x__list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+    .pattern-x__item {
+      position: relative;
+      text-align: left;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-top: 3px solid var(--color-border-strong);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      font-family: var(--font-body);
+      transition: border-color 220ms var(--ease-out), box-shadow 220ms var(--ease-out), transform 220ms var(--ease-out), background 220ms var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .pattern-x__num {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--color-text-3);
+      line-height: 1;
+      transition: color 220ms var(--ease-out);
+    }
+    .pattern-x__title {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+    }
+    /* R4: content is ALWAYS visible — no expand-on-hover / expand-on-click. */
+    .pattern-x__detail {
+      font-size: var(--text-sm);
+      color: var(--color-text-2);
+      line-height: 1.65;
+      opacity: 1;
+    }
+    .pattern-x__num { color: var(--color-accent); } /* gold numerals at rest */
+    /* Subtle hover lift only — translateY + accent border. No content toggle. */
+    .pattern-x__item:hover {
+      border-top-color: var(--color-accent);
+      border-color: var(--color-accent);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(200,168,75,0.16), 0 2px 8px rgba(26,26,26,0.05);
+      background: var(--color-surface-2);
+    }
+    @media (max-width: 900px) {
+      .pattern-x__list { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       R4: "Why Simple Genius Exists" — dark interactive panel
+       ============================================================ */
+    .why-sg {
+      position: relative;
+      background: #1A1A1A;
+      color: #F0EFED;
+      padding: var(--section-y) var(--outer-pad);
+      border-bottom: 1px solid var(--color-divider);
+      overflow: hidden;
+    }
+    .why-sg__inner { max-width: var(--content-wide); margin-inline: auto; position: relative; z-index: 1; }
+    .why-sg__eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-body);
+      font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-accent);
+      justify-content: center; width: 100%;
+    }
+    .why-sg__eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); }
+    .why-sg__heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--color-accent);
+      text-align: center;
+      margin: var(--space-4) auto var(--space-2);
+      max-width: 18ch;
+    }
+    .why-sg__lead {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto var(--space-10);
+      font-size: var(--text-base);
+      line-height: 1.7;
+      color: #9a9a9a;
+    }
+    .why-sg__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-5);
+      margin-top: var(--space-8);
+    }
+    .why-card {
+      position: relative;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(200,168,75,0.18);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7) var(--space-6) var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out), border-color 240ms var(--ease-out), background 240ms var(--ease-out);
+    }
+    /* OPTION C: large gradient editorial numeral with underline */
+    .why-card__num {
+      position: relative;
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 3.75rem;
+      font-weight: 800;
+      font-style: italic;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, #F0D27D 0%, #C8A84B 50%, #8E6F26 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      padding-bottom: 8px;
+      margin-bottom: 4px;
+      text-shadow: 0 2px 18px rgba(200,168,75,0.22);
+      transition: transform 240ms var(--ease-out), filter 240ms var(--ease-out);
+    }
+    .why-card__num::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, #C8A84B 0%, rgba(200,168,75,0) 100%);
+      transition: width 320ms var(--ease-out);
+    }
+    .why-card:hover .why-card__num {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 6px 18px rgba(200,168,75,0.4));
+    }
+    .why-card:hover .why-card__num::after {
+      width: 64px;
+    }
+    .why-card__title {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: #F0EFED;
+      letter-spacing: -0.01em;
+    }
+    .why-card__body {
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      line-height: 1.65;
+      color: #9a9a9a;
+    }
+    .why-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(200,168,75,0.55);
+      background: rgba(255,255,255,0.045);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(200,168,75,0.18), 0 10px 30px rgba(200,168,75,0.12);
+    }
+    .why-sg__close {
+      text-align: center;
+      margin-top: var(--space-10);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+      color: var(--color-accent);
+    }
+    /* Scroll-in fade (scoped — the global .fade-up is disabled site-wide) */
+    .why-card.why-reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 620ms var(--ease-out), transform 620ms var(--ease-out);
+    }
+    .why-card.why-reveal.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .why-card.why-reveal { opacity: 1; transform: none; transition: none; }
+    }
+    @media (max-width: 900px) {
+      .why-sg__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .why-sg__grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -226,7 +468,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- MEET THE FOUNDERS -->
 <section class="about-section" aria-labelledby="founders-heading">
   <div style="max-width: var(--content-wide); margin-inline: auto;">
-    <p class="section-label" style="margin-bottom: var(--space-2);">The People Behind It</p>
+    <p class="section-label about-eyebrow-lg" style="margin-bottom: var(--space-3); text-align:center;">The People Behind It</p>
     <h2 class="page-section__title" id="founders-heading" style="margin-bottom: var(--space-10); text-align:center;">Meet the Founders</h2>
 
     <div class="founders__grid">
@@ -263,46 +505,82 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- PULLQUOTE 1 -->
 <div class="pullquote" role="figure" aria-label="Founder quote">
-  <div class="pullquote__inner">
-    <span class="pullquote__mark" aria-hidden="true">"</span>
-    <p class="pullquote__text">We built the system we wanted to use ourselves because we couldn't find it anywhere else.</p>
-  </div>
+  <blockquote class="pullquote__inner">
+    <span class="pullquote__mark" aria-hidden="true">&ldquo;</span>
+    <p class="pullquote__text">AI cannot help a business it does not understand.</p>
+    <cite class="pullquote__cite">We are here with you because we are you.</cite>
+  </blockquote>
 </div>
 
 <!-- THE PATTERN WE KEPT SEEING -->
 <section class="about-section" aria-labelledby="pattern-heading">
   <div class="about-prose">
-    <p class="section-label">What We Observed</p>
+    <p class="section-label about-eyebrow-lg">What We Observed</p>
     <h2 class="page-section__title" id="pattern-heading">The Pattern We Kept Seeing</h2>
-    <p>Across company after company, the same issue surfaced.</p>
-    <p>The most important intellectual property in the business lived between the ears of leadership, not in systems, dashboards, or documents.</p>
-    <p>As AI tools entered the picture, teams rushed toward automation, outcomes, and throughput, skipping the harder work of extracting context, aligning understanding, and validating judgment.</p>
-    <p>The result wasn't better decisions. It was faster mistakes.</p>
+    <p class="pattern-lead">Across company after company, the same three problems surfaced.</p>
+  </div>
+  <div class="pattern-x">
+    <div class="pattern-x__list" data-pattern>
+      <div class="pattern-x__item">
+        <span class="pattern-x__num">01</span>
+        <span class="pattern-x__title">Knowledge lived in people's heads</span>
+        <span class="pattern-x__detail">The most important intellectual property in the business lived between the ears of leadership — not in systems, dashboards, or documents. You cannot put people on a spreadsheet.</span>
+      </div>
+      <div class="pattern-x__item">
+        <span class="pattern-x__num">02</span>
+        <span class="pattern-x__title">AI skipped the hard part</span>
+        <span class="pattern-x__detail">Teams rushed toward automation, outcomes, and throughput — skipping the work of extracting context, aligning understanding, and validating judgment first.</span>
+      </div>
+      <div class="pattern-x__item">
+        <span class="pattern-x__num">03</span>
+        <span class="pattern-x__title">Speed without clarity backfired</span>
+        <span class="pattern-x__detail">The result wasn't better decisions. It was faster mistakes — made with more confidence and at greater scale.</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- WHY SIMPLE GENIUS EXISTS -->
-<section class="about-section about-section--alt" aria-labelledby="why-heading">
-  <div class="about-prose">
-    <p class="section-label">Our Purpose</p>
-    <h2 class="page-section__title" id="why-heading">Why Simple Genius Exists</h2>
-    <p>Simple Genius was built to solve that specific problem.</p>
-    <p>Not by replacing people or automating strategy, but by creating a disciplined, repeatable way to:</p>
-    <ul>
-      <li>Extract leadership thinking</li>
-      <li>Validate shared context</li>
-      <li>Apply intelligence where it matters</li>
-      <li>And only then decide what should scale</li>
-    </ul>
+<!-- WHY SIMPLE GENIUS EXISTS — R4 dark interactive panel -->
+<section class="why-sg glow-panel" aria-labelledby="why-heading">
+  <div class="why-sg__inner">
+    <p class="why-sg__eyebrow">Our Purpose</p>
+    <h2 class="why-sg__heading" id="why-heading">Why Simple Genius Exists</h2>
+    <p class="why-sg__lead">We built the system we wanted to use ourselves — because we could not find it anywhere else. Four principles hold it together.</p>
+
+    <div class="why-sg__grid">
+      <article class="why-card why-reveal">
+        <span class="why-card__num">01</span>
+        <h3 class="why-card__title">Built by operators.</h3>
+        <p class="why-card__body">We are here with you because we are you. We've run the businesses we serve, scaled them, sold them, and made the calls in the boardroom.</p>
+      </article>
+      <article class="why-card why-reveal">
+        <span class="why-card__num">02</span>
+        <h3 class="why-card__title">Context first.</h3>
+        <p class="why-card__body">AI cannot help a business it does not understand. We do the listening, the mapping, and the data work before we put a single model in front of you.</p>
+      </article>
+      <article class="why-card why-reveal">
+        <span class="why-card__num">03</span>
+        <h3 class="why-card__title">Your data is your data.</h3>
+        <p class="why-card__body">Your data. Your IP. Your platform. Nothing trains on your information. Export what you put in, anytime, no questions asked.</p>
+      </article>
+      <article class="why-card why-reveal">
+        <span class="why-card__num">04</span>
+        <h3 class="why-card__title">Insight to action.</h3>
+        <p class="why-card__body">We don't deliver dashboards. We deliver decisions — the next move, made obvious, with the work to execute it already lined up.</p>
+      </article>
+    </div>
+
+    <p class="why-sg__close">The first step in AI for Business.</p>
   </div>
 </section>
 
 <!-- PULLQUOTE 2 -->
 <div class="pullquote" role="figure" aria-label="Founder quote">
-  <div class="pullquote__inner">
-    <span class="pullquote__mark" aria-hidden="true">"</span>
+  <blockquote class="pullquote__inner">
+    <span class="pullquote__mark" aria-hidden="true">&ldquo;</span>
     <p class="pullquote__text">Simple Genius isn't about moving faster. It's about moving with clarity.</p>
-  </div>
+    <cite class="pullquote__cite">Built by operators, for operators.</cite>
+  </blockquote>
 </div>
 
 <!-- CTA -->
@@ -321,36 +599,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="footer__inner">
     <div class="footer__brand">
       <a href="index.html" class="footer__logo" id="footer-brand" aria-label="Simple Genius home">
-        <img src="images/logo-dark.png" alt="Simple Genius" height="42" />
+        <img src="images/logo-dark.png" alt="Simple Genius" height="26" />
       </a>
       <p class="footer__tagline">The first step for business AI.</p>
       <div class="footer__socials" aria-label="Social media links">
-        <a href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.75 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg></a>
-        <a href="https://www.linkedin.com/company/112274244/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-        <a href="https://www.instagram.com/simplegenius.co/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-        <a href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.75 15.5V8.5l6.5 3.5-6.5 3.5z"/></svg></a>
+        <a href="https://www.linkedin.com/company/112274244/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://www.instagram.com/simplegenius.co/" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" rel="noopener noreferrer" class="footer__social" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
       </div>
     </div>
+
+    <div class="footer__col">
+      <h5>Product</h5>
+      <ul role="list">
+        <li><a href="product.html">Product</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+
     <div class="footer__col">
       <h5>Company</h5>
-      <ul>
+      <ul role="list">
         <li><a href="about-us.html">About Us</a></li>
-        <li><a href="product.html">Product</a></li>
-      <li><a href="pricing.html">Pricing</a></li>
         <li><a href="resources.html">Resources</a></li>
+        <li><a href="contact-us.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h5>Legal &amp; Trust</h5>
+      <ul role="list">
+        <li><a href="data-protection.html">Data Protection</a></li>
         <li><a href="index.html#lets-talk">Let's Talk</a></li>
       </ul>
     </div>
-    <div class="footer__col">
-      <h5>Legal &amp; Trust</h5>
-      <ul>
-        <li><a href="data-protection.html">Data Protection &amp; Trust</a></li>
-        <li><a href="contact-us.html">Contact Us</a></li>
-      </ul>
-    </div>
   </div>
+
   <div class="footer__bottom">
-    <p class="footer__copy">© 2026 Simple Genius. All rights reserved.</p>
+    <p class="footer__copy">&copy; 2026 Simple Genius. All rights reserved.</p>
     <div class="footer__links">
       <a href="data-protection.html">Data Protection &amp; Trust</a>
       <a href="contact-us.html">Contact Us</a>
@@ -359,6 +646,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/enhance.js" defer></script>
 <script src="https://www.simplegenius.com/js/editor.js"></script>
 <script data-pplx-inline-edit>
 (function () {
