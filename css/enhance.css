@@ -1135,15 +1135,15 @@ html, body { overflow-x: clip !important; }
     min-height: 44px; display: inline-flex; align-items: center;
   }
 
-  /* ---------- B. Hero — full SGUI panel, no clipping ----------
-     main.css scales .sgui by 0.343 at 390px. Bump to 0.42 so the panel
-     reads bigger on phone (about 462px native → fills viewport edge-to-edge
-     with body overflow clipped). Whole panel still visible. */
+  /* ---------- B. Hero — SGUI scaled to fit inside viewport ----------
+     1100px native × 0.345 = 379.5px wide, fits 390px viewport with
+     ~5px gutter each side. No edge bleed. */
   .hero > .sgui {
-    transform: scale(0.42) translateZ(0) !important;
-    /* Panel renders 230px tall in 548px of flow; pull up 300px so only
-       ~18px of natural gap remains, then hero+intro paddings add ~24px each. */
-    margin-bottom: -300px !important;
+    transform: scale(0.345) translateZ(0) !important;
+    transform-origin: top center !important;
+    /* Native 548px × 0.345 = ~189px rendered. Pull up (native - scaled) =
+       359px not visually occupied; -335px leaves ~24px below. */
+    margin-bottom: -335px !important;
   }
   /* Hero column: more vertical breathing. Sticky header is 69px,
      so hero needs >= 96px top padding to start cleanly below it.
@@ -1156,7 +1156,38 @@ html, body { overflow-x: clip !important; }
     padding-top: 120px !important;
     padding-bottom: var(--space-6, 24px) !important;
   }
-  .hero__heading { margin-bottom: var(--space-5, 20px) !important; }
+  .hero__heading {
+    margin-bottom: var(--space-5, 20px) !important;
+    /* Match desktop styling exactly: Playfair, weight 600, AI in italic gold */
+    font-family: Playfair, Georgia, serif !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+    letter-spacing: -0.025em !important;
+    line-height: 1.08 !important;
+  }
+  /* Override main.css mobile rules that swap AI to Inter sans uppercase.
+     Restore desktop look: same Playfair italic, same size as the rest. */
+  .hero__heading em {
+    font-size: inherit !important;
+    font-weight: 600 !important;
+    font-style: italic !important;
+    letter-spacing: -0.025em !important;
+    line-height: 1.08 !important;
+    display: inline !important;
+    margin-top: 0 !important;
+  }
+  .hero__heading em .hero__ai {
+    font-family: Playfair, Georgia, serif !important;
+    font-style: italic !important;
+    font-weight: 600 !important;
+    font-size: inherit !important;
+    font-variant-caps: normal !important;
+    text-transform: none !important;
+    letter-spacing: inherit !important;
+    vertical-align: baseline !important;
+    margin-right: 0 !important;
+    color: var(--color-accent) !important;
+  }
   .hero__sub { margin-bottom: var(--space-8, 32px) !important; }
   .hero__cta { margin-bottom: var(--space-8, 32px) !important; }
 
