@@ -238,13 +238,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       gap: var(--space-3);
     }
     .pattern-x__num {
-      font-family: var(--font-display);
-      font-size: var(--text-2xl);
-      font-weight: 700;
-      color: var(--color-text-3);
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: var(--color-text-3, #8a8a8a);
       line-height: 1;
+      display: inline-block;
+      text-transform: uppercase;
       transition: color 220ms var(--ease-out);
     }
+    .pattern-x__item:hover .pattern-x__num { color: var(--color-accent); }
     .pattern-x__title {
       font-size: var(--text-lg);
       font-weight: 700;
@@ -258,7 +262,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       line-height: 1.65;
       opacity: 1;
     }
-    .pattern-x__num { color: var(--color-accent); } /* gold numerals at rest */
+    /* pattern numerals: small uppercase label — distinct from gold serif numerals below */
     /* Subtle hover lift only — translateY + accent border. No content toggle. */
     .pattern-x__item:hover {
       border-top-color: var(--color-accent);
@@ -522,17 +526,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="pattern-x">
     <div class="pattern-x__list" data-pattern>
       <div class="pattern-x__item">
-        <span class="pattern-x__num">01</span>
+        <span class="pattern-x__num">Problem 01</span>
         <span class="pattern-x__title">Knowledge lived in people's heads</span>
         <span class="pattern-x__detail">The most important intellectual property in the business lived between the ears of leadership — not in systems, dashboards, or documents. You cannot put people on a spreadsheet.</span>
       </div>
       <div class="pattern-x__item">
-        <span class="pattern-x__num">02</span>
+        <span class="pattern-x__num">Problem 02</span>
         <span class="pattern-x__title">AI skipped the hard part</span>
         <span class="pattern-x__detail">Teams rushed toward automation, outcomes, and throughput — skipping the work of extracting context, aligning understanding, and validating judgment first.</span>
       </div>
       <div class="pattern-x__item">
-        <span class="pattern-x__num">03</span>
+        <span class="pattern-x__num">Problem 03</span>
         <span class="pattern-x__title">Speed without clarity backfired</span>
         <span class="pattern-x__detail">The result wasn't better decisions. It was faster mistakes — made with more confidence and at greater scale.</span>
       </div>
@@ -647,7 +651,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="js/main.js"></script>
 <script src="js/enhance.js" defer></script>
-<script src="https://www.simplegenius.com/js/editor.js"></script>
+
 <script data-pplx-inline-edit>
 (function () {
   if (window === window.top) return;

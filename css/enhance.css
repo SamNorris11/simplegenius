@@ -1118,3 +1118,290 @@ a.persona-card:hover .persona-card__cta { opacity: 1; gap: 10px; }
    ============================================================ */
 html, body { overflow-x: clip !important; }
 
+
+/* ============================================================
+   MOBILE REBUILD v3 (June 19, 2026)
+   Goal: mirror desktop, but breathing-room and crisp on a phone.
+   Desktop UNTOUCHED — every rule scoped to max-width: 768px.
+   Philosophy: don't fight desktop. Let it scale, give it room.
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* ---------- A. Foundations ---------- */
+  section[id], h1[id], h2[id], h3[id] { scroll-margin-top: 80px; }
+
+  /* tap-target floor */
+  .footer a, .footer__link, .pricing-toggle button {
+    min-height: 44px; display: inline-flex; align-items: center;
+  }
+
+  /* ---------- B. Hero — full SGUI panel, no clipping ----------
+     main.css scales .sgui by 0.343 at 390px. Bump to 0.42 so the panel
+     reads bigger on phone (about 462px native → fills viewport edge-to-edge
+     with body overflow clipped). Whole panel still visible. */
+  .hero > .sgui {
+    transform: scale(0.42) translateZ(0) !important;
+    /* Panel renders 230px tall in 548px of flow; pull up 300px so only
+       ~18px of natural gap remains, then hero+intro paddings add ~24px each. */
+    margin-bottom: -300px !important;
+  }
+  /* Hero column: more vertical breathing. Sticky header is 69px,
+     so hero needs >= 96px top padding to start cleanly below it.
+     Critically: drop the 100dvh min-height on mobile — it was reserving
+     full-viewport space and forcing a giant gap between SGUI and next
+     section. Let hero shrink to its content. */
+  .hero {
+    min-height: 0 !important;
+    justify-content: flex-start !important;
+    padding-top: 120px !important;
+    padding-bottom: var(--space-6, 24px) !important;
+  }
+  .hero__heading { margin-bottom: var(--space-5, 20px) !important; }
+  .hero__sub { margin-bottom: var(--space-8, 32px) !important; }
+  .hero__cta { margin-bottom: var(--space-8, 32px) !important; }
+
+  /* Tighten the section immediately following the hero so the SGUI
+     panel and the next headline read as one continuous flow. */
+  .hero + section,
+  .hero + .intro,
+  section.intro {
+    padding-top: var(--space-6, 24px) !important;
+  }
+
+  /* ---------- C. Section rhythm — generous vertical breathing ----------
+     Desktop sections feel crisp because they have air. Mobile inherits
+     desktop padding values which read tight on a phone. Bump them. */
+  section { padding-top: var(--space-12, 64px); padding-bottom: var(--space-12, 64px); }
+
+  /* ---------- D. Feature sections (Competition Hub, Business Brain) ----------
+     On desktop these are image-beside-text 2-col grids. On mobile they
+     stack. TEXT FIRST so the user knows what they're looking at before
+     they see the screenshot — then the dashboard image follows. */
+  .feature-section__inner { gap: var(--space-8) !important; }
+  /* DO NOT reorder — text stays first in DOM, image second. */
+  .feature-section__inner > .video-panel,
+  .feature-section__inner > .feature-section__visual { order: 0 !important; }
+
+  /* Full-bleed dashboard imagery on mobile only */
+  .video-panel,
+  .feature-section__visual,
+  .competition-hub__visual,
+  .business-brain__visual,
+  .stepper__panel-media {
+    margin-left: calc(-1 * var(--outer-pad, 20px));
+    margin-right: calc(-1 * var(--outer-pad, 20px));
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .video-panel img,
+  .feature-section__visual img,
+  .competition-hub__visual img,
+  .business-brain__visual img,
+  .stepper__panel-media img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    display: block;
+    transform: none !important;
+  }
+
+  /* video-panel "--images" variant has internal 24px padding + grey bg.
+     Clear it on mobile so screenshots fill edge-to-edge consistently. */
+  .video-panel__body--images {
+    padding: 0 !important;
+    gap: 0 !important;
+    background: transparent !important;
+  }
+  .video-panel__body--images > img,
+  .video-panel__body--images .panel-img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    display: block !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  .video-panel__body--images > img + img,
+  .video-panel__body--images .panel-img + .panel-img {
+    border-top: 1px solid var(--color-border, #e5e5e5);
+  }
+
+  /* Feature text padding — breathing room before the full-bleed image */
+  .feature-section__text,
+  .feature-section__copy {
+    padding-bottom: var(--space-4, 16px);
+  }
+
+  /* ---------- E. How-it-works stepper ---------- */
+  .stepper__panel {
+    margin-left: calc(-1 * var(--outer-pad, 20px));
+    margin-right: calc(-1 * var(--outer-pad, 20px));
+    border-radius: 0;
+  }
+  .stepper__panel-media { margin: 0 !important; padding: 0 !important; }
+  .stepper__panel-text { padding: var(--space-6) !important; }
+
+  /* ---------- F. Cards (personas, trust features, who) ----------
+     Bigger inner padding so the card has presence on phone */
+  .persona-card,
+  .who__card,
+  .feature-card,
+  .trust-card {
+    padding: var(--space-6, 24px) !important;
+  }
+
+  /* ---------- G. About-us numerals ---------- */
+  .why-card__num { text-align: left; }
+
+  /* ---------- H. Article hero spacing ---------- */
+  section[style*="padding-top:120px"] { padding-top: 100px !important; }
+
+  /* ---------- I. Pricing compare table reveal w/ scroll ---------- */
+  .pricing-compare__inner {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+  .pricing-compare__inner .compare-table {
+    display: table !important;
+    min-width: 640px;
+    font-size: 0.85rem;
+  }
+  .pricing-compare__inner .compare-table th,
+  .pricing-compare__inner .compare-table td {
+    padding: 10px 12px !important;
+    white-space: normal;
+  }
+  .pricing-compare__inner::after {
+    content: "\2192 scroll";
+    position: sticky;
+    right: 0;
+    background: rgba(240,239,237,0.9);
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    color: var(--color-text-3);
+  }
+
+  /* small body bump for legibility */
+  .article-card__tag,
+  .compare-table td,
+  .compare-table th { font-size: 0.9rem !important; }
+
+  /* ---------- J. Footer ---------- */
+  .footer .footer__col { margin-bottom: var(--space-6); }
+
+  /* ---------- K. AI hub orbit — mirror desktop layout, scaled ----------
+     Mirror desktop: 5 pills around the center bubble at clock positions.
+     Pills are smaller on mobile so the horizontal ones (Sales/Operations)
+     don't overlap the center bubble, and so the spokes look symmetrical. */
+  .ai-hub__diagram {
+    min-height: 340px !important;
+    width: 340px !important;
+    max-width: 340px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    position: relative;
+  }
+  .ai-hub__svg-lines { display: block !important; }
+  .ai-hub__center {
+    width: 72px !important; height: 72px !important;
+    box-shadow: 0 0 0 12px rgba(31,31,31,0.04), 0 0 0 24px rgba(31,31,31,0.02), var(--shadow-lg) !important;
+  }
+  .ai-hub__center::before,
+  .ai-hub__center::after { display: none !important; }
+
+  /* Pills sized tight: diagram is 340px wide, center bubble 72px sits
+     at x:159-231. Horizontal pills (left:0 / right:0) extend INWARD
+     up to their width. Pill width must stay <= ~125px so the inner edge
+     stops at ~150px / ~190px, leaving >=8px clearance to the bubble. */
+  .ai-pill {
+    font-size: 9px !important;
+    padding: 4px 7px !important;
+    gap: 3px !important;
+    animation: none !important;
+    box-shadow: 0 2px 8px rgba(29,29,29,0.10), var(--shadow-sm) !important;
+    letter-spacing: -0.015em !important;
+    line-height: 1.2 !important;
+  }
+  .ai-pill svg { width: 5px !important; height: 5px !important; }
+  /* On mobile only, drop the " Assistant" suffix so labels read "Sales",
+     "Marketing", etc. Pills shrink to ~70-90px wide — clears the center
+     bubble comfortably and matches desktop's visual rhythm in a smaller form. */
+  .ai-pill__suffix { display: none !important; }
+  .ai-pill {
+    font-size: 11px !important;
+    min-width: 0 !important; /* override older mobile rule that forced 140px */
+  }
+
+  /* Pill positions: hug the diagram corners exactly so the SVG spokes
+     point to them. Horizontals sit FULLY in the corners (right edge of
+     sales = right edge of diagram), so they don't bleed into the center. */
+  .ai-pill--marketing  {
+    top: -4px  !important; left: 50% !important; right: auto !important; bottom: auto !important;
+    transform: translateX(-50%) !important;
+  }
+  .ai-pill--sales      {
+    top: 50% !important; right: 0  !important; left: auto !important; bottom: auto !important;
+    transform: translateY(-50%) !important;
+  }
+  .ai-pill--operations {
+    top: 50% !important; left: 0   !important; right: auto !important; bottom: auto !important;
+    transform: translateY(-50%) !important;
+  }
+  .ai-pill--finance    {
+    bottom: 6% !important; right: 0 !important; top: auto !important; left: auto !important;
+    transform: none !important;
+  }
+  .ai-pill--hr         {
+    bottom: 6% !important; left: 0  !important; top: auto !important; right: auto !important;
+    transform: none !important;
+  }
+
+  /* AI hub section: stack text+diagram, give breathing room */
+  .ai-hub__inner {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-8) !important;
+  }
+
+  /* ---------- L. Stepper — 'clickable' affordance on mobile ----------
+     Buttons already exist; just make them LOOK pressable: chevron, slight
+     elevation, accent tint when expanded. */
+  .stepper__accordion-head {
+    position: relative !important;
+    padding-right: 44px !important;
+    background: #fff !important;
+    border: 1px solid var(--color-border, #e5e5e5) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 1px 3px rgba(26,26,26,0.04), 0 1px 2px rgba(26,26,26,0.04) !important;
+    transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease, background 180ms ease !important;
+  }
+  .stepper__accordion-head:hover,
+  .stepper__accordion-head:focus-visible {
+    border-color: var(--color-accent, #C8A84B) !important;
+    box-shadow: 0 6px 18px rgba(200,168,75,0.18), 0 2px 6px rgba(26,26,26,0.05) !important;
+  }
+  .stepper__accordion-head[aria-expanded="true"] {
+    border-color: var(--color-accent, #C8A84B) !important;
+    background: #FFFDF7 !important;
+  }
+  /* chevron */
+  .stepper__accordion-head::after {
+    content: "";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid var(--color-text-2, #6b6b6b);
+    border-bottom: 2px solid var(--color-text-2, #6b6b6b);
+    transform: translateY(-65%) rotate(45deg);
+    transition: transform 220ms ease, border-color 180ms ease;
+  }
+  .stepper__accordion-head[aria-expanded="true"]::after {
+    transform: translateY(-35%) rotate(-135deg);
+    border-color: var(--color-accent, #C8A84B);
+  }
+}
+
