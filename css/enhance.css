@@ -1404,19 +1404,20 @@ html, body { overflow-x: clip !important; }
     border-color: var(--color-accent, #C8A84B);
   }
 
-  /* M. "The first step in AI for Business" — match desktop weight/feel */
+  /* M. "The first step in AI for Business" — match desktop styling, single line */
   .why-sg__close {
     font-family: var(--font-display, Playfair), Playfair, Georgia, serif !important;
     font-style: italic !important;
     font-weight: 600 !important;
-    font-size: 1.5rem !important;
-    line-height: 1.35 !important;
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
     color: var(--color-accent, #C8A84B) !important;
     text-align: center !important;
-    padding: 0 16px !important;
+    padding: 0 8px !important;
     margin-top: 32px !important;
     margin-bottom: 8px !important;
-    letter-spacing: -0.005em;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
   }
 }
 
