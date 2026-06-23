@@ -99,7 +99,13 @@ module.exports = async (req, res) => {
       zohoParams.append('Designation', titleVal);
       zohoParams.append('Lead Source', 'Direct Inbound');
       zohoParams.append('Industry', industryVal);
-      zohoParams.append('LEADCF1', companySizeVal || '-None-');
+      zohoParams.append('LEADCF2', companySizeVal || '-None-');
+      zohoParams.append('LEADCF4', utm_medium || '');
+      zohoParams.append('LEADCF5', utm_content || '');
+      zohoParams.append('LEADCF6', utm_term || '');
+      zohoParams.append('LEADCF8', utm_campaign || '');
+      zohoParams.append('LEADCF14', gclid || '');
+      zohoParams.append('LEADCF15', utm_source || '');
       zohoParams.append('Description', (solveVal || '') + (howHeardVal ? '\nHow they heard: ' + howHeardVal : '') + attrBlock);
       zohoParams.append('zc_gad', '');
       zohoParams.append('aG9uZXlwb3Q', '');
