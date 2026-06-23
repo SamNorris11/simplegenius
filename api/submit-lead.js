@@ -66,6 +66,19 @@ module.exports = async (req, res) => {
     const howHeardVal    = how_heard   || hearAboutUs   || '';
     const solveVal       = solve       || challenge     || '';
 
+    // Map form slugs to Zoho picklist display values
+    const industryMap = {
+      'financial-services': 'Financial Services',
+      'insurance':          'Insurance',
+      'accounting-tax':     'Accounting / Tax',
+      'compliance-audit':   'Compliance / Audit',
+      'technology':         'Other',
+      'healthcare':         'Other',
+      'real-estate':        'Other',
+      'other':              'Other'
+    };
+    const industryVal = industryMap[industry] || '-None-';
+
     const name = (full_name || fullName || '').trim();
     const nameParts = name.split(' ');
     const firstName = nameParts[0] || '';
@@ -85,9 +98,9 @@ module.exports = async (req, res) => {
       zohoParams.append('Company', company);
       zohoParams.append('Designation', titleVal);
       zohoParams.append('Lead Source', 'Direct Inbound');
-      zohoParams.append('Industry', industry || '-None-');
+      zohoParams.append('Industry', industryVal);
       zohoParams.append('LEADCF1', companySizeVal || '-None-');
-      zohoParams.append('Description', (solveVal || '') + attrBlock);
+      zohoParams.append('Description', (solveVal || '') + (howHeardVal ? '\nHow they heard: ' + howHeardVal : '') + attrBlock);
       zohoParams.append('zc_gad', '');
       zohoParams.append('aG9uZXlwb3Q', '');
 
