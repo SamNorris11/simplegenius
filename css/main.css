@@ -1892,3 +1892,16 @@ html, body { overflow-x: hidden; }
   .page-section__title { font-size: clamp(1.35rem, 5.5vw, 1.75rem); margin-top: var(--space-10); }
 }
 
+/* SEO Go Live: inline body-copy link style — brand gold, matches existing #D4AF37 accent usage */
+.inline-link {
+  color: #D4AF37;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(212, 175, 55, 0.45);
+  text-underline-offset: 2px;
+}
+.inline-link:hover,
+.inline-link:focus-visible {
+  text-decoration-color: #D4AF37;
+}
+
