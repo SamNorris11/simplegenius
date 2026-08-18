@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example Competition Hub output | Simple Genius</title>
+<meta name="description" content="An illustrative Competition Hub example, start to finish, and what it looks like when the whole business is behind it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=1787083902">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body class="is-dark-top">
+<!-- SHARED ILLUSTRATION DEFS, THE C STANDARD (css/site.css block 15).
+     Injected by build.py as the first child of <body> on every page.
+     Reference panel: qa/r3/refine-variants.html, panel C. Rules and ship gate:
+     DESIGN-SYSTEM.md §9A. Gate: node qa/r3/c-standard.js all 1440.
+
+     Nothing in here may imply a third line weight, a second tint or a light
+     source. The C standard allows exactly two stroke weights, structural 2.4
+     and hairline 1, so every marker below is sized in USER UNITS, not in
+     multiples of stroke-width: a connector head is the same size whichever of
+     the two weights carries it, and it lands on the element it points to
+     rather than short of it.
+
+     BANNED, and deliberately absent: drop/cast shadow filters, feDropShadow,
+     feGaussianBlur, feOffset, lit-face gradients, occlusion ramps, extrusion,
+     emboss, glow. See DESIGN-SYSTEM.md §9A.0 for the full nine-row table. -->
+<svg class="dg-defs" width="0" height="0" aria-hidden="true" focusable="false"
+     xmlns="http://www.w3.org/2000/svg"><defs>
+
+  <!-- 45° drafting hatch. Reserved for an area that is EMPTY or UNVERIFIED —
+       it is a convention, not a texture. Light and dark grounds. -->
+  <pattern id="dgHatch" width="10" height="10" patternUnits="userSpaceOnUse"
+           patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(27,27,26.13)" stroke-width="1"/>
+  </pattern>
+  <pattern id="dgHatchD" width="10" height="10" patternUnits="userSpaceOnUse"
+           patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(237,235,232.15)" stroke-width="1"/>
+  </pattern>
+
+  <!-- Connector head. Open chevron, inherits the line's own stroke. refX 9 in
+       a 10-unit box puts the tip ON the path's last point, which is how a
+       connector terminates exactly on its target (§9A.7). -->
+  <marker id="dgArrow" viewBox="0 0 10 10" refX="9" refY="5"
+          markerWidth="10" markerHeight="10" orient="auto-start-reverse"
+          markerUnits="userSpaceOnUse">
+    <path d="M1 1 L9 5 L1 9" fill="none" stroke="context-stroke"
+          stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="miter"/>
+  </marker>
+
+  <!-- Dimension end cap. A perpendicular tick, the way a measured rule
+       terminates on a drawing. Use on .d-dim via marker-start/marker-end. -->
+  <marker id="dgTick" viewBox="0 0 10 10" refX="5" refY="5"
+          markerWidth="8" markerHeight="8" orient="auto"
+          markerUnits="userSpaceOnUse">
+    <path d="M5 0 V10" fill="none" stroke="context-stroke" stroke-width="2"/>
+  </marker>
+
+  <!-- Terminator dot. Where a reference line lands on the thing it names. -->
+  <marker id="dgNode" viewBox="0 0 10 10" refX="5" refY="5"
+          markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse">
+    <circle cx="5" cy="5" r="3" fill="context-stroke"/>
+  </marker>
+
+</defs></svg>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <!-- Two real assets, swapped by CSS. Never a filter: invert() on the
+         wordmark, inverting the gold in "Genius" produced bright blue.
+         See DESIGN-SYSTEM.md §9, "Header". -->
+    <a class="logo" href="index.html" aria-label="Simple Genius home">
+      <img class="logo__img logo__img--ink" src="img/logo-dark-112h.png"
+           srcset="img/logo-dark-56h.png 1x, img/logo-dark-112h.png 2x, img/logo-dark-168h.png 3x"
+           width="150" height="56" alt="Simple Genius">
+      <img class="logo__img logo__img--bone" src="img/logo-light-124h.png"
+           srcset="img/logo-light-62h.png 1x, img/logo-light-124h.png 2x, img/logo-light-186h.png 3x"
+           width="166" height="62" alt="" aria-hidden="true">
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a class="nav__link" href="how-it-works.html">How It Works</a>
+      <a class="nav__link" href="what-you-get.html">What You Get</a>
+      <a class="nav__link" href="pricing.html">Pricing</a>
+      <a class="nav__link" href="assessment.html">Assessment</a>
+      <a class="nav__link" href="about.html">About</a>
+      <a class="nav__link" href="insurance.html">Insurance</a>
+      <a class="nav__link" href="benefits.html">Benefits</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--primary" href="talk.html">Let&rsquo;s talk</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============================================================ B1, HEAD -->
+<section class="page-head page-head--ink page-head--tall">
+  <div class="container page-head__inner">
+    <span class="eyebrow">Illustrative example. Not a client.</span>
+    <h1 class="page-head__title">A look at <em>the Competition Hub.</em></h1>
+    <p class="page-head__sub">An illustrative view of a firm&rsquo;s competitive position beside the competitors it tracks, movement in the last cycle, and the first recommended response.</p>
+    <p class="page-head__note">Example output. A real one is dated, addressed to you, and read against the company record you approved.</p>
+  </div>
+</section>
+
+<!-- ========================================================== B2, THE VIEW -->
+<section class="section section--ground section--clip">
+  <div class="container">
+    <div class="winframe-wrap winframe-wrap--raise">
+      <figure class="winframe" style="margin:0">
+        <div class="winframe__bar" aria-hidden="true">
+          <span class="winframe__dot"></span><span class="winframe__dot"></span><span class="winframe__dot"></span>
+          <span class="winframe__url">app.simplegenius.com / competition / harbor-ridge-benefits</span>
+        </div>
+        <img class="winframe__img" src="img/sg-competition-hub-1600w.jpg"
+             srcset="img/sg-competition-hub-800w.jpg 800w, img/sg-competition-hub-1600w.jpg 1600w, img/sg-competition-hub-2400w.jpg 2400w"
+             sizes="(max-width: 1240px) 100vw, 1180px"
+             width="1600" height="984"
+             alt="Competitive position: your position beside three tracked competitors, movement in the last cycle, and the first recommended response."
+             loading="eager" decoding="async">
+      </figure>
+      <p class="winframe-caption">You and the competitors you named, on one scale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== B3, THE FIGURE -->
+<section class="section section--ink">
+  <div class="container container--mid figure-moment">
+    <span class="eyebrow">The short version</span>
+    <p class="figure__num">2<span class="figure__num-of">of four</span></p>
+    <p class="figure__legend">Second of the four on public footprint.</p>
+    <div class="prose prose--center prose--lead block-after--sm">
+      <p>Your largest gap is service scope. Your largest unused strength is the compliance material you already publish.</p>
+    </div>
+    <p class="figure__note">Scored on what is visible publicly. What you do that is not public did not count here.</p>
+  </div>
+</section>
+
+<!-- ====================================================== B4, LEAD / BEHIND -->
+<section class="section section--white">
+  <div class="container">
+    <div class="panes">
+      <article class="pane">
+        <div class="pane__head">
+          <svg class="pane__glyph" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" focusable="false">
+            <path d="M3 36h34"/><path d="M9 36V24h22v12"/><path d="M20 24V6"/><path d="M20 7h13l-3.2 4.5L33 16H20z"/>
+          </svg>
+          <h2 class="pane__title">Where you lead</h2>
+        </div>
+        <div class="pane__list">
+          <p class="pane__item">Only one of the four publishes compliance material under a named author. You.</p>
+          <p class="pane__item">Your renewal-season material answers what the other three leave unanswered.</p>
+          <p class="pane__item">You are on more association listings than any of them.</p>
+        </div>
+      </article>
+
+      <article class="pane pane--quiet">
+        <div class="pane__head">
+          <svg class="pane__glyph" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" focusable="false">
+            <path d="M3 6v28"/><path d="M3 13h14M17 13l-4.5-4.5M17 13l-4.5 4.5"/>
+            <path d="M3 27h31M34 27l-4.5-4.5M34 27l-4.5 4.5"/><path d="M17 15v10" stroke-dasharray="3 3"/>
+          </svg>
+          <h2 class="pane__title">Where they are ahead</h2>
+        </div>
+        <div class="pane__list">
+          <p class="pane__item">Competitor B hired for analytics and now advertises reporting. You do not mention it.</p>
+          <p class="pane__item">Competitor A moved pricing into a self-serve quoting page.</p>
+          <p class="pane__item">Competitor C doubled its presence at one association you do not attend.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================== B5, MOVES -->
+<section class="section section--raised">
+  <div class="container container--mid">
+    <div class="section__head section__head--left section__head--tight">
+      <span class="eyebrow eyebrow--ruled">In order</span>
+      <h2 class="display display--lg">Three things we would <em>do first.</em></h2>
+    </div>
+
+    <div class="moves">
+      <article class="move">
+        <span class="move__num" aria-hidden="true">1</span>
+        <div class="move__body">
+          <h3 class="move__title">Put the compliance material on the homepage. Name the author.</h3>
+          <p class="move__text">It is the one thing none of them can copy quickly.</p>
+          <span class="move__rule" aria-hidden="true"></span>
+        </div>
+      </article>
+
+      <article class="move">
+        <span class="move__num" aria-hidden="true">2</span>
+        <div class="move__body">
+          <h3 class="move__title">Answer the reporting question in writing, before renewal season.</h3>
+          <p class="move__text">Even if the answer is that you do it by hand today.</p>
+          <span class="move__rule" aria-hidden="true"></span>
+        </div>
+      </article>
+
+      <article class="move">
+        <span class="move__num" aria-hidden="true">3</span>
+        <div class="move__body">
+          <h3 class="move__title">Show up at the association Competitor C is working.</h3>
+          <p class="move__text">They are building a room you are not in.</p>
+          <span class="move__rule" aria-hidden="true"></span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= B6, BRIDGE -->
+<section class="section section--ink section--tall">
+  <div class="container">
+    <div class="section__head section__head--left section__head--tight rt-head">
+      <span class="eyebrow">The bridge</span>
+      <h2 class="display display--lg">That ran on a thin slice of context.a thin slice of context.<em></em></h2>
+      <p class="section__lede section__lede--left">It does not know your margins, renewal season, or why you win the deals you win. That reasoning is often in your head and your team&rsquo;s, not in a record the tool can use.</p>
+    </div>
+
+    <!-- ================================================================
+         THE SAME ENGINE, TWO INPUTS, C standard, DESIGN-SYSTEM.md §9A.
+         Tier 2 (wider than tall, >8 shapes): two artboards, both 1:1.
+         Desk 880 units rendered 880px; mob 272 units, redrawn as a
+         vertical stack with fewer parts. One gold element, the full
+         record, and its label is the largest text in the drawing.
+         ================================================================ -->
+    <div class="diag-panel diag-panel--wide rt-plate block-before">
+      <span class="diag-panel__label">The same engine, two inputs</span>
+
+      <svg class="dg dg--dark dg--a880 dg--desk diag-panel__art" viewBox="0 0 880 320"
+           xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="The example above was generated from a thin record. Fed by your team, your systems and your competitor set, the same engine runs on a record of your whole business.">
+        <!-- left: the thin record this example was generated from -->
+        <rect class="d-box" x="32" y="96" width="200" height="120"/>
+        <path class="d-hair" d="M56 132h120M56 156h72"/>
+        <text class="d-caption" x="132" y="248" text-anchor="middle">TWO MINUTES</text>
+        <text class="d-caption" x="132" y="272" text-anchor="middle">OF CONTEXT</text>
+
+        <!-- transfer: leaves the record's right edge, lands on the record it feeds -->
+        <path class="d-leg d-arrow" d="M232 156H320"/>
+
+        <!-- right: the whole business on the record — the one gold element -->
+        <rect class="d-box--key" x="320" y="48" width="320" height="216"/>
+        <path class="d-hair" d="M344 84h248M344 108h176M344 132h248M344 156h140M344 180h216M344 204h104M344 228h192"/>
+        <text class="d-key" x="480" y="296" text-anchor="middle">YOUR WHOLE BUSINESS</text>
+
+        <!-- what feeds it: three equal boxes, connectors landing on its edge -->
+        <rect class="d-box" x="696" y="48" width="152" height="48"/>
+        <rect class="d-box" x="696" y="120" width="152" height="48"/>
+        <rect class="d-box" x="696" y="192" width="152" height="48"/>
+        <text class="d-label" x="772" y="78" text-anchor="middle">YOUR TEAM</text>
+        <text class="d-label" x="772" y="150" text-anchor="middle">SYSTEMS</text>
+        <text class="d-label" x="772" y="222" text-anchor="middle">COMPETITORS</text>
+        <path class="d-leg d-arrow" d="M696 72H640"/>
+        <path class="d-leg d-arrow" d="M696 144H640"/>
+        <path class="d-leg d-arrow" d="M696 216H640"/>
+      </svg>
+
+      <!-- phone artboard, redrawn at 216 units so it is genuinely 1:1 at a 320
+           viewport. The 240-unit draft rendered 186px inside this plate (k=1.29)
+           and put its labels at 16.3px, under the 18px phone floor; the plate
+           also gives back its inline padding at ≤560 so 216 units fit. The thin
+           record narrows to 72 units to leave the two-line caption room inside
+           the artboard at 13.5px. -->
+      <svg class="dg dg--dark dg--a216 dg--mob diag-panel__art" viewBox="0 0 216 324"
+           xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="The example above was generated from a thin record. Given your team, your systems and your competitor set, the same engine runs on a record of your whole business.">
+        <rect class="d-box" x="8" y="12" width="72" height="72"/>
+        <path class="d-hair" d="M20 40h48M20 64h28"/>
+        <text class="d-caption" x="88" y="41.06">TWO MINUTES</text>
+        <text class="d-caption" x="88" y="65.06">OF CONTEXT</text>
+
+        <path class="d-leg d-arrow" d="M44 84V132"/>
+
+        <rect class="d-box--key" x="8" y="132" width="200" height="132"/>
+        <path class="d-hair" d="M24 156h168M24 180h120M24 204h168M24 228h96M24 252h144"/>
+        <text class="d-key" x="108" y="295.88" text-anchor="middle">YOUR WHOLE</text>
+        <text class="d-key" x="108" y="319.88" text-anchor="middle">BUSINESS</text>
+      </svg>
+
+      <p class="diag-panel__caption">This is the smallest version of the question.</p>
+    </div>
+
+    <p class="statement statement--center block-before">What changes when it has the company record behind it?</p>
+  </div>
+</section>
+
+<!-- ========================================================== B7, CLOSE -->
+<section class="section section--ink-deep section--tall">
+  <div class="container container--mid">
+    <div class="section__head section__head--tight">
+      <span class="eyebrow">Ready to give it the rest?</span>
+      <h2 class="display display--xl">Competition Hub works from the <em>record your firm approved.</em></h2>
+    </div>
+
+    <div class="prose prose--center prose--lead">
+      <p>$399 per month includes 5 seats. Month to month.</p>
+    </div>
+
+    <div class="btn-row btn-row--center btn-row--stack block-after">
+      <a class="btn btn--gold" href="talk.html">Let&rsquo;s talk <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--secondary" href="assessment.html">Take the AI Readiness Assessment</a>
+    </div>
+    <p class="btn-note btn-note--center">Let&rsquo;s talk through the competitors you care about and the position your firm is trying to protect.</p>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <a class="logo" href="index.html" aria-label="Simple Genius home">
+          <img class="logo__img" src="img/logo-light-124h.png"
+               srcset="img/logo-light-62h.png 1x, img/logo-light-124h.png 2x, img/logo-light-186h.png 3x"
+               width="166" height="62" alt="Simple Genius">
+        </a>
+        <ul class="footer-social" aria-label="Simple Genius social">
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on Instagram" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on Facebook" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.7c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4v2h-2.7v3h2.7V21h3.1z"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on YouTube" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 8.2c-.2-1.3-.9-2.2-2.2-2.4C17.5 5.5 12 5.5 12 5.5s-5.5 0-7.8.3C2.9 6 2.2 6.9 2 8.2 1.7 9.7 1.7 12 1.7 12s0 2.3.3 3.8c.2 1.3.9 2.2 2.2 2.4 2.3.3 7.8.3 7.8.3s5.5 0 7.8-.3c1.3-.2 2-1.1 2.2-2.4.3-1.5.3-3.8.3-3.8s0-2.3-.3-3.8zM10 15V9l5 3-5 3z"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on LinkedIn" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4V21H3V9.5zM9 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9V9.5z"/></svg>
+          </a></li>
+        </ul>
+      </div>
+
+      <nav class="footer-col" aria-label="Product">
+        <span class="footer-col__head">Product</span>
+        <a class="footer-col__link" href="how-it-works.html">How It Works</a>
+        <a class="footer-col__link" href="what-you-get.html">What You Get</a>
+        <a class="footer-col__link" href="pricing.html">Pricing</a>
+        <a class="footer-col__link" href="assessment.html">Assessment</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Solutions">
+        <span class="footer-col__head">Solutions</span>
+        <a class="footer-col__link" href="insurance.html">Insurance</a>
+        <a class="footer-col__link" href="benefits.html">Benefits</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Company">
+        <span class="footer-col__head">Company</span>
+        <a class="footer-col__link" href="about.html">About</a>
+        <a class="footer-col__link" href="talk.html">Let&rsquo;s talk</a>
+      </nav>
+    </div>
+
+    <div class="commit-strip">
+      <span>Month to month</span>
+      <span>You own your data</span>
+      <span>Nothing becomes truth until you approve it</span>
+      <span>Interview your whole team</span>
+    </div>
+
+    <div class="site-footer__legal">
+      <span>&copy; 2026 Simple Genius LLC. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=1786125734" defer></script>
+</body>
+</html>

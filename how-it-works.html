@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it works, in the right order | Simple Genius</title>
+<meta name="description" content="See it on your business, load your business in, confirm what is true, then run every decision against it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=1787083902">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+<!-- SHARED ILLUSTRATION DEFS, THE C STANDARD (css/site.css block 15).
+     Injected by build.py as the first child of <body> on every page.
+     Reference panel: qa/r3/refine-variants.html, panel C. Rules and ship gate:
+     DESIGN-SYSTEM.md §9A. Gate: node qa/r3/c-standard.js all 1440.
+
+     Nothing in here may imply a third line weight, a second tint or a light
+     source. The C standard allows exactly two stroke weights, structural 2.4
+     and hairline 1, so every marker below is sized in USER UNITS, not in
+     multiples of stroke-width: a connector head is the same size whichever of
+     the two weights carries it, and it lands on the element it points to
+     rather than short of it.
+
+     BANNED, and deliberately absent: drop/cast shadow filters, feDropShadow,
+     feGaussianBlur, feOffset, lit-face gradients, occlusion ramps, extrusion,
+     emboss, glow. See DESIGN-SYSTEM.md §9A.0 for the full nine-row table. -->
+<svg class="dg-defs" width="0" height="0" aria-hidden="true" focusable="false"
+     xmlns="http://www.w3.org/2000/svg"><defs>
+
+  <!-- 45° drafting hatch. Reserved for an area that is EMPTY or UNVERIFIED —
+       it is a convention, not a texture. Light and dark grounds. -->
+  <pattern id="dgHatch" width="10" height="10" patternUnits="userSpaceOnUse"
+           patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(27,27,26.13)" stroke-width="1"/>
+  </pattern>
+  <pattern id="dgHatchD" width="10" height="10" patternUnits="userSpaceOnUse"
+           patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(237,235,232.15)" stroke-width="1"/>
+  </pattern>
+
+  <!-- Connector head. Open chevron, inherits the line's own stroke. refX 9 in
+       a 10-unit box puts the tip ON the path's last point, which is how a
+       connector terminates exactly on its target (§9A.7). -->
+  <marker id="dgArrow" viewBox="0 0 10 10" refX="9" refY="5"
+          markerWidth="10" markerHeight="10" orient="auto-start-reverse"
+          markerUnits="userSpaceOnUse">
+    <path d="M1 1 L9 5 L1 9" fill="none" stroke="context-stroke"
+          stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="miter"/>
+  </marker>
+
+  <!-- Dimension end cap. A perpendicular tick, the way a measured rule
+       terminates on a drawing. Use on .d-dim via marker-start/marker-end. -->
+  <marker id="dgTick" viewBox="0 0 10 10" refX="5" refY="5"
+          markerWidth="8" markerHeight="8" orient="auto"
+          markerUnits="userSpaceOnUse">
+    <path d="M5 0 V10" fill="none" stroke="context-stroke" stroke-width="2"/>
+  </marker>
+
+  <!-- Terminator dot. Where a reference line lands on the thing it names. -->
+  <marker id="dgNode" viewBox="0 0 10 10" refX="5" refY="5"
+          markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse">
+    <circle cx="5" cy="5" r="3" fill="context-stroke"/>
+  </marker>
+
+</defs></svg>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <!-- Two real assets, swapped by CSS. Never a filter: invert() on the
+         wordmark, inverting the gold in "Genius" produced bright blue.
+         See DESIGN-SYSTEM.md §9, "Header". -->
+    <a class="logo" href="index.html" aria-label="Simple Genius home">
+      <img class="logo__img logo__img--ink" src="img/logo-dark-112h.png"
+           srcset="img/logo-dark-56h.png 1x, img/logo-dark-112h.png 2x, img/logo-dark-168h.png 3x"
+           width="150" height="56" alt="Simple Genius">
+      <img class="logo__img logo__img--bone" src="img/logo-light-124h.png"
+           srcset="img/logo-light-62h.png 1x, img/logo-light-124h.png 2x, img/logo-light-186h.png 3x"
+           width="166" height="62" alt="" aria-hidden="true">
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a class="nav__link is-current" href="how-it-works.html">How It Works</a>
+      <a class="nav__link" href="what-you-get.html">What You Get</a>
+      <a class="nav__link" href="pricing.html">Pricing</a>
+      <a class="nav__link" href="assessment.html">Assessment</a>
+      <a class="nav__link" href="about.html">About</a>
+      <a class="nav__link" href="insurance.html">Insurance</a>
+      <a class="nav__link" href="benefits.html">Benefits</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--primary" href="talk.html">Let&rsquo;s talk</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- ========================================================= A1, OPENING -->
+<section class="page-head page-head--tall">
+  <div class="page-head__glow" aria-hidden="true"></div>
+  <div class="container page-head__inner">
+    <span class="eyebrow">The process</span>
+    <h1 class="page-head__title">How it <em>works</em>.</h1>
+    <p class="page-head__sub page-head__sub--serif">Four steps, in the only order that gives AI a real chance. The first takes about four minutes.</p>
+    <div class="btn-row page-head__actions">
+      <a class="btn btn--primary" href="talk.html">Let&rsquo;s talk <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--secondary" href="assessment.html">Take the AI Readiness Assessment</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================= A2, WHAT IT ASKS OF YOU -->
+<section class="section section--ink section--tall">
+  <div class="container container--mid dgband">
+    <div class="section__head section__head--tight">
+      <span class="eyebrow eyebrow--ruled">What it asks of you</span>
+      <h2 class="display display--md">Four steps. Record first. Then the tools.Record first. Then the tools.Record first. Then the tools.Record first. Then the tools.Record first. Then the tools.<em></em></h2>
+    </div>
+
+    <figure class="dgfig dgfig--wide">
+      <svg class="dg dg--dark dg--desk dg--a880" viewBox="0 0 880 192" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="Four steps in order: see it, load your business in, confirm what is true, then decide with it. What each one asks of you falls away as you go: nothing, about forty-five minutes, a read-through, then the habit of asking it first.">
+        <text class="d-caption" x="98"  y="36" text-anchor="middle">STEP ONE</text>
+        <text class="d-caption" x="326" y="36" text-anchor="middle">STEP TWO</text>
+        <text class="d-caption" x="554" y="36" text-anchor="middle">STEP THREE</text>
+        <text class="d-caption" x="782" y="36" text-anchor="middle">STEP FOUR</text>
+
+        <rect class="d-box" x="4"   y="48" width="188" height="96"/>
+        <rect class="d-box" x="232" y="48" width="188" height="96"/>
+        <rect class="d-box" x="460" y="48" width="188" height="96"/>
+        <rect class="d-box--key" x="688" y="48" width="188" height="96"/>
+
+        <text class="d-label" x="98"  y="102" text-anchor="middle">SEE IT</text>
+        <text class="d-label" x="326" y="102" text-anchor="middle">LOAD IT IN</text>
+        <text class="d-label" x="554" y="102" text-anchor="middle">CONFIRM IT</text>
+        <text class="d-key"   x="782" y="103" text-anchor="middle">DECIDE</text>
+
+        <path class="d-hair d-arrow" d="M192 96H232"/>
+        <path class="d-hair d-arrow" d="M420 96H460"/>
+        <path class="d-hair d-arrow" d="M648 96H688"/>
+
+        <text class="d-caption" x="98"  y="168" text-anchor="middle">COSTS NOTHING</text>
+        <text class="d-caption" x="326" y="168" text-anchor="middle">45 MINUTES</text>
+        <text class="d-caption" x="554" y="168" text-anchor="middle">A READ-THROUGH</text>
+        <text class="d-caption" x="782" y="168" text-anchor="middle">ASK IT FIRST</text>
+      </svg>
+
+      <svg class="dg dg--dark dg--mob dg--a280" viewBox="0 0 280 276" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="The four steps in order, top to bottom: see it, load it in, confirm it, then decide with it.">
+        <rect class="d-box" x="4" y="4"   width="272" height="52"/>
+        <rect class="d-box" x="4" y="76"  width="272" height="52"/>
+        <rect class="d-box" x="4" y="148" width="272" height="52"/>
+        <rect class="d-box--key" x="4" y="220" width="272" height="52"/>
+
+        <text class="d-label" x="140" y="37"  text-anchor="middle">SEE IT</text>
+        <text class="d-label" x="140" y="109" text-anchor="middle">LOAD IT IN</text>
+        <text class="d-label" x="140" y="181" text-anchor="middle">CONFIRM IT</text>
+        <text class="d-key"   x="140" y="254" text-anchor="middle">DECIDE</text>
+
+        <path class="d-hair d-arrow" d="M140 56V76"/>
+        <path class="d-hair d-arrow" d="M140 128V148"/>
+        <path class="d-hair d-arrow" d="M140 200V220"/>
+      </svg>
+      <figcaption class="dgfig__cap">Nothing, then about forty-five minutes, then a read-through. After that you are reading the output.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ======================================================== A3, STEP ONE -->
+<section class="section section--ground section--tall">
+  <div class="container">
+    <div class="step">
+      <div class="step__copy">
+        <div class="step__mark">
+          <span class="step__num">1</span>
+          <span class="step__rule" aria-hidden="true"></span>
+        </div>
+        <span class="step__label">Step one</span>
+        <h2 class="step__title">See it on your business.</h2>
+        <p class="step__body">Twelve questions about how your firm runs. Not a software inventory. We are looking for the reasoning behind pricing, client exceptions, and the decisions that still live in a handful of people.</p>
+        <div class="terms">
+          <div class="term">
+            <span class="term__label">What we need</span>
+            <p class="term__text">Two minutes, your website, and three competitor names.</p>
+          </div>
+          <div class="term">
+            <span class="term__label">What you get</span>
+            <p class="term__text">A score out of 48, the band it lands in, and the three places your record is thinnest.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step__art reveal">
+        <figure class="frame">
+          <div class="frame__bar" aria-hidden="true">
+            <span class="frame__dots"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></span>
+            <span class="frame__tab">Competition Hub</span>
+          </div>
+          <img class="frame__img"
+               src="img/sg-scan-output-1600w.jpg"
+               srcset="img/sg-scan-output-800w.jpg 800w, img/sg-scan-output-1600w.jpg 1600w, img/sg-scan-output-2400w.jpg 2400w"
+               sizes="(max-width: 1080px) 100vw, 600px"
+               width="1600" height="708"
+               alt="Competition Hub view: your position beside the competitors you track, movement in the last cycle, and the first recommended response."
+               loading="lazy" decoding="async">
+        </figure>
+        <p class="frame-caption">Your firm, marked beside the competitors you named.</p>
+      </div>
+    </div>
+
+    <div class="btn-row block-after--sm">
+      <a class="btn btn--primary" href="talk.html">Let&rsquo;s talk <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================== A4, STEP TWO -->
+<section class="section section--white section--seam section--tall">
+  <div class="container">
+    <div class="step step--reverse">
+      <div class="step__copy">
+        <div class="step__mark">
+          <span class="step__num">2</span>
+          <span class="step__rule" aria-hidden="true"></span>
+        </div>
+        <span class="step__label">Step two</span>
+        <h2 class="step__title">Build the record.</h2>
+        <p class="step__body">Business Intake works through six areas of your operation. Start with what you already have. Your team supplies the operating detail, and you decide what belongs in the record.</p>
+        <div class="terms">
+          <div class="term">
+            <span class="term__label">What we need</span>
+            <p class="term__text">About 45 minutes for the first pass. Your team can answer on their own time.</p>
+          </div>
+          <div class="term">
+            <span class="term__label">What you get</span>
+            <p class="term__text">A draft Business Brain that you can read, correct, and approve before anything works from it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step__art reveal">
+        <figure class="frame">
+          <div class="frame__bar" aria-hidden="true">
+            <span class="frame__dots"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></span>
+            <span class="frame__tab">Business Brain</span>
+          </div>
+          <img class="frame__img"
+               src="img/sg-business-brain-1600w.jpg"
+               srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w, img/sg-business-brain-2400w.jpg 2400w"
+               sizes="(max-width: 1080px) 100vw, 600px"
+               width="1600" height="832"
+               alt="Business Brain: the six intake areas, each showing how much of it has been captured and confirmed."
+               loading="lazy" decoding="async">
+        </figure>
+        <p class="frame-caption">Six areas, filling in as you and your team answer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ A5, AN HONEST ANSWER
+     Tightened per Sam: whole section reads MVP-sized, quote is smaller and
+     paired with its attribution (“No one”), and the giant open-quote glyph
+     is dropped since the pull text already carries curly quotes on both ends. -->
+<section class="section section--ink-deep honest-answer">
+  <div class="container dgband">
+    <div class="section__head section__head--tight">
+      <span class="eyebrow">Your attention</span>
+      <h2 class="display display--md">An honest answer.</h2>
+    </div>
+
+    <blockquote class="pull pull--mvp">
+      <p class="pull__text">&ldquo;I do not have time to become an AI project manager. I have a business to run.&rdquo;</p>
+    </blockquote>
+
+    <figure class="dgfig dgfig--wide block-after">
+      <svg class="dg dg--dark dg--desk dg--a880" viewBox="0 0 880 204" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="Forty-five minutes is spent once, at the start. Every decision after it runs against the same confirmed record.">
+        <rect class="d-box--key" x="4" y="48" width="180" height="72"/>
+        <text class="d-key" x="94" y="91" text-anchor="middle">45 MINUTES</text>
+        <text class="d-caption" x="94" y="144" text-anchor="middle">ONCE</text>
+
+        <path class="d-hair d-arrow" d="M184 84H876"/>
+        <text class="d-label" x="564" y="60" text-anchor="middle">EVERY DECISION AFTER IT</text>
+
+        <path class="d-hair" d="M328 84V120"/>
+        <path class="d-hair" d="M484 84V120"/>
+        <path class="d-hair" d="M640 84V120"/>
+        <path class="d-hair" d="M796 84V120"/>
+
+        <rect class="d-box" x="264" y="120" width="128" height="48"/>
+        <rect class="d-box" x="420" y="120" width="128" height="48"/>
+        <rect class="d-box" x="576" y="120" width="128" height="48"/>
+        <rect class="d-box" x="732" y="120" width="128" height="48"/>
+
+        <text class="d-label" x="328" y="150" text-anchor="middle">PRICING</text>
+        <text class="d-label" x="484" y="150" text-anchor="middle">HIRING</text>
+        <text class="d-label" x="640" y="150" text-anchor="middle">VENDORS</text>
+        <text class="d-label" x="796" y="150" text-anchor="middle">SPEND</text>
+
+        <text class="d-caption" x="564" y="192" text-anchor="middle">AGAINST THE SAME RECORD</text>
+      </svg>
+
+      <svg class="dg dg--dark dg--mob dg--a280" viewBox="0 0 280 216" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="Forty-five minutes, spent once. Every decision after it runs against the same record.">
+        <rect class="d-box--key" x="4" y="4" width="272" height="72"/>
+        <text class="d-key" x="140" y="40" text-anchor="middle">45 MINUTES</text>
+        <text class="d-caption" x="140" y="64" text-anchor="middle">ONCE</text>
+
+        <path class="d-hair d-arrow" d="M140 76V112"/>
+
+        <rect class="d-box" x="4" y="112" width="272" height="96"/>
+        <text class="d-label" x="140" y="152" text-anchor="middle">EVERY DECISION</text>
+        <text class="d-label" x="140" y="184" text-anchor="middle">AFTER IT</text>
+      </svg>
+      <figcaption class="dgfig__cap">Forty-five minutes, once. Stop midway and come back, nothing is lost.</figcaption>
+    </figure>
+
+    <div class="prose prose--center prose--lead block-after">
+      <p>The record cannot appear the week a client asks for an answer. <strong>Building it is the work.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== A6, STEP THREE
+     Re-formatted per Sam to match the two-column .step layout used for
+     Steps 1 & 2: copy on the left, framed UI shot on the right. Section
+     shell alternates back to, white, seam so the rhythm stays 1-ground,
+     2-white, 3-ground, 4-white, no consecutive same-ground sections. -->
+<section class="section section--ground">
+  <div class="container">
+    <div class="step">
+      <div class="step__copy">
+        <div class="step__mark">
+          <span class="step__num">3</span>
+          <span class="step__rule" aria-hidden="true"></span>
+        </div>
+        <span class="step__label">Step three</span>
+        <h2 class="step__title">Make the record true.</h2>
+        <p class="step__body">Business Brain gives you a draft in plain language. Correct what is off, delete what does not belong, approve the rest. Nothing joins the company record until you say so.</p>
+        <div class="terms">
+          <div class="term">
+            <span class="term__label">What we need</span>
+            <p class="term__text">A read-through and your judgment, one section at a time.</p>
+          </div>
+          <div class="term">
+            <span class="term__label">What you get</span>
+            <p class="term__text">One approved version of the company that stays current, and gives every downstream tool the same ground truth.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step__art reveal">
+        <figure class="frame">
+          <div class="frame__bar" aria-hidden="true">
+            <span class="frame__dots"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></span>
+            <span class="frame__tab">Findings</span>
+          </div>
+          <img class="frame__img"
+               src="img/sg-findings-1600w.jpg"
+               srcset="img/sg-findings-800w.jpg 800w, img/sg-findings-1600w.jpg 1600w, img/sg-findings-2400w.jpg 2400w"
+               sizes="(max-width: 1080px) 100vw, 600px"
+               width="1600" height="828"
+               alt="Findings about the business, each sourced and scored, waiting on approve or review."
+               loading="lazy" decoding="async">
+        </figure>
+        <p class="frame-caption">Every finding arrives sourced, and waits on your approval.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= A7, STEP FOUR -->
+<section class="section section--white section--seam section--tall">
+  <div class="container">
+    <div class="step">
+      <div class="step__copy">
+        <div class="step__mark">
+          <span class="step__num">4</span>
+          <span class="step__rule" aria-hidden="true"></span>
+        </div>
+        <span class="step__label">Step four</span>
+        <h2 class="step__title">Use the record before you decide.</h2>
+        <p class="step__body">Strategic Initiatives, Strategic Insights, Competition Hub, and Work Streams put the approved record to work before a decision becomes a guess.</p>
+        <div class="terms">
+          <div class="term">
+            <span class="term__label">What we need</span>
+            <p class="term__text">The discipline of bringing the record into the decision.</p>
+          </div>
+          <div class="term">
+            <span class="term__label">What you get</span>
+            <p class="term__text">Every decision made with the company&rsquo;s written reasoning behind it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step__art reveal">
+        <figure class="frame">
+          <div class="frame__bar" aria-hidden="true">
+            <span class="frame__dots"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></span>
+            <span class="frame__tab">Strategic Insights</span>
+          </div>
+          <img class="frame__img"
+               src="img/sg-strategic-insights-1600w.jpg"
+               srcset="img/sg-strategic-insights-800w.jpg 800w, img/sg-strategic-insights-1600w.jpg 1600w, img/sg-strategic-insights-2400w.jpg 2400w"
+               sizes="(max-width: 1080px) 100vw, 600px"
+               width="1600" height="804"
+               alt="Strategic Insights: recommended moves ranked by modelled impact, each tracing back to a confirmed finding."
+               loading="lazy" decoding="async">
+        </figure>
+        <p class="frame-caption">Recommended moves tied to the part of the approved record that supports them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== A8, CLOSE -->
+<section class="section section--ink-deep section--tall">
+  <div class="container container--mid">
+    <div class="section__head section__head--center">
+      <span class="eyebrow">Step one</span>
+      <h2 class="display display--lg">Start at step one. It costs nothing and takes<br><em class="gold-accent">two minutes</em>.</h2>
+    </div>
+    <div class="btn-row btn-row--center btn-row--stack">
+      <a class="btn btn--gold" href="assessment.html">Take the AI Readiness Assessment <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--secondary" href="talk.html">Let&rsquo;s talk</a>
+    </div>
+    <p class="btn-note btn-note--center">$399 per month includes 5 seats. No contract, no term, no setup fee. Cancel or downgrade any month.</p>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <a class="logo" href="index.html" aria-label="Simple Genius home">
+          <img class="logo__img" src="img/logo-light-124h.png"
+               srcset="img/logo-light-62h.png 1x, img/logo-light-124h.png 2x, img/logo-light-186h.png 3x"
+               width="166" height="62" alt="Simple Genius">
+        </a>
+        <ul class="footer-social" aria-label="Simple Genius social">
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on Instagram" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on Facebook" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.7c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4v2h-2.7v3h2.7V21h3.1z"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on YouTube" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 8.2c-.2-1.3-.9-2.2-2.2-2.4C17.5 5.5 12 5.5 12 5.5s-5.5 0-7.8.3C2.9 6 2.2 6.9 2 8.2 1.7 9.7 1.7 12 1.7 12s0 2.3.3 3.8c.2 1.3.9 2.2 2.2 2.4 2.3.3 7.8.3 7.8.3s5.5 0 7.8-.3c1.3-.2 2-1.1 2.2-2.4.3-1.5.3-3.8.3-3.8s0-2.3-.3-3.8zM10 15V9l5 3-5 3z"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on LinkedIn" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4V21H3V9.5zM9 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9V9.5z"/></svg>
+          </a></li>
+        </ul>
+      </div>
+
+      <nav class="footer-col" aria-label="Product">
+        <span class="footer-col__head">Product</span>
+        <a class="footer-col__link" href="how-it-works.html">How It Works</a>
+        <a class="footer-col__link" href="what-you-get.html">What You Get</a>
+        <a class="footer-col__link" href="pricing.html">Pricing</a>
+        <a class="footer-col__link" href="assessment.html">Assessment</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Solutions">
+        <span class="footer-col__head">Solutions</span>
+        <a class="footer-col__link" href="insurance.html">Insurance</a>
+        <a class="footer-col__link" href="benefits.html">Benefits</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Company">
+        <span class="footer-col__head">Company</span>
+        <a class="footer-col__link" href="about.html">About</a>
+        <a class="footer-col__link" href="talk.html">Let&rsquo;s talk</a>
+      </nav>
+    </div>
+
+    <div class="commit-strip">
+      <span>Month to month</span>
+      <span>You own your data</span>
+      <span>Nothing becomes truth until you approve it</span>
+      <span>Interview your whole team</span>
+    </div>
+
+    <div class="site-footer__legal">
+      <span>&copy; 2026 Simple Genius LLC. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=1786125734" defer></script>
+</body>
+</html>

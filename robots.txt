@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 
-# Block API endpoints from indexing
 Disallow: /api/
 
 Sitemap: https://www.simplegenius.com/sitemap.xml

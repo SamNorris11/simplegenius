@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Readiness Assessment | Simple Genius</title>
+<meta name="description" content="A 12-question diagnostic tailored to your own answers. About four minutes. You get back a Red, Yellow, or Green band, findings tied to your answers, and three moves that can start this week.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=1787083902">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<body>
+<!-- SHARED ILLUSTRATION DEFS, THE C STANDARD (css/site.css block 15).
+     Injected by build.py as the first child of <body> on every page.
+     Reference panel: qa/r3/refine-variants.html, panel C. Rules and ship gate:
+     DESIGN-SYSTEM.md §9A. Gate: node qa/r3/c-standard.js all 1440.
+
+     Nothing in here may imply a third line weight, a second tint or a light
+     source. The C standard allows exactly two stroke weights, structural 2.4
+     and hairline 1, so every marker below is sized in USER UNITS, not in
+     multiples of stroke-width: a connector head is the same size whichever of
+     the two weights carries it, and it lands on the element it points to
+     rather than short of it.
+
+     BANNED, and deliberately absent: drop/cast shadow filters, feDropShadow,
+     feGaussianBlur, feOffset, lit-face gradients, occlusion ramps, extrusion,
+     emboss, glow. See DESIGN-SYSTEM.md §9A.0 for the full nine-row table. -->
+<svg class="dg-defs" width="0" height="0" aria-hidden="true" focusable="false"
+     xmlns="http://www.w3.org/2000/svg"><defs>
+
+  <!-- 45° drafting hatch. Reserved for an area that is EMPTY or UNVERIFIED —
+       it is a convention, not a texture. Light and dark grounds. -->
+  <pattern id="dgHatch" width="10" height="10" patternUnits="userSpaceOnUse"
+           patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(27,27,26.13)" stroke-width="1"/>
+  </pattern>
+  <pattern id="dgHatchD" width="10" height="10" patternUnits="userSpaceOnUse"
+           patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(237,235,232.15)" stroke-width="1"/>
+  </pattern>
+
+  <!-- Connector head. Open chevron, inherits the line's own stroke. refX 9 in
+       a 10-unit box puts the tip ON the path's last point, which is how a
+       connector terminates exactly on its target (§9A.7). -->
+  <marker id="dgArrow" viewBox="0 0 10 10" refX="9" refY="5"
+          markerWidth="10" markerHeight="10" orient="auto-start-reverse"
+          markerUnits="userSpaceOnUse">
+    <path d="M1 1 L9 5 L1 9" fill="none" stroke="context-stroke"
+          stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="miter"/>
+  </marker>
+
+  <!-- Dimension end cap. A perpendicular tick, the way a measured rule
+       terminates on a drawing. Use on .d-dim via marker-start/marker-end. -->
+  <marker id="dgTick" viewBox="0 0 10 10" refX="5" refY="5"
+          markerWidth="8" markerHeight="8" orient="auto"
+          markerUnits="userSpaceOnUse">
+    <path d="M5 0 V10" fill="none" stroke="context-stroke" stroke-width="2"/>
+  </marker>
+
+  <!-- Terminator dot. Where a reference line lands on the thing it names. -->
+  <marker id="dgNode" viewBox="0 0 10 10" refX="5" refY="5"
+          markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse">
+    <circle cx="5" cy="5" r="3" fill="context-stroke"/>
+  </marker>
+
+</defs></svg>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <!-- Two real assets, swapped by CSS. Never a filter: invert() on the
+         wordmark, inverting the gold in "Genius" produced bright blue.
+         See DESIGN-SYSTEM.md §9, "Header". -->
+    <a class="logo" href="index.html" aria-label="Simple Genius, home">
+      <img class="logo__img logo__img--ink" src="img/logo-dark-112h.png"
+           srcset="img/logo-dark-56h.png 1x, img/logo-dark-112h.png 2x, img/logo-dark-168h.png 3x"
+           width="150" height="56" alt="Simple Genius">
+      <img class="logo__img logo__img--bone" src="img/logo-light-124h.png"
+           srcset="img/logo-light-62h.png 1x, img/logo-light-124h.png 2x, img/logo-light-186h.png 3x"
+           width="166" height="62" alt="" aria-hidden="true">
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a class="nav__link" href="how-it-works.html">How It Works</a>
+      <a class="nav__link" href="what-you-get.html">What You Get</a>
+      <a class="nav__link" href="pricing.html">Pricing</a>
+      <a class="nav__link is-current" href="assessment.html">Assessment</a>
+      <a class="nav__link" href="about.html">About</a>
+      <a class="nav__link" href="insurance.html">Insurance</a>
+      <a class="nav__link" href="benefits.html">Benefits</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--primary" href="talk.html">Let&rsquo;s talk</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============================================================ B1, HEAD -->
+<section class="page-head">
+  <div class="page-head__glow" aria-hidden="true"></div>
+  <div class="container page-head__inner">
+    <span class="eyebrow">AI Readiness Assessment</span>
+    <h1 class="page-head__title">Twelve questions. About <em>four minutes.</em></h1>
+    <p class="page-head__sub">A diagnostic tailored to your own answers. You get back a Red, Yellow, or Green band, findings tied to what you said, and three moves that can start this week.</p>
+    <p class="page-head__note">Based on your self-reported answers. Not a certification, not a legal conclusion.</p>
+  </div>
+</section>
+<!-- ================================================ B2, PLACEHOLDER -->
+<!-- Assessment widget goes here once the AWS Lambda Function URL is live.
+     See AI-Readiness-Assessment-Build-Document (Trent, 2026-08-18). -->
+<section class="section section--raised section--seam">
+  <div class="container container--narrow">
+    <div class="quiet quiet--white">
+      <div class="quiet__inner quiet__inner--center">
+        <span class="eyebrow">Launching soon</span>
+        <h2 class="quiet__title">The assessment is <em>almost ready.</em></h2>
+        <p class="quiet__body">Twelve questions, a score out of forty eight, and a written assessment in your inbox. We are wiring up the last piece this week.</p>
+        <p class="quiet__body">Want it walked through instead? Book a call and we will run it with you.</p>
+        <div class="btn-row btn-row--center quiet__foot">
+          <a class="btn btn--primary" href="talk.html">Let&rsquo;s talk <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <a class="logo" href="index.html" aria-label="Simple Genius, home">
+          <img class="logo__img" src="img/logo-light-124h.png"
+               srcset="img/logo-light-62h.png 1x, img/logo-light-124h.png 2x, img/logo-light-186h.png 3x"
+               width="166" height="62" alt="Simple Genius">
+        </a>
+        <ul class="footer-social" aria-label="Simple Genius social">
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on Instagram" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on Facebook" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.7c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4v2h-2.7v3h2.7V21h3.1z"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on YouTube" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 8.2c-.2-1.3-.9-2.2-2.2-2.4C17.5 5.5 12 5.5 12 5.5s-5.5 0-7.8.3C2.9 6 2.2 6.9 2 8.2 1.7 9.7 1.7 12 1.7 12s0 2.3.3 3.8c.2 1.3.9 2.2 2.2 2.4 2.3.3 7.8.3 7.8.3s5.5 0 7.8-.3c1.3-.2 2-1.1 2.2-2.4.3-1.5.3-3.8.3-3.8s0-2.3-.3-3.8zM10 15V9l5 3-5 3z"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="#" aria-label="Simple Genius on LinkedIn" rel="noopener">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4V21H3V9.5zM9 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9V9.5z"/></svg>
+          </a></li>
+        </ul>
+      </div>
+
+      <nav class="footer-col" aria-label="Product">
+        <span class="footer-col__head">Product</span>
+        <a class="footer-col__link" href="how-it-works.html">How It Works</a>
+        <a class="footer-col__link" href="what-you-get.html">What You Get</a>
+        <a class="footer-col__link" href="pricing.html">Pricing</a>
+        <a class="footer-col__link" href="assessment.html">Assessment</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Solutions">
+        <span class="footer-col__head">Solutions</span>
+        <a class="footer-col__link" href="insurance.html">Insurance</a>
+        <a class="footer-col__link" href="benefits.html">Benefits</a>
+      </nav>
+
+      <nav class="footer-col" aria-label="Company">
+        <span class="footer-col__head">Company</span>
+        <a class="footer-col__link" href="about.html">About</a>
+        <a class="footer-col__link" href="talk.html">Let&rsquo;s talk</a>
+      </nav>
+    </div>
+
+    <div class="commit-strip">
+      <span>Month to month</span>
+      <span>You own your data</span>
+      <span>Nothing becomes truth until you approve it</span>
+      <span>Interview your whole team</span>
+    </div>
+
+    <div class="site-footer__legal">
+      <span>&copy; 2026 Simple Genius LLC. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=1786125734" defer></script>
+</body>
+</html>
