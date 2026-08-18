@@ -5886,6 +5886,16 @@ html:not(.no-js) .reveal.is-visible .dg .d-draw { animation: dg-draw 1000ms var(
   .ledger tbody td:nth-of-type(3)::before { content: "Firm"; }
   /* Firm column highlight background is nice at desktop, dropped on mobile */
   .ledger tbody td:nth-of-type(3) { background: transparent; }
+  /* Seat-count ledger is 2 columns (Seats | Monthly), not the 3-tier comparison
+     ledger. Suppress the role labels there so "OWNER" doesn't repeat per row. */
+  .ledger--seats tbody td::before { content: none !important; }
+  .ledger--seats tbody td {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    color: var(--c-white);
+    font-variant-numeric: tabular-nums;
+  }
 
   /* ---- Section rhythm on very small screens ------------------------- */
   .section { padding-block: var(--sp-8); }
