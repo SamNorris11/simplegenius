@@ -22,47 +22,63 @@ const setIfPresent = (record, key, value) => {
   }
 };
 
+const formatVisitDate = (value) => {
+  if (!value) return '';
+  try {
+    return new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York',
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
+    }).format(new Date(value)) + ' ET';
+  } catch (e) {
+    return String(value);
+  }
+};
+
 const formatVisitSummary = (value) => {
   if (!value) return '';
   try {
     const summary = typeof value === 'string' ? JSON.parse(value) : value;
-    const lines = [];
-    const add = (label, field) => {
-      if (field !== undefined && field !== null && String(field).trim() !== '') {
-        lines.push(`${label}: ${String(field).slice(0, 1000)}`);
-      }
-    };
+    const pageViews = Number(summary.pageViews) || 1;
+    const sessions = Number(summary.sessionCount) || 1;
+    const days = Number(summary.daysVisited) || 1;
+    const firstVisit = formatVisitDate(summary.firstVisit);
+    const lastVisit = formatVisitDate(summary.lastVisit);
+    const landingPage = String(summary.landingPage || '/').slice(0, 500);
+    const paragraphs = [
+      `This visitor first arrived on ${firstVisit || 'an unknown date'} at ${landingPage}. ` +
+      `Before joining the waitlist, they viewed ${pageViews} ${pageViews === 1 ? 'page' : 'pages'} ` +
+      `during ${sessions} ${sessions === 1 ? 'session' : 'sessions'} across ` +
+      `${days} ${days === 1 ? 'day' : 'days'}.`
+    ];
 
-    add('First visit', summary.firstVisit);
-    add('Last visit', summary.lastVisit);
-    add('Sessions', summary.sessionCount);
-    add('Page views', summary.pageViews);
-    add('Days visited', summary.daysVisited);
-    add('First page', summary.landingPage);
-    add('Original referrer', summary.originalReferrer);
+    if (summary.originalReferrer) {
+      paragraphs.push(`Their original referrer was ${String(summary.originalReferrer).slice(0, 1000)}.`);
+    }
 
     const firstTouch = summary.firstTouch || {};
-    const firstTouchParts = [
-      firstTouch.utm_source && `source=${firstTouch.utm_source}`,
-      firstTouch.utm_medium && `medium=${firstTouch.utm_medium}`,
-      firstTouch.utm_campaign && `campaign=${firstTouch.utm_campaign}`,
-      firstTouch.utm_content && `content=${firstTouch.utm_content}`,
-      firstTouch.utm_term && `term=${firstTouch.utm_term}`
-    ].filter(Boolean);
-    if (firstTouchParts.length) add('First-touch campaign', firstTouchParts.join(' | '));
+    if (firstTouch.utm_source || firstTouch.utm_medium || firstTouch.utm_campaign) {
+      let campaignSentence = `Their first-touch source was ${firstTouch.utm_source || 'unknown'}`;
+      if (firstTouch.utm_medium) campaignSentence += ` through ${firstTouch.utm_medium}`;
+      if (firstTouch.utm_campaign) campaignSentence += ` from the ${firstTouch.utm_campaign} campaign`;
+      if (firstTouch.utm_content) campaignSentence += ` using ${firstTouch.utm_content} content`;
+      if (firstTouch.utm_term) campaignSentence += ` with the term ${firstTouch.utm_term}`;
+      paragraphs.push(campaignSentence + '.');
+    }
 
     const pages = Array.isArray(summary.recentPages) ? summary.recentPages.slice(-12) : [];
     if (pages.length) {
-      lines.push('Recent journey:');
-      pages.forEach((page) => {
-        const when = String(page.visitedAt || '').slice(0, 19).replace('T', ' ');
-        const path = String(page.path || '/').slice(0, 500);
-        const title = String(page.title || '').slice(0, 120);
-        lines.push(`- ${when} | ${path}${title ? ` | ${title}` : ''}`);
-      });
+      const journey = pages.map((page) => {
+        return String(page.title || page.path || '/').slice(0, 120);
+      }).join(' → ');
+      paragraphs.push(`Their recent journey was: ${journey}.`);
     }
 
-    return lines.join('\n').slice(0, 12000);
+    if (lastVisit) paragraphs.push(`Their most recent recorded visit was ${lastVisit}.`);
+    return paragraphs.join('\n\n').slice(0, 12000);
   } catch (e) {
     return '';
   }
@@ -323,13 +339,13 @@ module.exports = async (req, res) => {
         'Description',
         [
           solveVal || '',
-          howHeardVal ? `How they heard: ${howHeardVal}` : '',
-          websiteVisitSummary ? `--- Website Visit Summary ---\n${websiteVisitSummary}` : ''
+          howHeardVal ? `How they heard: ${howHeardVal}` : ''
         ].filter(Boolean).join('\n\n')
       );
       if (isWaitlist) {
         zohoLead.Prospect_Source_Detail = 'Join the Waitlist';
       }
+      setIfPresent(zohoLead, 'Multi_Line_6', websiteVisitSummary);
       setIfPresent(zohoLead, 'UTM_Source', utm_source);
       setIfPresent(zohoLead, 'UTM_Medium', utm_medium);
       setIfPresent(zohoLead, 'UTM_Campaign', utm_campaign);
@@ -344,7 +360,7 @@ module.exports = async (req, res) => {
       const extraTracking = [];
       if (fbclid) extraTracking.push(`fbclid: ${fbclid}`);
       if (li_fat_id) extraTracking.push(`li_fat_id: ${li_fat_id}`);
-      if (first_visit) extraTracking.push(`First Visit: ${first_visit}`);
+      if (first_visit && !websiteVisitSummary) extraTracking.push(`First Visit: ${first_visit}`);
       if (extraTracking.length) {
         zohoLead.Description = [
           zohoLead.Description,
