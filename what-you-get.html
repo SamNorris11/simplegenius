@@ -393,54 +393,38 @@
   </div>
 </section>
 
-<!-- ==================================================== B6, OUTCOME FOUR -->
+<!-- ==================================================== B6, OUTCOME FOUR
+     Restructured 2026-08-19: matched Outcome 3 split layout. Kept Team
+     Chat frame image on the right, removed the empty "Workflows capture
+     pending" placeholder frame. Copy + facts on the left, frame + diagram
+     on the right.                                                       -->
 <section class="section section--white section--seam" id="keep-it-yours">
   <div class="container">
-    <div class="split split--head dgfig-head">
-      <div class="outcome__head">
-        <span class="eyebrow">Outcome four</span>
-        <h2 class="outcome__title">Keep it <em>yours</em>.</h2>
+    <div class="outcome__split">
+      <div class="outcome__copy">
+        <div class="outcome__head">
+          <span class="eyebrow">Outcome four</span>
+          <h2 class="outcome__title">Keep it <em>yours</em>.</h2>
+          <p class="outcome__lede">Work Streams keep repeatable work connected to the operating record your firm approved, instead of scattered across personal prompts and private memory.</p>
+        </div>
+
+        <div class="facts facts--single">
+          <div class="fact">
+            <span class="fact__mark" aria-hidden="true"></span>
+            <p class="fact__text"><strong>Team workspace</strong> lets people work from the company record, not their own private version of it.</p>
+          </div>
+          <div class="fact">
+            <span class="fact__mark" aria-hidden="true"></span>
+            <p class="fact__text"><strong>Work Streams</strong> keep repeatable work tied to the confirmed record, with the output retained by the company.</p>
+          </div>
+          <div class="fact">
+            <span class="fact__mark" aria-hidden="true"></span>
+            <p class="fact__text">Encrypted in transit and at rest, never used to train anyone else&rsquo;s models, and yours to export whenever you want.</p>
+          </div>
+        </div>
       </div>
-      <p class="outcome__lede split__aside split__aside--align-h">Work Streams keep repeatable work connected to the operating record your firm approved, instead of scattered across personal prompts and private memory.</p>
-    </div>
 
-    <figure class="dgfig dgfig--wide">
-      <svg class="dg dg--desk dg--a880" viewBox="0 0 880 216" xmlns="http://www.w3.org/2000/svg" role="img"
-           aria-label="The record and the team that works on it both sit inside your company. You can export the record at any time.">
-        <text class="d-label" x="282" y="36" text-anchor="middle">YOUR COMPANY</text>
-        <rect class="d-structure" x="4" y="48" width="556" height="144"/>
-
-        <rect class="d-box--key" x="28" y="84" width="232" height="72"/>
-        <text class="d-key" x="144" y="127" text-anchor="middle">YOUR RECORD</text>
-
-        <rect class="d-box" x="304" y="84" width="232" height="72"/>
-        <text class="d-label" x="420" y="126" text-anchor="middle">YOUR TEAM</text>
-
-        <path class="d-hair d-arrow" d="M560 120H700"/>
-
-        <rect class="d-box" x="700" y="84" width="176" height="72"/>
-        <text class="d-label" x="788" y="114" text-anchor="middle">EXPORT</text>
-        <text class="d-caption" x="788" y="140" text-anchor="middle">ANY TIME</text>
-      </svg>
-
-      <svg class="dg dg--mob dg--a280" viewBox="0 0 280 288" xmlns="http://www.w3.org/2000/svg" role="img"
-           aria-label="The record and the team that works on it both sit inside your company, and the record can be exported at any time.">
-        <text class="d-label" x="140" y="28" text-anchor="middle">YOUR COMPANY</text>
-        <rect class="d-structure" x="4" y="40" width="272" height="204"/>
-
-        <rect class="d-box--key" x="28" y="68" width="224" height="68"/>
-        <text class="d-key" x="140" y="110" text-anchor="middle">YOUR RECORD</text>
-
-        <rect class="d-box" x="28" y="148" width="224" height="68"/>
-        <text class="d-label" x="140" y="189" text-anchor="middle">YOUR TEAM</text>
-
-        <text class="d-caption" x="140" y="268" text-anchor="middle">EXPORT IT ANY TIME</text>
-      </svg>
-      <figcaption class="dgfig__cap">Encrypted in transit and at rest, never used to train anyone else&rsquo;s models, and yours to export whenever you want.</figcaption>
-    </figure>
-
-    <div class="grid grid--2 grid--gap-lg block-after">
-      <div class="reveal">
+      <div class="outcome__art reveal">
         <figure class="frame">
           <div class="frame__bar" aria-hidden="true">
             <span class="frame__dots"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></span>
@@ -449,32 +433,47 @@
           <img class="frame__img"
                src="img/sg-team-chat-1600w.jpg"
                srcset="img/sg-team-chat-800w.jpg 800w, img/sg-team-chat-1600w.jpg 1600w, img/sg-team-chat-2400w.jpg 2400w"
-               sizes="(max-width: 760px) 100vw, 540px"
+               sizes="(max-width: 1080px) 100vw, 640px"
                width="1600" height="696"
-               alt="A team member working with the company's own record, with context scoped to their role."
+               alt="An assistant that already knows your business: every employee gets a chat assistant grounded in the verified record, scoped to their role."
                loading="lazy" decoding="async">
         </figure>
         <p class="frame-caption">Team workspace: people work from the company record, not their own private version of it.</p>
-      </div>
-      <div class="reveal">
-        <figure class="frame" data-placeholder="workflows">
-          <div class="frame__bar" aria-hidden="true">
-            <span class="frame__dots"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></span>
-            <span class="frame__tab">Workflows</span>
-          </div>
-          <div class="frame__empty">
-            <svg class="frame__empty-glyph" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" focusable="false">
-              <rect x="4" y="6" width="14" height="11"></rect>
-              <rect x="30" y="6" width="14" height="11"></rect>
-              <rect x="17" y="31" width="14" height="11"></rect>
-              <path d="M11 17 V24 H37 V17"></path>
-              <path d="M24 24 V31"></path>
-            </svg>
-            <span class="frame__empty-label">Workflows, capture pending</span>
-            <p class="frame__empty-note">Work Streams keep repeatable work tied to the confirmed record, with the output retained by the company.</p>
-          </div>
+
+        <figure class="dgfig">
+          <svg class="dg dg--desk dg--a880" viewBox="0 0 880 216" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="The record and the team that works on it both sit inside your company. You can export the record at any time.">
+            <text class="d-label" x="282" y="36" text-anchor="middle">YOUR COMPANY</text>
+            <rect class="d-structure" x="4" y="48" width="556" height="144"/>
+
+            <rect class="d-box--key" x="28" y="84" width="232" height="72"/>
+            <text class="d-key" x="144" y="127" text-anchor="middle">YOUR RECORD</text>
+
+            <rect class="d-box" x="304" y="84" width="232" height="72"/>
+            <text class="d-label" x="420" y="126" text-anchor="middle">YOUR TEAM</text>
+
+            <path class="d-hair d-arrow" d="M560 120H700"/>
+
+            <rect class="d-box" x="700" y="84" width="176" height="72"/>
+            <text class="d-label" x="788" y="114" text-anchor="middle">EXPORT</text>
+            <text class="d-caption" x="788" y="140" text-anchor="middle">ANY TIME</text>
+          </svg>
+
+          <svg class="dg dg--mob dg--a280" viewBox="0 0 280 288" xmlns="http://www.w3.org/2000/svg" role="img"
+               aria-label="The record and the team that works on it both sit inside your company, and the record can be exported at any time.">
+            <text class="d-label" x="140" y="28" text-anchor="middle">YOUR COMPANY</text>
+            <rect class="d-structure" x="4" y="40" width="272" height="204"/>
+
+            <rect class="d-box--key" x="28" y="68" width="224" height="68"/>
+            <text class="d-key" x="140" y="110" text-anchor="middle">YOUR RECORD</text>
+
+            <rect class="d-box" x="28" y="148" width="224" height="68"/>
+            <text class="d-label" x="140" y="189" text-anchor="middle">YOUR TEAM</text>
+
+            <text class="d-caption" x="140" y="268" text-anchor="middle">EXPORT IT ANY TIME</text>
+          </svg>
+          <figcaption class="dgfig__cap">Encrypted in transit and at rest, never used to train anyone else&rsquo;s models, and yours to export whenever you want.</figcaption>
         </figure>
-        <p class="frame-caption">Work Streams: repeatable work that begins with the record you approved.</p>
       </div>
     </div>
   </div>
