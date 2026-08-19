@@ -6235,3 +6235,132 @@ html:not(.no-js) .reveal.is-visible .dg .d-draw { animation: dg-draw 1000ms var(
 .outcome__split--stack-visual .dgfig .dg--desk { width: 100%; height: auto; }
 .outcome__split--stack-visual .frame { margin-top: var(--sp-5); }
 .outcome__split--stack-visual .frame-caption { margin-top: var(--sp-2); }
+
+/* --------------------------------------------------------------------------
+   Internal AI — chat mockup component
+   Sleek, one-column mockup used on Insurance + Benefits.
+   -------------------------------------------------------------------------- */
+.chat-mock {
+  max-width: 720px;
+  margin: var(--sp-7) auto 0;
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(27, 27, 26, 0.08), 0 2px 6px rgba(27, 27, 26, 0.04);
+  overflow: hidden;
+}
+.chat-mock__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: var(--c-ground-3);
+  border-bottom: 1px solid var(--c-line);
+}
+.chat-mock__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.chat-mock__dot--r { background: #E36A6A; }
+.chat-mock__dot--y { background: #E3C46A; }
+.chat-mock__dot--g { background: #7DBE7D; }
+.chat-mock__title {
+  margin-left: 10px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--c-mute);
+  font-family: var(--font-body, inherit);
+}
+.chat-mock__body {
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.chat-mock__row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.chat-mock__row--user { justify-content: flex-end; }
+.chat-mock__row--user .chat-mock__bubble { order: 1; }
+.chat-mock__row--user .chat-mock__avatar { order: 2; }
+.chat-mock__avatar {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.chat-mock__avatar--user {
+  background: var(--c-ground-3);
+  color: var(--c-ink);
+}
+.chat-mock__avatar--ai {
+  background: var(--c-ink);
+  color: var(--c-gold);
+}
+.chat-mock__bubble {
+  max-width: 82%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.chat-mock__bubble p { margin: 0; }
+.chat-mock__bubble--user {
+  background: var(--c-gold-wash);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: var(--c-ink);
+}
+.chat-mock__bubble--ai {
+  background: var(--c-ground-2);
+  border: 1px solid var(--c-line);
+  color: var(--c-ink);
+}
+.chat-mock__list {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.chat-mock__list li { margin: 4px 0; }
+.chat-mock__grounded {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding-top: 16px;
+  margin-top: 4px;
+  border-top: 1px solid var(--c-line-faint);
+}
+.chat-mock__grounded-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-mute);
+  margin-right: 4px;
+}
+.chat-mock__chip {
+  display: inline-block;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+  background: var(--c-ground-3);
+  border: 1px solid var(--c-line);
+  color: var(--c-ink);
+}
+@media (max-width: 600px) {
+  .chat-mock__body { padding: 20px 16px 18px; }
+  .chat-mock__bubble { max-width: 88%; padding: 12px 14px; font-size: 14.5px; }
+  .chat-mock__avatar { width: 30px; height: 30px; font-size: 11px; }
+  .chat-mock__row--user .chat-mock__bubble { max-width: 92%; }
+}
