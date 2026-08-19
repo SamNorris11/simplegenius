@@ -96,7 +96,27 @@
 <!-- ========================================================= B2, FORM -->
 <section class="section section--ground section--seam">
   <div class="container container--narrow">
-    <form class="form" id="talk-form" data-status="talk-status" data-submitting="Sending&hellip;" novalidate>
+    <form class="form" id="talk-form"
+          data-endpoint="/api/submit-lead"
+          data-status="talk-status"
+          data-submitting="Sending&hellip;"
+          novalidate>
+      <!-- Fixed source tag — tells the API this is a waitlist submission -->
+      <input type="hidden" name="source" value="waitlist">
+      <!-- Attribution capture, populated at form-init from URL/referrer/cookies -->
+      <input type="hidden" name="utm_source"    data-attr="utm_source">
+      <input type="hidden" name="utm_medium"    data-attr="utm_medium">
+      <input type="hidden" name="utm_campaign"  data-attr="utm_campaign">
+      <input type="hidden" name="utm_term"      data-attr="utm_term">
+      <input type="hidden" name="utm_content"   data-attr="utm_content">
+      <input type="hidden" name="gclid"         data-attr="gclid">
+      <input type="hidden" name="fbclid"        data-attr="fbclid">
+      <input type="hidden" name="li_fat_id"     data-attr="li_fat_id">
+      <input type="hidden" name="page_url"      data-attr="page_url">
+      <input type="hidden" name="referrer"      data-attr="referrer">
+      <input type="hidden" name="ga_client_id"  data-attr="ga_client_id">
+      <input type="hidden" name="landing_page"  data-attr="landing_page">
+      <input type="hidden" name="first_visit"   data-attr="first_visit">
       <div class="form__group">
         <label class="form__label" for="waitlist-name">Your name</label>
         <input class="form__input" id="waitlist-name" name="fullName" type="text" autocomplete="name" data-required required>

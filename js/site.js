@@ -155,6 +155,53 @@
     return ok;
   }
 
+  /* -------------------------------------------------- attribution capture ---
+     Populates any <input data-attr="..."> hidden field from the URL query,
+     referrer, and GA client id cookie. Runs once per page so hidden fields
+     are populated before the form submits. */
+  function getQueryParam(name) {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      return params.get(name) || '';
+    } catch (e) { return ''; }
+  }
+  function getCookie(name) {
+    try {
+      var match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()\[\]\\\/+^])/g, '\\$1') + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : '';
+    } catch (e) { return ''; }
+  }
+  function getGaClientId() {
+    // GA4 stores the client id in _ga as GAx.x.<clientId>.<timestamp>
+    var raw = getCookie('_ga');
+    if (!raw) return '';
+    var parts = raw.split('.');
+    return parts.length >= 4 ? (parts[2] + '.' + parts[3]) : '';
+  }
+  function attrSource(name) {
+    switch (name) {
+      case 'utm_source':
+      case 'utm_medium':
+      case 'utm_campaign':
+      case 'utm_term':
+      case 'utm_content':
+      case 'gclid':
+      case 'fbclid':
+      case 'li_fat_id':
+        return getQueryParam(name);
+      case 'page_url':      return window.location.href || '';
+      case 'referrer':      return document.referrer || '';
+      case 'ga_client_id':  return getGaClientId();
+      case 'landing_page':  return window.location.pathname || '';
+      case 'first_visit':   return new Date().toISOString();
+      default: return '';
+    }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('input[data-attr]'), function (input) {
+    var val = attrSource(input.getAttribute('data-attr'));
+    if (val) input.value = val;
+  });
+
   Array.prototype.forEach.call(document.querySelectorAll('.form'), function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -163,13 +210,14 @@
       var statusId = form.getAttribute('data-status');
       var status = statusId ? document.getElementById(statusId) : null;
       var submit = form.querySelector('.form__submit');
+      var endpoint = form.getAttribute('data-endpoint');
 
       if (submit) {
         submit.disabled = true;
         submit.textContent = form.getAttribute('data-submitting') || 'Sending…';
       }
 
-      window.setTimeout(function () {
+      function showSuccess() {
         if (status) {
           form.hidden = true;
           status.hidden = false;
@@ -177,7 +225,49 @@
           status.focus();
           status.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
         }
-      }, 600);
+      }
+
+      function restoreSubmit() {
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = form.getAttribute('data-submit-label') || 'Submit';
+        }
+      }
+
+      if (endpoint) {
+        // Real submit: serialize the form as JSON and POST to the endpoint.
+        var payload = {};
+        Array.prototype.forEach.call(form.querySelectorAll('input, textarea, select'), function (field) {
+          if (!field.name) return;
+          payload[field.name] = field.value;
+        });
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json().catch(function () { return {}; });
+        }).then(function () {
+          showSuccess();
+        }).catch(function (err) {
+          // Surface a soft error — leave the form visible so the user can retry.
+          console.error('Form submit failed:', err);
+          restoreSubmit();
+          var group = form.querySelector('.form__group');
+          if (group) {
+            var errEl = group.querySelector('.form__error');
+            if (errEl) {
+              errEl.textContent = 'Something went wrong. Please try again or email hello@simplegenius.com.';
+              errEl.hidden = false;
+            }
+          }
+        });
+      } else {
+        // Legacy behavior: fake delay + success (preserves prior UX for any
+        // page not yet wired to a real endpoint).
+        window.setTimeout(showSuccess, 600);
+      }
     });
 
     Array.prototype.forEach.call(form.querySelectorAll('.form__input'), function (input) {
