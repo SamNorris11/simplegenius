@@ -157,8 +157,8 @@
 
   /* -------------------------------------------------- attribution capture ---
      Populates any <input data-attr="..."> hidden field from the URL query,
-     referrer, and GA client id cookie. Runs once per page so hidden fields
-     are populated before the form submits. */
+     referrer, and GA client id cookie. It runs on page load and again at
+     submit time because GA may create its cookie after this script loads. */
   function getQueryParam(name) {
     try {
       var params = new URLSearchParams(window.location.search);
@@ -197,15 +197,28 @@
       default: return '';
     }
   }
-  Array.prototype.forEach.call(document.querySelectorAll('input[data-attr]'), function (input) {
-    var val = attrSource(input.getAttribute('data-attr'));
-    if (val) input.value = val;
-  });
+  function refreshAttributionFields(scope) {
+    var root = scope || document;
+    Array.prototype.forEach.call(root.querySelectorAll('input[data-attr]'), function (input) {
+      var name = input.getAttribute('data-attr');
+      var val = attrSource(name);
+      if (!val) return;
+
+      // Keep the original landing attribution, but refresh values that can
+      // change or become available after the initial page load.
+      if (!input.value || name === 'ga_client_id' || name === 'page_url' || name === 'referrer') {
+        input.value = val;
+      }
+    });
+  }
+  refreshAttributionFields(document);
 
   Array.prototype.forEach.call(document.querySelectorAll('.form'), function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!validate(form)) return;
+
+      refreshAttributionFields(form);
 
       var statusId = form.getAttribute('data-status');
       var status = statusId ? document.getElementById(statusId) : null;
