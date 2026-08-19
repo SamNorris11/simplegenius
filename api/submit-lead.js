@@ -22,6 +22,52 @@ const setIfPresent = (record, key, value) => {
   }
 };
 
+const formatVisitSummary = (value) => {
+  if (!value) return '';
+  try {
+    const summary = typeof value === 'string' ? JSON.parse(value) : value;
+    const lines = [];
+    const add = (label, field) => {
+      if (field !== undefined && field !== null && String(field).trim() !== '') {
+        lines.push(`${label}: ${String(field).slice(0, 1000)}`);
+      }
+    };
+
+    add('First visit', summary.firstVisit);
+    add('Last visit', summary.lastVisit);
+    add('Sessions', summary.sessionCount);
+    add('Page views', summary.pageViews);
+    add('Days visited', summary.daysVisited);
+    add('First page', summary.landingPage);
+    add('Original referrer', summary.originalReferrer);
+
+    const firstTouch = summary.firstTouch || {};
+    const firstTouchParts = [
+      firstTouch.utm_source && `source=${firstTouch.utm_source}`,
+      firstTouch.utm_medium && `medium=${firstTouch.utm_medium}`,
+      firstTouch.utm_campaign && `campaign=${firstTouch.utm_campaign}`,
+      firstTouch.utm_content && `content=${firstTouch.utm_content}`,
+      firstTouch.utm_term && `term=${firstTouch.utm_term}`
+    ].filter(Boolean);
+    if (firstTouchParts.length) add('First-touch campaign', firstTouchParts.join(' | '));
+
+    const pages = Array.isArray(summary.recentPages) ? summary.recentPages.slice(-12) : [];
+    if (pages.length) {
+      lines.push('Recent journey:');
+      pages.forEach((page) => {
+        const when = String(page.visitedAt || '').slice(0, 19).replace('T', ' ');
+        const path = String(page.path || '/').slice(0, 500);
+        const title = String(page.title || '').slice(0, 120);
+        lines.push(`- ${when} | ${path}${title ? ` | ${title}` : ''}`);
+      });
+    }
+
+    return lines.join('\n').slice(0, 12000);
+  } catch (e) {
+    return '';
+  }
+};
+
 async function getZohoAccess() {
   const accountsDomain = trimTrailingSlash(
     process.env.ZOHO_ACCOUNTS_DOMAIN || 'https://accounts.zoho.com'
@@ -206,7 +252,8 @@ module.exports = async (req, res) => {
       referrer = '',
       ga_client_id = '',
       landing_page = '',
-      first_visit = ''
+      first_visit = '',
+      visit_summary = ''
     } = body;
 
     const isWaitlist = String(source).toLowerCase() === 'waitlist';
@@ -231,6 +278,7 @@ module.exports = async (req, res) => {
     const attrBlock = attrLines.length ? ('\n\n--- Attribution ---\n' + attrLines.join('\n')) : '';
 
     const waitlistHeader = isWaitlist ? 'Join the Waitlist\n\n' : '';
+    const websiteVisitSummary = formatVisitSummary(visit_summary);
 
     // Coalesce the variants
     const titleVal       = title       || role          || '';
@@ -273,7 +321,11 @@ module.exports = async (req, res) => {
       setIfPresent(
         zohoLead,
         'Description',
-        (solveVal || '') + (howHeardVal ? `\nHow they heard: ${howHeardVal}` : '')
+        [
+          solveVal || '',
+          howHeardVal ? `How they heard: ${howHeardVal}` : '',
+          websiteVisitSummary ? `--- Website Visit Summary ---\n${websiteVisitSummary}` : ''
+        ].filter(Boolean).join('\n\n')
       );
       if (isWaitlist) {
         zohoLead.Prospect_Source_Detail = 'Join the Waitlist';
@@ -317,7 +369,9 @@ module.exports = async (req, res) => {
             leadSource,
             industry: industryVal,
             companySize: companySizeVal,
-            description: waitlistHeader + (solveVal || '') + attrBlock,
+            description: waitlistHeader + (solveVal || '') +
+              (websiteVisitSummary ? `\n\n--- Website Visit Summary ---\n${websiteVisitSummary}` : '') +
+              attrBlock,
             utmSource: utm_source,
             utmMedium: utm_medium,
             utmCampaign: utm_campaign,

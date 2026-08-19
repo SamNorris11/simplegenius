@@ -178,6 +178,123 @@
     var parts = raw.split('.');
     return parts.length >= 4 ? (parts[2] + '.' + parts[3]) : '';
   }
+
+  /* -------------------------------------------- first-party visit history ---
+     GA4 keeps the complete event stream. This small browser record keeps only
+     the useful sales context so it can be attached when a visitor submits a
+     form and becomes a known CRM lead. */
+  var VISIT_HISTORY_KEY = 'sg_visit_history_v1';
+  var VISIT_HISTORY_DAYS = 90;
+
+  function readVisitHistory() {
+    try {
+      var saved = JSON.parse(window.localStorage.getItem(VISIT_HISTORY_KEY) || 'null');
+      if (!saved || !saved.firstVisit) return null;
+      var age = Date.now() - new Date(saved.firstVisit).getTime();
+      if (!isFinite(age) || age > VISIT_HISTORY_DAYS * 24 * 60 * 60 * 1000) {
+        window.localStorage.removeItem(VISIT_HISTORY_KEY);
+        return null;
+      }
+      return saved;
+    } catch (e) { return null; }
+  }
+
+  function writeVisitHistory(history) {
+    try {
+      window.localStorage.setItem(VISIT_HISTORY_KEY, JSON.stringify(history));
+    } catch (e) {
+      // Tracking must never block the page or form if storage is unavailable.
+    }
+  }
+
+  function currentTouch() {
+    var touch = {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+      'gclid', 'fbclid', 'li_fat_id'].forEach(function (name) {
+      var value = getQueryParam(name);
+      if (value) touch[name] = value;
+    });
+    return touch;
+  }
+
+  function recordWebsiteVisit() {
+    var now = new Date();
+    var nowIso = now.toISOString();
+    var path = (window.location.pathname || '/') + (window.location.hash || '');
+    var day = nowIso.slice(0, 10);
+    var history = readVisitHistory();
+    var touch = currentTouch();
+
+    if (!history) {
+      history = {
+        firstVisit: nowIso,
+        lastVisit: nowIso,
+        landingPage: path,
+        originalReferrer: document.referrer || '',
+        firstTouch: touch,
+        lastTouch: touch,
+        sessionCount: 1,
+        pageViews: 0,
+        days: [],
+        recentPages: []
+      };
+    } else {
+      var previousVisit = new Date(history.lastVisit || history.firstVisit).getTime();
+      if (!isFinite(previousVisit) || Date.now() - previousVisit > 30 * 60 * 1000) {
+        history.sessionCount = (Number(history.sessionCount) || 0) + 1;
+      }
+      if (Object.keys(touch).length) {
+        history.lastTouch = touch;
+        if (!history.firstTouch || !Object.keys(history.firstTouch).length) {
+          history.firstTouch = touch;
+        }
+      }
+    }
+
+    history.lastVisit = nowIso;
+    history.pageViews = (Number(history.pageViews) || 0) + 1;
+    history.days = Array.isArray(history.days) ? history.days : [];
+    if (history.days.indexOf(day) === -1) history.days.push(day);
+    history.recentPages = Array.isArray(history.recentPages) ? history.recentPages : [];
+    history.recentPages.push({
+      path: path,
+      title: (document.title || '').slice(0, 120),
+      visitedAt: nowIso
+    });
+    history.recentPages = history.recentPages.slice(-20);
+    writeVisitHistory(history);
+    return history;
+  }
+
+  var visitHistory = recordWebsiteVisit();
+
+  function storedAttribution(name) {
+    var history = readVisitHistory() || visitHistory;
+    if (!history) return '';
+    if (name === 'landing_page') return history.landingPage || '';
+    if (name === 'first_visit') return history.firstVisit || '';
+    if (name === 'referrer') return history.originalReferrer || '';
+    if (history.firstTouch && history.firstTouch[name]) return history.firstTouch[name];
+    return '';
+  }
+
+  function buildVisitSummary() {
+    var history = readVisitHistory() || visitHistory;
+    if (!history) return '';
+    return JSON.stringify({
+      firstVisit: history.firstVisit || '',
+      lastVisit: history.lastVisit || '',
+      landingPage: history.landingPage || '',
+      originalReferrer: history.originalReferrer || '',
+      firstTouch: history.firstTouch || {},
+      lastTouch: history.lastTouch || {},
+      sessionCount: Number(history.sessionCount) || 1,
+      pageViews: Number(history.pageViews) || 1,
+      daysVisited: Array.isArray(history.days) ? history.days.length : 1,
+      recentPages: Array.isArray(history.recentPages) ? history.recentPages.slice(-12) : []
+    });
+  }
+
   function attrSource(name) {
     switch (name) {
       case 'utm_source':
@@ -188,12 +305,13 @@
       case 'gclid':
       case 'fbclid':
       case 'li_fat_id':
-        return getQueryParam(name);
+        return getQueryParam(name) || storedAttribution(name);
       case 'page_url':      return window.location.href || '';
-      case 'referrer':      return document.referrer || '';
+      case 'referrer':      return document.referrer || storedAttribution('referrer');
       case 'ga_client_id':  return getGaClientId();
-      case 'landing_page':  return window.location.pathname || '';
-      case 'first_visit':   return new Date().toISOString();
+      case 'landing_page':  return storedAttribution('landing_page') || window.location.pathname || '';
+      case 'first_visit':   return storedAttribution('first_visit') || new Date().toISOString();
+      case 'visit_summary': return buildVisitSummary();
       default: return '';
     }
   }
@@ -206,7 +324,8 @@
 
       // Keep the original landing attribution, but refresh values that can
       // change or become available after the initial page load.
-      if (!input.value || name === 'ga_client_id' || name === 'page_url' || name === 'referrer') {
+      if (!input.value || name === 'ga_client_id' || name === 'page_url' ||
+          name === 'referrer' || name === 'visit_summary') {
         input.value = val;
       }
     });
