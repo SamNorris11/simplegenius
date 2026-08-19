@@ -1,11 +1,110 @@
 // Vercel serverless function — POST /api/submit-lead
-// Posts to Zoho Web-to-Lead + ActiveCampaign sync/list/tag
-// Env vars used: AC_URL, AC_KEY
+// Upserts into Zoho CRM through the REST API + ActiveCampaign sync/list/tag
+// Env vars used: ZOHO_REFRESH_TOKEN, ZOHO_CLIENT_ID, ZOHO_CLIENT_SECRET,
+// ZOHO_ACCOUNTS_DOMAIN, ZOHO_API_DOMAIN, AC_URL, AC_KEY
 //
 // Sources supported (via body.source):
 //   'waitlist' -> Lead Source = Website Direct, tag waitlist-2026, Prospect
 //                 Source Detail = Join the Waitlist, Website (std field) set
-//   default    -> Lead Source = Direct Inbound, tag lets-talk-inbound (76)
+//   default    -> Lead Source = Website Direct, tag lets-talk-inbound (76)
+
+const trimTrailingSlash = (value) => String(value || '').replace(/\/+$/, '');
+
+const normalizeUrl = (value) => {
+  const clean = String(value || '').trim();
+  if (!clean) return '';
+  return /^https?:\/\//i.test(clean) ? clean : `https://${clean}`;
+};
+
+const setIfPresent = (record, key, value) => {
+  if (value !== undefined && value !== null && String(value).trim() !== '') {
+    record[key] = value;
+  }
+};
+
+async function getZohoAccess() {
+  const accountsDomain = trimTrailingSlash(
+    process.env.ZOHO_ACCOUNTS_DOMAIN || 'https://accounts.zoho.com'
+  );
+  const refreshToken = process.env.ZOHO_REFRESH_TOKEN;
+  const clientId = process.env.ZOHO_CLIENT_ID;
+  const clientSecret = process.env.ZOHO_CLIENT_SECRET;
+
+  if (!refreshToken || !clientId || !clientSecret) {
+    throw new Error('Zoho API credentials are not configured');
+  }
+
+  const tokenUrl = new URL(`${accountsDomain}/oauth/v2/token`);
+  tokenUrl.searchParams.set('refresh_token', refreshToken);
+  tokenUrl.searchParams.set('client_id', clientId);
+  tokenUrl.searchParams.set('client_secret', clientSecret);
+  tokenUrl.searchParams.set('grant_type', 'refresh_token');
+
+  const tokenRes = await fetch(tokenUrl, { method: 'POST' });
+  const tokenData = await tokenRes.json().catch(() => ({}));
+  if (!tokenRes.ok || !tokenData.access_token) {
+    throw new Error(`Zoho token refresh failed (${tokenRes.status})`);
+  }
+
+  return {
+    accessToken: tokenData.access_token,
+    apiDomain: trimTrailingSlash(
+      process.env.ZOHO_API_DOMAIN || tokenData.api_domain || 'https://www.zohoapis.com'
+    )
+  };
+}
+
+async function upsertZohoLead(record, isWaitlist) {
+  const { accessToken, apiDomain } = await getZohoAccess();
+  const headers = {
+    'Authorization': `Zoho-oauthtoken ${accessToken}`,
+    'Content-Type': 'application/json'
+  };
+
+  const upsertRes = await fetch(`${apiDomain}/crm/v8/Leads/upsert`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      data: [record],
+      duplicate_check_fields: ['Email'],
+      trigger: ['workflow']
+    })
+  });
+  const upsertData = await upsertRes.json().catch(() => ({}));
+  const result = upsertData?.data?.[0];
+
+  if (!upsertRes.ok || result?.status !== 'success' || !result?.details?.id) {
+    const code = result?.code || upsertData?.code || `HTTP_${upsertRes.status}`;
+    throw new Error(`Zoho lead upsert failed (${code})`);
+  }
+
+  let tagAdded = false;
+  if (isWaitlist) {
+    try {
+      const tagRes = await fetch(
+        `${apiDomain}/crm/v8/Leads/${result.details.id}/actions/add_tags`,
+        {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({ tags: [{ name: 'waitlist-2026' }] })
+        }
+      );
+      const tagData = await tagRes.json().catch(() => ({}));
+      tagAdded = tagRes.ok && tagData?.data?.[0]?.status === 'success';
+      if (!tagAdded) {
+        console.error('Zoho waitlist tag was not added:', tagData?.data?.[0]?.code || tagRes.status);
+      }
+    } catch (tagErr) {
+      console.error('Zoho waitlist tag error:', tagErr.message);
+    }
+  }
+
+  return {
+    id: result.details.id,
+    action: result.action,
+    tagAdded
+  };
+}
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -51,9 +150,8 @@ module.exports = async (req, res) => {
     } = body;
 
     const isWaitlist = String(source).toLowerCase() === 'waitlist';
-    // Lead Source per Jarvis: reuse 'Website Direct' picklist value for waitlist,
-    // keep 'Direct Inbound' for the existing homepage/Let's Talk pathway.
-    const leadSource = isWaitlist ? 'Website Direct' : 'Direct Inbound';
+    // The current CRM source dictionary uses Website Direct for website forms.
+    const leadSource = 'Website Direct';
 
     // Build a compact attribution block to append to descriptions
     const attrLines = [];
@@ -72,14 +170,7 @@ module.exports = async (req, res) => {
     if (ga_client_id) attrLines.push('GA Client ID: ' + ga_client_id);
     const attrBlock = attrLines.length ? ('\n\n--- Attribution ---\n' + attrLines.join('\n')) : '';
 
-    // Waitlist header — surfaces tag intent + Prospect Source Detail in the
-    // Zoho lead Description so George's workflow can pick it up. Zoho
-    // Web-to-Lead doesn't accept tags/custom-picklist writes directly, so we
-    // encode the intent in the Description body until the WTL form is
-    // extended with a Prospect Source Detail LEADCF slot.
-    const waitlistHeader = isWaitlist
-      ? 'Prospect Source Detail: Join the Waitlist\nZoho Tags: waitlist-2026\n\n'
-      : '';
+    const waitlistHeader = isWaitlist ? 'Join the Waitlist\n\n' : '';
 
     // Coalesce the variants
     const titleVal       = title       || role          || '';
@@ -105,41 +196,54 @@ module.exports = async (req, res) => {
     const firstName = nameParts[0] || '';
     const lastName = nameParts.slice(1).join(' ') || firstName;
 
-    // ── 1. Zoho Web-to-Lead ─────────────────────────────────────────────────
-    let zohoStatus = null;
+    // ── 1. Zoho CRM ─────────────────────────────────────────────────────────
+    let zoho = null;
+    let zohoError = null;
     try {
-      const zohoParams = new URLSearchParams();
-      zohoParams.append('xnQsjsdp', '16a94b737bb4cc0b770f6b31ecd60a901ca27fa0ca903ed1dce668e83ed84ee6');
-      zohoParams.append('xmIwtLD', 'a147a2785f061e935824b204ab91754a91d7155889aaeda1b3e1468a4bec869008f04fe153b617310f07c579b6958e77');
-      zohoParams.append('actionType', 'TGVhZHM=');
-      zohoParams.append('returnURL', 'https://www.simplegenius.com');
-      zohoParams.append('First Name', firstName);
-      zohoParams.append('Last Name', lastName);
-      zohoParams.append('Email', email);
-      zohoParams.append('Company', company);
-      zohoParams.append('Designation', titleVal);
-      if (website) zohoParams.append('Website', website);
-      zohoParams.append('Lead Source', leadSource);
-      zohoParams.append('Industry', industryVal);
-      zohoParams.append('LEADCF2', companySizeVal || '-None-');
-      zohoParams.append('LEADCF4', utm_medium || '');
-      zohoParams.append('LEADCF5', utm_content || '');
-      zohoParams.append('LEADCF6', utm_term || '');
-      zohoParams.append('LEADCF8', utm_campaign || '');
-      zohoParams.append('LEADCF14', gclid || '');
-      zohoParams.append('LEADCF15', utm_source || '');
-      zohoParams.append('Description', waitlistHeader + (solveVal || '') + (howHeardVal ? '\nHow they heard: ' + howHeardVal : '') + attrBlock);
-      zohoParams.append('zc_gad', '');
-      zohoParams.append('aG9uZXlwb3Q', '');
+      const zohoLead = {
+        First_Name: firstName,
+        Last_Name: lastName,
+        Email: email,
+        Company: company,
+        Lead_Source1: leadSource
+      };
 
-      const zohoRes = await fetch('https://crm.zoho.com/crm/WebToLeadForm', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: zohoParams.toString(),
-        redirect: 'manual'
-      });
-      zohoStatus = zohoRes.status;
+      setIfPresent(zohoLead, 'Designation', titleVal);
+      setIfPresent(zohoLead, 'Website', normalizeUrl(website));
+      setIfPresent(
+        zohoLead,
+        'Description',
+        (solveVal || '') + (howHeardVal ? `\nHow they heard: ${howHeardVal}` : '')
+      );
+      if (isWaitlist) {
+        zohoLead.Prospect_Source_Detail = 'Join the Waitlist';
+      }
+      setIfPresent(zohoLead, 'UTM_Source', utm_source);
+      setIfPresent(zohoLead, 'UTM_Medium', utm_medium);
+      setIfPresent(zohoLead, 'UTM_Campaign', utm_campaign);
+      setIfPresent(zohoLead, 'UTM_Content', utm_content);
+      setIfPresent(zohoLead, 'UTM_Term', utm_term);
+      setIfPresent(zohoLead, 'GCLID_Track', gclid);
+      setIfPresent(zohoLead, 'Page_URL', page_url || landing_page);
+      setIfPresent(zohoLead, 'Referrer', referrer);
+      setIfPresent(zohoLead, 'GA_Client_ID', ga_client_id);
+
+      // Keep click IDs that do not have governed CRM fields in Description.
+      const extraTracking = [];
+      if (fbclid) extraTracking.push(`fbclid: ${fbclid}`);
+      if (li_fat_id) extraTracking.push(`li_fat_id: ${li_fat_id}`);
+      if (first_visit) extraTracking.push(`First Visit: ${first_visit}`);
+      if (extraTracking.length) {
+        zohoLead.Description = [
+          zohoLead.Description,
+          '--- Additional Attribution ---',
+          ...extraTracking
+        ].filter(Boolean).join('\n');
+      }
+
+      zoho = await upsertZohoLead(zohoLead, isWaitlist);
     } catch (zohoErr) {
+      zohoError = zohoErr.message;
       console.error('Zoho error:', zohoErr.message);
     }
 
@@ -214,7 +318,23 @@ module.exports = async (req, res) => {
       console.error('AC error:', acErr.message);
     }
 
-    return res.status(200).json({ ok: true, zohoStatus, contactId, waitlistTagId, source: isWaitlist ? 'waitlist' : 'default' });
+    if (!zoho) {
+      return res.status(502).json({
+        ok: false,
+        error: 'Your information could not be saved. Please try again.',
+        zohoError,
+        contactId,
+        source: isWaitlist ? 'waitlist' : 'default'
+      });
+    }
+
+    return res.status(200).json({
+      ok: true,
+      zoho,
+      contactId,
+      waitlistTagId,
+      source: isWaitlist ? 'waitlist' : 'default'
+    });
   } catch (err) {
     console.error('submit-lead error:', err);
     return res.status(500).json({ ok: false, error: err.message });
