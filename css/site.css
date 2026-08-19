@@ -6185,3 +6185,53 @@ html:not(.no-js) .reveal.is-visible .dg .d-draw { animation: dg-draw 1000ms var(
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ==========================================================================
+   POST-r6 SITE POLISH — 2026-08-19
+   1. Mobile eyebrow legibility (The Gap / Where We Sit / Recognition /
+      The Real Cause, etc.): bump the gold header size on small screens,
+      still smaller than body copy.
+   2. Outcome titles: slightly larger/heavier on desktop for stronger
+      section anchoring (per Sam's What You Get review).
+   3. Four Steps section: small assessment CTA rendered under the spine.
+   4. Outcome 3: split-view layout so it presents on one screen instead
+      of stacking a diagram + two frame images vertically.
+   ========================================================================== */
+
+@media (max-width: 720px) {
+  :root {
+    --fs-eyebrow: .8125rem;   /* was .6875rem (~11px) → ~13px */
+    --ls-eyebrow: .14em;      /* slightly tighter tracking at the larger size */
+  }
+}
+
+/* Outcome heading bump — desktop only, so mobile stays balanced */
+@media (min-width: 901px) {
+  .outcome__title {
+    font-size: calc(var(--fs-1) * 1.08);
+    font-weight: 550;
+    letter-spacing: -.02em;
+  }
+}
+
+/* Small CTA row after the Four Steps spine */
+.spine__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--sp-7);
+}
+.spine__cta .btn { min-width: min(320px, 90vw); }
+
+/* --------------------------------------------------------------------------
+   Outcome 3 — Know what to do next.
+   Convert from head+wide-figure+2-column-images stack to an outcome__split
+   pattern (copy on one side, one visual on the other) so it fits on a
+   single desktop screen without vertical scrolling.
+   -------------------------------------------------------------------------- */
+.outcome__split--stack-visual .outcome__art { display: block; }
+.outcome__split--stack-visual .dgfig {
+  margin: 0;
+}
+.outcome__split--stack-visual .dgfig .dg--desk { width: 100%; height: auto; }
+.outcome__split--stack-visual .frame { margin-top: var(--sp-5); }
+.outcome__split--stack-visual .frame-caption { margin-top: var(--sp-2); }
