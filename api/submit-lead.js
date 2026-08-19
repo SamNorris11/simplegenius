@@ -43,7 +43,8 @@ async function getZohoAccess() {
   const tokenRes = await fetch(tokenUrl, { method: 'POST' });
   const tokenData = await tokenRes.json().catch(() => ({}));
   if (!tokenRes.ok || !tokenData.access_token) {
-    throw new Error(`Zoho token refresh failed (${tokenRes.status})`);
+    const reason = tokenData.error || `HTTP_${tokenRes.status}`;
+    throw new Error(`Zoho token refresh failed (${reason})`);
   }
 
   return {
@@ -103,6 +104,65 @@ async function upsertZohoLead(record, isWaitlist) {
     id: result.details.id,
     action: result.action,
     tagAdded
+  };
+}
+
+async function submitZohoWebToLead({
+  firstName,
+  lastName,
+  email,
+  company,
+  title,
+  website,
+  leadSource,
+  industry,
+  companySize,
+  description,
+  utmSource,
+  utmMedium,
+  utmCampaign,
+  utmContent,
+  utmTerm,
+  gclid
+}) {
+  const zohoParams = new URLSearchParams();
+  zohoParams.append('xnQsjsdp', '16a94b737bb4cc0b770f6b31ecd60a901ca27fa0ca903ed1dce668e83ed84ee6');
+  zohoParams.append('xmIwtLD', 'a147a2785f061e935824b204ab91754a91d7155889aaeda1b3e1468a4bec869008f04fe153b617310f07c579b6958e77');
+  zohoParams.append('actionType', 'TGVhZHM=');
+  zohoParams.append('returnURL', 'https://www.simplegenius.com');
+  zohoParams.append('First Name', firstName);
+  zohoParams.append('Last Name', lastName);
+  zohoParams.append('Email', email);
+  zohoParams.append('Company', company);
+  zohoParams.append('Designation', title);
+  if (website) zohoParams.append('Website', normalizeUrl(website));
+  zohoParams.append('Lead Source', leadSource);
+  zohoParams.append('Industry', industry);
+  zohoParams.append('LEADCF2', companySize || '-None-');
+  zohoParams.append('LEADCF4', utmMedium || '');
+  zohoParams.append('LEADCF5', utmContent || '');
+  zohoParams.append('LEADCF6', utmTerm || '');
+  zohoParams.append('LEADCF8', utmCampaign || '');
+  zohoParams.append('LEADCF14', gclid || '');
+  zohoParams.append('LEADCF15', utmSource || '');
+  zohoParams.append('Description', description || '');
+  zohoParams.append('zc_gad', '');
+  zohoParams.append('aG9uZXlwb3Q', '');
+
+  const zohoRes = await fetch('https://crm.zoho.com/crm/WebToLeadForm', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: zohoParams.toString(),
+    redirect: 'manual'
+  });
+  if (zohoRes.status < 200 || zohoRes.status >= 400) {
+    throw new Error(`Zoho Web-to-Lead fallback failed (HTTP_${zohoRes.status})`);
+  }
+
+  return {
+    id: null,
+    action: 'web-to-lead-fallback',
+    tagAdded: false
   };
 }
 
@@ -245,6 +305,31 @@ module.exports = async (req, res) => {
     } catch (zohoErr) {
       zohoError = zohoErr.message;
       console.error('Zoho error:', zohoErr.message);
+      if (zohoErr.message.includes('Zoho token refresh failed')) {
+        try {
+          zoho = await submitZohoWebToLead({
+            firstName,
+            lastName,
+            email,
+            company,
+            title: titleVal,
+            website,
+            leadSource,
+            industry: industryVal,
+            companySize: companySizeVal,
+            description: waitlistHeader + (solveVal || '') + attrBlock,
+            utmSource: utm_source,
+            utmMedium: utm_medium,
+            utmCampaign: utm_campaign,
+            utmContent: utm_content,
+            utmTerm: utm_term,
+            gclid
+          });
+        } catch (fallbackErr) {
+          zohoError = `${zohoError}; ${fallbackErr.message}`;
+          console.error('Zoho fallback error:', fallbackErr.message);
+        }
+      }
     }
 
     // ── 2. ActiveCampaign ───────────────────────────────────────────────────
