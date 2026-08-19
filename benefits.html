@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=1787160461">
+<link rel="stylesheet" href="css/site.css?v=1787160723">
 <link rel="icon" href="favicon-32.png?v=1787087496" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png?v=1787087496" sizes="16x16" type="image/png">
 <link rel="icon" href="favicon-512.png?v=1787087496" sizes="512x512" type="image/png">
@@ -166,49 +166,58 @@
   </div>
 </section>
 
-<!-- ================================================= A3b, INTERNAL AI TOOL -->
+<!-- ================================================= A3b, INTERNAL AI TOOL
+     Split layout mirroring the MVP outcome__split pattern: copy left, chat
+     mockup right, top-aligned so the eyebrow lands flush with the top of
+     the frame. -->
 <section class="section section--ground section--tall internal-ai">
-  <div class="container container--mid">
-    <div class="section__head section__head--center">
-      <span class="eyebrow">Your team&rsquo;s AI</span>
-      <h2 class="display display--md">An internal AI your people can actually <em>use</em>.</h2>
-      <p class="section__lede section__lede--center">Give every person in your firm an AI that&rsquo;s rooted in your company, your industry, and where you&rsquo;re trying to go. Safe by default. Useful on day one.</p>
-    </div>
-
-    <div class="chat-mock" role="img" aria-label="Example chat: a benefits consultant asks the internal AI a question about a client renewal, and it responds with company-grounded context.">
-      <div class="chat-mock__head">
-        <span class="chat-mock__dot chat-mock__dot--r" aria-hidden="true"></span>
-        <span class="chat-mock__dot chat-mock__dot--y" aria-hidden="true"></span>
-        <span class="chat-mock__dot chat-mock__dot--g" aria-hidden="true"></span>
-        <span class="chat-mock__title">Simple Genius &middot; your firm</span>
+  <div class="container">
+    <div class="outcome__split">
+      <div class="outcome__copy">
+        <div class="outcome__head">
+          <span class="eyebrow">Your team&rsquo;s AI</span>
+          <h2 class="outcome__title">An internal AI your people can actually <em>use.</em></h2>
+          <p class="outcome__lede">Give every person in your firm an AI rooted in your company, your industry, and where you&rsquo;re trying to go. Safe by default. Useful on day one.</p>
+        </div>
       </div>
 
-      <div class="chat-mock__body">
-        <div class="chat-mock__row chat-mock__row--user">
-          <div class="chat-mock__avatar chat-mock__avatar--user" aria-hidden="true">BC</div>
-          <div class="chat-mock__bubble chat-mock__bubble--user">
-            <p>How should we position ourselves against the biggest benefits firm in our market this quarter?</p>
+      <div class="outcome__art reveal">
+        <div class="chat-mock" role="img" aria-label="Example chat: a benefits consultant asks the internal AI a question about competitive positioning, and it responds with company-grounded context.">
+          <div class="chat-mock__head">
+            <span class="chat-mock__dot chat-mock__dot--r" aria-hidden="true"></span>
+            <span class="chat-mock__dot chat-mock__dot--y" aria-hidden="true"></span>
+            <span class="chat-mock__dot chat-mock__dot--g" aria-hidden="true"></span>
+            <span class="chat-mock__title">Simple Genius &middot; your firm</span>
           </div>
-        </div>
 
-        <div class="chat-mock__row chat-mock__row--ai">
-          <div class="chat-mock__avatar chat-mock__avatar--ai" aria-hidden="true">SG</div>
-          <div class="chat-mock__bubble chat-mock__bubble--ai">
-            <p>Based on your target segments and their recent moves, three plays make sense. Their strength is scale, so competing on breadth of offerings is a loser. Your edge is depth of service and how you handle mid-market employers they can&rsquo;t give the same attention to.</p>
-            <ul class="chat-mock__list">
-              <li>Lead with dedicated consultant time on groups 100&ndash;500.</li>
-              <li>Tighten renewal outreach to 120 days out.</li>
-              <li>Target the 12 employers they lost last year.</li>
-            </ul>
+          <div class="chat-mock__body">
+            <div class="chat-mock__row chat-mock__row--user">
+              <div class="chat-mock__avatar chat-mock__avatar--user" aria-hidden="true">BC</div>
+              <div class="chat-mock__bubble chat-mock__bubble--user">
+                <p>How should we position against the biggest benefits firm in our market this quarter?</p>
+              </div>
+            </div>
+
+            <div class="chat-mock__row chat-mock__row--ai">
+              <div class="chat-mock__avatar chat-mock__avatar--ai" aria-hidden="true">SG</div>
+              <div class="chat-mock__bubble chat-mock__bubble--ai">
+                <p>Three plays make sense. Their strength is scale, so competing on breadth is a loser. Your edge is depth of service and mid-market employers they can&rsquo;t give the same attention to.</p>
+                <ul class="chat-mock__list">
+                  <li>Lead with dedicated consultant time on groups 100&ndash;500.</li>
+                  <li>Tighten renewal outreach to 120 days out.</li>
+                  <li>Target the 12 employers they lost last year.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="chat-mock__grounded">
+              <span class="chat-mock__grounded-label">Grounded in</span>
+              <span class="chat-mock__chip">Your book</span>
+              <span class="chat-mock__chip">Competition Hub</span>
+              <span class="chat-mock__chip">Your 2026 plan</span>
+              <span class="chat-mock__chip">Industry moves</span>
+            </div>
           </div>
-        </div>
-
-        <div class="chat-mock__grounded">
-          <span class="chat-mock__grounded-label">Grounded in</span>
-          <span class="chat-mock__chip">Your book</span>
-          <span class="chat-mock__chip">Competition Hub</span>
-          <span class="chat-mock__chip">Your 2026 plan</span>
-          <span class="chat-mock__chip">Industry moves</span>
         </div>
       </div>
     </div>
