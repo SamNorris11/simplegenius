@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Let&rsquo;s talk | Simple Genius</title>
-<meta name="description" content="A short call. We walk through the Competition Hub live on your firm and the competitors you care about.">
+<title>Join the waitlist | Simple Genius</title>
+<meta name="description" content="Get on the Simple Genius waitlist. Share a few details and someone from our team will reach out.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,23 +18,10 @@
 <!-- SHARED ILLUSTRATION DEFS, THE C STANDARD (css/site.css block 15).
      Injected by build.py as the first child of <body> on every page.
      Reference panel: qa/r3/refine-variants.html, panel C. Rules and ship gate:
-     DESIGN-SYSTEM.md §9A. Gate: node qa/r3/c-standard.js all 1440.
-
-     Nothing in here may imply a third line weight, a second tint or a light
-     source. The C standard allows exactly two stroke weights, structural 2.4
-     and hairline 1, so every marker below is sized in USER UNITS, not in
-     multiples of stroke-width: a connector head is the same size whichever of
-     the two weights carries it, and it lands on the element it points to
-     rather than short of it.
-
-     BANNED, and deliberately absent: drop/cast shadow filters, feDropShadow,
-     feGaussianBlur, feOffset, lit-face gradients, occlusion ramps, extrusion,
-     emboss, glow. See DESIGN-SYSTEM.md §9A.0 for the full nine-row table. -->
+     DESIGN-SYSTEM.md §9A. Gate: node qa/r3/c-standard.js all 1440. -->
 <svg class="dg-defs" width="0" height="0" aria-hidden="true" focusable="false"
      xmlns="http://www.w3.org/2000/svg"><defs>
 
-  <!-- 45° drafting hatch. Reserved for an area that is EMPTY or UNVERIFIED —
-       it is a convention, not a texture. Light and dark grounds. -->
   <pattern id="dgHatch" width="10" height="10" patternUnits="userSpaceOnUse"
            patternTransform="rotate(45)">
     <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(27,27,26.13)" stroke-width="1"/>
@@ -44,9 +31,6 @@
     <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(237,235,232.15)" stroke-width="1"/>
   </pattern>
 
-  <!-- Connector head. Open chevron, inherits the line's own stroke. refX 9 in
-       a 10-unit box puts the tip ON the path's last point, which is how a
-       connector terminates exactly on its target (§9A.7). -->
   <marker id="dgArrow" viewBox="0 0 10 10" refX="9" refY="5"
           markerWidth="10" markerHeight="10" orient="auto-start-reverse"
           markerUnits="userSpaceOnUse">
@@ -54,15 +38,12 @@
           stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="miter"/>
   </marker>
 
-  <!-- Dimension end cap. A perpendicular tick, the way a measured rule
-       terminates on a drawing. Use on .d-dim via marker-start/marker-end. -->
   <marker id="dgTick" viewBox="0 0 10 10" refX="5" refY="5"
           markerWidth="8" markerHeight="8" orient="auto"
           markerUnits="userSpaceOnUse">
     <path d="M5 0 V10" fill="none" stroke="context-stroke" stroke-width="2"/>
   </marker>
 
-  <!-- Terminator dot. Where a reference line lands on the thing it names. -->
   <marker id="dgNode" viewBox="0 0 10 10" refX="5" refY="5"
           markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse">
     <circle cx="5" cy="5" r="3" fill="context-stroke"/>
@@ -72,9 +53,6 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container site-header__inner">
-    <!-- Two real assets, swapped by CSS. Never a filter: invert() on the
-         wordmark, inverting the gold in "Genius" produced bright blue.
-         See DESIGN-SYSTEM.md §9, "Header". -->
     <a class="logo" href="index.html" aria-label="Simple Genius home">
       <img class="logo__img logo__img--ink" src="img/logo-dark-112h.png"
            srcset="img/logo-dark-56h.png 1x, img/logo-dark-112h.png 2x, img/logo-dark-168h.png 3x"
@@ -99,7 +77,7 @@
     </nav>
 
     <div class="header__actions">
-      <a class="btn btn--primary" href="talk.html">Let&rsquo;s talk</a>
+      <a class="btn btn--primary" href="talk.html">Join the waitlist</a>
     </div>
   </div>
 </header>
@@ -109,165 +87,76 @@
 <section class="page-head page-head--ink">
   <div class="page-head__glow" aria-hidden="true"></div>
   <div class="container page-head__inner">
-    <span class="eyebrow">Let&rsquo;s talk</span>
-    <h1 class="page-head__title">Not a pitch <em>you have to endure.</em></h1>
-    <p class="page-head__sub">Thirty minutes. If you took the assessment, we walk through your answers. If it is not a fit, we tell you on the call.</p>
+    <span class="eyebrow">Join the waitlist</span>
+    <h1 class="page-head__title">Get on the <em>list.</em></h1>
+    <p class="page-head__sub">Share a few details and someone from our team will reach out. You will be on our waitlist and notified when we open the next round.</p>
   </div>
 </section>
 
-<!-- ================================================== B2, WHAT WE DO ON IT -->
-<section class="section section--white section--tight">
-  <div class="container">
-    <div class="section__head section__head--tight">
-      <span class="eyebrow eyebrow--ruled">On the call</span>
-      <h2 class="display display--lg">Three things happen. Then you decide whether there is work to do.<em></em></h2>
-    </div>
-
-    <div class="beats beats--three">
-      <article class="beat">
-        <svg class="beat__glyph" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" focusable="false">
-          <path d="M2 34h36"/><path d="M5 34V12h6v22M15 34V18h6v16M25 34V22h6v12"/><path d="M5 8l3-4 3 4"/>
-        </svg>
-        <p class="beat__text">We go through the answers behind your score, including the parts of the company record that are missing.</p>
-      </article>
-
-      <article class="beat">
-        <svg class="beat__glyph" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" focusable="false">
-          <path d="M3 34h9V25h9V16h9V6"/><path d="M26 10l4-4 4 4"/><path d="M3 34h34" stroke-dasharray="3 4"/>
-        </svg>
-        <p class="beat__text">We walk the four steps in the order they have to happen.</p>
-      </article>
-
-      <article class="beat">
-        <svg class="beat__glyph" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" focusable="false">
-          <path d="M6 4h28v32H6z"/><path d="M14 20h12v10H14z"/><path d="M17 20v-4a3 3 0 0 1 6 0v4"/><path d="M12 11h16"/>
-        </svg>
-        <p class="beat__text">We answer the data question plainly, including what Guided Setup does and does not cover.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ========================================================= B3, BOOKING -->
+<!-- ========================================================= B2, FORM -->
 <section class="section section--ground section--seam">
-  <div class="container">
-    <div class="work work--reverse rt-book">
-      <div class="aside-stick">
-        <div class="section__head section__head--left section__head--flush">
-          <h2 class="display display--sm">Pick a time.</h2>
+  <div class="container container--narrow">
+    <form class="form" id="talk-form" data-status="talk-status" data-submitting="Sending&hellip;" novalidate>
+      <div class="form__group">
+        <label class="form__label" for="waitlist-name">Your name</label>
+        <input class="form__input" id="waitlist-name" name="fullName" type="text" autocomplete="name" data-required required>
+        <span class="form__error" hidden></span>
+      </div>
+
+      <div class="form__group">
+        <label class="form__label" for="waitlist-email">Work email</label>
+        <input class="form__input" id="waitlist-email" name="email" type="email" autocomplete="email" data-required required>
+        <span class="form__error" hidden></span>
+      </div>
+
+      <div class="form__pair">
+        <div class="form__group">
+          <label class="form__label" for="waitlist-company">Company name</label>
+          <input class="form__input" id="waitlist-company" name="company" type="text" autocomplete="organization" data-required required>
+          <span class="form__error" hidden></span>
         </div>
-
-        <!-- ================================================================
-             OPEN TIMES, C standard, DESIGN-SYSTEM.md §9A.
-             One gold element: the next open cell, and its .d-key label is the
-             largest text in the drawing. The plate and the cells are <rect>s,
-             so they take the one radius. The header rule is exactly as long as
-             the plate it divides. Tier 2: a redrawn 240-unit phone artboard,
-             both boards 1:1.
-             ================================================================ -->
-        <div class="calendar-plate rt-cal block-after--sm" data-placeholder="calendar">
-          <span class="calendar-plate__label">Open times</span>
-
-          <svg class="dg dg--a424 dg--desk dg--desk-xl calendar-plate__art" viewBox="0 0 424 288"
-               xmlns="http://www.w3.org/2000/svg" role="img"
-               aria-label="Two weeks of weekday slots. Most are taken; the next open time is highlighted.">
-            <rect class="d-box" x="12" y="12" width="400" height="216"/>
-            <path class="d-hair" d="M12 60H412"/>
-            <text class="d-caption" x="60"  y="42" text-anchor="middle">MON</text>
-            <text class="d-caption" x="136" y="42" text-anchor="middle">TUE</text>
-            <text class="d-caption" x="212" y="42" text-anchor="middle">WED</text>
-            <text class="d-caption" x="288" y="42" text-anchor="middle">THU</text>
-            <text class="d-caption" x="364" y="42" text-anchor="middle">FRI</text>
-
-            <rect class="d-hair" x="28"  y="84" width="64" height="48"/>
-            <rect class="d-hair" x="104" y="84" width="64" height="48"/>
-            <rect class="d-box--key" x="180" y="84" width="64" height="48"/>
-            <rect class="d-hair" x="256" y="84" width="64" height="48"/>
-            <rect class="d-hair" x="332" y="84" width="64" height="48"/>
-
-            <rect class="d-hair" x="28"  y="156" width="64" height="48"/>
-            <rect class="d-hair" x="104" y="156" width="64" height="48"/>
-            <rect class="d-hair" x="180" y="156" width="64" height="48"/>
-            <rect class="d-hair" x="256" y="156" width="64" height="48"/>
-            <rect class="d-hair" x="332" y="156" width="64" height="48"/>
-
-            <text class="d-key" x="212" y="264" text-anchor="middle">NEXT OPEN TIME</text>
-          </svg>
-
-          <!-- phone artboard, redrawn at 216 units, 1:1 at a 320 viewport,
-               where the 240-unit draft rendered 218px (k=1.101) and held its
-               labels at 16.4px. Three bands on the 12-unit rhythm, baselines
-               optically centred at the 18/21px phone sizes. -->
-          <svg class="dg dg--a216 dg--mob dg--mob-xl calendar-plate__art" viewBox="0 0 216 228"
-               xmlns="http://www.w3.org/2000/svg" role="img"
-               aria-label="Three weekday slots. The next open time is highlighted.">
-            <rect class="d-box" x="8" y="12" width="200" height="48"/>
-            <text class="d-label" x="24" y="42.75">MON 9:00 AM</text>
-            <rect class="d-box--key" x="8" y="72" width="200" height="48"/>
-            <text class="d-key" x="24" y="103.88">WED 9:00 AM</text>
-            <rect class="d-box" x="8" y="132" width="200" height="48"/>
-            <text class="d-label" x="24" y="162.75">THU 2:00 PM</text>
-            <text class="d-caption" x="108" y="209.06" text-anchor="middle">THIS WEEK AND NEXT</text>
-          </svg>
-
-          <p class="calendar-plate__note">The live scheduling embed drops in here, with real open times.</p>
+        <div class="form__group">
+          <label class="form__label" for="waitlist-website">Company website, optional</label>
+          <input class="form__input" id="waitlist-website" name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourcompany.com">
+          <span class="form__error" hidden></span>
         </div>
       </div>
 
-      <div>
-        <form class="form" id="talk-form" data-status="talk-status" data-required-message="invite" data-submitting="Confirming&hellip;" novalidate>
-          <div class="form__group">
-            <label class="form__label" for="talk-name">Your name</label>
-            <input class="form__input" id="talk-name" name="name" type="text" autocomplete="name" data-required required>
-            <span class="form__error" hidden></span>
-          </div>
-          <div class="form__group">
-            <label class="form__label" for="talk-email">Work email</label>
-            <input class="form__input" id="talk-email" name="email" type="email" autocomplete="email" data-required required>
-            <span class="form__error" hidden></span>
-          </div>
-          <div class="form__pair">
-            <div class="form__group">
-              <label class="form__label" for="talk-company">Company name</label>
-              <input class="form__input" id="talk-company" name="company" type="text" autocomplete="organization" data-required required>
-              <span class="form__error" hidden></span>
-            </div>
-            <div class="form__group">
-              <label class="form__label" for="talk-website">Company website</label>
-              <input class="form__input" id="talk-website" name="website" type="text" inputmode="url" placeholder="yourcompany.com" data-required required>
-              <span class="form__error" hidden></span>
-            </div>
-          </div>
-          <div class="form__group">
-            <label class="form__label" for="talk-prompt">What prompted this?, optional</label>
-            <input class="form__input" id="talk-prompt" name="prompted" type="text" aria-describedby="talk-prompt-hint">
-            <span class="form__hint" id="talk-prompt-hint">One line is plenty.</span>
-          </div>
+      <div class="form__group">
+        <label class="form__label" for="waitlist-title">Your title</label>
+        <input class="form__input" id="waitlist-title" name="role" type="text" autocomplete="organization-title" data-required required>
+        <span class="form__error" hidden></span>
+      </div>
 
-          <div class="form__actions">
-            <button class="btn btn--primary btn--block form__submit" type="submit">Confirm my time <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
-            <p class="btn-note">You will get a calendar invite and nothing else. No sequence, no reminders you did not ask for.</p>
-          </div>
-        </form>
+      <div class="form__group">
+        <label class="form__label" for="waitlist-message">Send us a message, optional</label>
+        <textarea class="form__input form__input--area" id="waitlist-message" name="challenge" rows="4" aria-describedby="waitlist-message-hint"></textarea>
+        <span class="form__hint" id="waitlist-message-hint">Anything you want us to know before we reach out.</span>
+      </div>
 
-        <div class="form-status" id="talk-status" role="status" hidden>
-          <h2 class="form-status__title">You are booked.</h2>
-          <p class="footnote">The invite is in your inbox, bring the names of the competitors you care about and we will walk through them live.</p>
-          <div class="btn-row btn-row--center block-after--sm">
-            <a class="btn btn--secondary btn--small" href="how-it-works.html">Read the four steps first</a>
-          </div>
-        </div>
+      <div class="form__actions">
+        <button class="btn btn--primary btn--block form__submit" type="submit">Join the waitlist <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+        <p class="btn-note">We will only reach out about Simple Genius. No sequence, no reminders you did not ask for.</p>
+      </div>
+    </form>
+
+    <div class="form-status" id="talk-status" role="status" hidden>
+      <h2 class="form-status__title">You are on the list.</h2>
+      <p class="footnote">Someone from our team will reach out. In the meantime, you can read the four steps or take the assessment.</p>
+      <div class="btn-row btn-row--center block-after--sm">
+        <a class="btn btn--secondary btn--small" href="how-it-works.html">Read the four steps</a>
+        <a class="btn btn--secondary btn--small" href="assessment.html">Take the assessment</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================================================== B4, QUIET CLOSE -->
+<!-- ===================================================== B3, QUIET CLOSE -->
 <section class="section section--white section--tight">
   <div class="container container--narrow">
     <div class="quiet">
       <div class="quiet__inner">
-        <h2 class="quiet__title">Would you rather not talk yet? Fair enough.<em></em></h2>
+        <h2 class="quiet__title">Would you rather see it first? Fair enough.<em></em></h2>
         <div class="btn-row btn-row--center quiet__foot">
           <a class="btn btn--primary" href="assessment.html">Take the AI Readiness Assessment <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn--secondary" href="pricing.html">See pricing</a>
@@ -321,7 +210,7 @@
       <nav class="footer-col" aria-label="Company">
         <span class="footer-col__head">Company</span>
         <a class="footer-col__link" href="about.html">About</a>
-        <a class="footer-col__link" href="talk.html">Let&rsquo;s talk</a>
+        <a class="footer-col__link" href="talk.html">Join the waitlist</a>
       </nav>
     </div>
 
