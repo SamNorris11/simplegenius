@@ -3180,8 +3180,8 @@ body.is-dark-top .site-header:not(.is-stuck) .btn--primary {
    and the commitment strip is centred. */
 .site-footer {
   position: relative;
-  padding: var(--sp-6) 0 var(--sp-5);
-  background: var(--c-ink);
+  padding: var(--sp-5) 0 var(--sp-4);
+  background: var(--c-ink-deep);
   color: var(--c-on-dark-2);
   isolation: isolate;
   overflow: hidden;
@@ -3198,11 +3198,12 @@ body.is-dark-top .site-header:not(.is-stuck) .btn--primary {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gutter);
-  row-gap: var(--sp-6);
+  row-gap: var(--sp-5);
+  align-items: start;
 }
 .site-footer__brand {
   grid-column: 1 / span 4;
-  display: flex; flex-direction: column; gap: var(--sp-4);
+  display: flex; flex-direction: column; gap: var(--sp-3);
 }
 .site-footer__tagline {
   font-family: var(--ff-display); font-weight: 500; font-size: var(--fs-4);
@@ -3212,12 +3213,13 @@ body.is-dark-top .site-header:not(.is-stuck) .btn--primary {
 }
 .footer-col {
   display: flex; flex-direction: column; gap: var(--sp-2);
-  grid-column: span 3;
 }
-/* Two nav columns after the brand block. The brand occupies cols 1–4;
-   the two nav cols sit on the right half so the footer reads calm. */
-.footer-col:nth-child(2) { grid-column: 7 / span 3; }
-.footer-col:nth-child(3) { grid-column: 10 / span 3; }
+/* Three nav columns after the brand block. Brand occupies cols 1–4;
+   nav cols fill 5–12 in equal thirds so all three end at the same baseline
+   even when link counts differ (align via align-items: start on the row). */
+.footer-col:nth-child(2) { grid-column: 5 / span 3; }
+.footer-col:nth-child(3) { grid-column: 8 / span 3; }
+.footer-col:nth-child(4) { grid-column: 11 / span 2; }
 
 /* Social row — sits under the wordmark inside the brand column.
    Icons are inline SVGs that inherit currentColor and pick up gold on hover. */
@@ -3266,6 +3268,8 @@ a.footer-col__link:hover { color: var(--c-gold); padding-left: var(--sp-1); }
 .site-footer__legal {
   display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-5); justify-content: space-between;
   margin-top: var(--sp-4); font-size: var(--fs-xs); color: var(--c-on-dark-3);
+  padding-top: var(--sp-3);
+  border-top: var(--bw) solid var(--c-line-dark-faint);
 }
 
 [hidden] { display: none !important; }
@@ -3390,12 +3394,13 @@ html:not(.no-js) .reveal.is-visible { opacity: 1; translate: 0 0; }
   .stat__legend, .stat__counter, .stat__source { grid-column: 1 / -1; }
   .stat__split-keys { flex-direction: column; gap: var(--sp-1); }
   .site-footer__brand { grid-column: 1 / -1; }
-  .footer-col:nth-child(2) { grid-column: 1 / span 6; }
-  .footer-col:nth-child(3) { grid-column: 7 / span 6; }
-  /* REVISION-03 §1.3 — tight on a phone. The footer keeps its two-up nav all
-     the way to 320; only the brand and the commitment strip restack. */
-  .site-footer { padding: var(--sp-6) 0 var(--sp-5); }
-  .site-footer__top { row-gap: var(--sp-5); }
+  .footer-col:nth-child(2) { grid-column: 1 / span 4; }
+  .footer-col:nth-child(3) { grid-column: 5 / span 4; }
+  .footer-col:nth-child(4) { grid-column: 9 / span 4; }
+  /* REVISION-04 — condensed footer. Brand stacks on its own row; the three
+     nav cols share the next row equally so they line up at the bottom. */
+  .site-footer { padding: var(--sp-5) 0 var(--sp-4); }
+  .site-footer__top { row-gap: var(--sp-4); }
   .site-footer__brand { gap: var(--sp-3); }
   .site-footer__legal { justify-content: center; text-align: center; }
   .commit-strip { margin-top: var(--sp-5); }
@@ -3403,11 +3408,16 @@ html:not(.no-js) .reveal.is-visible { opacity: 1; translate: 0 0; }
 
 /* 560 — one column everywhere                                              */
 @media (max-width: 560px) {
-  /* footer, continued (REVISION-03 §1.3): small print is allowed to be small
-     print here, which is what stops the link columns wrapping to three lines */
+  /* footer, continued (REVISION-04): tighter mobile — three-up nav becomes
+     a stacked list so each column reads without wrapping */
   .footer-col__link { font-size: var(--fs-xs); }
   .site-footer__tagline { font-size: var(--fs-lead); max-width: 30ch; }
-  .site-footer__top { row-gap: var(--sp-4); }
+  .site-footer__top { row-gap: var(--sp-3); }
+  .footer-col:nth-child(2),
+  .footer-col:nth-child(3),
+  .footer-col:nth-child(4) { grid-column: 1 / -1; }
+  .footer-col { gap: var(--sp-1); }
+  .footer-col__head { padding-bottom: var(--sp-1); }
   .commit-strip { gap: var(--sp-2) var(--sp-4); }
   .beat { grid-column: 1 / -1; }
   .commit { grid-template-columns: 1fr; }
