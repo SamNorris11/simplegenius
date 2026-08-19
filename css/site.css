@@ -6364,3 +6364,12 @@ html:not(.no-js) .reveal.is-visible .dg .d-draw { animation: dg-draw 1000ms var(
   .chat-mock__avatar { width: 30px; height: 30px; font-size: 11px; }
   .chat-mock__row--user .chat-mock__bubble { max-width: 92%; }
 }
+
+/* --------------------------------------------------------------------------
+   Vertical page override — top-align beat content so cards feel balanced
+   when copy length differs across the three cards. Scoped to Insurance +
+   Benefits via body.page-vertical so it doesn't affect other pages.
+   -------------------------------------------------------------------------- */
+.page-vertical .beats--linked .beat {
+  justify-content: flex-start;
+}
