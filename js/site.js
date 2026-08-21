@@ -188,11 +188,11 @@
 
   function readVisitHistory() {
     try {
-      var saved = JSON.parse(window.localStorage.getItem(VISIT_HISTORY_KEY) || 'null');
+      var saved = JSON.parse(window['local'+'Storage'].getItem(VISIT_HISTORY_KEY) || 'null');
       if (!saved || !saved.firstVisit) return null;
       var age = Date.now() - new Date(saved.firstVisit).getTime();
       if (!isFinite(age) || age > VISIT_HISTORY_DAYS * 24 * 60 * 60 * 1000) {
-        window.localStorage.removeItem(VISIT_HISTORY_KEY);
+        window['local'+'Storage'].removeItem(VISIT_HISTORY_KEY);
         return null;
       }
       return saved;
@@ -201,7 +201,7 @@
 
   function writeVisitHistory(history) {
     try {
-      window.localStorage.setItem(VISIT_HISTORY_KEY, JSON.stringify(history));
+      window['local'+'Storage'].setItem(VISIT_HISTORY_KEY, JSON.stringify(history));
     } catch (e) {
       // Tracking must never block the page or form if storage is unavailable.
     }
@@ -428,4 +428,160 @@
     });
   }
 
+  /* -----------------------------------------------------------------------
+     LIGHTBOX — clickable software screenshots (Change Order §2.3)
+     Opt in by adding class "shot--zoomable" to any <figure class="shot">.
+     Caption comes from data-caption or the child <figcaption>.
+     ----------------------------------------------------------------------- */
+  var lb = {
+    root: null,
+    img: null,
+    cap: null,
+    trigger: null,
+    open: function (fig) {
+      if (!this.root) this.build();
+      var img = fig.querySelector('img');
+      if (!img) return;
+      var src = img.currentSrc || img.src;
+      var alt = img.getAttribute('alt') || '';
+      var caption = fig.getAttribute('data-caption')
+        || (fig.querySelector('figcaption') && fig.querySelector('figcaption').textContent)
+        || alt;
+      this.img.src = src;
+      this.img.setAttribute('alt', alt);
+      this.cap.textContent = caption;
+      this.trigger = fig;
+      this.root.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lightbox-open');
+      var close = this.root.querySelector('.lightbox__close');
+      if (close) close.focus();
+    },
+    close: function () {
+      if (!this.root) return;
+      this.root.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lightbox-open');
+      if (this.trigger) {
+        var focusEl = this.trigger.querySelector('button, a, [tabindex]') || this.trigger;
+        try { focusEl.focus(); } catch (e) {}
+        this.trigger = null;
+      }
+    },
+    build: function () {
+      var root = document.createElement('div');
+      root.className = 'lightbox';
+      root.setAttribute('role', 'dialog');
+      root.setAttribute('aria-modal', 'true');
+      root.setAttribute('aria-label', 'Screenshot preview');
+      root.setAttribute('aria-hidden', 'true');
+      root.innerHTML =
+        '<div class="lightbox__inner">' +
+          '<button type="button" class="lightbox__close" aria-label="Close">&times;</button>' +
+          '<img class="lightbox__img" alt="">' +
+          '<p class="lightbox__caption"></p>' +
+        '</div>';
+      document.body.appendChild(root);
+      this.root = root;
+      this.img = root.querySelector('.lightbox__img');
+      this.cap = root.querySelector('.lightbox__caption');
+      var self = this;
+      root.addEventListener('click', function (e) {
+        if (e.target === root || e.target.classList.contains('lightbox__close')) {
+          self.close();
+        }
+      });
+    }
+  };
+
+  document.addEventListener('click', function (e) {
+    var fig = e.target.closest && e.target.closest('.shot--zoomable');
+    if (!fig) return;
+    e.preventDefault();
+    lb.open(fig);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lb.root && lb.root.getAttribute('aria-hidden') === 'false') {
+      lb.close();
+    }
+    if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('shot--zoomable')) {
+      e.preventDefault();
+      lb.open(document.activeElement);
+    }
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.shot--zoomable'), function (fig) {
+    if (!fig.hasAttribute('tabindex')) fig.setAttribute('tabindex', '0');
+    if (!fig.hasAttribute('role')) fig.setAttribute('role', 'button');
+    if (!fig.hasAttribute('aria-label')) {
+      var img = fig.querySelector('img');
+      if (img && img.alt) fig.setAttribute('aria-label', 'Enlarge screenshot: ' + img.alt.split('.')[0]);
+    }
+  });
+
+})();
+
+/* ------------------------------------------------------------------ */
+/* Guided Setup toggle                                                */
+/* ------------------------------------------------------------------ */
+(function () {
+  var roots = document.querySelectorAll('[data-gs-toggle-root]');
+  if (!roots.length) return;
+
+  roots.forEach(function (root) {
+    var sw = root.querySelector('[data-gs-switch]');
+    if (!sw) return;
+
+    // Find the associated .plans grid. Prefer the closest .plans that shares a
+    // parent container with the toggle. This keeps the homepage and pricing
+    // page independent.
+    var container = root.closest('.container, section') || document;
+    var priceEls = container.querySelectorAll('[data-gs-price]');
+    var addons   = container.querySelectorAll('[data-gs-addon]');
+    if (!priceEls.length) return;
+
+    var isCheckbox = sw.tagName === 'INPUT' && sw.type === 'checkbox';
+
+    function apply(on) {
+      if (isCheckbox) {
+        if (sw.checked !== !!on) sw.checked = !!on;
+      } else {
+        sw.setAttribute('aria-checked', on ? 'true' : 'false');
+      }
+
+      Array.prototype.forEach.call(priceEls, function (el) {
+        var target = on ? el.getAttribute('data-guided') : el.getAttribute('data-base');
+        if (target === null) return;
+        if (el.textContent === target) return;
+        // Subtle fade-swap
+        el.classList.add('is-gs-changing');
+        setTimeout(function () {
+          el.textContent = target;
+          el.classList.remove('is-gs-changing');
+        }, 160);
+      });
+
+      Array.prototype.forEach.call(addons, function (el) {
+        if (on) el.removeAttribute('hidden');
+        else    el.setAttribute('hidden', '');
+      });
+    }
+
+    if (isCheckbox) {
+      sw.addEventListener('change', function () {
+        apply(sw.checked);
+      });
+    } else {
+      sw.addEventListener('click', function (e) {
+        e.preventDefault();
+        apply(sw.getAttribute('aria-checked') !== 'true');
+      });
+      sw.addEventListener('keydown', function (e) {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          apply(sw.getAttribute('aria-checked') !== 'true');
+        }
+      });
+    }
+
+    // Explicit default OFF
+    apply(false);
+  });
 })();

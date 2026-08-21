@@ -40,11 +40,11 @@
   --c-ink-deep:      #121211;   /* deepest band (closing)                   */
   --c-ink-soft:      #262624;   /* raised container on a dark band          */
   --c-ink-inset:     #0D0D0C;   /* inset well on a dark band                */
-  --c-steel:         #63605B;   /* secondary text on light                  */
-  --c-mute:          #6B6862;   /* tertiary text on light                   */
+  --c-steel:         #52504C;   /* secondary text on light (raised contrast) */
+  --c-mute:          #5A5852;   /* tertiary text on light (raised contrast)  */
   --c-on-dark:       #EDEBE8;   /* primary text on dark                     */
-  --c-on-dark-2:     rgba(237,235,232,.72); /* secondary text on dark       */
-  --c-on-dark-3:     rgba(237,235,232,.52); /* tertiary text on dark        */
+  --c-on-dark-2:     rgba(237,235,232,.86); /* secondary text on dark (raised) */
+  --c-on-dark-3:     rgba(237,235,232,.72); /* tertiary text on dark (raised)  */
 
   /* --- colour: gold (structure only) ------------------------------------- */
   --c-gold:          #D4AF37;
@@ -75,16 +75,17 @@
   --fs-1:       clamp(2.55rem, 4.6vw, 4.25rem);
   --fs-2:       clamp(2.05rem, 3.4vw, 3.1rem);
   --fs-3:       clamp(1.7rem, 2.4vw, 2.25rem);
-  --fs-4:       clamp(1.25rem, 1.5vw, 1.45rem);
+  --fs-4:       clamp(1.35rem, 1.7vw, 1.6rem);
   --fs-stat:    clamp(5.5rem, 15vw, 13rem);
 
   /* --- type scale: operational (Inter) ----------------------------------- */
-  --fs-lead:    1.1875rem;
-  --fs-body:    1.0625rem;
-  --fs-base:    1rem;
-  --fs-sm:      .9375rem;
-  --fs-xs:      .8125rem;
-  --fs-eyebrow: .6875rem;
+  /* readability pass: xs 14->16, eyebrow 13->15, sm 16->17, base 16->17     */
+  --fs-lead:    1.1875rem;   /* 19px */
+  --fs-body:    1.125rem;    /* 18px */
+  --fs-base:    1.0625rem;   /* 17px */
+  --fs-sm:      1.0625rem;   /* 17px */
+  --fs-xs:      1rem;        /* 16px */
+  --fs-eyebrow: .9375rem;    /* 15px */
 
   /* legacy type aliases */
   --fs-display: var(--fs-hero);
@@ -114,9 +115,9 @@
   --sp-6:  2rem;
   --sp-7:  3rem;
   --sp-8:  4rem;
-  --sp-9:  clamp(3.5rem, 6vw, 6rem);
-  --sp-10: clamp(4.5rem, 8vw, 8rem);
-  --sp-11: clamp(6rem, 11vw, 12rem);
+  --sp-9:  clamp(2.5rem, 4vw, 4rem);
+  --sp-10: clamp(3rem, 5vw, 5rem);
+  --sp-11: clamp(3.5rem, 6vw, 6rem);
 
   /* --- grid -------------------------------------------------------------- */
   --maxw:        1240px;
@@ -137,9 +138,9 @@
   --bw:      1px;
   --bw-2:    2px;
   --ctl-h:   3rem;      /* every interactive control shares this height     */
-  --ctl-h-sm: 2.5rem;
-  --header-h: 78px;
-  --logo-h:  34px;
+  --ctl-h-sm: 2.75rem;              /* was 2.5rem — mobile tap targets ≥44px per §3.3 */
+  --header-h: 92px;                 /* was 78px — larger nav zone per §3.3 */
+  --logo-h:  44px;                  /* was 34px — bigger logo per §3.3 */
 
   /* --- component geometry (not space: shared artboards and fixed objects) - */
   --glyph-lg: 48px;      /* the shared glyph artboard                        */
@@ -874,10 +875,10 @@ body.grid-debug--rows::before {
 }
 .nav__link {
   position: relative;
-  font-size: var(--fs-sm);
+  font-size: var(--fs-body);        /* was var(--fs-sm) — bigger nav links per §3.3 */
   font-weight: 500;
   color: var(--c-steel);
-  padding-block: var(--sp-2);
+  padding-block: var(--sp-3);       /* was --sp-2 — more vertical breathing room */
   transition: color var(--dur-1) var(--ease);
 }
 .nav__link::after {
@@ -910,8 +911,8 @@ body.grid-debug--rows::before {
 .nav-toggle {
   display: none;
   margin-left: auto;
-  width: var(--ctl-h-sm);
-  height: var(--ctl-h-sm);
+  width: 44px;                      /* §3.3: minimum 44px tap target on mobile */
+  height: 44px;
   align-items: center;
   justify-content: center;
   background: transparent;
@@ -3303,7 +3304,7 @@ html:not(.no-js) .reveal.is-visible { opacity: 1; translate: 0 0; }
 /* 900 — nav collapses; every twelve-column set becomes a single column      */
 @media (max-width: 900px) {
   :root {
-    --header-h: 70px;
+    --header-h: 80px;                /* was 70px — mobile header height per §3.3 nav sizing bump */
     --sp-9:  clamp(3rem, 7vw, 4.5rem);
     --sp-10: clamp(3.5rem, 9vw, 5.5rem);
     --sp-11: clamp(4.5rem, 12vw, 7rem);
@@ -3329,9 +3330,12 @@ html:not(.no-js) .reveal.is-visible { opacity: 1; translate: 0 0; }
   }
   .nav.is-open { transform: none; opacity: 1; visibility: visible; }
   .nav__link {
-    padding-block: var(--sp-4);
+    padding-block: var(--sp-5);      /* was --sp-4 — ensures ≥44px tap targets per §3.3 */
+    min-height: 44px;
+    display: flex;
+    align-items: center;
     border-bottom: var(--bw) solid var(--c-line);
-    font-size: var(--fs-body);
+    font-size: var(--fs-4);          /* was --fs-body — larger mobile nav labels */
   }
   .nav__link::after { display: none; }
   .header__actions .header__link { display: none; }
@@ -3636,12 +3640,21 @@ html:not(.no-js) .reveal.is-visible { opacity: 1; translate: 0 0; }
 
 .step {
   display: grid;
-  grid-template-columns: minmax(0, 47fr) minmax(0, 53fr);
+  grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
   gap: var(--sp-8);
   align-items: center;
 }
 .step--reverse .step__copy { order: 2; }
 .step--reverse .step__art { order: 1; }
+
+/* Keep the 60fr art column consistent across normal + reversed steps so all
+   four software images render at the same size. */
+.step .step__copy { grid-column: 1; }
+.step .step__art  { grid-column: 2; }
+.step--reverse .step__copy { grid-column: 2; }
+.step--reverse .step__art  { grid-column: 1; }
+.step { grid-template-columns: minmax(0, 60fr) minmax(0, 40fr); }
+.step:not(.step--reverse) { grid-template-columns: minmax(0, 40fr) minmax(0, 60fr); }
 
 .step__copy { max-width: 48ch; }
 
@@ -6385,4 +6398,3332 @@ html:not(.no-js) .reveal.is-visible .dg .d-draw { animation: dg-draw 1000ms var(
    -------------------------------------------------------------------------- */
 .page-vertical .beats--linked .beat {
   justify-content: flex-start;
+}
+
+/* =========================================================================
+   Lightbox — clickable software screenshots (Change Order §2.3)
+   ========================================================================= */
+.shot--zoomable { cursor: zoom-in; }
+.shot--zoomable .shot__img { transition: transform .18s ease; }
+.shot--zoomable:hover .shot__img,
+.shot--zoomable:focus-within .shot__img { transform: translateY(-2px); }
+.shot--zoomable::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(29,29,29,.82) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23F7F7F7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3'/></svg>") center/16px no-repeat;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+.shot--zoomable { position: relative; }
+.shot--zoomable:hover::after,
+.shot--zoomable:focus-within::after { opacity: 1; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(15,15,15,.86);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .22s ease, visibility 0s .22s;
+}
+.lightbox[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .22s ease;
+}
+.lightbox__inner {
+  position: relative;
+  max-width: min(1400px, 96vw);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lightbox__img {
+  display: block;
+  max-width: 100%;
+  max-height: 84vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+  background: #F7F7F7;
+}
+.lightbox__caption {
+  color: #F7F7F7;
+  font-family: var(--ff-sans);
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  opacity: .92;
+}
+.lightbox__close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: none;
+  background: #F7F7F7;
+  color: #1D1D1D;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+  transition: transform .15s ease;
+}
+.lightbox__close:hover,
+.lightbox__close:focus-visible { transform: scale(1.06); outline: none; }
+.lightbox__close:focus-visible { box-shadow: 0 0 0 3px var(--c-gold, #D4AF37); }
+body.lightbox-open { overflow: hidden; }
+@media (max-width: 600px) {
+  .lightbox__close { top: 8px; right: 8px; }
+  .lightbox__inner { padding-top: 44px; }
+}
+
+/* =========================================================================
+   Pricing three-tier (Change Order §6A + §9)
+   ========================================================================= */
+.plans--triple { row-gap: var(--sp-6); }
+.plans--triple .plan { grid-column: span 4; }
+@media (max-width: 900px) {
+  .plans--triple .plan { grid-column: 1 / -1; }
+}
+.plan__tag {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translate(-50%, -50%);
+  padding: var(--sp-1) var(--sp-4);
+  background: var(--c-ink);
+  color: var(--c-gold);
+  border-radius: var(--r-pill);
+  font-family: var(--ff-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* Shape comparison (§9.3 arithmetic replacement) */
+.shape-compare {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin-top: var(--sp-8);
+}
+@media (max-width: 900px) {
+  .shape-compare { grid-template-columns: 1fr; gap: var(--sp-5); }
+}
+.shape-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-7) var(--sp-6);
+  background: rgba(255,255,255,.03);
+  border: var(--bw) solid rgba(255,255,255,.14);
+  border-radius: var(--r-md);
+  color: var(--c-on-dark, #F7F7F7);
+}
+.shape-card--us {
+  background: rgba(212,175,55,.08);
+  border-color: rgba(212,175,55,.55);
+}
+.shape-card__label {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: rgba(247,247,247,.75);
+}
+.shape-card--us .shape-card__label { color: var(--c-gold); }
+.shape-card__title {
+  font-family: var(--ff-display);
+  font-size: var(--fs-3);
+  line-height: var(--lh-title);
+  margin: 0;
+  color: var(--c-on-dark, #F7F7F7);
+}
+.shape-card__body {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: rgba(247,247,247,.86);
+  margin: 0;
+}
+.shape-card__price {
+  font-family: var(--ff-display);
+  font-size: var(--fs-2);
+  line-height: 1;
+  color: var(--c-gold);
+  margin-top: auto;
+  padding-top: var(--sp-4);
+}
+.shape-card__hint {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-xs);
+  color: rgba(247,247,247,.6);
+  margin-top: var(--sp-1);
+}
+
+/* Pricing: tier tag inside module title */
+.incl__tier {
+  display: inline-block;
+  margin-left: var(--sp-2);
+  padding: 2px 8px;
+  background: var(--c-gold-wash, rgba(212,175,55,.14));
+  color: var(--c-gold-deep, #8A6A15);
+  border-radius: var(--r-pill);
+  font-family: var(--ff-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+/* =========================================================================
+   Competitive AI Scan page (Change Order §4, §10)
+   ========================================================================= */
+.scan-card {
+  background: var(--c-white);
+  border: var(--bw) solid var(--c-line);
+  border-radius: var(--r-md);
+  padding: var(--sp-8) var(--sp-7);
+  box-shadow: var(--shadow-2);
+}
+@media (max-width: 640px) { .scan-card { padding: var(--sp-6) var(--sp-5); } }
+
+.scan-card__steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-5);
+}
+.scan-step {
+  font-family: var(--ff-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--c-steel, #5A5A5A);
+  padding: 4px 10px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-pill);
+  background: rgba(0,0,0,.02);
+}
+.scan-step.is-current {
+  color: var(--c-ink);
+  border-color: var(--c-gold-mid);
+  background: rgba(212,175,55,.10);
+}
+
+.scan-card__title {
+  font-family: var(--ff-display);
+  font-size: var(--fs-2);
+  line-height: var(--lh-title);
+  margin: 0 0 var(--sp-2);
+  color: var(--c-ink);
+}
+.scan-card__lede {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--c-steel, #4a4a4a);
+  margin: 0 0 var(--sp-6);
+}
+
+.scan-form__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  margin-bottom: var(--sp-4);
+}
+.scan-form__label {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+}
+.scan-form__input {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  padding: 12px 14px;
+  border: var(--bw) solid var(--c-line-strong, #c8c4bd);
+  border-radius: var(--r-sm, 8px);
+  background: var(--c-white);
+  color: var(--c-ink);
+  transition: border-color var(--dur-2) var(--ease);
+}
+.scan-form__input:focus {
+  outline: none;
+  border-color: var(--c-gold);
+  box-shadow: 0 0 0 3px rgba(212,175,55,.22);
+}
+.scan-form__foot { margin-top: var(--sp-5); }
+.scan-form__note {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-xs);
+  color: var(--c-steel, #6a6a6a);
+  margin: var(--sp-3) 0 0;
+  text-align: center;
+}
+
+/* Scan steps (three-step process) */
+.scan-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+}
+@media (max-width: 900px) { .scan-steps { grid-template-columns: 1fr; } }
+.scan-steps__item {
+  padding: var(--sp-6) var(--sp-5);
+  background: rgba(0,0,0,.02);
+  border: var(--bw) solid var(--c-line);
+  border-radius: var(--r-md);
+}
+.scan-steps__num {
+  display: inline-block;
+  font-family: var(--ff-display);
+  font-size: var(--fs-2);
+  color: var(--c-gold);
+  line-height: 1;
+  margin-bottom: var(--sp-3);
+}
+.scan-steps__title {
+  font-family: var(--ff-display);
+  font-size: var(--fs-3);
+  line-height: var(--lh-title);
+  margin: 0 0 var(--sp-2);
+  color: var(--c-ink);
+}
+.scan-steps__body {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--c-steel, #4a4a4a);
+  margin: 0;
+}
+
+/* What comes back (dark ground cards) */
+.scan-get {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin-top: var(--sp-8);
+}
+@media (max-width: 900px) { .scan-get { grid-template-columns: 1fr; } }
+.scan-get__card {
+  padding: var(--sp-6) var(--sp-5);
+  background: rgba(255,255,255,.04);
+  border: var(--bw) solid rgba(255,255,255,.14);
+  border-radius: var(--r-md);
+}
+.scan-get__title {
+  font-family: var(--ff-display);
+  font-size: var(--fs-3);
+  line-height: var(--lh-title);
+  margin: 0 0 var(--sp-2);
+  color: var(--c-on-dark, #F7F7F7);
+}
+.scan-get__body {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: rgba(247,247,247,.82);
+  margin: 0;
+}
+
+/* =========================================================================
+   Batch 4: Homepage hero — "The first step for implementing AI in a business."
+   ========================================================================= */
+.hero--film .hero__title--first-step {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+  margin: 0 auto var(--sp-7);
+  max-width: 20ch;
+  text-align: center;
+}
+.hero--film .hero__gold {
+  font-style: italic;
+  color: var(--c-gold);
+  font-weight: 500;
+}
+.hero--film .hero__film {
+  margin: 0 auto var(--sp-7);
+  max-width: 1080px;
+}
+@media (max-width: 640px) {
+  .hero--film .hero__title--first-step { font-size: clamp(1.9rem, 8vw, 2.6rem); margin-bottom: var(--sp-5); }
+  .hero--film .hero__film { margin-bottom: var(--sp-5); }
+}
+
+/* ------- Guided Setup bar (pricing) — §6 item 24 ------------------- */
+.guided-setup-bar{
+  margin-top: var(--sp-6);
+  padding: var(--sp-6) var(--sp-7);
+  background: color-mix(in oklab, var(--gold) 6%, var(--paper));
+  border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent);
+  border-left: 4px solid var(--gold);
+  border-radius: 6px;
+}
+.guided-setup-bar__head{
+  display:flex; align-items:baseline; justify-content:flex-start; gap: var(--sp-5);
+  flex-wrap:wrap; margin-bottom: var(--sp-3);
+}
+.guided-setup-bar__eyebrow{
+  font-family: var(--font-eyebrow);
+  font-size: .72rem; letter-spacing:.12em; text-transform:uppercase;
+  color: color-mix(in oklab, var(--ink) 60%, transparent);
+}
+.guided-setup-bar__title{
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin:0;
+  line-height:1.1;
+}
+.guided-setup-bar__price{
+  color: var(--gold);
+  font-weight: 800;
+}
+.guided-setup-bar__period{
+  font-size: .55em; font-weight: 500; color: color-mix(in oklab, var(--ink) 55%, transparent); margin-left:.15em;
+}
+.guided-setup-bar__body{
+  font-size: .95rem;
+  color: color-mix(in oklab, var(--ink) 80%, transparent);
+  margin: 0;
+  line-height: 1.55;
+  max-width: 68ch;
+}
+@media (max-width: 640px){
+  .guided-setup-bar{ padding: var(--sp-5); }
+  .guided-setup-bar__title{ font-size: 1.4rem; }
+}
+
+/* Zoomable cursor for module figures — pricing lightbox trigger */
+.incl__item.shot--zoomable{ cursor: zoom-in; }
+.incl__item.shot--zoomable:focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ------- Scan two-step + progress readout — §7 item 33 ------------- */
+.scan-progress{
+  background: color-mix(in oklab, var(--ink) 3%, var(--paper));
+  border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+  padding: var(--sp-5); margin-bottom: var(--sp-6); border-radius: 6px;
+}
+.scan-progress__eyebrow{
+  display:block; font-family: var(--font-eyebrow); font-size:.7rem; letter-spacing:.14em;
+  text-transform:uppercase; color: var(--gold); margin-bottom: var(--sp-3);
+}
+.scan-progress__list{ list-style:none; padding:0; margin:0; display:grid; gap: var(--sp-2); }
+.scan-progress__row{
+  display:flex; align-items:center; gap: var(--sp-3);
+  color: color-mix(in oklab, var(--ink) 55%, transparent);
+  font-size: .95rem;
+}
+.scan-progress__row.is-active{ color: var(--ink); font-weight: 500; }
+.scan-progress__row.is-done{ color: color-mix(in oklab, var(--ink) 70%, transparent); }
+.scan-progress__row.is-done .scan-progress__dot{ background: var(--gold); }
+.scan-progress__row.is-active .scan-progress__dot{
+  background: var(--gold);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--gold) 22%, transparent);
+  animation: sgPulse 1.6s ease-in-out infinite;
+}
+.scan-progress__dot{
+  width:.7rem; height:.7rem; border-radius:50%;
+  background: color-mix(in oklab, var(--ink) 22%, transparent);
+  flex-shrink:0;
+}
+@keyframes sgPulse{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.18)} }
+
+.scan-qlist{
+  counter-reset: q;
+  list-style:none; padding:0; margin: var(--sp-6) auto 0;
+  max-width: 66ch;
+  display:grid; gap: var(--sp-3);
+}
+.scan-qlist li{
+  counter-increment: q;
+  position:relative; padding-left: 3rem;
+  font-size: 1rem; line-height: 1.55;
+  color: color-mix(in oklab, var(--ink) 82%, transparent);
+}
+.scan-qlist li::before{
+  content: counter(q, decimal-leading-zero);
+  position:absolute; left:0; top:.1em;
+  font-family: var(--font-display);
+  font-size: 1.35rem; font-weight: 700;
+  color: var(--gold);
+}
+.scan-qlist li strong{ color: var(--ink); }
+
+/* ------- Security section (P5.5) — flowing list, no siloed boxes -------- */
+.security-section .display{ color: var(--paper); }
+.security-list{
+  list-style:none; margin:0; padding:0;
+  border-top:1px solid color-mix(in oklab, var(--paper) 16%, transparent);
+}
+.security-list__row{
+  padding: var(--sp-5) 0;
+  border-bottom:1px solid color-mix(in oklab, var(--paper) 16%, transparent);
+  display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1.4fr);
+  gap: var(--sp-5); align-items:baseline;
+}
+.security-list__k{
+  font-family: var(--font-display);
+  font-weight: 600; font-size: 1.2rem; line-height:1.25;
+  color: var(--gold); margin:0;
+}
+.security-list__v{
+  color: color-mix(in oklab, var(--paper) 82%, transparent);
+  font-size: 1rem; line-height: 1.6; margin:0;
+}
+@media (max-width: 720px){
+  .security-list__row{ grid-template-columns: 1fr; gap: var(--sp-2); }
+  .security-list__k{ font-size:1.1rem; }
+}
+
+/* ------- Security section head (fills left col dead space) ------------ */
+.security-section{
+  border-top: 1px solid color-mix(in oklab, var(--paper) 8%, transparent);
+}
+.security-head__h{ color: var(--paper); margin: var(--sp-2) 0 var(--sp-4); }
+.security-head__lede{
+  color: color-mix(in oklab, var(--paper) 78%, transparent);
+  font-size: 1.05rem; line-height: 1.6;
+  margin: 0 0 var(--sp-4);
+  max-width: 34ch;
+}
+.security-head__meta{
+  color: var(--gold);
+  font-family: var(--font-eyebrow);
+  font-size: .72rem; letter-spacing:.14em;
+  text-transform: uppercase;
+  padding-top: var(--sp-3);
+  border-top: 1px solid color-mix(in oklab, var(--paper) 14%, transparent);
+  max-width: 34ch;
+}
+
+/* ------- Why Us (Grounds for believing us) — centered, single column ------ */
+.found-section .found-inner{
+  text-align: center;
+  max-width: 68ch;
+  margin: 0 auto;
+}
+.found-section .found-h2{ margin: var(--sp-2) 0 var(--sp-6); }
+.found-section .founders-photo{ margin: var(--sp-8) auto var(--sp-6); }
+.found-section .founders-photo__pair{ justify-content: center; gap: var(--sp-5); }
+
+/* Gold-outlined photo frames, with a subtle gold wash behind and a soft
+   gold glow on hover so the pair reads as a matched, framed set. */
+.found-section .founder-card img{
+  border: 2px solid var(--c-gold);
+  border-radius: 10px;
+  padding: 6px;
+  background: color-mix(in oklab, var(--c-gold) 8%, transparent);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--c-gold) 24%, transparent),
+              0 10px 24px rgba(0,0,0,.06);
+  transition: box-shadow 240ms var(--ease-out), transform 240ms var(--ease-out);
+}
+.found-section .founder-card:hover img{
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--c-gold) 60%, transparent),
+              0 14px 30px rgba(0,0,0,.10);
+}
+
+/* Names in gold. Co-founders label stays neutral (do not restyle .founders-photo__role). */
+.found-section .founder-card__name{
+  color: var(--c-gold-text);
+  margin-top: var(--sp-3);
+  font-weight: 600;
+}
+.found-section .found-copy{ text-align: left; max-width: 60ch; margin: 0 auto; }
+
+/* =========================================================================
+   SECURITY (rebuild) — centered head + 5 numbered cards
+   ========================================================================= */
+.security-head--centered{
+  text-align:center;
+  max-width: 60ch;
+  margin: 0 auto var(--sp-8);
+}
+.security-head--centered .eyebrow{ color: var(--gold); }
+.security-head--centered .security-head__h{
+  color: var(--paper);
+  margin: var(--sp-2) 0 var(--sp-4);
+}
+.security-head--centered .security-head__lede{
+  color: color-mix(in oklab, var(--paper) 78%, transparent);
+  max-width: 46ch; margin: 0 auto;
+  font-size: 1.05rem; line-height: 1.55;
+}
+.security-grid{
+  list-style: none; padding: 0; margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--sp-4);
+}
+@media (max-width: 1100px){ .security-grid{ grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px){ .security-grid{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 440px){ .security-grid{ grid-template-columns: 1fr; } }
+.security-card{
+  position: relative;
+  padding: var(--sp-5) var(--sp-4) var(--sp-5);
+  border: 1px solid color-mix(in oklab, var(--c-gold) 22%, transparent);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--c-gold) 8%, transparent) 0%,
+      color-mix(in oklab, var(--paper) 4%, transparent) 55%,
+      color-mix(in oklab, var(--paper) 3%, transparent) 100%);
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  gap: var(--sp-2);
+  transition: transform 240ms var(--ease-out), border-color 240ms;
+}
+.security-card::before{
+  content: "";
+  position: absolute; top: 0; left: 12%; right: 12%; height: 2px;
+  background: linear-gradient(to right, transparent, var(--c-gold), transparent);
+  opacity: .7;
+}
+.security-card:hover{
+  transform: translateY(-3px);
+  border-color: color-mix(in oklab, var(--c-gold) 40%, transparent);
+}
+.security-card__num{
+  font-family: var(--font-display);
+  font-size: 1.4rem; letter-spacing: .04em;
+  color: var(--c-gold); font-weight: 600;
+  line-height: 1;
+  margin-bottom: var(--sp-1);
+}
+.security-card__icon-wrap{
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--c-gold) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--c-gold) 36%, transparent);
+  margin: var(--sp-1) 0 var(--sp-3);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--paper) 6%, transparent);
+}
+.security-card__icon{
+  width: 24px; height: 24px;
+  color: var(--c-gold);
+}
+.security-card__k{
+  font-family: var(--font-display);
+  font-size: 1.05rem; line-height: 1.25;
+  color: var(--paper); font-weight: 600;
+  margin: 0;
+}
+.security-card__v{
+  color: color-mix(in oklab, var(--paper) 76%, transparent);
+  font-size: .92rem; line-height: 1.55;
+  margin: 0;
+}
+
+/* =========================================================================
+   WHY US (rebuild) — centered head + two founder cards side by side
+   ========================================================================= */
+.found-head{
+  text-align:center;
+  max-width: 60ch;
+  margin: 0 auto var(--sp-8);
+}
+.found-head .found-h2{ margin: var(--sp-2) 0 var(--sp-4); }
+.found-head .found-h2 em{ color: var(--gold); font-style: normal; }
+.found-head .found-lede{ margin: 0 auto; max-width: 52ch; }
+.founders-cards{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-6);
+  max-width: 820px;
+  margin: 0 auto;
+}
+@media (max-width: 680px){ .founders-cards{ grid-template-columns: 1fr; max-width: 380px; } }
+.founder-block{
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+  gap: var(--sp-1);
+}
+.founder-block__img{
+  width: 200px; height: 200px;
+  object-fit: cover; border-radius: 50%;
+  filter: grayscale(1);
+  margin-bottom: var(--sp-3);
+}
+.founder-block__name{
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+.founder-block__role{
+  font-family: var(--font-eyebrow);
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--sp-2);
+}
+.founder-block__bio{
+  color: var(--muted);
+  font-size: .98rem; line-height: 1.55;
+  max-width: 32ch;
+  margin: 0;
+}
+.found-close{
+  text-align:center;
+  max-width: 62ch;
+  margin: var(--sp-8) auto 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem; line-height: 1.5;
+  color: var(--ink);
+}
+
+/* =========================================================================
+   Section head — centered variant (Pricing on homepage)
+   ========================================================================= */
+.section__head--centered{
+  text-align: center;
+  max-width: 60ch;
+  margin-left: auto; margin-right: auto;
+}
+.section__head--centered .display em{ color: var(--gold); font-style: normal; }
+.section__lede--center{
+  text-align: center;
+  max-width: 52ch;
+  margin-left: auto; margin-right: auto;
+}
+
+/* =========================================================================
+   Hero film card (framed, "Film coming" variant) — matches Sam's reference
+   ========================================================================= */
+.film.film--framed{
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 12px;
+  background: var(--c-ground-2, #F4F2EF);
+  border-radius: 14px;
+  box-shadow: 0 8px 40px -18px rgba(0,0,0,.22);
+}
+.film--framed .film__stage{
+  position: relative;
+  background: var(--c-ink, #0F1113);
+  border-radius: 10px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  padding: clamp(20px, 3.2vw, 40px);
+  display: block;
+}
+.film--framed .film__wordmark{
+  position: absolute;
+  top: clamp(18px, 2.6vw, 28px);
+  left: clamp(20px, 3vw, 32px);
+  font-family: var(--font-eyebrow, "Inter", sans-serif);
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--paper) 68%, transparent);
+  font-weight: 600;
+}
+.film--framed .film__plate--centered{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(20px, 6vw, 80px);
+  text-align: center;
+  gap: var(--sp-3, 16px);
+}
+.film--framed .film__rule{
+  display: block;
+  width: 88px;
+  height: 2px;
+  background: var(--gold, #C9A24A);
+  margin-bottom: 4px;
+}
+.film--framed .film__q{
+  font-family: var(--font-display, "Playfair Display", serif);
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  line-height: 1.28;
+  color: var(--paper, #F7F5EF);
+  margin: 0;
+  max-width: 32ch;
+}
+.film--framed .film__coming{
+  position: absolute;
+  bottom: clamp(18px, 2.6vw, 28px);
+  right: clamp(20px, 3vw, 32px);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 10px;
+  border: 1px solid color-mix(in oklab, var(--paper) 44%, transparent);
+  border-radius: 999px;
+  color: var(--paper);
+  font-family: var(--font-eyebrow);
+  font-size: .74rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.film--framed .film__coming svg{ width: 18px; height: 18px; }
+.film--framed .film__coming-label{ line-height: 1; }
+@media (max-width: 640px){
+  .film--framed{ padding: 8px; }
+  .film--framed .film__stage{ aspect-ratio: 4 / 3; }
+  .film--framed .film__q{ font-size: 1.15rem; }
+  .film--framed .film__coming{
+    bottom: 14px; right: 14px;
+    padding: 6px 12px 6px 8px;
+    font-size: .68rem;
+  }
+  .film--framed .film__coming svg{ width: 16px; height: 16px; }
+}
+
+/* =========================================================================
+   Hero title — word reveal + gold AI (production parity)
+   ========================================================================= */
+.hero__line { display: block; }
+.hero__word { display: inline-block; }
+.hero__italic { font-style: italic; color: var(--c-steel, #5A5A5A); }
+.hero__ai {
+  font-style: normal;
+  background: linear-gradient(180deg, var(--c-gold) 0%, var(--c-gold-deep) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero__ai { color: var(--c-gold-text); background: none; }
+}
+
+/* per-word rise, staggered — line 1 has 3 words, line 2 has 5 words */
+.hero__word {
+  animation: word-rise var(--dur-4) var(--ease-out) both;
+}
+.hero__line:nth-child(1) .hero__word:nth-child(1) { animation-delay: 40ms; }
+.hero__line:nth-child(1) .hero__word:nth-child(2) { animation-delay: 100ms; }
+.hero__line:nth-child(1) .hero__word:nth-child(3) { animation-delay: 160ms; }
+.hero__line:nth-child(2) .hero__word:nth-child(1) { animation-delay: 260ms; }
+.hero__line:nth-child(2) .hero__word:nth-child(2) { animation-delay: 320ms; }
+.hero__line:nth-child(2) .hero__word:nth-child(3) { animation-delay: 380ms; }
+.hero__line:nth-child(2) .hero__word:nth-child(4) { animation-delay: 440ms; }
+.hero__line:nth-child(2) .hero__word:nth-child(5) { animation-delay: 500ms; }
+@keyframes word-rise {
+  from { opacity: 0; transform: translateY(.42em); }
+  to   { opacity: 1; transform: none; }
+}
+.no-js .hero__word { animation: none; opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hero__word { animation: none; opacity: 1; transform: none; }
+}
+
+/* =========================================================================
+   HERO --fold — everything above the fold on a standard laptop viewport
+   Title \u2192 film \u2192 CTAs \u2192 note, tight vertical rhythm.
+   ========================================================================= */
+.hero--fold{
+  padding-top: calc(var(--header-h, 72px) + var(--sp-4));
+  padding-bottom: var(--sp-5);
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+}
+.hero__inner--fold{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 1.8vh, 24px);
+  width: 100%;
+}
+.hero__title--compact{
+  margin: 0;
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  line-height: 1.06;
+}
+.film--fold{
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.film--fold .film__stage{
+  aspect-ratio: 16 / 9;
+  max-height: min(52vh, 460px);
+}
+.hero__actions--compact{ margin-top: 0; }
+.hero__note--compact{ margin-top: 0; }
+
+/* short laptop screens (13" MacBook ~800px) — shrink film + title further */
+@media (max-height: 820px){
+  .hero--fold{ padding-top: calc(var(--header-h, 72px) + var(--sp-2)); padding-bottom: var(--sp-3); }
+  .hero__title--compact{ font-size: clamp(1.75rem, 3.8vw, 2.6rem); }
+  .film--fold .film__stage{ max-height: 40vh; }
+  .hero__inner--fold{ gap: clamp(10px, 1.4vh, 18px); }
+}
+
+/* mobile: don't force single-fold, but keep compact rhythm */
+@media (max-width: 720px){
+  .hero--fold{ min-height: 0; padding-bottom: var(--sp-6); }
+  .film--fold .film__stage{ aspect-ratio: 4 / 3; max-height: none; }
+}
+
+/* =========================================================================
+   FILM --fold refinements
+   - Cap the whole framed card so the light frame hugs the dark stage
+   - Bigger quote copy
+   - Subtle "expand" pop after page load to draw the eye
+   ========================================================================= */
+.film--fold{
+  /* Cap width based on height budget so 16:9 stage stays inside viewport
+     without leaving a huge L-shaped dead space around the dark card. */
+  width: min(880px, calc(52vh * (16/9) + 24px));
+  transform-origin: center;
+  animation: film-pop 900ms cubic-bezier(.16,.84,.24,1) 900ms both;
+}
+@media (max-height: 820px){
+  .film--fold{ width: min(760px, calc(40vh * (16/9) + 24px)); }
+}
+.film--fold .film__q{
+  font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+  line-height: 1.25;
+  max-width: 26ch;
+}
+@media (max-height: 820px){
+  .film--fold .film__q{ font-size: clamp(1.25rem, 2.2vw, 1.75rem); }
+}
+
+/* pop animation: title finishes reveal (~500ms), then film expands ~4% and settles */
+@keyframes film-pop {
+  0%   { transform: scale(1); box-shadow: 0 8px 40px -18px rgba(0,0,0,.22); }
+  55%  { transform: scale(1.035); box-shadow: 0 22px 60px -20px rgba(0,0,0,.32); }
+  100% { transform: scale(1.02); box-shadow: 0 16px 48px -20px rgba(0,0,0,.28); }
+}
+@media (prefers-reduced-motion: reduce){
+  .film--fold{ animation: none; }
+}
+@media (max-width: 720px){
+  .film--fold{ width: 100%; animation: none; }
+}
+
+/* =========================================================================
+   WYG OUTCOMES — match Outcome Two's stacked-title cadence
+   Sam wants Outcomes 1, 3, 4 to read at the same visual weight as Outcome 2
+   ("Know your business."). Outcome 2 wraps because its two words happen to
+   overflow the copy column; short titles like "Know your market." sit on
+   one line and read visually smaller.
+   Fix: cap the title measure so any 3–4 word outcome title wraps its
+   emphasized last word onto its own line, giving all four outcomes the
+   same stacked, oversized read.
+   ========================================================================= */
+.outcome__split .outcome__copy .outcome__title{
+  max-width: 9ch;
+}
+.outcome__split .outcome__copy .outcome__lede{
+  max-width: 34ch;
+}
+/* Longer H2s (like Outcome 3's "Know what to do next.") need more room
+   than 9ch so they don't shrink to two words per line. */
+#know-what-next .outcome__title{ max-width: 12ch; }
+#keep-it-yours .outcome__title{ max-width: 10ch; }
+
+@media (max-width: 900px){
+  .outcome__split .outcome__copy .outcome__title,
+  #know-what-next .outcome__title,
+  #keep-it-yours .outcome__title{ max-width: none; }
+  .outcome__split .outcome__copy .outcome__lede{ max-width: none; }
+}
+
+/* =========================================================================
+   FOUNDERS · LinkedIn CTA BOX
+   A formatted panel under the gold statement in the left column. Reads as
+   its own module: label on top, then a stacked list of founder LinkedIn
+   links with the LinkedIn logo next to each name.
+   ========================================================================= */
+.linkedin-box{
+  margin-top: var(--sp-6);
+  padding: var(--sp-4) var(--sp-4) var(--sp-4);
+  border: 1.5px solid color-mix(in oklab, var(--c-gold) 45%, transparent);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--c-gold) 9%, transparent) 0%,
+      color-mix(in oklab, var(--paper) 4%, transparent) 100%);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--c-gold) 20%, transparent),
+              0 10px 24px rgba(0,0,0,.05);
+  max-width: 320px;
+}
+.linkedin-box__label{
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-display, Georgia, serif);
+  font-size: .95rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--c-ink, #1c1a17);
+}
+.linkedin-box__list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; flex-direction: column;
+  gap: 6px;
+}
+.linkedin-row{
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--c-ink, #1c1a17);
+  text-decoration: none;
+  transition: background 180ms, transform 180ms var(--ease-out);
+}
+.linkedin-row:hover,
+.linkedin-row:focus-visible{
+  background: color-mix(in oklab, var(--c-gold) 14%, transparent);
+  transform: translateX(2px);
+  outline: none;
+}
+.linkedin-row__icon{
+  width: 20px; height: 20px;
+  color: #0a66c2; /* LinkedIn brand blue */
+  flex: 0 0 auto;
+}
+.linkedin-row__name{
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--c-gold-text);
+  letter-spacing: .005em;
+}
+@media (max-width: 720px){
+  .linkedin-box{ max-width: 100%; }
+}
+
+/* =========================================================================
+   HOMEPAGE · SPLIT-SECTION TOP ALIGNMENT
+   Sam wants section H2s to sit flush with the top edge of the software
+   image rather than vertically centered against it. grid--centred stays
+   for use elsewhere; these homepage IDs get their own align override.
+   ========================================================================= */
+#competition .grid--centred > *,
+#insights .grid--centred > *,
+#context .grid--centred > *,
+#work-streams .grid--centred > *{
+  align-self: start;
+}
+/* Also tighten the eyebrow's optical position so the H2 baseline sits
+   nearer the image's top edge. */
+#competition .split__copy .eyebrow,
+#insights .split__copy .eyebrow,
+#context .split__copy .eyebrow,
+#work-streams .split__copy .eyebrow{
+  margin-top: 0;
+}
+
+/* =========================================================================
+   WYG · TIERS ON LIGHT SECTIONS
+   `.tier` was built for dark bands; on a white section its near-white
+   text becomes invisible. Give tiers on light sections dark text,
+   soft-gold framing, and a clear pop.
+   ========================================================================= */
+.section--white .tier,
+.section--ground .tier,
+.section--raised .tier{
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--c-gold) 6%, #fff) 0%,
+    #fff 100%);
+  border: 1.5px solid color-mix(in oklab, var(--c-gold) 40%, transparent);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--c-gold) 22%, transparent),
+              0 8px 20px rgba(0,0,0,.05);
+}
+.section--white .tier__name,
+.section--ground .tier__name,
+.section--raised .tier__name{
+  color: var(--c-gold-text, #7A5F16);
+}
+.section--white .tier__num,
+.section--ground .tier__num,
+.section--raised .tier__num{
+  color: var(--c-ink, #1c1a17);
+}
+.section--white .tier__unit,
+.section--ground .tier__unit,
+.section--raised .tier__unit{
+  color: var(--c-steel, #5a5a5a);
+}
+.section--white .tier:hover,
+.section--ground .tier:hover,
+.section--raised .tier:hover{
+  border-color: var(--c-gold);
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--c-gold) 14%, #fff) 0%,
+    #fff 100%);
+  box-shadow: 0 2px 0 color-mix(in oklab, var(--c-gold) 32%, transparent),
+              0 14px 28px rgba(0,0,0,.08);
+}
+.section--white .tier:hover .tier__name,
+.section--ground .tier:hover .tier__name,
+.section--raised .tier:hover .tier__name{
+  color: var(--c-gold-deep, #8A6D1F);
+}
+
+/* =========================================================================
+   WYG · OUTCOMES · KEEP ART BOTTOM-DOCKED
+   `outcome__split` is already top-aligned; when the left copy column is
+   shorter than the right art column we end up with a big gap under the
+   art. Push the trailing figure/quote block downward so the art visually
+   spans from the H2 top-line to the section's bottom edge.
+   ========================================================================= */
+.outcome__split .outcome__art{
+  display: flex;
+  flex-direction: column;
+}
+.outcome__split .outcome__art > .pull-quote--under,
+.outcome__split .outcome__art > .dgfig{
+  margin-top: auto;
+  padding-top: var(--sp-6);
+}
+/* Nudge the software frame down a touch on the shorter outcomes so its
+   top rail lines up with the H2 baseline instead of the eyebrow. */
+#know-your-market .outcome__art,
+#know-your-business .outcome__art,
+#know-what-next .outcome__art,
+#keep-it-yours .outcome__art{
+  padding-top: 6px;
+}
+
+/* =========================================================================
+   WYG · OUTCOME 4 ON INK
+   Outcome 4 flipped to a dark band. Existing .section--ink inherits
+   white text for headings + facts; make sure the fact text stays legible
+   and the security lines pop in gold.
+   ========================================================================= */
+#keep-it-yours.section--ink .fact__text,
+#keep-it-yours.section--ink .frame-caption,
+#keep-it-yours.section--ink .dgfig__cap{
+  color: rgba(237, 235, 232, .82);
+}
+#keep-it-yours.section--ink .fact__text strong{ color: #fff; }
+.gold-hl{
+  color: var(--c-gold, #D4AF37);
+  font-weight: 600;
+}
+
+/* =========================================================================
+   WYG · WHAT WE BELIEF PANEL
+   Two gold-outlined boxes with an arrow between them. Stacks on mobile.
+   ========================================================================= */
+.belief-section .section__head{ margin-bottom: var(--sp-6); }
+.belief-flow{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: var(--sp-5);
+  align-items: stretch;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.belief-card{
+  padding: var(--sp-6) var(--sp-6) var(--sp-6);
+  border-radius: 14px;
+  background: #fff;
+  border: 1.75px solid color-mix(in oklab, var(--c-gold) 45%, transparent);
+  box-shadow: 0 1px 0 color-mix(in oklab, var(--c-gold) 22%, transparent),
+              0 14px 32px rgba(0,0,0,.06);
+  display: flex; flex-direction: column;
+}
+.belief-card--reply{
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--c-gold) 10%, #fff) 0%,
+    #fff 60%);
+  border-color: var(--c-gold);
+  box-shadow: 0 2px 0 color-mix(in oklab, var(--c-gold) 35%, transparent),
+              0 18px 40px rgba(0,0,0,.08);
+}
+.belief-card__label{
+  font-size: var(--fs-eyebrow, .75rem);
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--c-steel, #6b665a);
+  margin-bottom: var(--sp-3);
+}
+.belief-card__label--gold{ color: var(--c-gold-deep, #8A6D1F); }
+.belief-card__statement{
+  font-family: var(--ff-display, Georgia, serif);
+  font-size: clamp(1.4rem, 2.1vw, 1.85rem);
+  line-height: 1.28;
+  color: var(--c-ink, #1c1a17);
+  margin: 0;
+  font-weight: 500;
+}
+.belief-card__note{
+  margin-top: var(--sp-4);
+  color: var(--c-steel, #5a5a5a);
+  line-height: 1.55;
+  font-size: 1rem;
+}
+.belief-brand{
+  color: var(--c-gold-deep, #8A6D1F);
+  font-weight: 700;
+  background: color-mix(in oklab, var(--c-gold) 18%, transparent);
+  padding: 0 6px;
+  border-radius: 4px;
+  box-shadow: inset 0 -3px 0 color-mix(in oklab, var(--c-gold) 55%, transparent);
+}
+.belief-arrow{
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px;
+  color: var(--c-gold);
+  padding: 0 var(--sp-2);
+}
+.belief-arrow svg{ width: 64px; height: auto; }
+.belief-arrow__label{
+  font-size: .7rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--c-gold-deep, #8A6D1F);
+  font-weight: 600;
+}
+@media (max-width: 820px){
+  .belief-flow{
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-3);
+  }
+  .belief-arrow{ padding: var(--sp-2) 0; }
+  .belief-arrow svg{ transform: rotate(90deg); width: 40px; }
+}
+
+/* =========================================================================
+   WYG · WITH AND WITHOUT · nudge headline up, frame down
+   ========================================================================= */
+#two-versions .outcome__copy{ padding-top: 0; }
+#two-versions .outcome__art{ margin-top: var(--sp-4); }
+
+/* =========================================================================
+   WYG · B8 CLOSE ON GRAY
+   The closing "The first step" band flipped from ink-deep to ground; make
+   sure the display heading + lede render in dark ink and the eyebrow is
+   still readable on the gray backdrop.
+   ========================================================================= */
+.section--ground .display,
+.section--ground .section__lede{ color: var(--c-ink, #1c1a17); }
+
+/* =========================================================================
+   INDEX CARDS · center the glyph + title vertically now that "Read this"
+   footer is gone. Cards still stretch equally in the grid.
+   ========================================================================= */
+.index-card{ justify-content: center; }
+
+/* =========================================================================
+   PASS 1 · HOMEPAGE SIMPLIFICATION
+   Hero sub, product-section split refinement, Guided Setup toggle.
+   ========================================================================= */
+
+/* Hero sub-headline (single explanation, sits between H1 and video) */
+.hero__sub {
+  margin: var(--sp-4) auto var(--sp-6);
+  max-width: 60ch;
+  text-align: center;
+  font-family: var(--ff-serif, Georgia, serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+  line-height: 1.45;
+  color: var(--c-ink, #1c1a17);
+}
+.hero__sub--compact { margin-top: var(--sp-3); margin-bottom: var(--sp-5); }
+
+/* 40/60 for the four homepage product sections. col--1-5 → 5/12 = 41.6%; nudge
+   to a strict 40/60 to give the screenshot more real estate.               */
+#competition .grid--centred,
+#context .grid--centred,
+#insights .grid--centred,
+#work-streams .grid--centred {
+  grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
+  gap: var(--sp-8, 3rem);
+}
+#competition .col--1-5,
+#context .col--1-5,
+#insights .col--1-5,
+#work-streams .col--1-5 { grid-column: 1 / span 1; max-width: 44ch; }
+#competition .col--6-12,
+#context .col--6-12,
+#insights .col--6-12,
+#work-streams .col--6-12 { grid-column: 2 / span 1; }
+@media (max-width: 900px) {
+  #competition .grid--centred,
+  #context .grid--centred,
+  #insights .grid--centred,
+  #work-streams .grid--centred { grid-template-columns: 1fr; }
+  #competition .col--1-5, #context .col--1-5, #insights .col--1-5, #work-streams .col--1-5,
+  #competition .col--6-12, #context .col--6-12, #insights .col--6-12, #work-streams .col--6-12 {
+    grid-column: 1 / -1; max-width: none;
+  }
+}
+
+/* ---------------------------------- Guided Setup toggle + price transitions */
+
+.gs-toggle-row {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 var(--sp-6);
+}
+.gs-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-5);
+  padding: 14px 22px;
+  border: 1px solid rgba(28, 26, 23, .12);
+  border-radius: 999px;
+  background: var(--c-white, #fff);
+  box-shadow: 0 1px 2px rgba(28, 26, 23, .04);
+}
+.gs-toggle__label { display: inline-flex; align-items: baseline; gap: 10px; }
+.gs-toggle__name  { font-weight: 600; font-size: 1rem; color: var(--c-ink, #1c1a17); }
+.gs-toggle__price { font-size: .95rem; color: var(--c-steel, #63615c); }
+
+.gs-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+.gs-switch__track {
+  position: relative;
+  display: inline-block;
+  width: 44px; height: 24px;
+  border-radius: 999px;
+  background: rgba(28, 26, 23, .18);
+  transition: background 180ms ease;
+}
+.gs-switch__thumb {
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--c-white, #fff);
+  box-shadow: 0 1px 2px rgba(0,0,0,.18);
+  transition: transform 180ms ease;
+}
+.gs-switch[aria-checked="true"] .gs-switch__track { background: var(--c-gold-mid, #b08d2a); }
+.gs-switch[aria-checked="true"] .gs-switch__thumb { transform: translateX(20px); }
+
+.gs-switch__state { font-size: .85rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--c-steel, #63615c); min-width: 2ch; text-align: left; }
+.gs-switch__on  { display: none; }
+.gs-switch__off { display: inline; }
+.gs-switch[aria-checked="true"] .gs-switch__on  { display: inline; }
+.gs-switch[aria-checked="true"] .gs-switch__off { display: none; }
+
+.gs-switch:focus-visible { outline: 2px solid var(--c-gold-mid, #b08d2a); outline-offset: 3px; border-radius: 999px; }
+
+/* Subtle price transition */
+.plan__amt--base {
+  display: inline-block;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+.plan__amt--base.is-gs-changing { opacity: 0; transform: translateY(-4px); }
+
+.plan__addon {
+  margin: 4px 0 0;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--c-gold-text, #7a5d17);
+}
+.plan__addon[hidden] { display: none; }
+
+@media (max-width: 640px) {
+  .gs-toggle { flex-wrap: wrap; justify-content: center; gap: 12px; padding: 12px 18px; }
+  .gs-toggle__label { flex: 1 1 auto; justify-content: center; }
+}
+
+/* LinkedIn box moved under founder photos (right column) */
+.linkedin-box--right {
+  margin: var(--sp-6, 2rem) auto 0;
+  max-width: 360px;
+}
+@media (max-width: 900px) {
+  .linkedin-box--right { margin-top: var(--sp-5, 1.5rem); }
+}
+
+/* ============================ PASS 2: Pricing compact comparison ============================ */
+
+/* Toggle row above the plans on Pricing */
+.gs-toggle-row{
+  display:flex; justify-content:center;
+  margin: 0 0 32px;
+}
+@media (min-width:800px){
+  .gs-toggle-row{ margin: 8px 0 40px; }
+}
+
+/* Compact comparison table */
+.compare-wrap{
+  margin: 40px 0 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.compare-table{
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.4;
+  min-width: 520px;
+}
+.compare-table thead th{
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 12px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,.15);
+  background: transparent;
+  color: var(--ink, #1D1D1D);
+}
+.compare-table thead th:first-child{ text-align:left; }
+.compare-table thead .compare-table__col--feature{
+  color: var(--gold, #D4AF37);
+}
+.compare-table tbody th{
+  text-align: left;
+  font-weight: 500;
+  padding: 12px 12px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  color: var(--ink, #1D1D1D);
+  white-space: nowrap;
+}
+.compare-table tbody td{
+  text-align: center;
+  padding: 12px 12px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  font-size: 17px;
+  color: var(--ink, #1D1D1D);
+}
+.compare-table tbody tr:last-child th,
+.compare-table tbody tr:last-child td{ border-bottom: none; }
+.compare-table__seats th,
+.compare-table__seats td{
+  font-weight: 600;
+  border-top: 1px solid rgba(0,0,0,.15);
+  padding-top: 16px;
+}
+.compare-table__seats td{ font-size: 18px; }
+.compare-table__note{
+  margin: 14px 4px 0;
+  font-size: 14px;
+  color: var(--muted, #5A5A5A);
+  font-family: var(--font-sans);
+}
+
+/* Sticky first column on desktop only */
+@media (min-width: 900px){
+  .compare-table tbody th,
+  .compare-table thead th:first-child{
+    position: sticky;
+    left: 0;
+    background: var(--paper, #F7F7F7);
+    z-index: 1;
+  }
+}
+
+/* Ink section background overrides for compare table if used elsewhere */
+.section--ink .compare-table thead th,
+.section--ink .compare-table tbody th,
+.section--ink .compare-table tbody td{
+  color: var(--paper, #F7F7F7);
+  border-color: rgba(255,255,255,.15);
+}
+.section--ink .compare-table__note{ color: rgba(255,255,255,.7); }
+
+/* Plan card: tighten body + reduce vertical stack now that per-card CTA is gone */
+.plan__body--tight{
+  font-size: 15.5px;
+  line-height: 1.5;
+  margin: 8px 0 0;
+}
+.plan__addon{
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold, #D4AF37);
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+/* v2 guided setup bar spacing on Pricing */
+.guided-setup-bar--v2{
+  margin-top: 40px;
+}
+
+
+/* ----------------------------------- Pass 3: About founder block, centered */
+.linkedin-box--center {
+  margin: var(--sp-6) auto 0;
+  max-width: 24rem;
+  text-align: left;
+}
+.about-founders { margin-top: var(--sp-7); }
+.about-founders .founders-photo__pair {
+  justify-content: center;
+  gap: var(--sp-6);
+}
+@media (max-width: 900px) {
+  .linkedin-box--center { margin-top: var(--sp-5); }
+}
+
+
+/* ---------------------------------- Pass 3 fixes: home founder prose block */
+.found-right .found__close { max-width: 34rem; }
+.found__prose {
+  font-size: var(--fs-5, 1rem);
+  line-height: 1.65;
+  color: var(--c-ink, #1c1a17);
+  max-width: 34rem;
+}
+.found__prose p {
+  margin: 0 0 var(--sp-4, 1rem);
+}
+.found__prose p:last-child { margin-bottom: 0; }
+
+/* Center the LinkedIn box on About under the paired photos.
+   Note: parent is .container (block, max-width'd). Ties with base .linkedin-box
+   are resolved by adding an explicit wrapper margin using auto on both sides.
+   Higher specificity via double class ensures no other rule overrides. */
+.linkedin-box.about-linkedin {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: var(--sp-6, 2rem);
+  max-width: 320px;
+}
+
+/* =========================================================
+   Pricing Decision Unit (pricing.html only)
+   Comparison + Guided Setup as one polished unit
+   ========================================================= */
+.pdu {
+  margin-top: 3.5rem;
+  padding: 2.75rem clamp(1.25rem, 3vw, 3rem) 2.5rem;
+  background: #fbfaf7;
+  border: 1px solid rgba(29, 29, 29, 0.08);
+  border-radius: 20px;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Desktop table */
+.pdu__table-wrap { display: block; }
+.pdu__mobile { display: none; }
+
+.pdu-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.pdu-table thead th {
+  padding: 1.25rem 1rem 1.5rem;
+  border-bottom: 1px solid rgba(29, 29, 29, 0.14);
+  vertical-align: bottom;
+}
+
+.pdu-table__feature-head {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #5a5a5a;
+  text-transform: uppercase;
+  padding-left: 0.25rem;
+  width: 34%;
+}
+
+.pdu-table__plan-head {
+  text-align: center;
+  width: 22%;
+  position: relative;
+}
+
+.pdu-table__price {
+  display: inline-block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.9rem, 2.4vw, 2.25rem);
+  font-weight: 500;
+  color: #1c1a17;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+/* Subtle mid-column accent */
+.pdu-table__plan-head--mid {
+  border-left: 1px solid rgba(212, 175, 55, 0.35);
+  border-right: 1px solid rgba(212, 175, 55, 0.35);
+  border-top: 1px solid rgba(212, 175, 55, 0.35);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.pdu-table__cell--mid {
+  border-left: 1px solid rgba(212, 175, 55, 0.35);
+  border-right: 1px solid rgba(212, 175, 55, 0.35);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.pdu-table tbody tr {
+  border-bottom: 1px solid rgba(29, 29, 29, 0.08);
+}
+
+.pdu-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.pdu-table tbody tr:last-child .pdu-table__cell--mid {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.pdu-table th[scope="row"] {
+  text-align: left;
+  padding: 1.35rem 0.25rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #1c1a17;
+  line-height: 1.4;
+}
+
+.pdu-table td {
+  text-align: center;
+  padding: 1.35rem 0.5rem;
+  vertical-align: middle;
+}
+
+.pdu-check {
+  display: inline-block;
+  color: #d4af37;
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.pdu-dash {
+  display: inline-block;
+  color: #b8b3aa;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.pdu-seat {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: #1c1a17;
+}
+
+.pdu-table__seats-row th[scope="row"] {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #5a5a5a;
+  text-transform: uppercase;
+}
+
+.pdu__seat-note {
+  margin: 1.5rem 0 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #5a5a5a;
+  font-style: italic;
+}
+
+.pdu__divider {
+  height: 1px;
+  background: rgba(29, 29, 29, 0.1);
+  margin: 2.5rem 0 2rem;
+}
+
+/* Guided Setup add on */
+.pdu-gs {
+  padding: 0.25rem 0.25rem 0;
+}
+
+.pdu-gs__eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #5a5a5a;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.pdu-gs__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(29, 29, 29, 0.1);
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.pdu-gs__title {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.5rem, 2.2vw, 1.875rem);
+  font-weight: 500;
+  color: #1c1a17;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.pdu-gs__price {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.5rem, 2.2vw, 1.875rem);
+  font-weight: 500;
+  color: #d4af37;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.pdu-gs__period {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #5a5a5a;
+  margin-left: 0.15rem;
+}
+
+.pdu-gs__body {
+  margin: 0 0 0.6rem;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: #1c1a17;
+  max-width: 46rem;
+}
+
+.pdu-gs__body--muted {
+  color: #5a5a5a;
+  font-size: 0.95rem;
+}
+
+.pdu-gs__body:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .pdu {
+    padding: 1.75rem 1.25rem 2rem;
+    border-radius: 16px;
+    margin-top: 2.5rem;
+  }
+  .pdu__table-wrap { display: none; }
+  .pdu__mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .pdu-mplan {
+    border: 1px solid rgba(29, 29, 29, 0.12);
+    border-radius: 14px;
+    padding: 1.25rem 1.25rem 1rem;
+    background: #ffffff;
+  }
+  .pdu-mplan--mid {
+    border-color: rgba(212, 175, 55, 0.55);
+    background: rgba(212, 175, 55, 0.04);
+  }
+  .pdu-mplan__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(29, 29, 29, 0.08);
+    margin-bottom: 0.85rem;
+  }
+  .pdu-mplan__price {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #1c1a17;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .pdu-mplan__seats {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #5a5a5a;
+  }
+  .pdu-mplan__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .pdu-mplan__list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    font-size: 1rem;
+    color: #1c1a17;
+    border-bottom: 1px solid rgba(29, 29, 29, 0.06);
+  }
+  .pdu-mplan__list li:last-child { border-bottom: none; }
+
+  .pdu-gs__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+}
+
+/* =========================================================================
+   MOBILE-FIRST PRODUCT SECTION HIERARCHY + GLOBAL READABILITY LIFT
+   Per Trent's mobile spec: OUTCOME HEADLINE → SCREENSHOT → MODULE → EXPLANATION
+   Desktop preserves the current side-by-side split.
+   ========================================================================= */
+
+/* Desktop: hide mobile-only pieces */
+.prod-section__headline { display: none; }
+.prod-section__module-block { display: none; }
+
+/* Mobile: swap. Hide desktop copy block. Show top headline + module block. */
+@media (max-width: 900px) {
+  /* The section headline shows above the screenshot on mobile */
+  .prod-section__headline {
+    display: block;
+    text-align: center;
+    margin: 0 auto var(--sp-5, 1.25rem);
+    max-width: 22ch;
+    padding: 0 0.25rem;
+  }
+  .prod-section--ink .prod-section__headline { color: var(--c-white, #fff); }
+
+  /* Hide the split-column copy block on mobile (the desktop one) */
+  .prod-section .prod-section__copy { display: none; }
+
+  /* Grid becomes flow: headline is already outside .grid. Screenshot is
+     inside grid, and module block sits inside grid AFTER the screenshot. */
+  .prod-section .prod-section__grid {
+    display: block;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* Screenshot: 92% content width, no extra cards, no crops */
+  .prod-section .prod-section__shot {
+    width: 92%;
+    max-width: 640px;
+    margin: 0 auto var(--sp-5, 1.25rem);
+    display: block;
+  }
+  .prod-section .prod-section__shot .shot__img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Module label + body — centered under screenshot */
+  .prod-section__module-block {
+    display: block;
+    text-align: center;
+    max-width: 34ch;
+    margin: 0 auto var(--sp-3, 0.75rem);
+    padding: 0 1rem;
+  }
+  .prod-section__module {
+    display: block;
+    font-family: var(--font-sans, "Inter", sans-serif);
+    font-weight: 700;
+    font-size: 1.375rem;         /* ~22px */
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--c-gold, #d4af37);
+    margin-bottom: 0.65rem;
+    line-height: 1.15;
+  }
+  .prod-section--ink .prod-section__module { color: var(--c-gold, #d4af37); }
+  .prod-section__body-mobile {
+    font-family: var(--font-sans, "Inter", sans-serif);
+    font-size: 1.1875rem;        /* ~19px */
+    line-height: 1.5;
+    color: var(--c-ink, #1c1a17);
+    margin: 0 auto;
+    max-width: 32ch;
+  }
+  .prod-section--ink .prod-section__body-mobile { color: var(--c-on-dark-2, rgba(255,255,255,0.85)); }
+
+  /* Section spacing: keep the four elements visually connected. Reduce any
+     legacy padding excess between the container header and the grid. */
+  .prod-section .container { padding-top: var(--sp-8, 3rem); padding-bottom: var(--sp-8, 3rem); }
+}
+
+/* =========================================================================
+   MOBILE READABILITY LIFT — GLOBAL
+   Raise all secondary/small text so nothing meaningful is below 16px on
+   mobile. Ensure body/subtext lands around 18-20px. Preserve headline
+   hierarchy: headlines remain larger than body.
+   ========================================================================= */
+@media (max-width: 900px) {
+  :root {
+    --fs-xs:      1rem;          /* 16px floor for meaningful text */
+    --fs-sm:      1.0625rem;     /* ~17px */
+    --fs-body:    1.1875rem;     /* ~19px */
+    --fs-base:    1.0625rem;     /* ~17px */
+    --fs-eyebrow: 1rem;          /* 16px, up from 13px */
+    --fs-lead:    1.25rem;       /* ~20px */
+  }
+
+  /* Section lede — comfortable reading */
+  .section__lede {
+    font-size: 1.1875rem;
+    line-height: 1.55;
+  }
+
+  /* Eyebrow — no longer a tiny label */
+  .eyebrow {
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+  }
+
+  /* Body copy default */
+  body, p {
+    font-size: 1.1875rem;
+    line-height: 1.55;
+  }
+
+  /* Plan card copy on mobile (pricing preview) */
+  .plan__body {
+    font-size: 1.0625rem;
+    line-height: 1.5;
+  }
+  .plan__spec { font-size: 1rem; }
+  .plan__addon { font-size: 0.9375rem; }
+
+  /* FAQ / straight answers */
+  .faq__q, .faq-q, .straight__q { font-size: 1.1875rem; }
+  .faq__a, .faq-a, .straight__a { font-size: 1.0625rem; line-height: 1.55; }
+
+  /* Footer, captions, security numbers stay smaller but not tiny */
+  .site-footer, .site-footer p, .site-footer a { font-size: 1rem; }
+
+  /* Founder copy */
+  .founder__name, .founders__name { font-size: 1.1875rem; }
+  .founder__title, .founders__title { font-size: 1.0625rem; }
+}
+
+/* =========================================================================
+   DESKTOP READABILITY LIFT — TARGETED
+   Raise only clearly-too-small support text on desktop, without altering
+   the approved layouts. Keeps headline hierarchy intact.
+   ========================================================================= */
+@media (min-width: 901px) {
+  /* Eyebrows are the most common desktop offender at 13px */
+  .eyebrow {
+    font-size: 0.9375rem;          /* 15px, was 13px */
+    letter-spacing: 0.14em;
+  }
+  /* .fs-xs used on captions and small annotations */
+  .prose small, .prose .small { font-size: 0.9375rem; }
+
+  /* Footer legal / meta */
+  .site-footer, .site-footer p, .site-footer a { font-size: 0.9375rem; }
+}
+
+/* =========================================================================
+   PDU MOBILE — inherit the readability lift for prices/rows
+   ========================================================================= */
+@media (max-width: 720px) {
+  .pdu-mplan__price { font-size: 1.75rem; }
+  .pdu-mplan__seats { font-size: 1.0625rem; }
+  .pdu-mplan__feature { font-size: 1.0625rem; }
+  .pdu__seat-note { font-size: 1rem; }
+  .pdu-gs__body { font-size: 1.0625rem; line-height: 1.5; }
+}
+
+/* ============================================================ */
+/* Guided Setup: rebuilt toggle card (checkbox-based)             */
+/* ============================================================ */
+.gs-toggle-row [data-gs-toggle-root],
+.gs-toggle-row {
+  margin: 8px auto 36px;
+  max-width: 720px;
+  display: flex;
+  justify-content: center;
+}
+.gs-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 20px 24px;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(29,29,29,0.12);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(29,29,29,0.05);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.gs-card:hover { border-color: rgba(212,175,55,0.55); box-shadow: 0 4px 18px rgba(29,29,29,0.09); }
+.gs-card:focus-within { border-color: #b08d2a; box-shadow: 0 0 0 3px rgba(176,141,42,0.18); }
+.gs-card__text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.gs-card__title { font-family: var(--font-serif, "Cormorant Garamond", serif); font-weight: 600; font-size: 1.375rem; color: #1d1d1d; line-height: 1.15; }
+.gs-card__desc { font-size: 0.9375rem; color: #5a5a5a; line-height: 1.4; }
+.gs-card__side { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.gs-card__price { font-weight: 600; font-size: 1.0625rem; color: #1d1d1d; white-space: nowrap; }
+.gs-card__control { position: relative; width: 52px; height: 30px; flex-shrink: 0; }
+.gs-card__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+.gs-card__track {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #cfcbc4;
+  transition: background 0.2s ease;
+  display: block;
+}
+.gs-card__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease;
+}
+.gs-card__input:checked ~ .gs-card__track { background: #b08d2a; }
+.gs-card__input:checked ~ .gs-card__track .gs-card__thumb,
+.gs-card__input:checked + .gs-card__track .gs-card__thumb { transform: translateX(22px); }
+.gs-card__input:focus-visible ~ .gs-card__track { box-shadow: 0 0 0 3px rgba(176,141,42,0.35); }
+
+@media (max-width: 640px) {
+  .gs-card {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px 20px;
+    text-align: left;
+  }
+  .gs-card__side { justify-content: space-between; width: 100%; }
+  .gs-card__title { font-size: 1.25rem; }
+}
+
+/* ============================================================ */
+/* Compare plans: CSS Grid comparison (desktop)                   */
+/* ============================================================ */
+.pcmp-wrap { max-width: 1080px; margin: 72px auto 0; position: relative; }
+.pcmp__title {
+  font-family: var(--font-serif, "Cormorant Garamond", serif);
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: #1d1d1d;
+  text-align: center;
+  margin: 0 0 48px;
+  letter-spacing: -0.01em;
+  position: relative;
+}
+.pcmp__title::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #b08d2a, transparent);
+  margin: 18px auto 0;
+}
+.pcmp {
+  display: block;
+  border-radius: 20px;
+  overflow: visible;
+  background: #ffffff;
+  border: 1px solid rgba(29,29,29,0.08);
+  box-shadow: 0 4px 24px rgba(29,29,29,0.06);
+  position: relative;
+}
+.pcmp__row {
+  display: grid;
+  grid-template-columns: 34% 22% 22% 22%;
+  align-items: center;
+  border-bottom: 1px solid rgba(29,29,29,0.06);
+  position: relative;
+  transition: background 0.2s ease;
+}
+.pcmp__row:hover:not(.pcmp__row--head):not(.pcmp__row--seats) {
+  background: rgba(212,175,55,0.025);
+}
+.pcmp__row:last-child { border-bottom: none; }
+.pcmp__cell { padding: 22px 20px; }
+.pcmp__cell--feat {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #1d1d1d;
+  text-align: left;
+  position: relative;
+  padding-left: 40px;
+}
+.pcmp__cell--feat::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid #b08d2a;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  opacity: 0.65;
+}
+.pcmp__cell--v { text-align: center; }
+.pcmp__row--head {
+  padding: 0;
+  background: linear-gradient(180deg, #faf8f2 0%, #fafaf9 100%);
+  border-bottom: 2px solid rgba(176,141,42,0.20);
+  border-radius: 20px 20px 0 0;
+}
+.pcmp__row--head .pcmp__cell { padding: 32px 20px 26px; }
+.pcmp__row--head .pcmp__cell--feat::before { display: none; }
+.pcmp__row--head .pcmp__cell--feat {
+  padding-left: 20px;
+  font-family: var(--font-serif, "Cormorant Garamond", serif);
+  font-style: italic;
+  font-size: 1.0625rem;
+  color: #5a5a5a;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 500;
+}
+.pcmp__cell--plan { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; }
+.pcmp__plan-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #5a5a5a;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.pcmp__cell--mid .pcmp__plan-name { color: #b08d2a; }
+.pcmp__price {
+  font-family: var(--font-serif, "Cormorant Garamond", serif);
+  font-size: 2.375rem;
+  font-weight: 600;
+  color: #1d1d1d;
+  line-height: 1;
+  margin-top: 2px;
+  letter-spacing: -0.01em;
+}
+.pcmp__cell--mid .pcmp__price { color: #8a6e1f; }
+.pcmp__per { font-size: 0.9375rem; color: #5a5a5a; margin-top: 2px; font-style: italic; }
+.pcmp__tag {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(135deg, #b08d2a 0%, #d4af37 100%);
+  padding: 8px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 3px 10px rgba(176,141,42,0.35);
+}
+.pcmp__cell--mid {
+  background: linear-gradient(180deg, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0.04) 100%);
+  position: relative;
+}
+.pcmp__cell--mid::before,
+.pcmp__cell--mid::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(176,141,42,0.25);
+}
+.pcmp__cell--mid::before { left: 0; }
+.pcmp__cell--mid::after { right: 0; }
+.pcmp__row--head .pcmp__cell--mid {
+  background: linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0.08) 100%);
+  border-top: 2px solid #b08d2a;
+  border-radius: 20px 20px 0 0;
+  margin-top: -1px;
+}
+.pcmp__row--seats {
+  background: linear-gradient(180deg, #fafaf9 0%, #f5f2ea 100%);
+  border-top: 2px solid rgba(176,141,42,0.20);
+  border-radius: 0 0 20px 20px;
+}
+.pcmp__row--seats .pcmp__cell--feat {
+  font-family: var(--font-serif, "Cormorant Garamond", serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.1875rem;
+  color: #1d1d1d;
+}
+.pcmp__row--seats .pcmp__cell--feat::before {
+  background: #b08d2a;
+  opacity: 1;
+}
+.pcmp__row--seats .pcmp__cell--mid { border-radius: 0; }
+.pcmp-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 1.375rem;
+  color: #b08d2a;
+  line-height: 1;
+  background: rgba(212,175,55,0.10);
+  border-radius: 50%;
+  font-weight: 600;
+}
+.pcmp__cell--mid .pcmp-check {
+  background: rgba(212,175,55,0.20);
+  color: #8a6e1f;
+  box-shadow: 0 2px 8px rgba(176,141,42,0.20);
+}
+.pcmp-dash {
+  display: inline-block;
+  font-size: 1.375rem;
+  color: #c8c2b6;
+  line-height: 1;
+  font-weight: 300;
+}
+.pcmp-seat {
+  font-family: var(--font-serif, "Cormorant Garamond", serif);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1d1d1d;
+  letter-spacing: -0.01em;
+}
+.pcmp__cell--mid .pcmp-seat { color: #8a6e1f; }
+
+/* ============================================================ */
+/* Compare plans: stacked cards (mobile)                          */
+/* ============================================================ */
+.pcmp-mobile { display: none; }
+
+@media (max-width: 900px) {
+  .pcmp { display: none; }
+  .pcmp-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .pcmp-mcard {
+    background: #ffffff;
+    border: 1px solid rgba(29,29,29,0.10);
+    border-radius: 16px;
+    padding: 24px 20px 8px;
+    position: relative;
+  }
+  .pcmp-mcard--mid {
+    border-color: rgba(176,141,42,0.45);
+    background: rgba(212,175,55,0.05);
+  }
+  .pcmp-mcard__tag {
+    display: inline-block;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: #b08d2a;
+    background: #fdf7e6;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(176,141,42,0.35);
+    white-space: nowrap;
+  }
+  .pcmp-mcard__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(29,29,29,0.08);
+  }
+  .pcmp-mcard__name {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: #1d1d1d;
+  }
+  .pcmp-mcard__price {
+    font-family: var(--font-serif, "Cormorant Garamond", serif);
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1d1d1d;
+    line-height: 1.05;
+    margin-top: 4px;
+  }
+  .pcmp-mcard__per { font-size: 1rem; color: #5a5a5a; font-family: inherit; }
+  .pcmp-mcard__seats {
+    font-size: 0.9375rem;
+    color: #5a5a5a;
+    margin-top: 6px;
+  }
+  .pcmp-mcard__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .pcmp-mcard__list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    font-size: 1.125rem;
+    color: #1d1d1d;
+    border-bottom: 1px solid rgba(29,29,29,0.06);
+  }
+  .pcmp-mcard__list li:last-child { border-bottom: none; }
+  .pcmp-mcard__list li > span:first-child { text-align: left; }
+}
+
+.pcmp__seat-note {
+  text-align: center;
+  font-style: italic;
+  font-size: 1rem;
+  color: #5a5a5a;
+  margin: 24px 0 40px;
+}
+
+/* ============================================================ */
+/* Guided Setup panel (below the comparison)                      */
+/* ============================================================ */
+.gspanel {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid rgba(29,29,29,0.10);
+  border-radius: 16px;
+  position: relative;
+}
+.gspanel__left { display: flex; flex-direction: column; gap: 8px; }
+.gspanel__right { display: flex; flex-direction: column; gap: 10px; }
+.gspanel__eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #b08d2a;
+}
+.gspanel__title {
+  font-family: var(--font-serif, "Cormorant Garamond", serif);
+  font-weight: 600;
+  font-size: 1.75rem;
+  color: #1d1d1d;
+  margin: 4px 0 6px;
+  line-height: 1.15;
+}
+.gspanel__price {
+  font-family: var(--font-serif, "Cormorant Garamond", serif);
+  font-weight: 600;
+  font-size: 2rem;
+  color: #b08d2a;
+  line-height: 1;
+}
+.gspanel__per { font-size: 1rem; color: #5a5a5a; font-family: inherit; font-weight: 500; }
+.gspanel__body {
+  font-size: 1rem;
+  color: #1d1d1d;
+  line-height: 1.5;
+  margin: 0;
+}
+.gspanel__body--muted { color: #5a5a5a; }
+.gspanel__foot {
+  grid-column: 1 / -1;
+  font-size: 0.9375rem;
+  color: #5a5a5a;
+  font-style: italic;
+  margin: 20px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(29,29,29,0.08);
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  .gspanel { grid-template-columns: 1fr; gap: 16px; padding: 24px 20px; }
+  .gspanel__title { font-size: 1.5rem; }
+  .gspanel__price { font-size: 1.75rem; }
+}
+
+/* Legacy pdu-gs standalone card is retired; keep it hidden if any old
+   cached HTML lingers. The comparison table itself is back. */
+.pdu__seat-note, .pdu__divider, .pdu-gs { display: none !important; }
+
+/* ---------------------------------------------------------
+   Pricing above-the-fold compression (Sam request 2026-08-20)
+   Shrinks page-head, plans section padding, and gspanel so
+   the toggle + 3 tiers + seat note + Guided Setup all fit
+   in one viewport on desktop.
+   Scoped classes only — desktop-only tightening.
+--------------------------------------------------------- */
+@media (min-width: 1080px) {
+  .page-head--compact { padding-top: var(--sp-9); padding-bottom: var(--sp-3); }
+  .page-head--compact .page-head__title--sm {
+    font-size: clamp(1.35rem, 1.7vw, 1.6rem);
+    line-height: 1.15;
+    margin-top: var(--sp-1);
+    margin-bottom: 0;
+  }
+  .pricing-hero-section--compact { padding-block: var(--sp-4); }
+  .pricing-hero-section--compact .gs-toggle-row { margin: 0 0 var(--sp-4); }
+  .pricing-hero-section--compact .plans--triple { row-gap: var(--sp-4); }
+  .pricing-hero-section--compact .plan { padding-block: var(--sp-5); }
+  .pricing-hero-section--compact .pcmp-wrap { margin-top: var(--sp-4); }
+  .pricing-hero-section--compact .pcmp__seat-note { margin: 0 0 var(--sp-3); font-size: 0.9rem; }
+
+  .gspanel--compact {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+    padding: 16px 22px;
+  }
+  .gspanel--compact .gspanel__left { display: flex; flex-direction: column; gap: 4px; }
+  .gspanel--compact .gspanel__title { margin: 0; font-size: 1.05rem; line-height: 1.2; }
+  .gspanel--compact .gspanel__body { margin: 0; font-size: 0.92rem; line-height: 1.4; }
+  .gspanel--compact .gspanel__right { display: flex; align-items: center; }
+  .gspanel--compact .gspanel__price { font-size: 1.55rem; line-height: 1; white-space: nowrap; }
+  .gspanel--compact .gspanel__per { font-size: 0.85rem; margin-left: 2px; }
+  .gspanel--compact .gspanel__foot { display: none; }
+}
+
+/* ==========================================================
+   Investment comparison (pricing.html, B2.5)
+   Replaces "Three ways" cards with option row + horizontal
+   dark chart. Section keeps its ink-deep background.
+   ========================================================= */
+.invcmp {
+  margin: 1.5rem auto 0;
+  max-width: 1080px;
+}
+
+/* Option columns  align to chart plot area (offset by y-axis width) */
+.invcmp__cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  padding: 0 4% 1.25rem;
+  margin-left: calc(96px + 0.75rem);
+  border-bottom: 0;
+}
+.invcmp__col {
+  padding: 0 1.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f7f7f7;
+  min-height: 0;
+}
+.invcmp__col:first-child { border-left: none; }
+.invcmp__label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #b8b3aa;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.invcmp__label--us { color: #d4af37; }
+.invcmp__title {
+  margin: 0 0 0.75rem;
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: #f7f7f7;
+}
+.invcmp__note {
+  margin: 0;
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: #dedbd4;
+}
+.invcmp__star {
+  color: #d4af37;
+  font-size: 1rem;
+  line-height: 1.35;
+  flex-shrink: 0;
+}
+
+/* Chart */
+.invcmp__chart {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  height: 200px;
+  position: relative;
+}
+.invcmp__yaxis {
+  position: relative;
+  height: 100%;
+}
+.invcmp__ylabel {
+  position: absolute;
+  right: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #b8b3aa;
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+.invcmp__ylabel--head { top: 0; color: #f7f7f7; }
+.invcmp__ylabel--high { top: 15%; }
+.invcmp__ylabel--med  { top: 45%; }
+.invcmp__ylabel--low  { top: 78%; }
+
+.invcmp__plot {
+  position: relative;
+  height: 100%;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+.invcmp__grid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+}
+.invcmp__grid--high { top: 15%; }
+.invcmp__grid--med  { top: 45%; }
+.invcmp__grid--low  { top: 78%; }
+.invcmp__baseline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.invcmp__bars {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  padding: 0 4%;
+}
+.invcmp__bar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  position: relative;
+}
+.invcmp__bar {
+  width: 62%;
+  max-width: 130px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background: linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: none;
+}
+.invcmp__bar--high { height: 85%; }
+.invcmp__bar--med  { height: 55%; }
+.invcmp__bar--low  {
+  height: 22%;
+  background: linear-gradient(180deg, #e5c260 0%, #d4af37 100%);
+  border-color: rgba(212, 175, 55, 0.6);
+}
+.invcmp__xlabel {
+  position: absolute;
+  top: calc(100% + 8px);
+  font-size: 0.85rem;
+  color: #dedbd4;
+  white-space: nowrap;
+  text-align: center;
+}
+.invcmp__xlabel--us { color: #d4af37; font-weight: 600; }
+
+/* Mobile */
+@media (max-width: 720px) {
+  .invcmp__cols {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding-bottom: 2rem;
+  }
+  .invcmp__col {
+    padding: 0;
+    border-left: none;
+    min-height: 0;
+  }
+  .invcmp__cols {
+    padding: 0;
+    margin-left: 0;
+  }
+  .invcmp__chart {
+    grid-template-columns: 60px 1fr;
+    height: 220px;
+    margin-top: 0.5rem;
+  }
+  .invcmp__ylabel { font-size: 0.65rem; letter-spacing: 0.14em; }
+  .invcmp__xlabel {
+    font-size: 0.8125rem;
+    max-width: 100px;
+    white-space: normal;
+    line-height: 1.2;
+  }
+  .invcmp__bar { width: 70%; }
+}
+
+/* =========================================================
+   Homepage product-section BENEFITS (3 gold-star bullets)
+   Replaces the paragraph subtext under each product h2.
+   Works on both white and ink (dark) sections.
+   ========================================================= */
+.prod-section__benefits {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.prod-section__benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-family: inherit;
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  color: #2a2a2a;
+}
+.prod-section--ink .prod-section__benefits li {
+  color: var(--c-on-dark-2, rgba(255,255,255,0.9));
+}
+.prod-section__benefit-star {
+  color: #d4af37;
+  font-size: 1rem;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+.prod-section__benefits--mobile {
+  margin-top: 0.75rem;
+}
+@media (max-width: 900px) {
+  .prod-section__benefits li {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================================
+   How It Works step BENEFITS (4 gold-star bullets)
+   Replaces .step__body paragraph.
+   ========================================================= */
+.step__benefits {
+  list-style: none;
+  padding: 0;
+  margin: var(--sp-3) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.step__benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: var(--fs-4);
+  line-height: 1.5;
+  color: var(--c-steel);
+}
+.section--ink .step__benefits li,
+.section--ink-deep .step__benefits li {
+  color: rgba(237, 235, 232, .9);
+}
+.step__benefit-star {
+  color: var(--c-gold, #d4af37);
+  font-size: 1rem;
+  line-height: 1.55;
+  flex-shrink: 0;
+}
+@media (max-width: 900px) {
+  .step__benefits { gap: 0.6rem; }
+}
+
+/* =========================================================
+   HOW IT WORKS compact hero
+   Interior-page introduction. Tight vertical rhythm so the
+   Competition Hub section peeks into the first viewport.
+   ========================================================= */
+.page-head--hiw-compact {
+  padding-top: calc(var(--header-h) + var(--sp-5));
+  padding-bottom: var(--sp-5);
+}
+.page-head--hiw-compact .page-head__title {
+  margin-top: var(--sp-3);
+  font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+  line-height: 1.05;
+}
+.page-head--hiw-compact .page-head__sub {
+  margin-top: var(--sp-3);
+  max-width: 38ch;
+  font-size: var(--fs-3);
+  line-height: 1.35;
+}
+.page-head--hiw-compact .page-head__actions {
+  margin-top: var(--sp-4);
+}
+.page-head--hiw-compact .page-head__glow { display: none; }
+@media (max-width: 900px) {
+  .page-head--hiw-compact {
+    padding-top: calc(var(--header-h) + var(--sp-4));
+    padding-bottom: var(--sp-4);
+  }
+  .page-head--hiw-compact .page-head__title { margin-top: var(--sp-2); }
+  .page-head--hiw-compact .page-head__sub  { margin-top: var(--sp-2); }
+  .page-head--hiw-compact .page-head__actions { margin-top: var(--sp-3); }
+}
+
+/* =========================================================
+   READABILITY PASS (site-wide)
+   Purpose: raise the floor on secondary text so 50-65 year old
+   near-vision buyers read the site without effort. No copy, no
+   layout, no palette changes. CSS-only.
+   ========================================================= */
+
+/* Gold-star product bullets (homepage + How It Works) --------- */
+.prod-section__benefits li,
+.step__benefits li {
+  font-size: 1.1875rem;   /* 19px */
+  line-height: 1.5;
+  color: var(--c-steel);
+}
+.section--ink .prod-section__benefits li,
+.section--ink-deep .prod-section__benefits li,
+.section--ink .step__benefits li,
+.section--ink-deep .step__benefits li {
+  color: rgba(237,235,232,.92);
+}
+.prod-section__benefit-star,
+.step__benefit-star {
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+/* Product module labels ------------------------------------- */
+.prod-section__module {
+  font-size: 1rem;        /* 16px min */
+  letter-spacing: var(--ls-eyebrow);
+}
+@media (max-width: 900px) {
+  .prod-section__module { font-size: 1.0625rem; }  /* 17px on mobile */
+  .prod-section__benefits li,
+  .step__benefits li {
+    font-size: 1.125rem;   /* 18px on mobile */
+    line-height: 1.5;
+  }
+}
+
+/* Footer readability --------------------------------------- */
+.footer-col__link { font-size: 1rem !important; }     /* 16px */
+.footer-col__head { font-size: .9375rem; }            /* 15px, label */
+@media (max-width: 900px) {
+  .footer-col__link { font-size: 1.0625rem !important; }  /* 17px */
+}
+
+/* Section ledes on dark bands - lift muted secondary text --- */
+.section--ink .section__lede,
+.section--ink-deep .section__lede { color: var(--c-on-dark-2); }
+
+/* Accordion (FAQ / Straight Answers) ------------------------ */
+.accordion__panel {
+  font-size: 1.0625rem;   /* 17px */
+  line-height: 1.6;
+  color: var(--c-steel);
+}
+@media (max-width: 900px) {
+  .accordion__panel { font-size: 1.125rem; }   /* 18px */
+  .accordion__trigger { font-size: 1.125rem; } /* 18px */
+}
+
+/* Investment comparison chart labels / axis ----------------- */
+.invcmp__label { font-size: 1rem; }             /* 16px */
+.invcmp__axis-label,
+.invcmp__yaxis-label { font-size: .9375rem; }
+
+/* Nav on desktop already fs-body (18); lift mobile nav ------ */
+@media (max-width: 900px) {
+  .nav__link,
+  .nav-drawer .nav__link,
+  .nav-drawer__link { font-size: 1.125rem; }   /* 18px */
+}
+
+/* Buttons: enforce readable label size across all variants -- */
+.btn,
+.btn--primary,
+.btn--secondary,
+.btn--ghost {
+  font-size: 1.0625rem;    /* 17px */
+}
+@media (max-width: 900px) {
+  .btn,
+  .btn--primary,
+  .btn--secondary,
+  .btn--ghost { font-size: 1.125rem; }   /* 18px */
+}
+
+/* Pricing: seat counts, feature rows, plan details ---------- */
+.price-card__seat,
+.price-card__feature,
+.price-card__note,
+.price-card__addon,
+.price-card__meta,
+.price-card__desc,
+.price-card__included li {
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+.price-card__plan { font-size: 1.0625rem; letter-spacing: var(--ls-eyebrow); }
+@media (max-width: 900px) {
+  .price-card__seat,
+  .price-card__feature,
+  .price-card__note,
+  .price-card__addon,
+  .price-card__meta,
+  .price-card__desc,
+  .price-card__included li { font-size: 1.125rem; }
+}
+
+/* Founder cards (About) ------------------------------------ */
+.founder-card__name,
+.founder__name { font-size: 1.125rem; }
+.founder-card__role,
+.founder__role { font-size: 1rem; }
+
+/* Global mobile floor: no meaningful body text below 16px --- */
+@media (max-width: 900px) {
+  body { font-size: 1.125rem; }   /* 18px base on mobile */
+  .eyebrow { font-size: 1rem; }   /* 16px */
+  .section__lede { font-size: 1.125rem; line-height: 1.55; }
+}
+
+/* =========================================================
+   MOBILE HOMEPAGE POLISH (mobile-only)
+   - Shrink hero video placeholder, grow hero title
+   - Shorter buttons (tighter horizontal padding, same font-size)
+   - Bigger product section headline + software image
+   - Wrap module label + bullets in a card:
+       white sections  -> dark card w/ gold label
+       ink sections    -> light card w/ dark label
+   - Star alignment: fixed-width star column so every bullet's
+     first word aligns on a shared left edge.
+   ========================================================= */
+@media (max-width: 720px) {
+  /* Hero: bigger title, smaller video placeholder */
+  .hero__title--compact {
+    font-size: clamp(2.25rem, 8.4vw, 3rem);
+    line-height: 1.05;
+  }
+  .film--fold { width: 82%; max-width: 82%; }
+  .film--fold .film__stage { aspect-ratio: 4 / 3; }
+
+  /* Buttons: shorter (auto width, not full-bleed). Text size unchanged. */
+  .hero__actions,
+  .hero__actions--compact,
+  .hero .btn-row {
+    align-items: center;
+  }
+  .hero__actions .btn,
+  .hero__actions--compact .btn {
+    width: auto;
+    align-self: center;
+    flex: 0 0 auto;
+    padding-left: 1.35rem;
+    padding-right: 1.35rem;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Bigger section headline */
+  .prod-section__headline {
+    font-size: clamp(2rem, 7.4vw, 2.6rem);
+    line-height: 1.08;
+    max-width: 20ch;
+  }
+
+  /* Bigger software image: full content width */
+  .prod-section .prod-section__shot {
+    width: 100%;
+    max-width: 680px;
+  }
+
+  /* MODULE + BULLETS CARD ---------------------------------- */
+  .prod-section__module-block {
+    max-width: 560px;
+    padding: 1.25rem 1.15rem 1.35rem;
+    border-radius: 14px;
+    text-align: left;   /* left-align so bullets align, not centered */
+    margin: 0 auto var(--sp-3, 0.75rem);
+  }
+  .prod-section__module-block .prod-section__module {
+    display: block;
+    text-align: center;
+    margin-bottom: 0.85rem;
+    font-size: 1.125rem;   /* 18px */
+  }
+
+  /* White page section -> dark card */
+  .section--white .prod-section__module-block,
+  .prod-section:not(.prod-section--ink) .prod-section__module-block {
+    background: #1c1a17;
+    color: rgba(237,235,232,.92);
+    box-shadow: 0 10px 28px -18px rgba(0,0,0,.35);
+  }
+  .section--white .prod-section__module-block .prod-section__module,
+  .prod-section:not(.prod-section--ink) .prod-section__module-block .prod-section__module {
+    color: var(--c-gold, #d4af37);
+  }
+  .section--white .prod-section__module-block .prod-section__benefits li,
+  .prod-section:not(.prod-section--ink) .prod-section__module-block .prod-section__benefits li {
+    color: rgba(237,235,232,.94);
+  }
+
+  /* Ink section -> light card */
+  .prod-section--ink .prod-section__module-block {
+    background: #f5f2ec;
+    color: #1c1a17;
+    box-shadow: 0 10px 28px -18px rgba(0,0,0,.45);
+  }
+  .prod-section--ink .prod-section__module-block .prod-section__module {
+    color: #7a5a12;   /* darker gold for AA on light card */
+  }
+  .prod-section--ink .prod-section__module-block .prod-section__benefits li {
+    color: #1c1a17;
+  }
+
+  /* STAR + FIRST-WORD ALIGNMENT --------------------------- */
+  .prod-section__module-block .prod-section__benefits {
+    display: block;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .prod-section__module-block .prod-section__benefits li {
+    display: grid;
+    grid-template-columns: 1.4rem 1fr;   /* fixed star column */
+    column-gap: 0.6rem;
+    align-items: start;
+    text-align: left;
+    padding: 0.35rem 0;
+    font-size: 1.125rem;   /* 18px */
+    line-height: 1.45;
+  }
+  .prod-section__module-block .prod-section__benefit-star {
+    display: inline-block;
+    width: 1.4rem;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--c-gold, #d4af37);
+  }
+  .prod-section--ink .prod-section__module-block .prod-section__benefit-star {
+    color: #a4791b;
+  }
+}
+
+/* =========================================================
+   HOW IT WORKS — mobile layout matches homepage product
+   pattern. Mobile-only. Desktop step layout untouched.
+   Order: step number + label -> headline -> image -> card
+   with fixed-width star column so bullets align.
+   ========================================================= */
+@media (max-width: 900px) {
+  /* Restack .step so image comes BEFORE benefits, even on reversed steps */
+  .step,
+  .step--reverse {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+  .step .step__copy,
+  .step--reverse .step__copy { display: contents; }
+
+  /* When .step__copy uses display:contents, its children become direct
+     children of .step so we can reorder each piece. */
+  .step .step__copy .step__mark,
+  .step--reverse .step__copy .step__mark      { order: 1; }
+  .step .step__copy .step__label,
+  .step--reverse .step__copy .step__label     { order: 2; }
+  .step .step__copy .step__title,
+  .step--reverse .step__copy .step__title     { order: 3; }
+  .step .step__art,
+  .step--reverse .step__art                   { order: 4; }
+  .step .step__copy .step__benefits,
+  .step--reverse .step__copy .step__benefits  { order: 5; }
+
+  /* Bigger headline + narrower measure */
+  .step__title {
+    font-size: clamp(2rem, 7.4vw, 2.6rem);
+    line-height: 1.08;
+    text-align: center;
+    max-width: 22ch;
+    margin: 0 auto;
+  }
+
+  /* Step number + label centered above headline */
+  .step__mark {
+    justify-content: center;
+    gap: var(--sp-3);
+    margin: 0 auto var(--sp-3);
+  }
+  .step__mark .step__rule { display: none; }
+  .step__label {
+    text-align: center;
+    margin: 0 auto var(--sp-3);
+  }
+
+  /* Software image: strip the browser-chrome frame on mobile so the image
+     reads clean edge-to-edge, matching the homepage product pattern. */
+  .step__art { width: 100%; margin: 0 auto; }
+  .step__art .frame {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .step__art .frame__bar { display: none; }
+  .step__art .frame::after { display: none; }
+  .step__art .frame__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+  }
+
+  /* Wrap the benefits in the same dark card as homepage product sections.
+     All four HIW sections are on light backgrounds, so all get the DARK card. */
+  .step__benefits {
+    display: block;
+    list-style: none;
+    padding: 1.25rem 1.15rem 1.35rem;
+    margin: 0 auto;
+    max-width: 560px;
+    border-radius: 14px;
+    background: #1c1a17;
+    color: rgba(237,235,232,.94);
+    box-shadow: 0 10px 28px -18px rgba(0,0,0,.35);
+    text-align: left;
+  }
+  .step__benefits li {
+    display: grid;
+    grid-template-columns: 1.4rem 1fr;
+    column-gap: 0.6rem;
+    align-items: start;
+    text-align: left;
+    padding: 0.35rem 0;
+    font-size: 1.125rem;
+    line-height: 1.45;
+    color: rgba(237,235,232,.94);
+  }
+  .step__benefit-star {
+    display: inline-block;
+    width: 1.4rem;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--c-gold, #d4af37);
+  }
+
+  /* Section spacing on mobile: tighter, matches homepage rhythm */
+  .section--ground.section--tall,
+  .section--white.section--seam.section--tall {
+    padding-top: var(--sp-8);
+    padding-bottom: var(--sp-8);
+  }
+}
+
+/* =========================================================
+   MOBILE PUSH 2026-08-21 (Sam)
+   1) HIW Before/After tab full-width
+   2) About Grounds section reflow: photos card + LinkedIn last
+   3) Pricing $899 bottom order swap
+   4) Pricing "Three ways" 3-col on mobile
+   ========================================================= */
+
+/* 1) HIW comparison frame: expand the title tab across the full bar */
+@media (max-width: 720px) {
+  .tv-section .frame__bar {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .tv-section .frame__bar .frame__dots { display: none; }
+  .tv-section .frame__bar .frame__tab {
+    flex: 1 1 auto;
+    width: 100%;
+    text-align: center;
+    letter-spacing: .16em;
+    font-size: .78rem;
+    padding: .28rem .5rem;
+    white-space: normal;
+  }
+}
+
+/* 2) About page Grounds-for-believing section, mobile only */
+@media (max-width: 900px) {
+  /* Turn the 2-col grid into a single stream */
+  .found-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+  }
+  /* Let inner containers dissolve so children reorder freely */
+  .found-grid .found-left,
+  .found-grid .found-right,
+  .found-grid .found__close {
+    display: contents;
+  }
+
+  /* Order: eyebrow -> H2 -> rule -> sub -> photos card -> paragraphs -> LinkedIn */
+  .found-grid .found-left > .eyebrow           { order: 1; }
+  .found-grid .found-left > .found-h2          { order: 2; text-align: center; }
+  .found-grid .found-left .rule-gold           { order: 3; margin: var(--sp-3) auto; }
+  .found-grid .found-left .found__close > p.display--md {
+    order: 4;
+    margin: 0 auto var(--sp-4) !important;
+    text-align: center;
+    max-width: 32ch;
+  }
+  .found-grid .found-right > .founders-photo   { order: 5; margin: 0 !important; }
+  .found-grid .found-right > div               { order: 6; margin-left: auto !important; margin-right: auto !important; }
+  .found-grid .found-left .linkedin-box        { order: 7; margin: var(--sp-3) auto 0 !important; }
+
+  /* Tighten the space Sam called out between H2 and sub */
+  .found-grid .found-h2 { margin-bottom: var(--sp-3); }
+
+  /* Wrap founder photos in a light card so they read as a subsection */
+  .found-grid .founders-photo {
+    background: #f5f2ec;
+    border-radius: 16px;
+    padding: 1.25rem 1rem 1.15rem;
+    margin: 0 auto !important;
+    max-width: 560px;
+  }
+  .found-grid .founders-photo .founders-photo__pair {
+    gap: 1rem;
+  }
+  .found-grid .founders-photo .founder-card__name {
+    color: #1c1a17;
+  }
+  .found-grid .founders-photo figcaption {
+    color: #5a5a5a !important;
+  }
+
+  /* Recentre eyebrow + rule on mobile since the section flows single-column */
+  .found-grid .found-left > .eyebrow { display: block; text-align: center; }
+  .found-grid .found-left .rule-gold--left { margin-left: auto; margin-right: auto; }
+}
+
+/* 3) Pricing: on mobile, put "Add Guided Setup" BEFORE "Additional seats" note */
+@media (max-width: 720px) {
+  .pcmp-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: var(--sp-4);
+  }
+  .pcmp-wrap .gs-toggle-row     { order: 1; margin-top: 0; }
+  .pcmp-wrap .pcmp__seat-note   {
+    order: 2;
+    margin: 0.25rem 0 0;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  /* Tighten the Boardroom card bottom margin so it sits close to the group */
+  .plans--triple {
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-3);
+  }
+}
+
+/* 4) Pricing "Three ways to do this" — 3-col side by side on mobile */
+@media (max-width: 720px) {
+  .invcmp {
+    margin-top: 0.5rem !important;
+    padding: 0 !important;
+  }
+  .invcmp__cols {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    justify-content: space-between !important;
+    gap: 0.4rem !important;
+    padding: 0 !important;
+    padding-bottom: 1rem !important;
+    margin-left: 0 !important;
+    grid-template-columns: none !important;
+  }
+  .invcmp__col {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    padding: 1rem 0.75rem 1.1rem !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
+    border-left: 1px solid rgba(255,255,255,.14) !important;
+    border-radius: 14px !important;
+    background: rgba(255,255,255,.03);
+    min-height: 0;
+    text-align: left;
+  }
+  .invcmp__col--us {
+    border-color: rgba(212,175,55,.35) !important;
+    background: rgba(212,175,55,.06);
+  }
+  .invcmp__label {
+    font-size: 0.66rem !important;
+    letter-spacing: 0.14em !important;
+    margin-bottom: 0.5rem !important;
+    white-space: nowrap;
+  }
+  .invcmp__title {
+    font-size: 1.12rem !important;
+    line-height: 1.15 !important;
+    margin: 0 0 0.6rem !important;
+    word-break: normal;
+  }
+  /* Kill the desktop <br> that was collapsing spaces at narrow widths */
+  .invcmp__title br { display: inline; content: " "; }
+  .invcmp__title br::after { content: " "; }
+  .invcmp__note {
+    font-size: 0.88rem !important;
+    line-height: 1.35 !important;
+    gap: 0.35rem !important;
+    align-items: flex-start;
+    display: flex;
+  }
+  .invcmp__star {
+    font-size: 0.86rem;
+    line-height: 1.35;
+    flex: 0 0 auto;
+  }
+
+  /* Chart: center under the cards, "Investment" sits just above HIGH like a title */
+  .invcmp__chart {
+    grid-template-columns: 60px 1fr !important;
+    height: 260px !important;
+    margin: 1.25rem auto 0 !important;
+    padding: 18px 0 0 0 !important;
+    max-width: 340px !important;
+    position: relative;
+  }
+  .invcmp__ylabel {
+    font-size: 0.66rem !important;
+    letter-spacing: 0.14em !important;
+  }
+  .invcmp__ylabel--high,
+  .invcmp__ylabel--med,
+  .invcmp__ylabel--low { transform: translateY(-50%) !important; }
+  /* Hide the in-yaxis "Investment" and render our own title above the plot */
+  .invcmp__ylabel--head { display: none !important; }
+  .invcmp__chart::before {
+    content: "INVESTMENT";
+    position: absolute;
+    top: 2px;
+    left: 60px; /* start of plot column */
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    color: #f7f7f7;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .invcmp__xlabel {
+    font-size: 0.66rem !important;
+    max-width: none !important;
+    white-space: normal !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0 !important;
+  }
+  .invcmp__bar { width: 60% !important; }
 }
