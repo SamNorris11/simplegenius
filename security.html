@@ -93,14 +93,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 </style>
 <style>
-  .backbar{background:transparent;padding:1rem 0 0;}
+  /* Site header is position:fixed at var(--header-h) = 92px desktop / 80px mobile.
+     Push the backbar below it and give it enough room to feel like a chrome bar. */
+  .backbar{background:#000;padding:calc(var(--header-h, 92px) + .35rem) 0 .9rem;}
   .backbar__inner{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);}
-  .backbar__link{display:inline-flex;align-items:center;gap:.5rem;font-family:'Inter',sans-serif;font-weight:500;font-size:.92rem;letter-spacing:.01em;color:#5A5A5A;text-decoration:none;padding:.4rem .1rem;transition:color .18s ease, transform .18s ease;}
-  .backbar__link:hover{color:#1D1D1D;transform:translateX(-2px);}
+  .backbar__link{display:inline-flex;align-items:center;gap:.5rem;font-family:'Inter',sans-serif;font-weight:500;font-size:.92rem;letter-spacing:.01em;color:rgba(247,247,247,.7);text-decoration:none;padding:.35rem .1rem;transition:color .18s ease, transform .18s ease;}
+  .backbar__link:hover{color:#D4AF37;transform:translateX(-2px);}
   .backbar__link svg{width:14px;height:14px;flex:0 0 auto;}
-  /* Dark-hero pages: header sits over ink section — use ink-friendly color */
-  .backbar--on-ink .backbar__link{color:rgba(247,247,247,.7);}
-  .backbar--on-ink .backbar__link:hover{color:#D4AF37;}
+  /* Since backbar handles the header clearance, the following ink hero section
+     needs its top padding zeroed so we don't double-space. */
+  .backbar + main > section.sec--ink:first-child{padding-top:clamp(1rem,2vw,1.5rem);}
+  .backbar + main > section.section--ink:first-of-type,
+  .backbar + main > section.page-head--ink{padding-top:clamp(1rem,2vw,1.5rem);}
 </style>
 </head>
 <body>
@@ -138,7 +142,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </header>
 
-<div class="backbar backbar--on-ink" style="background:#000;">
+<div class="backbar">
   <div class="backbar__inner">
     <a class="backbar__link" href="index.html" aria-label="Back to homepage">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
