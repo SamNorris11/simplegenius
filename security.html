@@ -68,11 +68,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .article__end span{display:block;}
   .article__end span:last-child{font-style:italic;color:#8A6D18;margin-top:.5rem;}
 
+  /* Two-line uppercase pull statement (mid-article) */
+  .article__pull2{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.18;letter-spacing:-.01em;margin:clamp(2.75rem,5vw,3.75rem) 0;padding-left:clamp(1rem,2vw,1.5rem);border-left:3px solid #D4AF37;}
+  .article__pull2 span{display:block;}
+  .article__pull2 span:last-child{font-style:italic;color:#8A6D18;margin-top:.35rem;}
+
   /* Bullets — flush to the same left edge as the paragraphs */
   .article__list{list-style:none;padding:0;margin:0 0 clamp(1.15rem,1.7vw,1.5rem);}
-  .article__list li{position:relative;padding-left:1.5rem;margin:0 0 .85rem;font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.35vw,1.3125rem);line-height:1.6;color:#1D1D1D;}
+  .article__list li{position:relative;padding-left:1.75rem;margin:0 0 .85rem;font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.35vw,1.3125rem);line-height:1.6;color:#1D1D1D;}
   .article__list li:last-child{margin-bottom:0;}
-  .article__list li::before{content:"";position:absolute;left:0;top:.72em;width:.4rem;height:.4rem;border-radius:50%;background:#D4AF37;}
+  .article__list li::before{content:"\2605";position:absolute;left:0;top:0;line-height:1.6;color:#D4AF37;font-size:.95em;}
+
+  /* Process line — LEARN → CHECK → FIX → IMPROVE. Same left edge, no box. */
+  .article__flow{font-family:'Inter',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1D1D1D;font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.5;margin:clamp(2rem,3.5vw,2.75rem) 0 clamp(1.5rem,2.6vw,2rem);}
+  .article__flow .arrow{color:#D4AF37;margin:0 .35em;}
+
+  /* Small caps callout used inline for WHERE IS YOUR COMPANY INFORMATION GOING? */
+  .article__ask{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.2;letter-spacing:-.01em;margin:clamp(2rem,3.6vw,2.6rem) 0 clamp(1rem,1.7vw,1.4rem);}
 
   /* CTA block — inline, minimal */
   .article__cta{margin-top:clamp(3rem,5vw,4rem);display:flex;flex-wrap:wrap;gap:.9rem;align-items:center;}
@@ -149,31 +161,108 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <h2 class="article__h2">AI isn&rsquo;t the problem.</h2>
 
-        <p>People use AI because it makes their jobs easier. If it helps someone finish at 4 instead of 6, they&rsquo;re going to use it.</p>
+        <p>AI makes work easier. It helps people get more done in less time.</p>
 
-        <p>And they should.</p>
+        <p>If it helps someone finish at 4 p.m. instead of 6, they&rsquo;re going to use it.</p>
 
-        <p>The question for a business is what happens to the company information they give it.</p>
+        <p>And they should. They want to go home sooner.</p>
 
-        <h2 class="article__h2">Company context is valuable.</h2>
+        <p>But here&rsquo;s the problem.</p>
 
-        <p>Customer information. Internal processes. The knowledge your best people carry in their heads.</p>
+        <p>AI gets better when you give it more information.</p>
 
-        <p>Your company should know where that information lives, who can use it, and what happens to it.</p>
+        <p>So people give it more.</p>
 
-        <blockquote class="article__pull">Your people need AI. Your business needs control.</blockquote>
+        <p>A customer email.</p>
 
-        <p>The answer isn&rsquo;t to stop your team from using AI. It&rsquo;s to give them a better place to use it.</p>
+        <p>A sales plan.</p>
 
-        <p>Simple Genius gives your team an internal environment for working with AI using your company&rsquo;s own context.</p>
+        <p>A company document.</p>
+
+        <p>A problem they&rsquo;re trying to solve.</p>
+
+        <p>Something their boss told them.</p>
+
+        <p>Something only their team knows.</p>
+
+        <p>Bit by bit, your people can end up putting a lot of your business into public AI tools.</p>
+
+        <p>Not because they&rsquo;re doing something wrong.</p>
+
+        <p>They&rsquo;re trying to do better work.</p>
+
+        <p>But it raises a simple question:</p>
+
+        <p class="article__ask">Where is your company information going?</p>
+
+        <p>And does your business have any control over it?</p>
+
+        <p>The answer isn&rsquo;t to stop using AI.</p>
+
+        <p>It&rsquo;s to give your team a better place to use it.</p>
+
+        <h2 class="article__h2">AI that knows your business.</h2>
+
+        <p>Simple Genius gives your team a private place to use AI with what your company knows.</p>
+
+        <p>It starts by learning your business.</p>
 
         <ul class="article__list">
-          <li>Your business knowledge lives in one place.</li>
-          <li>Your team works with AI inside Simple Genius.</li>
-          <li>What the company learns stays with the company.</li>
+          <li>It talks with your team.</li>
+          <li>It brings your company information together.</li>
+          <li>It builds a record of how your business actually works.</li>
         </ul>
 
-        <h2 class="article__h2">Your company knowledge stays your company knowledge.</h2>
+        <p>But Simple Genius doesn&rsquo;t just take that information and run with it.</p>
+
+        <p>Your team checks what it learns.</p>
+
+        <p>If something is wrong, fix it.</p>
+
+        <p>If something is right, confirm it.</p>
+
+        <p>Then Simple Genius gets better.</p>
+
+        <p class="article__flow">Learn <span class="arrow">&rarr;</span> Check <span class="arrow">&rarr;</span> Fix <span class="arrow">&rarr;</span> Improve</p>
+
+        <p>Your business changes.</p>
+
+        <p>Your people learn new things.</p>
+
+        <p>Simple Genius can change with it.</p>
+
+        <h2 class="article__h2">Then put it to work.</h2>
+
+        <p>This is where Workstreams come in.</p>
+
+        <p>Workstreams give your team a place to actually use AI with your company behind it.</p>
+
+        <p>Ask a question.</p>
+
+        <p>Work through a problem.</p>
+
+        <p>Create something.</p>
+
+        <p>Think through an idea.</p>
+
+        <p>Get work done.</p>
+
+        <p>And instead of starting from zero, the AI already knows the business.</p>
+
+        <ul class="article__list">
+          <li>Answers based on how your business actually works.</li>
+          <li>No need to explain your company over and over.</li>
+          <li>An internal company AI your team can work with every day.</li>
+        </ul>
+
+        <p class="article__pull2">
+          <span>Your people get AI.</span>
+          <span>Your business keeps its knowledge.</span>
+        </p>
+
+        <h2 class="article__h2">Your company knowledge stays yours.</h2>
+
+        <p>Simple Genius is built to keep your company knowledge with your company.</p>
 
         <ul class="article__list">
           <li>Your information is encrypted.</li>
@@ -181,13 +270,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>You can take your information with you at any time.</li>
         </ul>
 
-        <p>Simple Genius isn&rsquo;t about keeping AI out of your business.</p>
+        <p>That&rsquo;s the point.</p>
 
-        <p>It&rsquo;s about giving your company a place to use it where the context stays connected to the company.</p>
+        <p>Your team shouldn&rsquo;t have to choose between using AI and protecting what your business knows.</p>
+
+        <p>AI isn&rsquo;t going away.</p>
+
+        <p>And it shouldn&rsquo;t.</p>
+
+        <p>It can help your people move faster, think better, and get more done.</p>
+
+        <p>Let them use it.</p>
+
+        <p>Just give them a place built for your business.</p>
 
         <p class="article__end">
-          <span>AI isn&rsquo;t going away.</span>
-          <span>Your company information doesn&rsquo;t have to go with it.</span>
+          <span>Give your team AI.</span>
+          <span>Keep your company knowledge yours.</span>
         </p>
 
         <div class="article__cta">
