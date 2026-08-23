@@ -11,18 +11,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Business AI Step One</title>
-<meta name="description" content="Simple Genius. The first step for AI in business. See how a machine describes your company, then how it describes the two competitors you name, and where the difference sits.">
+<meta name="description" content="Simple Genius is the first step in AI for business. Software that knows your company, watches your competitors, and helps your whole team use AI every day.">
 <meta property="og:site_name" content="Simple Genius">
 <meta property="og:title" content="Business AI Step One">
-<meta property="og:description" content="The first step for AI in business.">
+<meta property="og:description" content="Simple Genius is the first step in AI for business.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=1787315874">
+<link rel="stylesheet" href="css/site.css?v=1787510927">
 <link rel="icon" href="favicon-32.png?v=1787253912" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png?v=1787253912" sizes="16x16" type="image/png">
 <link rel="icon" href="favicon-512.png?v=1787253912" sizes="512x512" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1787253912">
+<style>
+  /* Homepage section flip: image LEFT, copy RIGHT for Business Brain + Workstreams.
+     Reverses the grid order without touching the underlying 40/60 grid rule. */
+  .section--flip .grid--centred > .split__copy { order: 2; }
+  .section--flip .grid--centred > .shot { order: 1; }
+  /* And mirror the .shot--edge bleed: instead of bleeding right, bleed LEFT. */
+  .section--flip .shot--edge {
+    margin-right: 0;
+    margin-left: calc(-1 * ((100vw - min(100vw - (2 * var(--page-margin)), var(--maxw))) / 2));
+    border-top-right-radius: var(--radius-lg, 14px);
+    border-bottom-right-radius: var(--radius-lg, 14px);
+    border-right: 1px solid var(--c-line, rgba(28,26,23,.12));
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+  }
+  .section--flip .shot--edge-firm {
+    margin-left: calc(-1 * ((100vw - min(100vw - (2 * var(--page-margin)), var(--maxw))) / 2) - var(--sp-10));
+  }
+  @media (max-width: 900px) {
+    .section--flip .shot--edge-firm { margin-left: 0; }
+    .section--flip .grid--centred > .split__copy,
+    .section--flip .grid--centred > .shot { order: initial; }
+  }
+
+  /* Guided setup toggle (ported from simple version) */
+  .setup-toggle{max-width:640px;margin:2.5rem auto 0;background:#F7F7F7;border:1px solid rgba(29,29,29,.08);border-radius:16px;padding:1.5rem 1.75rem;display:flex;align-items:center;gap:1.25rem;}
+  .setup-toggle__body{flex:1;}
+  .setup-toggle__title{display:block;font-family:'Playfair Display',serif;font-size:1.35rem;color:#1D1D1D;line-height:1.25;margin-bottom:.35rem;}
+  .setup-toggle__desc{display:block;color:#5A5A5A;font-size:.98rem;line-height:1.5;}
+  .setup-toggle__control{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0;}
+  .setup-toggle__price{font-family:'Playfair Display',serif;font-size:1.4rem;color:#1D1D1D;white-space:nowrap;}
+  .switch{position:relative;display:inline-block;width:52px;height:28px;}
+  .switch input{opacity:0;width:0;height:0;}
+  .switch__slider{position:absolute;cursor:pointer;inset:0;background:#c4c4c4;border-radius:28px;transition:.2s;}
+  .switch__slider::before{content:"";position:absolute;height:22px;width:22px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.15);}
+  .switch input:checked + .switch__slider{background:#D4AF37;}
+  .switch input:checked + .switch__slider::before{transform:translateX(24px);}
+  @media (max-width:600px){.setup-toggle{flex-direction:column;align-items:stretch;}.setup-toggle__control{align-items:flex-start;}}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -148,167 +188,109 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ===================================================== P2, COMPETITION (LEAD)
-     §3.2 new order. Competition Hub goes first on the homepage. The story is:
-     I cannot let my competitors do something with AI before I do. Competition
-     is the reason to click. Shows the software. -->
-<section class="section section--white section--seam section--tight section--clip prod-section" id="competition">
+<!-- ===================================================== P2, COMPETITION HUB (LEAD)
+     Ported from simple version. Black background, verbatim copy. -->
+<section class="section section--ink section--tight" id="competition">
   <div class="container">
-    <h2 class="prod-section__headline display display--md">See them before <em>they see you.</em></h2>
-
-    <div class="grid grid--centred prod-section__grid">
-      <div class="col--1-5 split__copy prod-section__copy">
-        <span class="eyebrow prod-section__eyebrow--desktop">Competition Hub</span>
-        <h2 class="display display--md prod-section__h2--desktop">See them before <em>they see you.</em></h2>
-        <ul class="prod-section__benefits">
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Track every move that matters.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Spot changes before they become surprises.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Never be the last to know.</span></li>
-        </ul>
+    <div class="grid grid--centred">
+      <div class="col--1-5 split__copy">
+        <span class="eyebrow">Competition</span>
+        <h2 class="display display--md">We watch your competitors <em>for you</em>.</h2>
+        <p class="section__lede section__lede--left">New hires. New products. Pricing changes. Anything public, we see it every day.</p>
+        <p class="section__lede section__lede--left">Then we tell you what changed and what to do about it.</p>
+        <div style="margin-top:1.5rem;"><a class="btn btn--ghost" href="how-it-works.html#competition-hub">Learn more about Competition Hub</a></div>
       </div>
 
-      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12 prod-section__shot">
+      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
         <img class="shot__img"
-             src="img/sg-scan-output-1600w.jpg"
-             srcset="img/sg-scan-output-800w.jpg 800w, img/sg-scan-output-1600w.jpg 1600w, img/sg-scan-output-2400w.jpg 2400w"
+             src="img/sg-competition-hub-1600w.jpg"
+             srcset="img/sg-competition-hub-800w.jpg 800w, img/sg-competition-hub-1600w.jpg 1600w, img/sg-competition-hub-2400w.jpg 2400w"
              sizes="(max-width: 900px) 100vw, 68vw"
              width="1600" height="708"
-             alt="Competition Hub: your position beside the competitors you track, movement in the last cycle, and the first recommended response."
+             alt="Competition Hub: your competitors&rsquo; moves tracked every day."
              loading="lazy" decoding="async">
       </figure>
-
-      <div class="prod-section__module-block">
-        <span class="prod-section__module">Competition Hub</span>
-        <ul class="prod-section__benefits prod-section__benefits--mobile">
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Track every move that matters.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Spot changes before they become surprises.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Never be the last to know.</span></li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ==================================================== P4, CONTEXT (PROOF)
-     §3.2. Interviews. The business is in your people's heads. Context is the
-     proof, not the headline. Layout matches Competition exactly: copy left,
-     software image bleeding right. -->
-<section class="section section--white section--seam section--tight section--clip prod-section" id="context">
+<!-- ==================================================== P3, BUSINESS BRAIN (FLIPPED)
+     Layout is reversed via .section--flip: image LEFT, copy RIGHT. Light section. -->
+<section class="section section--white section--seam section--tight section--clip section--flip" id="context">
   <div class="container">
-    <h2 class="prod-section__headline display display--md">Your best people know things AI doesn&rsquo;t. <em>Fix that.</em></h2>
-
-    <div class="grid grid--centred prod-section__grid">
-      <div class="col--1-5 split__copy prod-section__copy">
-        <span class="eyebrow prod-section__eyebrow--desktop">Business Brain</span>
-        <h2 class="display display--md prod-section__h2--desktop">Your best people know things AI doesn&rsquo;t. <em>Fix that.</em></h2>
-        <ul class="prod-section__benefits">
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Get critical knowledge out of people&rsquo;s heads.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Build the record AI could never build on its own.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Give AI the context it&rsquo;s been missing.</span></li>
-        </ul>
+    <div class="grid grid--centred">
+      <div class="col--1-5 split__copy">
+        <span class="eyebrow">Business Brain</span>
+        <h2 class="display display--md">Everything your company knows, <em>captured</em>.</h2>
+        <p class="section__lede section__lede--left">An AI voice model interviews your leaders. It captures valuable intellectual knowledge about your business, from the people who are running it.</p>
+        <p class="section__lede section__lede--left">Upload your documents, playbooks, and process files. Everything lives in one place. If a person leaves, the knowledge stays.</p>
+        <div style="margin-top:1.5rem;"><a class="btn btn--primary" href="how-it-works.html#business-brain">Learn more about Business Brain</a></div>
       </div>
 
-      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12 prod-section__shot">
+      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
         <img class="shot__img"
              src="img/sg-business-brain-1600w.jpg"
              srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w, img/sg-business-brain-2400w.jpg 2400w"
              sizes="(max-width: 900px) 100vw, 68vw"
-             width="1600" height="832"
-             alt="Business Intake: six areas of the operating record with completion shown for each."
+             width="1600" height="708"
+             alt="Business Brain: interviews and documents that become one written record."
              loading="lazy" decoding="async">
       </figure>
-
-      <div class="prod-section__module-block">
-        <span class="prod-section__module">Business Brain</span>
-        <ul class="prod-section__benefits prod-section__benefits--mobile">
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Get critical knowledge out of people&rsquo;s heads.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Build the record AI could never build on its own.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Give AI the context it&rsquo;s been missing.</span></li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================ P3, STRATEGIC INSIGHTS (SHORT)
-     §3.2 + §9.3. Strategic Insights sits second. This is where the single named
-     comparison lives: consulting. Short. Not the headline. -->
-<section class="section section--ink section--tight prod-section prod-section--ink" id="insights">
+<!-- =============================================== P5, STRATEGIC INSIGHTS (BLACK)
+     Ported from simple version. Black background. Copy left, image right. -->
+<section class="section section--ink section--tight" id="insights">
   <div class="container">
-    <h2 class="prod-section__headline display display--md">Know what matters. <em>Know what to do next.</em></h2>
-
-    <div class="grid grid--centred prod-section__grid">
-      <div class="col--1-5 split__copy prod-section__copy">
-        <span class="eyebrow prod-section__eyebrow--desktop">Strategic Insights</span>
-        <h2 class="display display--md prod-section__h2--desktop">Know what matters. <em>Know what to do next.</em></h2>
-        <ul class="prod-section__benefits">
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Turn what Simple Genius knows about your business and your competition into what to do next.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>See what actually deserves your attention.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Move with clarity, not guesswork.</span></li>
-        </ul>
+    <div class="grid grid--centred">
+      <div class="col--1-5 split__copy">
+        <span class="eyebrow">Strategic Insights</span>
+        <h2 class="display display--md">We tell you <em>what to do</em> about it.</h2>
+        <p class="section__lede section__lede--left">We know your business. We know your competitors. Strategic Insights is where we connect both sides and hand you the move.</p>
+        <p class="section__lede section__lede--left">Every insight is grounded in your context, tied to competitor signals, and written as a clear insight.</p>
+        <div style="margin-top:1.5rem;"><a class="btn btn--ghost" href="how-it-works.html#strategic-insights">Learn more about Strategic Insights</a></div>
       </div>
 
-      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12 prod-section__shot">
+      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
         <img class="shot__img"
              src="img/sg-strategic-insights-1600w.jpg"
              srcset="img/sg-strategic-insights-800w.jpg 800w, img/sg-strategic-insights-1600w.jpg 1600w, img/sg-strategic-insights-2400w.jpg 2400w"
              sizes="(max-width: 900px) 100vw, 68vw"
              width="1600" height="800"
-             alt="Strategic Insights: recommended moves ranked by modeled impact, each tracing to verified findings."
+             alt="Strategic Insights: the move to make, grounded in your context and your competitors&rsquo; signals."
              loading="lazy" decoding="async">
       </figure>
-
-      <div class="prod-section__module-block">
-        <span class="prod-section__module">Strategic Insights</span>
-        <ul class="prod-section__benefits prod-section__benefits--mobile">
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Turn what Simple Genius knows about your business and your competition into what to do next.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>See what actually deserves your attention.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Move with clarity, not guesswork.</span></li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================ P5, WORK STREAMS + SECURITY
-     §3.2 + §9.4. Work Streams is loud on the homepage. Right after it, security
-     runs LOUD, deliberate, five approved claims. Placeholder for Trent's exact
-     copy but the five claims are locked. -->
-<section class="section section--white section--seam section--tight prod-section" id="work-streams">
+<!-- ================================================ P4, WORKSTREAMS (FLIPPED, RENAMED)
+     Layout: image LEFT, copy RIGHT. Light section. Rooted-in-company-context first,
+     safety second, four walls close. -->
+<section class="section section--white section--seam section--tight section--clip section--flip" id="work-streams">
   <div class="container">
-    <h2 class="prod-section__headline display display--md">Stop explaining your business <em>to AI.</em></h2>
-
-    <div class="grid grid--centred prod-section__grid">
-      <div class="col--1-5 split__copy prod-section__copy">
-        <span class="eyebrow prod-section__eyebrow--desktop">Work Streams</span>
-        <h2 class="display display--md prod-section__h2--desktop">Stop explaining your business <em>to AI.</em></h2>
-        <ul class="prod-section__benefits">
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>AI that already knows the business.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Answers grounded in how your company actually works.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Put your business knowledge to work.</span></li>
-        </ul>
+    <div class="grid grid--centred">
+      <div class="col--1-5 split__copy">
+        <span class="eyebrow">Workstreams</span>
+        <h2 class="display display--md">AI that already knows <em>the business</em>.</h2>
+        <p class="section__lede section__lede--left">An LLM rooted in your company context. Everything your team learns stays inside the four walls of the business.</p>
+        <p class="section__lede section__lede--left">A safe environment for your team to use AI on real work. Nothing they type leaves the platform.</p>
+        <p class="section__lede section__lede--left">When someone walks out the door, what the company learned stays.</p>
+        <div style="margin-top:1.5rem;"><a class="btn btn--primary" href="how-it-works.html#work-streams">Learn more about Workstreams</a></div>
       </div>
 
-      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12 prod-section__shot">
+      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
         <img class="shot__img"
              src="img/sg-team-chat-1600w.jpg"
              srcset="img/sg-team-chat-800w.jpg 800w, img/sg-team-chat-1600w.jpg 1600w, img/sg-team-chat-2400w.jpg 2400w"
              sizes="(max-width: 900px) 100vw, 68vw"
-             width="1600" height="800"
-             alt="Work Streams: team chat with your business knowledge behind every answer."
+             width="1600" height="708"
+             alt="Workstreams: your team&rsquo;s AI, rooted in your company&rsquo;s own context."
              loading="lazy" decoding="async">
       </figure>
-
-      <div class="prod-section__module-block">
-        <span class="prod-section__module">Work Streams</span>
-        <ul class="prod-section__benefits prod-section__benefits--mobile">
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>AI that already knows the business.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Answers grounded in how your company actually works.</span></li>
-          <li><span class="prod-section__benefit-star" aria-hidden="true">&#9733;</span><span>Put your business knowledge to work.</span></li>
-        </ul>
-      </div>
     </div>
-
   </div>
 </section>
 
@@ -354,25 +336,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ============================================ P8, GROUNDS FOR BELIEVING
-     Exact production layout: left column carries eyebrow + display + gold
-     rule + closing statement. Right column carries the founder prose and
-     the paired founder photos with a Co-founders caption. -->
-<section class="section section--white section--seam section--tall found-section">
+<!-- ============================================ P6, WHO'S BEHIND IT
+     Ported from simple version. Two-column: left = eyebrow + H2 + gold rule
+     + statement + LinkedIn box. Right = prose + paired founder photos. -->
+<section id="about" class="section section--white section--seam section--tall found-section">
   <div class="container">
     <div class="grid grid--seam-mid found-grid">
       <div class="col--1-5 found-left">
-        <span class="eyebrow">Grounds for believing us</span>
-        <h2 class="display display--lg found-h2">You should not have to figure this out alone.</h2>
+        <span class="eyebrow">Who&rsquo;s behind it</span>
+        <h2 class="display display--lg found-h2">Two operators who&rsquo;ve already done it.</h2>
 
         <div class="found__close">
           <div class="rule-gold rule-gold--left" aria-hidden="true"></div>
-          <p style="font-size: 1rem; line-height: 1.65; color: #1c1a17; max-width: 34rem; margin: 0;">Trent and Mark have built, run, and sold businesses. They built Simple Genius to be the tool they wanted when they were in your seat.</p>
+          <p class="statement statement--left">Built and sold companies. Now building the tool they wish they had.</p>
+
+          <aside class="linkedin-box" aria-label="Connect with the Simple Genius founders on LinkedIn">
+            <p class="linkedin-box__label">Connect with us on LinkedIn</p>
+            <ul class="linkedin-box__list">
+              <li>
+                <a class="linkedin-row" href="https://www.linkedin.com/in/trent-hiott-27100867/" target="_blank" rel="noopener" aria-label="Trent Hiott on LinkedIn">
+                  <svg class="linkedin-row__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.11 2.06 2.06 0 010 4.11zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.44c.98 0 1.79-.77 1.79-1.72V1.72C24 .77 23.19 0 22.22 0z"/></svg>
+                  <span class="linkedin-row__name">Trent Hiott</span>
+                </a>
+              </li>
+              <li>
+                <a class="linkedin-row" href="https://www.linkedin.com/in/meetmarkcombs/" target="_blank" rel="noopener" aria-label="Mark Combs, CFA on LinkedIn">
+                  <svg class="linkedin-row__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.11 2.06 2.06 0 010 4.11zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.44c.98 0 1.79-.77 1.79-1.72V1.72C24 .77 23.19 0 22.22 0z"/></svg>
+                  <span class="linkedin-row__name">Mark Combs, CFA</span>
+                </a>
+              </li>
+            </ul>
+          </aside>
         </div>
       </div>
 
       <div class="col--7-12 found-right">
-        <figure class="founders-photo founders-photo--split" aria-label="Trent Hiott and Mark Combs, co-founders of Simple Genius">
+        <div class="prose prose--lead">
+          <p>Trent and Mark have spent the last decade building companies, running them, and selling them. They know what it feels like to have every vendor pitching them at once and no clear place to start.</p>
+          <p>They built Simple Genius to be the answer they wanted when they were in your seat. Honest. Sourced. Actually built on your company.</p>
+        </div>
+
+        <figure class="founders-photo founders-photo--split" aria-label="Trent Hiott and Mark Combs, CFA, co-founders of Simple Genius">
           <div class="founders-photo__pair">
             <div class="founder-card">
               <img src="img/founder-trent.jpeg" alt="Portrait of Trent Hiott" width="400" height="400" loading="lazy">
@@ -384,73 +388,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
           </div>
         </figure>
-
-        <div style="max-width: 520px; margin: 2rem auto 0; display: flex; justify-content: center;">
-        <aside class="linkedin-box" aria-label="Connect with the Simple Genius founders on LinkedIn" style="margin-top: 0;">
-          <p class="linkedin-box__label">Connect with us on LinkedIn</p>
-          <ul class="linkedin-box__list">
-            <li>
-              <a class="linkedin-row" href="https://www.linkedin.com/in/trent-hiott-27100867/" target="_blank" rel="noopener" aria-label="Trent Hiott on LinkedIn">
-                <svg class="linkedin-row__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.11 2.06 2.06 0 010 4.11zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.44c.98 0 1.79-.77 1.79-1.72V1.72C24 .77 23.19 0 22.22 0z"/></svg>
-                <span class="linkedin-row__name">Trent Hiott</span>
-              </a>
-            </li>
-            <li>
-              <a class="linkedin-row" href="https://www.linkedin.com/in/meetmarkcombs/" target="_blank" rel="noopener" aria-label="Mark Combs, CFA on LinkedIn">
-                <svg class="linkedin-row__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.11 2.06 2.06 0 010 4.11zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.44c.98 0 1.79-.77 1.79-1.72V1.72C24 .77 23.19 0 22.22 0z"/></svg>
-                <span class="linkedin-row__name">Mark Combs, CFA</span>
-              </a>
-            </li>
-          </ul>
-        </aside>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================== P7, PRICING
-     Ground tone so it visually separates from Why Us (raised) above. -->
-<section class="section section--ground section--seam section--tight">
+     Ported from simple version. 3 plans (Starter/Team/Company), Guided Setup
+     toggle (+$500 one-time), extra seats note ($75/person/mo). -->
+<section id="pricing" class="section section--ground section--seam section--tight">
   <div class="container">
     <div class="section__head section__head--tight section__head--centered">
       <span class="eyebrow">Pricing</span>
-      <h2 class="display display--lg">Choose how much you want to <em>do with it.</em></h2>
-      <p class="section__lede section__lede--center">Every plan gives Simple Genius the same understanding of your business and your competitors. Higher plans give your team more ways to put that knowledge to work.</p>
+      <h2 class="display display--lg">Simple. <em>Month to month.</em></h2>
+      <p class="section__lede section__lede--center">Pick the plan that matches your size. Cancel any time.</p>
     </div>
 
     <div class="plans plans--tight plans--triple">
       <article class="plan">
         <span class="plan__name">Starter</span>
-        <span class="plan__price">
-          <span class="plan__cur">$</span><span class="plan__amt plan__amt--base">299</span><span class="plan__period">/month</span>
-        </span>
-        <p class="plan__body">Build the foundation.</p>
+        <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-base="299">299</span><span class="plan__period">/mo</span></span>
         <div class="plan__specs">
-          <span class="plan__spec">4 seats included</span>
+          <span class="plan__spec">For a small team</span>
+          <span class="plan__spec">Business Brain included</span>
+          <span class="plan__spec">One competitor tracked</span>
+          <span class="plan__spec">Workstreams for up to 5 people</span>
         </div>
       </article>
       <article class="plan plan--featured">
         <span class="plan__tag">Most teams pick this</span>
-        <span class="plan__name">Growth</span>
-        <span class="plan__price">
-          <span class="plan__cur">$</span><span class="plan__amt plan__amt--base">499</span><span class="plan__period">/month</span>
-        </span>
-        <p class="plan__body">Turn what you know into action.</p>
+        <span class="plan__name">Team</span>
+        <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-base="499">499</span><span class="plan__period">/mo</span></span>
         <div class="plan__specs">
-          <span class="plan__spec">6 seats included</span>
+          <span class="plan__spec">For a growing company</span>
+          <span class="plan__spec">Business Brain included</span>
+          <span class="plan__spec">Three competitors tracked</span>
+          <span class="plan__spec">Workstreams for up to 15 people</span>
         </div>
       </article>
       <article class="plan">
-        <span class="plan__name">Boardroom</span>
-        <span class="plan__price">
-          <span class="plan__cur">$</span><span class="plan__amt plan__amt--base">899</span><span class="plan__period">/month</span>
-        </span>
-        <p class="plan__body">Bring more of your team into it.</p>
+        <span class="plan__name">Company</span>
+        <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-base="899">899</span><span class="plan__period">/mo</span></span>
         <div class="plan__specs">
-          <span class="plan__spec">12 seats included</span>
+          <span class="plan__spec">For a whole business</span>
+          <span class="plan__spec">Business Brain included</span>
+          <span class="plan__spec">Five competitors tracked</span>
+          <span class="plan__spec">Workstreams for up to 50 people</span>
         </div>
       </article>
+    </div>
+
+    <div class="setup-toggle" role="group" aria-label="Guided setup add-on">
+      <div class="setup-toggle__body">
+        <span class="setup-toggle__title">Add guided setup</span>
+        <span class="setup-toggle__desc">Have one of us walk you through the whole process. Interviews, uploads, tracker setup, everything.</span>
+      </div>
+      <div class="setup-toggle__control">
+        <span class="setup-toggle__price">+$500 one time</span>
+        <label class="switch" aria-label="Toggle guided setup">
+          <input type="checkbox" id="setup-switch">
+          <span class="switch__slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="section__head section__head--centered" style="margin-top:2.5rem;">
+      <p class="section__lede section__lede--center"><strong>Extra seats:</strong> $75 per person per month.</p>
     </div>
 
     <div class="btn-row btn-row--center btn-row--stack block-after">
@@ -534,5 +537,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script src="js/site.js?v=1787276638" defer></script>
+
+<script>
+(function(){
+  var sw = document.getElementById('setup-switch');
+  var bases = document.querySelectorAll('.plan__amt--base');
+  if(sw && bases.length){
+    function apply(){
+      var add = sw.checked ? 500 : 0;
+      bases.forEach(function(el){
+        var b = parseInt(el.getAttribute('data-base'), 10);
+        el.textContent = (b + add).toString();
+      });
+    }
+    sw.addEventListener('change', apply);
+    apply();
+  }
+})();
+</script>
 </body>
 </html>
