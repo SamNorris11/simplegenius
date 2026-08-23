@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P48GRGDB');</script>
+<!-- End Google Tag Manager -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security | Simple Genius</title>
+<meta name="description" content="Your team is going to use AI. They should. Simple Genius gives your business an internal environment for AI so company knowledge stays with the company.">
+<link rel="canonical" href="https://www.simplegenius.com/security">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.simplegenius.com/security">
+<meta property="og:title" content="Security | Simple Genius">
+<meta property="og:description" content="Your team is going to use AI. They should. Simple Genius gives your business an internal environment for AI so company knowledge stays with the company.">
+<meta property="og:site_name" content="Simple Genius">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=1787315874">
+<link rel="icon" href="favicon-32.png?v=1787253912" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon-16.png?v=1787253912" sizes="16x16" type="image/png">
+<link rel="icon" href="favicon-512.png?v=1787253912" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=1787253912">
+<style>
+  html{scroll-behavior:smooth;scroll-padding-top:88px;}
+
+  /* ===== Shared security-page rhythm ===== */
+  .sec{padding:clamp(5rem,11vw,9rem) 0;}
+  .sec__wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);}
+  .sec--ink{background:#000;color:#F7F7F7;}
+  .sec--paper{background:#F4EFE7;color:#1D1D1D;}
+  .sec--ink .sec__eyebrow{color:#D4AF37;}
+  .sec--paper .sec__eyebrow{color:#8A6D18;}
+  .sec__eyebrow{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;margin-bottom:clamp(1.25rem,2.4vw,1.75rem);}
+  .sec__h{font-family:'Playfair Display',serif;font-weight:500;letter-spacing:-.02em;line-height:1.02;margin:0;}
+  .sec--ink .sec__h{color:#F7F7F7;}
+  .sec--paper .sec__h{color:#1D1D1D;}
+
+  /* ===== Hero (open) ===== */
+  .sec-hero__h{font-size:clamp(2.6rem,7vw,6rem);}
+  .sec-hero__then{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;color:rgba(247,247,247,.72);font-size:clamp(1.6rem,3.4vw,2.6rem);margin:clamp(1.25rem,2.4vw,1.75rem) 0 clamp(2rem,4vw,3rem);}
+  .sec-hero__body p{font-family:'Inter',sans-serif;font-size:clamp(1.05rem,1.35vw,1.2rem);line-height:1.6;color:rgba(247,247,247,.82);max-width:56ch;margin:0 0 clamp(1.25rem,2.6vw,1.75rem);}
+  .sec-hero__q{font-family:'Playfair Display',serif;font-weight:500;font-style:italic;color:#D4AF37;font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.1;letter-spacing:-.01em;margin:clamp(2rem,4vw,3rem) 0 0;max-width:24ch;}
+
+  /* ===== Prose sections ===== */
+  .sec__lede{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.25;letter-spacing:-.01em;margin:clamp(1.5rem,3vw,2rem) 0 0;max-width:36ch;}
+  .sec--ink .sec__lede{color:rgba(247,247,247,.9);}
+  .sec--paper .sec__lede{color:#1D1D1D;}
+
+  /* Statement rows (typography only, no cards) */
+  .stmt-list{margin:clamp(2.5rem,5vw,4rem) 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:clamp(1.25rem,2.4vw,1.75rem);}
+  .stmt-list li{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(1.5rem,3.4vw,2.6rem);line-height:1.2;letter-spacing:-.01em;padding-bottom:clamp(1.25rem,2.4vw,1.75rem);}
+  .sec--paper .stmt-list li{color:#1D1D1D;border-bottom:1px solid rgba(29,29,29,.14);}
+  .sec--ink .stmt-list li{color:#F7F7F7;border-bottom:1px solid rgba(247,247,247,.14);}
+  .stmt-list li:last-child{border-bottom:none;padding-bottom:0;}
+  .stmt-list li em{font-style:italic;color:#D4AF37;}
+  .sec--paper .stmt-list li em{color:#8A6D18;}
+
+  .sec__body p{font-family:'Inter',sans-serif;font-size:clamp(1.05rem,1.35vw,1.2rem);line-height:1.6;margin:clamp(1.25rem,2.4vw,1.75rem) 0 0;max-width:56ch;}
+  .sec--ink .sec__body p{color:rgba(247,247,247,.82);}
+  .sec--paper .sec__body p{color:#3a3a3a;}
+
+  /* Closing statement (large) */
+  .sec__close{font-family:'Playfair Display',serif;font-weight:500;font-style:italic;font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.15;letter-spacing:-.01em;margin:clamp(3rem,5vw,4rem) 0 0;max-width:26ch;}
+  .sec--ink .sec__close{color:#D4AF37;}
+  .sec--paper .sec__close{color:#8A6D18;}
+  .sec__close span{display:block;}
+
+  /* Closing CTA section */
+  .sec-close__h{font-size:clamp(2.4rem,6vw,5rem);}
+  .sec-close__sub{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;color:#D4AF37;font-size:clamp(1.6rem,3.6vw,2.8rem);line-height:1.2;letter-spacing:-.01em;margin:clamp(1.25rem,2.4vw,1.75rem) 0 clamp(2.5rem,5vw,3.5rem);max-width:26ch;}
+  .sec-close__btns{display:flex;flex-wrap:wrap;gap:.9rem;}
+  .sec-close__btn{display:inline-flex;align-items:center;gap:.55rem;font-family:'Inter',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.02em;padding:.95rem 1.6rem;border-radius:6px;text-decoration:none;transition:transform .18s ease, background .18s ease;}
+  .sec-close__btn--gold{color:#000;background:#D4AF37;}
+  .sec-close__btn--gold:hover{background:#E6BF41;transform:translateY(-1px);}
+  .sec-close__btn--ghost{color:#F7F7F7;background:transparent;border:1px solid rgba(247,247,247,.32);}
+  .sec-close__btn--ghost:hover{background:rgba(247,247,247,.06);border-color:rgba(247,247,247,.55);transform:translateY(-1px);}
+  .sec-close__btn svg{width:14px;height:14px;}
+
+  /* Thin divider utility */
+  .sec--paper + .sec--ink,
+  .sec--ink + .sec--paper{border-top:0;}
+
+  @media (max-width:640px){
+    .sec{padding:4.5rem 0;}
+    .stmt-list li{font-size:1.5rem;}
+  }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P48GRGDB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="logo" href="index.html" aria-label="Simple Genius home">
+      <img class="logo__img logo__img--ink" src="img/logo-dark-112h.png"
+           srcset="img/logo-dark-56h.png 1x, img/logo-dark-112h.png 2x, img/logo-dark-168h.png 3x"
+           width="150" height="56" alt="Simple Genius">
+      <img class="logo__img logo__img--bone" src="img/logo-light-124h.png"
+           srcset="img/logo-light-62h.png 1x, img/logo-light-124h.png 2x, img/logo-light-186h.png 3x"
+           width="166" height="62" alt="" aria-hidden="true">
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a class="nav__link" href="how-it-works.html">How It Works</a>
+      <a class="nav__link" href="pricing.html">Pricing</a>
+      <a class="nav__link" href="assessment.html">Competitive AI Scan</a>
+      <a class="nav__link" href="about.html">About</a>
+    </nav>
+
+    <div class="header__actions">
+      <a class="btn btn--primary" href="talk.html">Join the Waitlist</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================ 1. HERO — opening ============================ -->
+  <section class="sec sec--ink" aria-labelledby="hero-h">
+    <div class="sec__wrap">
+      <span class="sec__eyebrow">Security</span>
+      <h1 class="sec__h sec-hero__h" id="hero-h">Your team is going to use AI.</h1>
+      <p class="sec-hero__then">They should.</p>
+      <div class="sec-hero__body">
+        <p>AI makes work faster. It helps people get more done and spend less time doing work that shouldn&rsquo;t take all day.</p>
+      </div>
+      <p class="sec-hero__q">But what are they giving it?</p>
+    </div>
+  </section>
+
+  <!-- ============================ 2. THE REAL PROBLEM (light) ============================ -->
+  <section class="sec sec--paper" aria-labelledby="prob-h">
+    <div class="sec__wrap">
+      <span class="sec__eyebrow">The Problem</span>
+      <h2 class="sec__h" id="prob-h" style="font-size:clamp(2.2rem,5vw,4rem);">The problem isn&rsquo;t AI.</h2>
+      <p class="sec__lede">The problem is company information leaving the company&rsquo;s control.</p>
+      <ul class="stmt-list" aria-label="Company information">
+        <li><em>Customer</em> information.</li>
+        <li><em>Internal</em> processes.</li>
+        <li>The knowledge your <em>best people</em> carry in their heads.</li>
+      </ul>
+      <div class="sec__body">
+        <p>That context is valuable. Your company should know where it lives, who can use it, and what happens to it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 3. PEOPLE WILL USE WHAT HELPS THEM (ink) ============================ -->
+  <section class="sec sec--ink" aria-labelledby="ppl-h">
+    <div class="sec__wrap">
+      <span class="sec__eyebrow">Reality</span>
+      <h2 class="sec__h" id="ppl-h" style="font-size:clamp(2.2rem,5vw,4rem);">People want to get their work done.</h2>
+      <p class="sec__lede">If AI helps someone finish at 4 instead of 6, they&rsquo;re going to use it.</p>
+      <p class="sec__close"><span>That&rsquo;s not the problem.</span><span>The company just needs a better place to do it.</span></p>
+    </div>
+  </section>
+
+  <!-- ============================ 4. THE SIMPLE GENIUS ANSWER (light) ============================ -->
+  <section class="sec sec--paper" aria-labelledby="ans-h">
+    <div class="sec__wrap">
+      <span class="sec__eyebrow">The Answer</span>
+      <h2 class="sec__h" id="ans-h" style="font-size:clamp(2.2rem,5vw,4rem);">Give them AI built around your company.</h2>
+      <p class="sec__lede">Simple Genius gives your team an internal environment for working with AI using your company&rsquo;s own context.</p>
+      <ul class="stmt-list" aria-label="How it works">
+        <li>Your business knowledge lives in <em>one place</em>.</li>
+        <li>Your team works with AI <em>inside Simple Genius</em>.</li>
+        <li>What the company learns <em>stays with the company</em>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ 5. YOUR COMPANY CONTEXT (ink) — verified claims only ============================ -->
+  <section class="sec sec--ink" aria-labelledby="ctx-h">
+    <div class="sec__wrap">
+      <span class="sec__eyebrow">Your Data</span>
+      <h2 class="sec__h" id="ctx-h" style="font-size:clamp(2.2rem,5vw,4rem);">Your company knowledge stays your company knowledge.</h2>
+      <ul class="stmt-list" aria-label="Data commitments">
+        <li>Your information is <em>encrypted</em>.</li>
+        <li>Your information is <em>never used to train</em> someone else&rsquo;s AI.</li>
+        <li>You can <em>take your information with you</em> at any time.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================ 6. CONTROL (light) ============================ -->
+  <section class="sec sec--paper" aria-labelledby="ctrl-h">
+    <div class="sec__wrap">
+      <span class="sec__eyebrow">Control</span>
+      <h2 class="sec__h" id="ctrl-h" style="font-size:clamp(2.2rem,5vw,4rem);">AI your business can actually control.</h2>
+      <div class="sec__body">
+        <p>The goal isn&rsquo;t to stop your team from using AI. It&rsquo;s to give them a place to use it where company context stays connected to the company.</p>
+      </div>
+      <p class="sec__close"><span>Your people get AI.</span><span>Your business keeps its knowledge.</span></p>
+    </div>
+  </section>
+
+  <!-- ============================ 7. CLOSING (ink) ============================ -->
+  <section class="sec sec--ink" aria-labelledby="close-h">
+    <div class="sec__wrap">
+      <h2 class="sec__h sec-close__h" id="close-h">AI isn&rsquo;t going away.</h2>
+      <p class="sec-close__sub">Your company information doesn&rsquo;t have to go with it.</p>
+      <div class="sec-close__btns">
+        <a class="sec-close__btn sec-close__btn--gold" href="talk.html">Join the Waitlist
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="sec-close__btn sec-close__btn--ghost" href="how-it-works.html">See How It Works</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <a class="logo" href="index.html" aria-label="Simple Genius home">
+          <img class="logo__img" src="img/logo-light-124h.png"
+               srcset="img/logo-light-62h.png 1x, img/logo-light-124h.png 2x, img/logo-light-186h.png 3x"
+               width="166" height="62" alt="Simple Genius">
+        </a>
+        <ul class="footer-social" aria-label="Simple Genius social">
+          <li><a class="footer-social__link" href="https://www.linkedin.com/company/112274244/" target="_blank" aria-label="Simple Genius on LinkedIn" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4V21H3V9.5zM9 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9V9.5z"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" aria-label="Simple Genius on YouTube" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 8.2c-.2-1.3-.9-2.2-2.2-2.4C17.5 5.5 12 5.5 12 5.5s-5.5 0-7.8.3C2.9 6 2.2 6.9 2 8.2 1.7 9.7 1.7 12 1.7 12s0 2.3.3 3.8c.2 1.3.9 2.2 2.2 2.4 2.3.3 7.8.3 7.8.3s5.5 0 7.8-.3c1.3-.2 2-1.1 2.2-2.4.3-1.5.3-3.8.3-3.8s0-2.3-.3-3.8zM10 15V9l5 3-5 3z"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" aria-label="Simple Genius on Facebook" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.7c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4v2h-2.7v3h2.7V21h3.1z"/></svg>
+          </a></li>
+          <li><a class="footer-social__link" href="https://www.instagram.com/simplegenius.co/" target="_blank" aria-label="Simple Genius on Instagram" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a></li>
+        </ul>
+      </div>
+      <nav class="footer-col" aria-label="Product">
+        <span class="footer-col__head">Product</span>
+        <a class="footer-col__link" href="how-it-works.html">How It Works</a>
+        <a class="footer-col__link" href="pricing.html">Pricing</a>
+        <a class="footer-col__link" href="assessment.html">Competitive AI Scan</a>
+      </nav>
+      <nav class="footer-col" aria-label="Company">
+        <span class="footer-col__head">Company</span>
+        <a class="footer-col__link" href="about.html">About</a>
+        <a class="footer-col__link" href="talk.html">Join the Waitlist</a>
+      </nav>
+    </div>
+
+    <div class="commit-strip">
+      <span>Month to month</span>
+      <span>You own your data</span>
+      <span>Nothing becomes truth until you approve it</span>
+      <span>Interview your whole team</span>
+    </div>
+
+    <div class="site-footer__legal">
+      <span>&copy; 2026 Simple Genius LLC. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=1787276638" defer></script>
+</body>
+</html>

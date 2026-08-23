@@ -312,45 +312,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- =========================================================== P5.5, SECURITY
-     §3.2 P75 + §9.4. Broken out of Work Streams into its own dark section so
-     security pops off the page. Placeholder for Trent's exact copy. Layout is
-     a single flowing row of five claims separated by hairlines, not boxes,
-     and it is built to expand vertically once Trent's longer copy arrives. -->
-<section class="section section--ink section--tight security-section" id="security">
-  <div class="container">
-    <div class="security-head security-head--centered">
-      <span class="eyebrow">Security</span>
-      <h2 class="display display--lg security-head__h">Your business stays yours.</h2>
-    </div>
-
-    <ol class="security-grid">
-      <li class="security-card">
-        <span class="security-card__num">01</span>
-        <span class="security-card__icon-wrap"><svg class="security-card__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M16 4l10 4v8c0 6-4.5 10-10 12-5.5-2-10-6-10-12V8l10-4z"/><path d="M11 16l4 4 6-7"/></svg></span>
-        <h3 class="security-card__k">Your information is encrypted.</h3>
-      </li>
-      <li class="security-card">
-        <span class="security-card__num">02</span>
-        <span class="security-card__icon-wrap"><svg class="security-card__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="16" cy="16" r="11"/><path d="M7 7l18 18"/></svg></span>
-        <h3 class="security-card__k">Your information is never used to train someone else&rsquo;s AI.</h3>
-      </li>
-      <li class="security-card">
-        <span class="security-card__num">03</span>
-        <span class="security-card__icon-wrap"><svg class="security-card__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 20V10a2 2 0 012-2h5l3 3h10a2 2 0 012 2v9a2 2 0 01-2 2H8a2 2 0 01-2-2z"/><path d="M16 13v8m-3-3l3 3 3-3"/></svg></span>
-        <h3 class="security-card__k">You can take your information with you at any time.</h3>
-      </li>
-      <li class="security-card">
-        <span class="security-card__num">04</span>
-        <span class="security-card__icon-wrap"><svg class="security-card__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 7h16v18l-8-4-8 4z"/><path d="M12 14l3 3 5-6"/></svg></span>
-        <h3 class="security-card__k">Nothing is treated as true until you approve it.</h3>
-      </li>
-      <li class="security-card">
-        <span class="security-card__num">05</span>
-        <span class="security-card__icon-wrap"><svg class="security-card__icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="7" width="22" height="18" rx="2"/><path d="M5 12h22M10 4v6M22 4v6"/></svg></span>
-        <h3 class="security-card__k">You pay month to month. No contract.</h3>
-      </li>
-    </ol>
+<!-- ================================================================ P5.5, SECURITY
+     Typography-only prompt. Black background, gold eyebrow, two large statements.
+     One CTA to /security. Short, not full-screen. -->
+<style>
+  .sec-prompt{background:#000;color:#F7F7F7;padding:clamp(4rem,10vw,8rem) 0;}
+  .sec-prompt__inner{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);text-align:left;}
+  .sec-prompt__eyebrow{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#D4AF37;margin-bottom:clamp(1.5rem,3vw,2.25rem);}
+  .sec-prompt__h{font-family:'Playfair Display',serif;font-weight:500;color:#F7F7F7;font-size:clamp(2.4rem,6.4vw,5.4rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 clamp(1.25rem,2.6vw,2rem);}
+  .sec-prompt__q{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;color:#D4AF37;font-size:clamp(1.6rem,4vw,3.4rem);line-height:1.15;letter-spacing:-.01em;margin:0 0 clamp(2rem,4vw,3rem);max-width:22ch;}
+  .sec-prompt__lede{font-family:'Inter',sans-serif;font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.55;color:rgba(247,247,247,.78);max-width:52ch;margin:0 0 clamp(2.25rem,4vw,3rem);}
+  .sec-prompt__cta{display:inline-flex;align-items:center;gap:.55rem;font-family:'Inter',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.02em;color:#000;background:#D4AF37;padding:.95rem 1.6rem;border-radius:6px;text-decoration:none;transition:transform .18s ease, background .18s ease;}
+  .sec-prompt__cta:hover{background:#E6BF41;transform:translateY(-1px);}
+  .sec-prompt__cta svg{width:14px;height:14px;}
+</style>
+<section class="sec-prompt" id="security" aria-labelledby="sec-prompt-h">
+  <div class="sec-prompt__inner">
+    <span class="sec-prompt__eyebrow">Security</span>
+    <h2 class="sec-prompt__h" id="sec-prompt-h">Everyone&rsquo;s using AI.</h2>
+    <p class="sec-prompt__q">But where is your company information going?</p>
+    <p class="sec-prompt__lede">AI makes work easier. Your company knowledge still needs to stay your company&rsquo;s.</p>
+    <a class="sec-prompt__cta" href="security.html">Learn About Security
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
   </div>
 </section>
 
