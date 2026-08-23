@@ -10,8 +10,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How It Works | Business AI Step One</title>
-<meta name="description" content="See it on your business, load your business in, confirm what is true, then run every decision against it.">
+<title>How It Works | Simple Genius</title>
+<meta name="description" content="The same process good consultants have always used. Built to stay with your business. Simple Genius is the first step in AI for business.">
+<link rel="canonical" href="https://www.simplegenius.com/how-it-works">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.simplegenius.com/how-it-works">
+<meta property="og:title" content="How It Works | Simple Genius">
+<meta property="og:description" content="The same process good consultants have always used. Built to stay with your business. Simple Genius is the first step in AI for business.">
+<meta property="og:site_name" content="Simple Genius">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,72 +27,108 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="favicon-16.png?v=1787253912" sizes="16x16" type="image/png">
 <link rel="icon" href="favicon-512.png?v=1787253912" sizes="512x512" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1787253912">
+<style>
+  html{scroll-behavior:smooth;scroll-padding-top:88px;}
+
+  /* ============================ How It Works ============================ */
+
+  /* Two tones only. Cream light + charcoal ink. */
+  :root{
+    --hiw-cream:#F4EFE7;
+    --hiw-ink:#1D1D1D;
+    --hiw-white:#FFFFFF;
+    --hiw-gold:#D4AF37;
+    --hiw-gold-deep:#8A6D18;
+    --hiw-rule-light:rgba(29,29,29,.14);
+    --hiw-rule-dark:rgba(244,239,231,.18);
+  }
+
+  body{background:var(--hiw-cream);}
+
+  /* Section shell */
+  .hiw{padding:clamp(3.5rem,6vw,6rem) 0;}
+  .hiw--light{background:var(--hiw-cream);color:var(--hiw-ink);}
+  .hiw--dark{background:var(--hiw-ink);color:#F4EFE7;}
+  .hiw__inner{max-width:1140px;margin:0 auto;padding:0 clamp(1.25rem,4vw,2rem);}
+
+  /* Hero (opening) */
+  .hiw--opening{padding:clamp(4rem,7vw,7rem) 0 clamp(3rem,5vw,5rem);}
+  .hiw__eyebrow{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--hiw-gold-deep);margin:0 0 clamp(1.25rem,2.5vw,2rem);}
+  .hiw--dark .hiw__eyebrow{color:var(--hiw-gold);}
+  .hiw__quote{font-family:'Playfair Display',serif;font-weight:500;color:var(--hiw-ink);font-size:clamp(2.25rem,5.2vw,4.25rem);line-height:1.06;letter-spacing:-.02em;margin:0;max-width:22ch;}
+
+  /* Stage headline (Playfair, matches article__h2 scale) */
+  .hiw__title{font-family:'Playfair Display',serif;font-weight:500;color:currentColor;font-size:clamp(2rem,4vw,3rem);line-height:1.1;letter-spacing:-.02em;margin:0 0 clamp(1.5rem,3vw,2.5rem);max-width:22ch;}
+
+  /* "The process" section */
+  .hiw__process-list{font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.35vw,1.25rem);line-height:1.6;color:var(--hiw-ink);margin:0 0 clamp(1.25rem,2vw,1.75rem);max-width:60ch;}
+  .hiw__process-list p{margin:0 0 .35rem;}
+  .hiw__process-lede{font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.35vw,1.25rem);line-height:1.6;color:var(--hiw-ink);margin:0 0 clamp(1.25rem,2vw,1.75rem);max-width:60ch;}
+
+  /* Comparison row: CONSULTING | SIMPLE GENIUS */
+  .hiw__compare{display:grid;grid-template-columns:1fr 1px 1fr;gap:clamp(2rem,4vw,3.5rem);align-items:start;}
+  .hiw__col{min-width:0;}
+  .hiw__divider{background:var(--hiw-rule-light);width:1px;align-self:stretch;}
+  .hiw--dark .hiw__divider{background:var(--hiw-rule-dark);}
+  .hiw__label{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.24em;text-transform:uppercase;color:var(--hiw-ink);margin:0 0 clamp(.9rem,1.5vw,1.15rem);}
+  .hiw--dark .hiw__label{color:#F4EFE7;}
+  .hiw__label--sg{color:var(--hiw-gold-deep);}
+  .hiw--dark .hiw__label--sg{color:var(--hiw-gold);}
+  .hiw__copy{font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.35vw,1.3125rem);line-height:1.55;color:currentColor;margin:0;max-width:34ch;}
+
+  /* Reserved sub-line under an SG cell (used in Study the Competition + Turn findings into action) */
+  .hiw__subline{margin:1.1rem 0 0;font-family:'Inter',sans-serif;font-size:1rem;letter-spacing:.02em;color:currentColor;opacity:.85;}
+  .hiw--dark .hiw__subline{opacity:.75;}
+
+  /* Emphasized after-line (Confirm the findings) */
+  .hiw__after{margin:clamp(2rem,4vw,3rem) 0 0;font-family:'Playfair Display',serif;font-weight:500;font-style:italic;color:var(--hiw-gold-deep);font-size:clamp(1.35rem,2.4vw,1.85rem);line-height:1.25;letter-spacing:-.005em;max-width:32ch;}
+
+  /* KEEP IT climax */
+  .hiw--keep{padding:clamp(5rem,9vw,8rem) 0;}
+  .hiw__keep-title{font-family:'Playfair Display',serif;font-weight:500;color:#F4EFE7;font-size:clamp(3rem,7vw,5.5rem);line-height:1;letter-spacing:-.025em;margin:0 0 clamp(2.5rem,5vw,4rem);text-transform:uppercase;}
+  .hiw__keep-title::after{content:".";color:var(--hiw-gold);}
+  .hiw__keep-stays{font-family:'Playfair Display',serif;font-weight:500;color:var(--hiw-gold);font-size:clamp(2.5rem,5.6vw,4.5rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 clamp(1.25rem,2.5vw,1.75rem);text-transform:uppercase;}
+  .hiw__keep-tail{font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.35vw,1.25rem);line-height:1.55;color:#F4EFE7;margin:0;max-width:36ch;}
+  .hiw__keep-tail span{display:block;}
+  .hiw__keep-tail span + span{margin-top:.35rem;}
+
+  /* Closing */
+  .hiw--closing{padding:clamp(4rem,7vw,7rem) 0;text-align:center;}
+  .hiw--closing .hiw__inner{max-width:820px;}
+  .hiw__close-title{font-family:'Playfair Display',serif;font-weight:500;color:var(--hiw-ink);font-size:clamp(2rem,4.4vw,3.25rem);line-height:1.1;letter-spacing:-.02em;margin:0 0 clamp(1.25rem,2vw,1.5rem);}
+  .hiw__close-lede{font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.35vw,1.25rem);line-height:1.55;color:var(--hiw-ink);margin:0 0 clamp(2rem,3.5vw,2.75rem);}
+  .hiw__ctas{display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center;}
+  .hiw__btn{display:inline-flex;align-items:center;gap:.55rem;font-family:'Inter',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.02em;padding:.95rem 1.6rem;border-radius:6px;text-decoration:none;transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;}
+  .hiw__btn--gold{color:#000;background:var(--hiw-gold);}
+  .hiw__btn--gold:hover{background:#E6BF41;transform:translateY(-1px);}
+  .hiw__btn--ghost{color:var(--hiw-ink);background:transparent;border:1px solid rgba(29,29,29,.28);}
+  .hiw__btn--ghost:hover{background:rgba(29,29,29,.05);border-color:rgba(29,29,29,.55);transform:translateY(-1px);}
+
+  /* Mobile */
+  @media (max-width:760px){
+    .hiw{padding:clamp(3rem,10vw,4.5rem) 0;}
+    .hiw--opening{padding:clamp(3.5rem,11vw,5rem) 0 clamp(2.5rem,8vw,3.5rem);}
+    .hiw--keep{padding:clamp(4rem,14vw,6rem) 0;}
+    .hiw__compare{grid-template-columns:1fr;gap:2rem;}
+    .hiw__divider{display:none;}
+    .hiw__col + .hiw__col{padding-top:0;border-top:1px solid var(--hiw-rule-light);padding-top:2rem;}
+    .hiw--dark .hiw__col + .hiw__col{border-top-color:var(--hiw-rule-dark);}
+    .hiw__quote{font-size:clamp(1.9rem,8vw,2.6rem);}
+    .hiw__title{font-size:clamp(1.75rem,7vw,2.3rem);}
+    .hiw__copy{font-size:1.125rem;max-width:none;}
+    .hiw__keep-title{font-size:2.75rem;}
+    .hiw__keep-stays{font-size:2.25rem;}
+  }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P48GRGDB"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<!-- SHARED ILLUSTRATION DEFS, THE C STANDARD (css/site.css block 15).
-     Injected by build.py as the first child of <body> on every page.
-     Reference panel: qa/r3/refine-variants.html, panel C. Rules and ship gate:
-     DESIGN-SYSTEM.md §9A. Gate: node qa/r3/c-standard.js all 1440.
-
-     Nothing in here may imply a third line weight, a second tint or a light
-     source. The C standard allows exactly two stroke weights, structural 2.4
-     and hairline 1, so every marker below is sized in USER UNITS, not in
-     multiples of stroke-width: a connector head is the same size whichever of
-     the two weights carries it, and it lands on the element it points to
-     rather than short of it.
-
-     BANNED, and deliberately absent: drop/cast shadow filters, feDropShadow,
-     feGaussianBlur, feOffset, lit-face gradients, occlusion ramps, extrusion,
-     emboss, glow. See DESIGN-SYSTEM.md §9A.0 for the full nine-row table. -->
-<svg class="dg-defs" width="0" height="0" aria-hidden="true" focusable="false"
-     xmlns="http://www.w3.org/2000/svg"><defs>
-
-  <!-- 45° drafting hatch. Reserved for an area that is EMPTY or UNVERIFIED ,
-       it is a convention, not a texture. Light and dark grounds. -->
-  <pattern id="dgHatch" width="10" height="10" patternUnits="userSpaceOnUse"
-           patternTransform="rotate(45)">
-    <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(27,27,26.13)" stroke-width="1"/>
-  </pattern>
-  <pattern id="dgHatchD" width="10" height="10" patternUnits="userSpaceOnUse"
-           patternTransform="rotate(45)">
-    <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(237,235,232.15)" stroke-width="1"/>
-  </pattern>
-
-  <!-- Connector head. Open chevron, inherits the line's own stroke. refX 9 in
-       a 10-unit box puts the tip ON the path's last point, which is how a
-       connector terminates exactly on its target (§9A.7). -->
-  <marker id="dgArrow" viewBox="0 0 10 10" refX="9" refY="5"
-          markerWidth="10" markerHeight="10" orient="auto-start-reverse"
-          markerUnits="userSpaceOnUse">
-    <path d="M1 1 L9 5 L1 9" fill="none" stroke="context-stroke"
-          stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="miter"/>
-  </marker>
-
-  <!-- Dimension end cap. A perpendicular tick, the way a measured rule
-       terminates on a drawing. Use on .d-dim via marker-start/marker-end. -->
-  <marker id="dgTick" viewBox="0 0 10 10" refX="5" refY="5"
-          markerWidth="8" markerHeight="8" orient="auto"
-          markerUnits="userSpaceOnUse">
-    <path d="M5 0 V10" fill="none" stroke="context-stroke" stroke-width="2"/>
-  </marker>
-
-  <!-- Terminator dot. Where a reference line lands on the thing it names. -->
-  <marker id="dgNode" viewBox="0 0 10 10" refX="5" refY="5"
-          markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse">
-    <circle cx="5" cy="5" r="3" fill="context-stroke"/>
-  </marker>
-
-</defs></svg>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container site-header__inner">
-    <!-- Two real assets, swapped by CSS. Never a filter: invert() on the
-         wordmark, inverting the gold in "Genius" produced bright blue.
-         See DESIGN-SYSTEM.md §9, "Header". -->
     <a class="logo" href="index.html" aria-label="Simple Genius home">
       <img class="logo__img logo__img--ink" src="img/logo-dark-112h.png"
            srcset="img/logo-dark-56h.png 1x, img/logo-dark-112h.png 2x, img/logo-dark-168h.png 3x"
@@ -99,10 +142,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
     </button>
 
-    <nav class="nav" id="site-nav" aria-label="Main">      <a class="nav__link is-current" href="how-it-works.html">How It Works</a>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a class="nav__link is-current" href="how-it-works.html">How It Works</a>
       <a class="nav__link" href="pricing.html">Pricing</a>
       <a class="nav__link" href="assessment.html">Competitive AI Scan</a>
-      <a class="nav__link" href="about.html">About</a>    </nav>
+      <a class="nav__link" href="about.html">About</a>
+    </nav>
 
     <div class="header__actions">
       <a class="btn btn--primary" href="talk.html">Join the Waitlist</a>
@@ -111,235 +156,161 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </header>
 
 <main id="main">
-<!-- ========================================================= A0, OPENING -->
-<section class="page-head page-head--hiw-compact">
-  <div class="page-head__glow" aria-hidden="true"></div>
-  <div class="container page-head__inner">
-    <span class="eyebrow">How It Works</span>
-    <h1 class="page-head__title">Give AI something <em>worth knowing.</em></h1>
-    <p class="page-head__sub page-head__sub--serif">Your business. Your competition. What matters next.</p>
-    <div class="btn-row page-head__actions">
-      <a class="btn btn--primary" href="talk.html">Join the Waitlist <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn--secondary" href="assessment.html">Run the Competitive AI Scan</a>
-    </div>
-  </div>
-</section>
 
-<!-- ======================================================== 01, COMPETITION -->
-<section class="section section--ground section--tall">
-  <div class="container">
-    <div class="step">
-      <div class="step__copy">
-        <div class="step__mark">
-          <span class="step__num">1</span>
-          <span class="step__rule" aria-hidden="true"></span>
+  <!-- OPENING -->
+  <section class="hiw hiw--light hiw--opening">
+    <div class="hiw__inner">
+      <span class="hiw__eyebrow">How It Works</span>
+      <p class="hiw__quote">&ldquo;The most expensive thing we&rsquo;re all paying for is the information we don&rsquo;t have.&rdquo;</p>
+    </div>
+  </section>
+
+  <!-- THE PROCESS -->
+  <section class="hiw hiw--light">
+    <div class="hiw__inner">
+      <h2 class="hiw__title">The process was never the problem.</h2>
+      <p class="hiw__process-lede">Good consultants have always done the same basic things:</p>
+      <div class="hiw__process-list">
+        <p>Learn the business.</p>
+        <p>Study the competition.</p>
+        <p>Find what matters.</p>
+        <p>Recommend what to do.</p>
+      </div>
+      <p class="hiw__process-lede">Simple Genius follows that same logic.</p>
+    </div>
+  </section>
+
+  <!-- START WITH THE PEOPLE -->
+  <section class="hiw hiw--light">
+    <div class="hiw__inner">
+      <h2 class="hiw__title">Start with the people.</h2>
+      <div class="hiw__compare">
+        <div class="hiw__col">
+          <span class="hiw__label">Consulting</span>
+          <p class="hiw__copy">Talk to the leaders and the people doing the work.</p>
         </div>
-        <span class="step__label">Competition Hub</span>
-        <h2 class="step__title">See them before <em>they see you.</em></h2>
-        <ul class="step__benefits">
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>Pick the competitors worth watching.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>Simple Genius keeps tabs on what they&rsquo;re doing and changing.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>Important moves are surfaced for you.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>Know when something deserves your attention.</span></li>
-        </ul>
-      </div>
-
-      <div class="step__art reveal">
-        <figure class="frame shot--zoomable" tabindex="0" role="button">
-          <div class="frame__bar" aria-hidden="true">
-            <span class="frame__dots"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></span>
-            <span class="frame__tab">Competition Hub</span>
-          </div>
-          <img class="frame__img"
-               src="img/sg-scan-output-1600w.jpg"
-               srcset="img/sg-scan-output-800w.jpg 800w, img/sg-scan-output-1600w.jpg 1600w, img/sg-scan-output-2400w.jpg 2400w"
-               sizes="(max-width: 1080px) 100vw, 600px"
-               width="1600" height="708"
-               alt="Competition Hub: your position beside the competitors you track, movement in the last cycle, and the first recommended response."
-               loading="lazy" decoding="async">
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ 02, CONTEXT -->
-<section class="section section--white section--seam section--tall">
-  <div class="container">
-    <div class="step step--reverse">
-      <div class="step__copy">
-        <div class="step__mark">
-          <span class="step__num">2</span>
-          <span class="step__rule" aria-hidden="true"></span>
-        </div>
-        <span class="step__label">Business Brain</span>
-        <h2 class="step__title">Get what your business knows <em>out of people&rsquo;s heads.</em></h2>
-        <ul class="step__benefits">
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>Start with guided interviews with your team.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>Simple Genius captures how your business actually works.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>That knowledge becomes a living record of your business.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>Now AI has context it could never find online.</span></li>
-        </ul>
-      </div>
-
-      <div class="step__art reveal">
-        <figure class="frame shot--zoomable" tabindex="0" role="button">
-          <div class="frame__bar" aria-hidden="true">
-            <span class="frame__dots"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></span>
-            <span class="frame__tab">Business Brain</span>
-          </div>
-          <img class="frame__img"
-               src="img/sg-business-brain-1600w.jpg"
-               srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w, img/sg-business-brain-2400w.jpg 2400w"
-               sizes="(max-width: 1080px) 100vw, 600px"
-               width="1600" height="832"
-               alt="Business Brain: the six intake areas, each showing how much of it has been captured and confirmed."
-               loading="lazy" decoding="async">
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================== 03, STRATEGIC INSIGHTS -->
-<section class="section section--ground section--tall">
-  <div class="container">
-    <div class="step">
-      <div class="step__copy">
-        <div class="step__mark">
-          <span class="step__num">3</span>
-          <span class="step__rule" aria-hidden="true"></span>
-        </div>
-        <span class="step__label">Strategic Insights</span>
-        <h2 class="step__title">Cut through <em>the noise.</em></h2>
-        <ul class="step__benefits">
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>Simple Genius brings your business and competition together.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>It looks for what matters across both.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>The important insights rise to the top.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>You get a clearer picture of what to do next.</span></li>
-        </ul>
-      </div>
-
-      <div class="step__art reveal">
-        <figure class="frame shot--zoomable" tabindex="0" role="button">
-          <div class="frame__bar" aria-hidden="true">
-            <span class="frame__dots"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></span>
-            <span class="frame__tab">Strategic Insights</span>
-          </div>
-          <img class="frame__img"
-               src="img/sg-strategic-insights-1600w.jpg"
-               srcset="img/sg-strategic-insights-800w.jpg 800w, img/sg-strategic-insights-1600w.jpg 1600w, img/sg-strategic-insights-2400w.jpg 2400w"
-               sizes="(max-width: 1080px) 100vw, 600px"
-               width="1600" height="804"
-               alt="Strategic Insights: recommended moves ranked by modelled impact, each tracing back to a confirmed finding."
-               loading="lazy" decoding="async">
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====================================================== 04, WORK STREAMS -->
-<section class="section section--white section--seam section--tall">
-  <div class="container">
-    <div class="step step--reverse">
-      <div class="step__copy">
-        <div class="step__mark">
-          <span class="step__num">4</span>
-          <span class="step__rule" aria-hidden="true"></span>
-        </div>
-        <span class="step__label">Work Streams</span>
-        <h2 class="step__title">Stop explaining your business <em>to AI.</em></h2>
-        <ul class="step__benefits">
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>Get answers grounded in how your business actually works.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>Give your team AI that already knows the company.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>Ask questions and work through real business problems.</span></li>
-          <li><span class="step__benefit-star" aria-hidden="true">&#9733;</span><span>An internal company AI your team can work with every day.</span></li>
-        </ul>
-      </div>
-
-      <div class="step__art reveal">
-        <figure class="frame shot--zoomable" tabindex="0" role="button">
-          <div class="frame__bar" aria-hidden="true">
-            <span class="frame__dots"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></span>
-            <span class="frame__tab">Work Streams</span>
-          </div>
-          <img class="frame__img"
-               src="img/sg-team-chat-1600w.jpg"
-               srcset="img/sg-team-chat-800w.jpg 800w, img/sg-team-chat-1600w.jpg 1600w, img/sg-team-chat-2400w.jpg 2400w"
-               sizes="(max-width: 1080px) 100vw, 600px"
-               width="1600" height="800"
-               alt="Work Streams: team chat with your business knowledge behind every answer."
-               loading="lazy" decoding="async">
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================ THE DIFFERENCE
-     Moved verbatim from what-you-get.html B7.5 per spec. -->
-<section class="section section--ink-deep section--seam section--tall tv-section" id="two-versions">
-  <div class="container">
-    <div class="outcome__split">
-      <div class="outcome__copy">
-        <div class="outcome__head">
-          <span class="eyebrow">The difference</span>
-          <h2 class="outcome__title">With and without <em>Simple Genius.</em></h2>
+        <div class="hiw__divider" aria-hidden="true"></div>
+        <div class="hiw__col">
+          <span class="hiw__label hiw__label--sg">Simple Genius</span>
+          <p class="hiw__copy">AI voice interviews your team and captures how the business actually works.</p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="outcome__art reveal">
-        <figure class="frame">
-          <div class="frame__bar" aria-hidden="true">
-            <span class="frame__dots"><span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span></span>
-            <span class="frame__tab">Before &amp; After Simple Genius</span>
-          </div>
-          <div class="tv-frame">
-            <div class="tv-heads" aria-hidden="true">
-              <span class="tv-col-head">Before Simple Genius</span>
-              <span></span>
-              <span class="tv-col-head tv-col-head--after">After Simple Genius</span>
-            </div>
-            <ul class="tv-rows" aria-label="Business before and after taking the first step in AI">
-              <li class="tv-row">
-                <p class="tv-row-before"><span class="tv-row-label">Before Simple Genius</span>Generic answers.</p>
-                <svg class="tv-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
-                <p class="tv-row-after"><span class="tv-row-label tv-row-label--after">After Simple Genius</span>Answers rooted in your business.</p>
-              </li>
-              <li class="tv-row">
-                <p class="tv-row-before"><span class="tv-row-label">Before Simple Genius</span>Competitors moving unwatched.</p>
-                <svg class="tv-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
-                <p class="tv-row-after"><span class="tv-row-label tv-row-label--after">After Simple Genius</span>Competitors watched in daylight.</p>
-              </li>
-              <li class="tv-row">
-                <p class="tv-row-before"><span class="tv-row-label">Before Simple Genius</span>Company data leaking into public models.</p>
-                <svg class="tv-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
-                <p class="tv-row-after"><span class="tv-row-label tv-row-label--after">After Simple Genius</span>AI running in a private environment.</p>
-              </li>
-            </ul>
-          </div>
-        </figure>
+  <!-- GATHER WHAT THE COMPANY KNOWS -->
+  <section class="hiw hiw--light">
+    <div class="hiw__inner">
+      <h2 class="hiw__title">Gather what the company knows.</h2>
+      <div class="hiw__compare">
+        <div class="hiw__col">
+          <span class="hiw__label">Consulting</span>
+          <p class="hiw__copy">Collect the documents, playbooks, SOPs, and process files.</p>
+        </div>
+        <div class="hiw__divider" aria-hidden="true"></div>
+        <div class="hiw__col">
+          <span class="hiw__label hiw__label--sg">Simple Genius</span>
+          <p class="hiw__copy">Bring them in once. Your business knowledge starts living in one place.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- =========================================================== CLOSE -->
-<section class="section section--ground section--tall">
-  <div class="container container--mid">
-    <div class="section__head section__head--center">
-      <span class="eyebrow">The first step</span>
-      <h2 class="display display--lg">Start by seeing what AI <em>already sees.</em></h2>
-      <p class="section__lede section__lede--center">Run the Competitive AI Scan to see what AI says about your business and two competitors you choose.</p>
+  <!-- STUDY THE COMPETITION (dark) -->
+  <section class="hiw hiw--dark">
+    <div class="hiw__inner">
+      <h2 class="hiw__title">Study the competition.</h2>
+      <div class="hiw__compare">
+        <div class="hiw__col">
+          <span class="hiw__label">Consulting</span>
+          <p class="hiw__copy">Run a competitive review. It starts getting old the moment it is finished.</p>
+        </div>
+        <div class="hiw__divider" aria-hidden="true"></div>
+        <div class="hiw__col">
+          <span class="hiw__label hiw__label--sg">Simple Genius</span>
+          <p class="hiw__copy">Competition Hub keeps watching the competitors you choose and shows you what changed.</p>
+          <p class="hiw__subline">Hires &nbsp;&bull;&nbsp; Launches &nbsp;&bull;&nbsp; Price changes &nbsp;&bull;&nbsp; Public moves</p>
+        </div>
+      </div>
     </div>
-    <div class="btn-row btn-row--center btn-row--stack">
-      <a class="btn btn--gold" href="assessment.html">Run the Competitive AI Scan <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+  </section>
+
+  <!-- CONFIRM THE FINDINGS -->
+  <section class="hiw hiw--light">
+    <div class="hiw__inner">
+      <h2 class="hiw__title">Confirm the findings.</h2>
+      <div class="hiw__compare">
+        <div class="hiw__col">
+          <span class="hiw__label">Consulting</span>
+          <p class="hiw__copy">Review the findings and correct what is wrong before recommendations begin.</p>
+        </div>
+        <div class="hiw__divider" aria-hidden="true"></div>
+        <div class="hiw__col">
+          <span class="hiw__label hiw__label--sg">Simple Genius</span>
+          <p class="hiw__copy">You confirm or correct what Simple Genius learns about your business.</p>
+        </div>
+      </div>
+      <p class="hiw__after">Nothing moves forward on an assumption you didn&rsquo;t approve.</p>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- TURN FINDINGS INTO ACTION -->
+  <section class="hiw hiw--light">
+    <div class="hiw__inner">
+      <h2 class="hiw__title">Turn findings into action.</h2>
+      <div class="hiw__compare">
+        <div class="hiw__col">
+          <span class="hiw__label">Consulting</span>
+          <p class="hiw__copy">Get the recommendation. Then the engagement ends.</p>
+        </div>
+        <div class="hiw__divider" aria-hidden="true"></div>
+        <div class="hiw__col">
+          <span class="hiw__label hiw__label--sg">Simple Genius</span>
+          <p class="hiw__copy">Get insights tied to competitor signals and choose which initiatives to run.</p>
+          <p class="hiw__subline">Tied to competitor signals. Written as a clear insight.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEEP IT (dark climax) -->
+  <section class="hiw hiw--dark hiw--keep">
+    <div class="hiw__inner">
+      <h2 class="hiw__keep-title">Keep it</h2>
+      <div class="hiw__compare">
+        <div class="hiw__col">
+          <span class="hiw__label">Consulting</span>
+          <p class="hiw__copy">The context leaves when the consultant does.</p>
+        </div>
+        <div class="hiw__divider" aria-hidden="true"></div>
+        <div class="hiw__col">
+          <span class="hiw__label hiw__label--sg">Simple Genius</span>
+          <p class="hiw__keep-stays">Your context stays.</p>
+          <p class="hiw__keep-tail">
+            <span>Inside your company&rsquo;s four walls.</span>
+            <span>Your team uses it every day in Workstreams.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="hiw hiw--light hiw--closing">
+    <div class="hiw__inner">
+      <h2 class="hiw__close-title">The same process. Built to stay with your business.</h2>
+      <p class="hiw__close-lede">Simple Genius is the first step in AI for business.</p>
+      <div class="hiw__ctas">
+        <a class="hiw__btn hiw__btn--gold" href="talk.html">Join the Waitlist
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="hiw__btn hiw__btn--ghost" href="assessment.html">Run the Competitive AI Scan</a>
+      </div>
+    </div>
+  </section>
 
 </main>
+
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__top">
@@ -367,10 +338,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <nav class="footer-col" aria-label="Product">
         <span class="footer-col__head">Product</span>
-        <a class="footer-col__link" href="how-it-works.html">How It Works</a>        <a class="footer-col__link" href="pricing.html">Pricing</a>
+        <a class="footer-col__link" href="how-it-works.html">How It Works</a>
+        <a class="footer-col__link" href="pricing.html">Pricing</a>
         <a class="footer-col__link" href="assessment.html">Competitive AI Scan</a>
       </nav>
-<nav class="footer-col" aria-label="Company">
+      <nav class="footer-col" aria-label="Company">
         <span class="footer-col__head">Company</span>
         <a class="footer-col__link" href="about.html">About</a>
         <a class="footer-col__link" href="talk.html">Join the Waitlist</a>
