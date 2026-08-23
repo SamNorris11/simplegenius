@@ -35,19 +35,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .section--flip .grid--centred > .split__copy.col--1-5 {
     grid-column: 2 / span 1 !important;
   }
-  /* Mirror the .shot--edge bleed: instead of bleeding right, bleed LEFT. */
-  .section--flip .shot--edge {
-    margin-right: 0;
-    margin-left: calc(-1 * ((100vw - min(100vw - (2 * var(--page-margin)), var(--maxw))) / 2));
-    border-top-right-radius: var(--radius-lg, 14px);
-    border-bottom-right-radius: var(--radius-lg, 14px);
-    border-right: 1px solid var(--c-line, rgba(28,26,23,.12));
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-left: 0;
-  }
+  /* Flipped sections: keep the software image FULLY inside the section (no left bleed).
+     Cancel .shot--edge / .shot--edge-firm's negative right-margin so image stays contained,
+     and restore radii + borders on all sides so the frame reads as a complete panel. */
+  .section--flip .shot--edge,
   .section--flip .shot--edge-firm {
-    margin-left: calc(-1 * ((100vw - min(100vw - (2 * var(--page-margin)), var(--maxw))) / 2) - var(--sp-10));
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    border-radius: var(--radius-lg, 14px) !important;
+    border: 1px solid var(--c-line, rgba(28,26,23,.12)) !important;
   }
   @media (max-width: 900px) {
     .section--flip .grid--centred {
@@ -57,7 +53,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .section--flip .grid--centred > .split__copy.col--1-5 {
       grid-column: 1 / -1 !important;
     }
-    .section--flip .shot--edge-firm { margin-left: 0; }
   }
 
   /* Guided setup toggle (ported from simple version) */
