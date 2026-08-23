@@ -25,10 +25,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1787253912">
 <style>
   /* Homepage section flip: image LEFT, copy RIGHT for Business Brain + Workstreams.
-     Reverses the grid order without touching the underlying 40/60 grid rule. */
-  .section--flip .grid--centred > .split__copy { order: 2; }
-  .section--flip .grid--centred > .shot { order: 1; }
-  /* And mirror the .shot--edge bleed: instead of bleeding right, bleed LEFT. */
+     Force the 40/60 grid to flip 60/40 with the image in column 1 and copy in column 2. */
+  .section--flip .grid--centred {
+    grid-template-columns: minmax(0, 60fr) minmax(0, 40fr) !important;
+  }
+  .section--flip .grid--centred > .shot.col--6-12 {
+    grid-column: 1 / span 1 !important;
+  }
+  .section--flip .grid--centred > .split__copy.col--1-5 {
+    grid-column: 2 / span 1 !important;
+  }
+  /* Mirror the .shot--edge bleed: instead of bleeding right, bleed LEFT. */
   .section--flip .shot--edge {
     margin-right: 0;
     margin-left: calc(-1 * ((100vw - min(100vw - (2 * var(--page-margin)), var(--maxw))) / 2));
@@ -43,9 +50,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     margin-left: calc(-1 * ((100vw - min(100vw - (2 * var(--page-margin)), var(--maxw))) / 2) - var(--sp-10));
   }
   @media (max-width: 900px) {
+    .section--flip .grid--centred {
+      grid-template-columns: 1fr !important;
+    }
+    .section--flip .grid--centred > .shot.col--6-12,
+    .section--flip .grid--centred > .split__copy.col--1-5 {
+      grid-column: 1 / -1 !important;
+    }
     .section--flip .shot--edge-firm { margin-left: 0; }
-    .section--flip .grid--centred > .split__copy,
-    .section--flip .grid--centred > .shot { order: initial; }
   }
 
   /* Guided setup toggle (ported from simple version) */
