@@ -63,10 +63,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* Pull-line: large emphasized statement, same left edge */
   .article__pull{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(2.25rem,4vw,3rem);line-height:1.15;letter-spacing:-.015em;margin:clamp(2.75rem,5vw,3.75rem) 0;padding:0;border-left:3px solid #D4AF37;padding-left:clamp(1rem,2vw,1.5rem);}
 
-  /* Closing pull-line: two lines, gold italic accent */
+  /* Closing pull-line: two lines, gold italic accent (legacy — no longer used) */
   .article__end{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(2.25rem,4vw,3rem);line-height:1.18;letter-spacing:-.015em;margin:clamp(3rem,6vw,4.5rem) 0 0;}
   .article__end span{display:block;}
   .article__end span:last-child{font-style:italic;color:#8A6D18;margin-top:.5rem;}
+
+  /* THE TURN — mid-article, one of the largest lines on the page */
+  .article__turn{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(2.75rem,5.4vw,4.25rem);line-height:1.06;letter-spacing:-.02em;margin:clamp(4rem,8vw,6rem) 0 clamp(3rem,6vw,4.5rem);}
+  .article__turn span{display:block;}
+
+  /* FINAL STATEMENT — the very largest closing lines. Black + gold. */
+  .article__final{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(3rem,6.4vw,5rem);line-height:1.02;letter-spacing:-.025em;margin:clamp(5rem,9vw,7rem) 0 clamp(2rem,3.5vw,2.75rem);}
+  .article__final span{display:block;}
+  .article__final span:last-child{color:#8A6D18;margin-top:.35rem;}
+
+  /* Three-question group: bold first line, extra breathing room */
+  .article__qs{margin:clamp(2rem,3.5vw,2.75rem) 0;}
+  .article__qs p{margin:0 0 clamp(1.25rem,2vw,1.75rem);}
+  .article__qs p:last-child{margin-bottom:0;}
 
   /* Two-line uppercase pull statement (mid-article) */
   .article__pull2{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.18;letter-spacing:-.01em;margin:clamp(2.75rem,5vw,3.75rem) 0;padding-left:clamp(1rem,2vw,1.5rem);border-left:3px solid #D4AF37;}
@@ -101,6 +115,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .article__title{font-size:clamp(2.4rem,10vw,2.85rem);}
     .article__body,.article__list li{font-size:1.125rem;}
     .article__pull,.article__end{font-size:1.75rem;line-height:1.18;}
+    .article__turn{font-size:2.15rem;line-height:1.08;}
+    .article__final{font-size:2.5rem;line-height:1.05;}
+    .article__ask{font-size:1.65rem;line-height:1.2;}
   }
 </style>
 </head>
@@ -165,13 +182,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <p>If it helps someone finish at 4 p.m. instead of 6 p.m., they&rsquo;re going to use it.</p>
 
-        <p>They want to go home sooner.</p>
+        <p><strong>They want to go home sooner.</strong></p>
 
-        <p>But here&rsquo;s the problem.</p>
+        <p>And the better AI knows the problem, the better it can help.</p>
 
-        <p>AI gets better when you give it more information.</p>
-
-        <p>So people give it more:</p>
+        <p>So people give it more.</p>
 
         <p>A customer email.</p>
 
@@ -185,29 +200,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <p>Something only their team knows.</p>
 
-        <p>Bit by bit, your people can end up putting a lot of your business into public AI tools.</p>
+        <p>None of that is strange. It&rsquo;s how you get better answers.</p>
 
-        <p>Not because they&rsquo;re doing something wrong.</p>
+        <p class="article__pull">But when your team is doing that across public AI tools, your company has a new problem.</p>
 
-        <p>They&rsquo;re just trying to do better work.</p>
+        <div class="article__qs">
+          <p><strong>Where is all that information going?</strong></p>
+          <p>Who controls it?</p>
+          <p>And how much of your business is being handed over just to get a better answer?</p>
+        </div>
 
-        <p>But it raises a simple question:</p>
+        <p class="article__turn">
+          <span>Your team needs AI.</span>
+          <span>Give them your AI.</span>
+        </p>
 
-        <p class="article__ask">Where is your company information going?</p>
+        <p>That&rsquo;s part of why we built Simple Genius.</p>
 
-        <p>And does your business have control over it?</p>
+        <p><strong>Simple Genius gives your company its own place to use AI.</strong></p>
 
-        <h2 class="article__h2">Simple Genius keeps your company knowledge inside your company.</h2>
+        <p>Instead of your people feeding company information into public AI tools every time they need help, they can work with AI that already knows the business.</p>
 
-        <p>Your team can use AI without putting your business into public AI tools over and over again.</p>
+        <p><strong>Your company information stays in a secure, private environment built for your company.</strong></p>
 
-        <p>Simple Genius gives your company a secure, encrypted place to use AI with your own company information.</p>
+        <p>Your data is <strong>encrypted</strong>.</p>
 
-        <p>That space is built for your business, and your company controls the knowledge inside it.</p>
+        <p>Your company <strong>controls it</strong>.</p>
 
-        <p>Your valuable company knowledge stays inside the four walls of the business.</p>
+        <p>And it is <strong>not used to train someone else&rsquo;s AI</strong>.</p>
 
-        <p class="article__end">
+        <p>Your people still get what they wanted in the first place: AI that helps them work faster, think through problems, and get things done.</p>
+
+        <p class="article__pull">The difference is where they do it.</p>
+
+        <p>They do it inside Simple Genius.</p>
+
+        <p><strong>Inside the four walls of the business.</strong></p>
+
+        <p class="article__final">
           <span>Your people get AI.</span>
           <span>Your company keeps what it knows.</span>
         </p>
