@@ -316,17 +316,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      Typography-only prompt. Black background, gold eyebrow, two large statements.
      One CTA to /security. Short, not full-screen. -->
 <style>
-  .sec-prompt{background:#000;color:#F7F7F7;padding:clamp(3rem,6vw,4.75rem) 0;}
-  .sec-prompt__inner{max-width:920px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);text-align:center;}
+  .sec-prompt{background:#000;color:#F7F7F7;padding:clamp(2.25rem,4.5vw,3.5rem) 0;}
+  .sec-prompt__inner{max-width:960px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);text-align:center;}
   .sec-prompt__eyebrow{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#D4AF37;margin-bottom:clamp(1rem,2vw,1.5rem);}
-  .sec-prompt__h{font-family:'Playfair Display',serif;font-weight:500;color:#F7F7F7;font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.04;letter-spacing:-.02em;margin:0 0 clamp(.75rem,1.6vw,1.25rem);}
-  .sec-prompt__q{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;color:#D4AF37;font-size:clamp(1.35rem,2.8vw,2.2rem);line-height:1.18;letter-spacing:-.01em;margin:0 auto clamp(1.25rem,2.4vw,1.75rem);max-width:24ch;}
-  .sec-prompt__lede{font-family:'Inter',sans-serif;font-size:clamp(1rem,1.15vw,1.075rem);line-height:1.55;color:rgba(247,247,247,.78);max-width:54ch;margin:0 auto clamp(1.5rem,2.6vw,2rem);}
+  .sec-prompt__h{font-family:'Playfair Display',serif;font-weight:500;color:#F7F7F7;font-size:clamp(2.4rem,5.8vw,4.6rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 clamp(.9rem,1.8vw,1.4rem);}
+  .sec-prompt__q{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;color:#D4AF37;font-size:clamp(1.6rem,3.6vw,2.9rem);line-height:1.15;letter-spacing:-.01em;margin:0 auto clamp(1.75rem,3.2vw,2.4rem);max-width:26ch;}
   .sec-prompt__cta{display:inline-flex;align-items:center;gap:.55rem;font-family:'Inter',sans-serif;font-weight:600;font-size:.98rem;letter-spacing:.02em;color:#000;background:#D4AF37;padding:.85rem 1.5rem;border-radius:6px;text-decoration:none;transition:transform .18s ease, background .18s ease;}
   .sec-prompt__cta:hover{background:#E6BF41;transform:translateY(-1px);}
   .sec-prompt__cta svg{width:14px;height:14px;}
   @media (max-width:640px){
-    .sec-prompt{padding:2.75rem 0;}
+    .sec-prompt{padding:2.25rem 0;}
   }
 </style>
 <section class="sec-prompt" id="security" aria-labelledby="sec-prompt-h">
@@ -334,7 +333,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="sec-prompt__eyebrow">Security</span>
     <h2 class="sec-prompt__h" id="sec-prompt-h">Everyone&rsquo;s using AI.</h2>
     <p class="sec-prompt__q">But where is your company information going?</p>
-    <p class="sec-prompt__lede">AI makes work easier. Your company knowledge still needs to stay your company&rsquo;s.</p>
     <a class="sec-prompt__cta" href="security.html">Learn About Security
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
