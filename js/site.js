@@ -492,8 +492,9 @@
     }
   };
 
+  var ZOOM_SELECTOR = '.shot--zoomable, .hiw-stack__shot, .winframe';
   document.addEventListener('click', function (e) {
-    var fig = e.target.closest && e.target.closest('.shot--zoomable');
+    var fig = e.target.closest && e.target.closest(ZOOM_SELECTOR);
     if (!fig) return;
     e.preventDefault();
     lb.open(fig);
@@ -502,18 +503,19 @@
     if (e.key === 'Escape' && lb.root && lb.root.getAttribute('aria-hidden') === 'false') {
       lb.close();
     }
-    if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('shot--zoomable')) {
+    if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.matches && document.activeElement.matches(ZOOM_SELECTOR)) {
       e.preventDefault();
       lb.open(document.activeElement);
     }
   });
-  Array.prototype.forEach.call(document.querySelectorAll('.shot--zoomable'), function (fig) {
+  Array.prototype.forEach.call(document.querySelectorAll(ZOOM_SELECTOR), function (fig) {
     if (!fig.hasAttribute('tabindex')) fig.setAttribute('tabindex', '0');
     if (!fig.hasAttribute('role')) fig.setAttribute('role', 'button');
     if (!fig.hasAttribute('aria-label')) {
       var img = fig.querySelector('img');
       if (img && img.alt) fig.setAttribute('aria-label', 'Enlarge screenshot: ' + img.alt.split('.')[0]);
     }
+    fig.classList.add('is-zoomable');
   });
 
 })();
@@ -585,3 +587,4 @@
     apply(false);
   });
 })();
+

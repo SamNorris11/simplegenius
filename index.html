@@ -79,6 +79,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
   }
 
+  /* MOBILE: eyebrow + headline first, then image, then body copy + CTA.
+     Applies to Competition Hub, Business Brain, Strategic Insights, Workstreams.
+     .split__copy uses display:contents on mobile so its two children
+     (.split__copy-head and .split__copy-body) become grid siblings and can be
+     ordered around the image. */
+  @media (max-width: 900px) {
+    #competition .grid--centred > .split__copy,
+    #context .grid--centred > .split__copy,
+    #insights .grid--centred > .split__copy,
+    #work-streams .grid--centred > .split__copy {
+      display: contents !important;
+    }
+    #competition .split__copy-head,
+    #context .split__copy-head,
+    #insights .split__copy-head,
+    #work-streams .split__copy-head {
+      order: 1 !important;
+      grid-column: 1 / -1 !important;
+      margin-bottom: 1.25rem;
+    }
+    #competition .grid--centred > .shot,
+    #context .grid--centred > .shot,
+    #insights .grid--centred > .shot,
+    #work-streams .grid--centred > .shot {
+      order: 2 !important;
+    }
+    #competition .split__copy-body,
+    #context .split__copy-body,
+    #insights .split__copy-body,
+    #work-streams .split__copy-body {
+      order: 3 !important;
+      grid-column: 1 / -1 !important;
+      margin-top: 1.5rem;
+    }
+  }
+
   /* Guided setup toggle (ported from simple version) */
   .setup-toggle{max-width:640px;margin:2.5rem auto 0;background:#F7F7F7;border:1px solid rgba(29,29,29,.08);border-radius:16px;padding:1.5rem 1.75rem;display:flex;align-items:center;gap:1.25rem;}
   .setup-toggle__body{flex:1;}
@@ -232,11 +268,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="grid grid--centred">
       <div class="col--1-5 split__copy">
-        <span class="eyebrow">Competition</span>
-        <h2 class="display display--md">We watch your competitors <em>for you</em>.</h2>
-        <p class="section__lede section__lede--left">New hires. New products. Pricing changes. Anything public, we see it every day.</p>
-        <p class="section__lede section__lede--left">Then we tell you what changed and what to do about it.</p>
-        <div style="margin-top:1.5rem;"><a class="btn btn--ghost" href="competition-hub.html">Learn more about Competition Hub</a></div>
+        <div class="split__copy-head">
+          <span class="eyebrow">Competition</span>
+          <h2 class="display display--md">We watch your competitors <em>for you</em>.</h2>
+        </div>
+        <div class="split__copy-body">
+          <p class="section__lede section__lede--left">New hires. New products. Pricing changes. Anything public, we see it every day.</p>
+          <p class="section__lede section__lede--left">Then we tell you what changed and what to do about it.</p>
+          <div style="margin-top:1.5rem;"><a class="btn btn--ghost" href="competition-hub.html">Learn more about Competition Hub</a></div>
+        </div>
       </div>
 
       <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
@@ -258,11 +298,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="grid grid--centred">
       <div class="col--1-5 split__copy">
-        <span class="eyebrow">Business Brain</span>
-        <h2 class="display display--md">Everything your company knows, <em>captured</em>.</h2>
-        <p class="section__lede section__lede--left">An AI voice model interviews your leaders. It captures valuable intellectual knowledge about your business, from the people who are running it.</p>
-        <p class="section__lede section__lede--left">Upload your documents, playbooks, and process files. Everything lives in one place. If a person leaves, the knowledge stays.</p>
-        <div style="margin-top:1.5rem;"><a class="btn btn--primary" href="business-brain.html">Learn more about Business Brain</a></div>
+        <div class="split__copy-head">
+          <span class="eyebrow">Business Brain</span>
+          <h2 class="display display--md">Everything your company knows, <em>captured</em>.</h2>
+        </div>
+        <div class="split__copy-body">
+          <p class="section__lede section__lede--left">An AI voice model interviews your leaders. It captures valuable intellectual knowledge about your business, from the people who are running it.</p>
+          <p class="section__lede section__lede--left">Upload your documents, playbooks, and process files. Everything lives in one place. If a person leaves, the knowledge stays.</p>
+          <div style="margin-top:1.5rem;"><a class="btn btn--primary" href="business-brain.html">Learn more about Business Brain</a></div>
+        </div>
       </div>
 
       <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
@@ -284,11 +328,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="grid grid--centred">
       <div class="col--1-5 split__copy">
-        <span class="eyebrow">Strategic Insights</span>
-        <h2 class="display display--md">We tell you <em>what to do</em> about it.</h2>
-        <p class="section__lede section__lede--left">We know your business. We know your competitors. Strategic Insights is where we connect both sides and hand you the move.</p>
-        <p class="section__lede section__lede--left">Every insight is grounded in your context, tied to competitor signals, and written as a clear insight.</p>
-        <div style="margin-top:1.5rem;"><a class="btn btn--ghost" href="strategic-insights.html">Learn more about Strategic Insights</a></div>
+        <div class="split__copy-head">
+          <span class="eyebrow">Strategic Insights</span>
+          <h2 class="display display--md">We tell you <em>what to do</em> about it.</h2>
+        </div>
+        <div class="split__copy-body">
+          <p class="section__lede section__lede--left">We know your business. We know your competitors. Strategic Insights is where we connect both sides and hand you the move.</p>
+          <p class="section__lede section__lede--left">Every insight is grounded in your context, tied to competitor signals, and written as a clear insight.</p>
+          <div style="margin-top:1.5rem;"><a class="btn btn--ghost" href="strategic-insights.html">Learn more about Strategic Insights</a></div>
+        </div>
       </div>
 
       <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
@@ -311,12 +359,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="grid grid--centred">
       <div class="col--1-5 split__copy">
-        <span class="eyebrow">Workstreams</span>
-        <h2 class="display display--md">AI that already knows <em>the business</em>.</h2>
-        <p class="section__lede section__lede--left">An LLM rooted in your company context. Everything your team learns stays inside the four walls of the business.</p>
-        <p class="section__lede section__lede--left">A safe environment for your team to use AI on real work. Nothing they type leaves the platform.</p>
-        <p class="section__lede section__lede--left">When someone walks out the door, what the company learned stays.</p>
-        <div style="margin-top:1.5rem;"><a class="btn btn--primary" href="workstreams.html">Learn more about Workstreams</a></div>
+        <div class="split__copy-head">
+          <span class="eyebrow">Workstreams</span>
+          <h2 class="display display--md">AI that already knows <em>the business</em>.</h2>
+        </div>
+        <div class="split__copy-body">
+          <p class="section__lede section__lede--left">An LLM rooted in your company context. Everything your team learns stays inside the four walls of the business.</p>
+          <p class="section__lede section__lede--left">A safe environment for your team to use AI on real work. Nothing they type leaves the platform.</p>
+          <p class="section__lede section__lede--left">When someone walks out the door, what the company learned stays.</p>
+          <div style="margin-top:1.5rem;"><a class="btn btn--primary" href="workstreams.html">Learn more about Workstreams</a></div>
+        </div>
       </div>
 
       <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
