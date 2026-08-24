@@ -927,12 +927,20 @@ body.grid-debug--rows::before {
 /* header over a dark page top — light until it sticks                       */
 body.is-dark-top .site-header:not(.is-stuck) .nav__link,
 body.is-dark-top .site-header:not(.is-stuck) .header__link {
-  color: var(--c-on-dark-2);
+  color: #F7F7F7;
+  font-weight: 600;
 }
 body.is-dark-top .site-header:not(.is-stuck) .nav__link:hover,
-body.is-dark-top .site-header:not(.is-stuck) .nav__link.is-current,
 body.is-dark-top .site-header:not(.is-stuck) .header__link:hover {
-  color: var(--c-on-dark);
+  color: #D4AF37;
+}
+body.is-dark-top .site-header:not(.is-stuck) .nav__link.is-current {
+  color: #D4AF37;
+  font-weight: 700;
+}
+body.is-dark-top .site-header:not(.is-stuck) .nav__link.is-current::after {
+  background: #D4AF37;
+  width: 100%;
 }
 /* LOGO COLOUR BUG (REVISION-03 §1.4), fixed.
    Was: filter: invert(1) brightness(1.9) on .logo__img. The wordmark's
