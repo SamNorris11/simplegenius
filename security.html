@@ -11,13 +11,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Security | Simple Genius</title>
-<meta name="description" content="Your team is going to use AI. They should. Simple Genius gives your business an internal environment for AI so company knowledge stays with the company.">
+<meta name="description" content="Your team is going to use AI. They should. Simple Genius gives your business a private place to use AI so company knowledge stays with the company.">
 <link rel="canonical" href="https://www.simplegenius.com/security">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.simplegenius.com/security">
 <meta property="og:title" content="Security | Simple Genius">
-<meta property="og:description" content="Your team is going to use AI. They should. Simple Genius gives your business an internal environment for AI so company knowledge stays with the company.">
+<meta property="og:description" content="Your team is going to use AI. They should. Simple Genius gives your business a private place to use AI so company knowledge stays with the company.">
 <meta property="og:site_name" content="Simple Genius">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,98 +30,145 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <style>
   html{scroll-behavior:smooth;scroll-padding-top:88px;}
 
-  /* ============================ Editorial article ============================ */
-
-  /* Backbar sits on cream to match the article. Dark link, muted -> ink on hover. */
-  .backbar{background:#F4EFE7;padding:calc(var(--header-h, 92px) + .9rem) 0 1.25rem;}
+  /* Backbar sits over the dark hero. Header is dark-top so we push the bar below it. */
+  .backbar{background:#000;padding:calc(var(--header-h, 92px) + .9rem) 0 1.25rem;}
   .backbar__inner{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);}
   .backbar__link{display:inline-flex;align-items:center;gap:.6rem;font-family:'Inter',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.005em;color:#1D1D1D;background:#D4AF37;text-decoration:none;padding:.85rem 1.5rem;border-radius:999px;box-shadow:0 6px 24px rgba(212,175,55,.28);transition:background .18s ease, transform .18s ease, box-shadow .18s ease;}
   .backbar__link:hover{background:#E8C24A;transform:translateX(-2px);box-shadow:0 8px 28px rgba(212,175,55,.4);color:#1D1D1D;}
   .backbar__link svg{width:16px;height:16px;flex:0 0 auto;stroke-width:2.4;}
 
-  /* Page background */
-  body{background:#F4EFE7;}
+  /* =========================================================
+     Section scaffolding — homepage rhythm, alternating grounds
+     ========================================================= */
+  .sec{position:relative;padding:clamp(4rem,8vw,7rem) 0;overflow:hidden;}
+  .sec--ink{background:#000;color:#F7F7F7;}
+  .sec--cream{background:#F4EFE7;color:#1D1D1D;}
+  .sec--white{background:#FFFFFF;color:#1D1D1D;}
+  .sec__inner{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);}
+  .sec__col{max-width:960px;}
+  .sec__col--wide{max-width:1080px;}
+  .sec__col--center{margin-left:auto;margin-right:auto;text-align:center;}
 
-  /* Article wrapper — one continuous cream sheet */
-  .article{background:#F4EFE7;color:#1D1D1D;padding:clamp(1rem,2vw,1.5rem) 0 clamp(4rem,7vw,6rem);}
-  .article__col{max-width:760px;margin:0 auto;padding:0 clamp(1.25rem,4vw,1.75rem);}
+  .eyebrow-sm{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#D4AF37;margin:0 0 clamp(1.25rem,2.4vw,1.75rem);}
+  .sec--cream .eyebrow-sm,.sec--white .eyebrow-sm{color:#8A6D18;}
 
-  /* Header of article */
-  .article__eyebrow{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#8A6D18;margin:clamp(2.5rem,5vw,4rem) 0 clamp(1rem,2vw,1.5rem);}
-  .article__title{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(2.5rem,5.4vw,4.25rem);line-height:1.06;letter-spacing:-.02em;margin:0 0 clamp(1.25rem,2.4vw,1.75rem);}
-  .article__dek{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;color:#8A6D18;font-size:clamp(1.5rem,2.8vw,2.15rem);line-height:1.2;letter-spacing:-.01em;margin:0 0 clamp(2.5rem,5vw,3.5rem);}
+  /* Display typography — Playfair, homepage scale */
+  .h-xxl{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.75rem,6.4vw,5.25rem);line-height:1.04;letter-spacing:-.025em;margin:0;text-wrap:balance;}
+  .h-xl {font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.5rem,5.4vw,4.25rem);line-height:1.06;letter-spacing:-.02em;margin:0;text-wrap:balance;}
+  .h-lg {font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2rem,3.8vw,3rem);line-height:1.1;letter-spacing:-.015em;margin:0;text-wrap:balance;}
+  .h-xxl em,.h-xl em,.h-lg em{font-style:italic;color:#D4AF37;}
+  .sec--cream .h-xxl em,.sec--cream .h-xl em,.sec--cream .h-lg em,
+  .sec--white .h-xxl em,.sec--white .h-xl em,.sec--white .h-lg em{color:#8A6D18;}
 
-  /* Body prose */
-  .article__body{font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.35vw,1.3125rem);line-height:1.6;color:#1D1D1D;}
-  .article__body p{margin:0 0 clamp(1.15rem,1.7vw,1.5rem);}
-  .article__body p:last-child{margin-bottom:0;}
-  .article__body strong{font-weight:600;color:#1D1D1D;}
+  .lede{font-family:'Inter',sans-serif;font-size:clamp(1.15rem,1.55vw,1.4rem);line-height:1.55;font-weight:400;margin:clamp(1.5rem,2.4vw,2rem) 0 0;max-width:44ch;}
+  .sec--ink .lede{color:rgba(247,247,247,.82);}
+  .sec--cream .lede,.sec--white .lede{color:#5A5A5A;}
+  .lede--wide{max-width:56ch;}
+  .lede--center{margin-left:auto;margin-right:auto;}
 
-  /* Section headings within the article */
-  .article__h2{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(2rem,3.6vw,2.5rem);line-height:1.15;letter-spacing:-.015em;margin:clamp(2.5rem,5vw,4rem) 0 clamp(1rem,1.8vw,1.4rem);}
+  /* =========================================================
+     HERO
+     ========================================================= */
+  .hero-sec{padding-top:clamp(2rem,4vw,3.5rem);padding-bottom:clamp(5rem,9vw,8rem);}
+  .hero-sec .h-xxl{max-width:22ch;}
+  .hero-sec__dek{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;color:#D4AF37;font-size:clamp(1.5rem,2.8vw,2.15rem);line-height:1.2;letter-spacing:-.01em;margin:clamp(1.25rem,2vw,1.75rem) 0 0;}
 
-  /* Pull-line: large emphasized statement, same left edge */
-  .article__pull{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(2.25rem,4vw,3rem);line-height:1.15;letter-spacing:-.015em;margin:clamp(2.75rem,5vw,3.75rem) 0;padding:0;border-left:3px solid #D4AF37;padding-left:clamp(1rem,2vw,1.5rem);}
+  /* =========================================================
+     Section 1 — AI isn't the problem: 4 PM vs 6 PM moment
+     ========================================================= */
+  .clock-line{margin:clamp(2.25rem,4vw,3.5rem) 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:.35em .8em;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.4rem,2.2vw,1.9rem);line-height:1.2;color:#1D1D1D;}
+  .clock-line .num{font-size:clamp(4rem,10vw,7.5rem);line-height:.95;letter-spacing:-.035em;color:#1D1D1D;font-weight:600;}
+  .clock-line .num--gold{color:#D4AF37;}
+  .clock-line .word{color:#5A5A5A;font-style:italic;font-size:clamp(1.2rem,1.7vw,1.5rem);}
+  .clock-line .strike{position:relative;display:inline-block;}
+  .clock-line .strike::after{content:"";position:absolute;left:-.05em;right:-.05em;top:52%;height:.09em;background:#5A5A5A;transform:rotate(-6deg);}
+  .home-note{font-family:'Inter',sans-serif;font-size:clamp(1.05rem,1.4vw,1.25rem);color:#5A5A5A;margin:clamp(1.75rem,3vw,2.5rem) 0 0;max-width:36ch;}
+  .home-note strong{color:#1D1D1D;font-weight:600;}
 
-  /* Closing pull-line: two lines, gold italic accent (legacy — no longer used) */
-  .article__end{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(2.25rem,4vw,3rem);line-height:1.18;letter-spacing:-.015em;margin:clamp(3rem,6vw,4.5rem) 0 0;}
-  .article__end span{display:block;}
-  .article__end span:last-child{font-style:italic;color:#8A6D18;margin-top:.5rem;}
+  /* =========================================================
+     Section 2 — What they give it (six lines, typographic, no cards)
+     ========================================================= */
+  .give-list{list-style:none;padding:0;margin:clamp(2rem,3.6vw,3rem) 0 0;display:grid;grid-template-columns:1fr;gap:clamp(.5rem,.9vw,.85rem);}
+  .give-list li{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.45rem,2.8vw,2.35rem);line-height:1.18;letter-spacing:-.01em;color:#F7F7F7;padding:0;}
+  .give-list li em{font-style:italic;color:#D4AF37;font-weight:500;}
+  .give-note{font-family:'Inter',sans-serif;font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.55;color:rgba(247,247,247,.72);margin:clamp(2.25rem,3.5vw,2.75rem) 0 0;max-width:52ch;}
 
-  /* THE TURN — mid-article, one of the largest lines on the page */
-  .article__turn{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(2.75rem,5.4vw,4.25rem);line-height:1.06;letter-spacing:-.02em;margin:clamp(4rem,8vw,6rem) 0 clamp(3rem,6vw,4.5rem);}
-  .article__turn span{display:block;}
+  /* =========================================================
+     Section 2b — WHERE IS ALL THAT INFORMATION GOING?
+     ========================================================= */
+  .ask{padding:clamp(4.5rem,9vw,8rem) 0;}
+  .ask__q{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(3rem,7.4vw,6.25rem);line-height:1.02;letter-spacing:-.03em;color:#1D1D1D;margin:0;max-width:16ch;text-wrap:balance;}
+  .ask__q em{font-style:italic;color:#D4AF37;}
+  .ask__sub{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;color:#5A5A5A;font-size:clamp(1.35rem,2.2vw,1.8rem);line-height:1.35;margin:clamp(2rem,3.5vw,2.75rem) 0 0;}
+  .ask__sub span{display:block;}
 
-  /* FINAL STATEMENT — the very largest closing lines. Black + gold. */
-  .article__final{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(3rem,6.4vw,5rem);line-height:1.02;letter-spacing:-.025em;margin:clamp(5rem,9vw,7rem) 0 clamp(2rem,3.5vw,2.75rem);}
-  .article__final span{display:block;}
-  .article__final span:last-child{color:#8A6D18;margin-top:.35rem;}
+  /* =========================================================
+     Section 3 — GIVE THEM YOUR AI (dark, big turn line)
+     ========================================================= */
+  .turn{padding:clamp(5rem,9vw,8rem) 0;text-align:center;}
+  .turn__h{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(3rem,7vw,5.75rem);line-height:1.02;letter-spacing:-.03em;color:#F7F7F7;margin:0;max-width:22ch;margin-left:auto;margin-right:auto;text-wrap:balance;}
+  .turn__h span{display:block;}
+  .turn__h span:last-child{color:#D4AF37;font-style:italic;}
+  .turn__sub{font-family:'Inter',sans-serif;font-size:clamp(1.15rem,1.5vw,1.35rem);line-height:1.55;color:rgba(247,247,247,.78);margin:clamp(2.25rem,3.5vw,2.75rem) auto 0;max-width:52ch;}
 
-  /* Three-question group: bold first line, extra breathing room */
-  .article__qs{margin:clamp(2rem,3.5vw,2.75rem) 0;}
-  .article__qs p{margin:0 0 clamp(1.25rem,2vw,1.75rem);}
-  .article__qs p:last-child{margin-bottom:0;}
+  /* =========================================================
+     Section 3b — Four security statements (no cards)
+     ========================================================= */
+  .attrs{padding:clamp(4.5rem,8vw,6.5rem) 0;}
+  .attrs__grid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:clamp(2rem,4vw,3.5rem) clamp(2rem,5vw,4.5rem);margin:clamp(2rem,4vw,3rem) 0 0;}
+  .attr__num{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;color:#D4AF37;font-size:clamp(1.25rem,1.7vw,1.55rem);letter-spacing:.02em;margin:0 0 .5rem;}
+  .attr__h{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(1.6rem,2.6vw,2.15rem);line-height:1.15;letter-spacing:-.015em;margin:0;text-wrap:balance;}
+  .attr__p{font-family:'Inter',sans-serif;font-size:clamp(1rem,1.35vw,1.15rem);color:#5A5A5A;line-height:1.55;margin:.75rem 0 0;max-width:32ch;}
+  @media (max-width:720px){.attrs__grid{grid-template-columns:1fr;}}
 
-  /* Two-line uppercase pull statement (mid-article) */
-  .article__pull2{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(2rem,3.6vw,2.75rem);line-height:1.18;letter-spacing:-.01em;margin:clamp(2.75rem,5vw,3.75rem) 0;padding-left:clamp(1rem,2vw,1.5rem);border-left:3px solid #D4AF37;}
-  .article__pull2 span{display:block;}
-  .article__pull2 span:last-child{font-style:italic;color:#8A6D18;margin-top:.35rem;}
+  /* =========================================================
+     Section 4 — Inside the four walls (dark, visual)
+     ========================================================= */
+  .walls{padding:clamp(5rem,9vw,8rem) 0;text-align:center;}
+  .walls__lede{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;color:rgba(247,247,247,.82);font-size:clamp(1.35rem,2.2vw,1.85rem);line-height:1.35;margin:0 auto;max-width:44ch;}
+  .walls__h{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(3rem,6.6vw,5.5rem);line-height:1.02;letter-spacing:-.03em;color:#F7F7F7;margin:clamp(2rem,3.6vw,3rem) auto 0;max-width:16ch;text-wrap:balance;}
+  .walls__h span{display:block;}
+  .walls__h span:last-child{color:#D4AF37;font-style:italic;}
 
-  /* Bullets — flush to the same left edge as the paragraphs */
-  .article__list{list-style:none;padding:0;margin:0 0 clamp(1.15rem,1.7vw,1.5rem);}
-  .article__list li{position:relative;padding-left:1.75rem;margin:0 0 .85rem;font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.35vw,1.3125rem);line-height:1.6;color:#1D1D1D;}
-  .article__list li:last-child{margin-bottom:0;}
-  .article__list li::before{content:"\2605";position:absolute;left:0;top:0;line-height:1.6;color:#D4AF37;font-size:.95em;}
+  /* Simple flow visual */
+  .flow{margin:clamp(3.5rem,6vw,5rem) auto 0;max-width:820px;display:grid;grid-template-columns:1fr;gap:1.25rem;}
+  .flow__step{font-family:'Inter',sans-serif;font-weight:600;font-size:clamp(.95rem,1.25vw,1.15rem);letter-spacing:.18em;text-transform:uppercase;color:#F7F7F7;padding:1.15rem 1.75rem;border:1px solid rgba(212,175,55,.4);border-radius:999px;background:rgba(212,175,55,.05);}
+  .flow__step--mid{background:rgba(212,175,55,.14);border-color:rgba(212,175,55,.7);color:#D4AF37;}
+  .flow__arrow{display:block;width:2px;height:clamp(1.25rem,2.4vw,2rem);background:linear-gradient(180deg, rgba(212,175,55,.65), rgba(212,175,55,0));margin:0 auto;}
 
-  /* Process line — LEARN → CHECK → FIX → IMPROVE. Same left edge, no box. */
-  .article__flow{font-family:'Inter',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1D1D1D;font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.5;margin:clamp(2rem,3.5vw,2.75rem) 0 clamp(1.5rem,2.6vw,2rem);}
-  .article__flow .arrow{color:#D4AF37;margin:0 .35em;}
+  /* =========================================================
+     Final payoff
+     ========================================================= */
+  .final{padding:clamp(5.5rem,10vw,9rem) 0 clamp(4.5rem,8vw,7rem);text-align:center;}
+  .final__h{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(3.25rem,7.6vw,6.5rem);line-height:1.0;letter-spacing:-.03em;color:#1D1D1D;margin:0 auto;max-width:18ch;text-wrap:balance;}
+  .final__h span{display:block;}
+  .final__h span:last-child{color:#D4AF37;font-style:italic;margin-top:.15em;}
+  .final__cta{margin:clamp(2.75rem,4.6vw,3.75rem) 0 0;display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center;}
+  .cta-btn{display:inline-flex;align-items:center;gap:.55rem;font-family:'Inter',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.005em;padding:1rem 1.75rem;border-radius:999px;text-decoration:none;transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease;}
+  .cta-btn--gold{color:#1D1D1D;background:#D4AF37;box-shadow:0 6px 24px rgba(212,175,55,.28);}
+  .cta-btn--gold:hover{background:#E8C24A;transform:translateY(-1px);box-shadow:0 8px 28px rgba(212,175,55,.4);}
+  .cta-btn--ghost{color:#1D1D1D;background:transparent;border:1.5px solid #1D1D1D;}
+  .cta-btn--ghost:hover{background:#1D1D1D;color:#F7F7F7;transform:translateY(-1px);}
+  .cta-btn svg{width:16px;height:16px;stroke-width:2.4;}
 
-  /* Small caps callout used inline for WHERE IS YOUR COMPANY INFORMATION GOING? */
-  .article__ask{font-family:'Playfair Display',serif;font-weight:500;color:#1D1D1D;font-size:clamp(1.75rem,3vw,2.35rem);line-height:1.2;letter-spacing:-.01em;margin:clamp(2rem,3.6vw,2.6rem) 0 clamp(1rem,1.7vw,1.4rem);}
-
-  /* CTA block — inline, minimal */
-  .article__cta{margin-top:clamp(3rem,5vw,4rem);display:flex;flex-wrap:wrap;gap:.9rem;align-items:center;}
-  .article__cta-btn{display:inline-flex;align-items:center;gap:.55rem;font-family:'Inter',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.02em;padding:.95rem 1.6rem;border-radius:6px;text-decoration:none;transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;}
-  .article__cta-btn--gold{color:#000;background:#D4AF37;}
-  .article__cta-btn--gold:hover{background:#E6BF41;transform:translateY(-1px);}
-  .article__cta-btn--ghost{color:#1D1D1D;background:transparent;border:1px solid rgba(29,29,29,.28);}
-  .article__cta-btn--ghost:hover{background:rgba(29,29,29,.05);border-color:rgba(29,29,29,.55);transform:translateY(-1px);}
-  .article__cta-btn svg{width:14px;height:14px;}
-
-  /* Mobile */
+  /* =========================================================
+     Mobile refinements
+     ========================================================= */
   @media (max-width:640px){
-    .article__col{padding:0 1.25rem;}
-    .article__title{font-size:clamp(2.4rem,10vw,2.85rem);}
-    .article__body,.article__list li{font-size:1.125rem;}
-    .article__pull,.article__end{font-size:1.75rem;line-height:1.18;}
-    .article__turn{font-size:2.15rem;line-height:1.08;}
-    .article__final{font-size:2.5rem;line-height:1.05;}
-    .article__ask{font-size:1.65rem;line-height:1.2;}
+    .sec{padding:clamp(3.5rem,10vw,5rem) 0;}
+    .clock-line .num{font-size:4.75rem;}
+    .clock-line{gap:.25em .55em;}
+    .give-list li{font-size:1.5rem;}
+    .ask__q{font-size:2.75rem;line-height:1.05;}
+    .turn__h{font-size:2.75rem;line-height:1.05;}
+    .walls__h{font-size:2.75rem;line-height:1.05;}
+    .final__h{font-size:3rem;line-height:1.02;}
+    .attrs__grid{gap:2.5rem;}
+    .flow__step{font-size:.85rem;padding:.95rem 1.25rem;letter-spacing:.14em;}
   }
 </style>
 </head>
-<body>
+<body class="is-dark-top">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P48GRGDB"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -167,92 +214,158 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main id="main">
 
-  <article class="article" aria-labelledby="article-title">
-    <div class="article__col">
+  <!-- ==================================================== HERO -->
+  <section class="sec sec--ink hero-sec" aria-labelledby="hero-title">
+    <div class="sec__inner">
+      <div class="sec__col">
+        <span class="eyebrow-sm">Security</span>
+        <h1 class="h-xxl" id="hero-title">Your team is going to use AI. <em>They should.</em></h1>
+        <p class="hero-sec__dek">But what are they giving it?</p>
+      </div>
+    </div>
+  </section>
 
-      <span class="article__eyebrow">Security</span>
-      <h1 class="article__title" id="article-title">Your team is going to use AI. They should.</h1>
-      <p class="article__dek">But what are they giving it?</p>
+  <!-- ==================================================== SECTION 1 — AI isn't the problem -->
+  <section class="sec sec--cream">
+    <div class="sec__inner">
+      <div class="sec__col">
+        <span class="eyebrow-sm">AI isn&rsquo;t the problem</span>
+        <h2 class="h-xl">AI makes work easier.</h2>
+        <p class="lede">If it helps someone finish at&hellip;</p>
 
-      <div class="article__body">
-
-        <h2 class="article__h2">AI isn&rsquo;t the problem.</h2>
-
-        <p>AI makes work easier. It helps people get more done in less time.</p>
-
-        <p>If it helps someone finish at 4 p.m. instead of 6 p.m., they&rsquo;re going to use it.</p>
-
-        <p><strong>They want to go home sooner.</strong></p>
-
-        <p>And the better AI knows the problem, the better it can help.</p>
-
-        <p>So people give it more.</p>
-
-        <p>A customer email.</p>
-
-        <p>A sales plan.</p>
-
-        <p>A company document.</p>
-
-        <p>A problem they&rsquo;re trying to solve.</p>
-
-        <p>Something their boss told them.</p>
-
-        <p>Something only their team knows.</p>
-
-        <p>None of that is strange. It&rsquo;s how you get better answers.</p>
-
-        <p class="article__pull">But when your team is doing that across public AI tools, your company has a new problem.</p>
-
-        <div class="article__qs">
-          <p><strong>Where is all that information going?</strong></p>
-          <p>Who controls it?</p>
-          <p>And how much of your business is being handed over just to get a better answer?</p>
+        <div class="clock-line" aria-label="4 p.m. instead of 6 p.m.">
+          <span class="num num--gold">4</span><span class="word">p.m.</span>
+          <span class="word" style="margin:0 .25em;">instead of</span>
+          <span class="strike"><span class="num" style="color:#5A5A5A;">6</span></span><span class="word">p.m.</span>
         </div>
 
-        <p class="article__turn">
+        <p class="home-note"><strong>They&rsquo;re going to use it.</strong><br>They want to go home sooner.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== SECTION 2 — What they give it (list) -->
+  <section class="sec sec--ink">
+    <div class="sec__inner">
+      <div class="sec__col">
+        <span class="eyebrow-sm">The problem</span>
+        <h2 class="h-xl">The better AI knows the problem, <em>the better it can help.</em></h2>
+        <p class="lede">So people give it more.</p>
+
+        <ul class="give-list" aria-label="What employees give public AI">
+          <li>A customer email.</li>
+          <li>A sales plan.</li>
+          <li>A company document.</li>
+          <li>A problem they&rsquo;re trying to solve.</li>
+          <li>Something their boss told them.</li>
+          <li>Something only their team knows.</li>
+        </ul>
+
+        <p class="give-note">None of it is strange. It&rsquo;s how you get better answers. But bit by bit, valuable company information ends up inside public AI tools.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== SECTION 2b — The question -->
+  <section class="sec sec--cream ask" aria-labelledby="ask-title">
+    <div class="sec__inner">
+      <div class="sec__col">
+        <h2 class="ask__q" id="ask-title">Where is <em>all that information</em> going?</h2>
+        <p class="ask__sub">
+          <span>Who controls it?</span>
+          <span>Does your company?</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== SECTION 3 — Give them your AI -->
+  <section class="sec sec--ink turn" aria-labelledby="turn-title">
+    <div class="sec__inner">
+      <div class="sec__col sec__col--center">
+        <span class="eyebrow-sm">The answer</span>
+        <h2 class="turn__h" id="turn-title">
           <span>Your team needs AI.</span>
           <span>Give them your AI.</span>
-        </p>
+        </h2>
+        <p class="turn__sub">Simple Genius gives your company its own place to use AI. Your people work with AI without feeding your company information into public tools every day.</p>
+      </div>
+    </div>
+  </section>
 
-        <p>That&rsquo;s part of why we built Simple Genius.</p>
+  <!-- ==================================================== SECTION 3b — Four security statements -->
+  <section class="sec sec--cream attrs">
+    <div class="sec__inner">
+      <div class="sec__col sec__col--wide">
+        <span class="eyebrow-sm">How it stays yours</span>
+        <h2 class="h-lg">Four things that are always true <em>inside Simple Genius.</em></h2>
 
-        <p><strong>Simple Genius gives your company its own place to use AI.</strong></p>
+        <div class="attrs__grid">
+          <div>
+            <p class="attr__num">01</p>
+            <h3 class="attr__h">A private environment.</h3>
+            <p class="attr__p">Your company&rsquo;s AI, built for your company.</p>
+          </div>
+          <div>
+            <p class="attr__num">02</p>
+            <h3 class="attr__h">Encrypted data.</h3>
+            <p class="attr__p">In transit and at rest.</p>
+          </div>
+          <div>
+            <p class="attr__num">03</p>
+            <h3 class="attr__h">Your company controls it.</h3>
+            <p class="attr__p">You decide who sees what, and what stays.</p>
+          </div>
+          <div>
+            <p class="attr__num">04</p>
+            <h3 class="attr__h">Not used to train someone else&rsquo;s model.</h3>
+            <p class="attr__p">Your data stays your data.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <p>Instead of your people feeding company information into public AI tools every time they need help, they can work with AI that already knows the business.</p>
+  <!-- ==================================================== SECTION 4 — Inside the four walls -->
+  <section class="sec sec--ink walls" aria-labelledby="walls-title">
+    <div class="sec__inner">
+      <div class="sec__col sec__col--center">
+        <p class="walls__lede">Your people still get AI that helps them work faster, think through problems, and get things done. The difference is where they do it.</p>
 
-        <p><strong>Your company information stays in a secure, private environment built for your company.</strong></p>
+        <h2 class="walls__h" id="walls-title">
+          <span>Inside Simple Genius.</span>
+          <span>Inside the four walls of your business.</span>
+        </h2>
 
-        <p>Your data is <strong>encrypted</strong>.</p>
+        <div class="flow" aria-label="How company knowledge stays inside Simple Genius">
+          <div class="flow__step">Your company knowledge</div>
+          <span class="flow__arrow" aria-hidden="true"></span>
+          <div class="flow__step flow__step--mid">Simple Genius</div>
+          <span class="flow__arrow" aria-hidden="true"></span>
+          <div class="flow__step">Stays with your company</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <p>Your company <strong>controls it</strong>.</p>
-
-        <p>And it is <strong>not used to train someone else&rsquo;s model</strong>.</p>
-
-        <p>Your people still get what they wanted in the first place: AI that helps them work faster, think through problems, and get things done.</p>
-
-        <p class="article__pull">The difference is where they do it.</p>
-
-        <p>They do it inside Simple Genius.</p>
-
-        <p><strong>Inside the four walls of the business.</strong></p>
-
-        <p class="article__final">
+  <!-- ==================================================== FINAL PAYOFF -->
+  <section class="sec sec--cream final" aria-labelledby="final-title">
+    <div class="sec__inner">
+      <div class="sec__col sec__col--center">
+        <h2 class="final__h" id="final-title">
           <span>Give your people AI.</span>
           <span>Keep your business data yours.</span>
-        </p>
+        </h2>
 
-        <div class="article__cta">
-          <a class="article__cta-btn article__cta-btn--gold" href="talk.html">Join the Waitlist
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        <div class="final__cta">
+          <a class="cta-btn cta-btn--gold" href="talk.html">Join the Waitlist
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
-          <a class="article__cta-btn article__cta-btn--ghost" href="how-it-works.html">See How It Works</a>
+          <a class="cta-btn cta-btn--ghost" href="how-it-works.html">See How It Works</a>
         </div>
-
       </div>
-
     </div>
-  </article>
+  </section>
 
 </main>
 
