@@ -34,7 +34,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     grid-column: 1 / span 1 !important;
     grid-row: 1 !important;
     align-self: start !important;
-    width: 100% !important;
   }
   .section--flip .grid--centred > .shot.col--6-12 .shot__img {
     width: 100% !important;
@@ -51,8 +50,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      only on the right side. Grid negative-left-margin alone doesn't extend the
      content box the way negative-right-margin does, so also grow the width by
      the same +172px to match Competition Hub / Strategic Insights bleed. */
-  .section--flip .shot--edge,
-  .section--flip .shot--edge-firm {
+  .section--flip .grid--centred > .shot.col--6-12.shot--edge,
+  .section--flip .grid--centred > .shot.col--6-12.shot--edge-firm {
     margin-left: -172px !important;
     margin-right: 0 !important;
     width: calc(100% + 172px) !important;
@@ -69,8 +68,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       grid-column: 1 / -1 !important;
     }
     /* Reset the desktop left-bleed on mobile so the image fits the viewport */
-    .section--flip .shot--edge,
-    .section--flip .shot--edge-firm {
+    .section--flip .grid--centred > .shot.col--6-12.shot--edge,
+    .section--flip .grid--centred > .shot.col--6-12.shot--edge-firm {
       margin-left: 0 !important;
       width: 100% !important;
       border-radius: 14px !important;
