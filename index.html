@@ -93,6 +93,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .switch input:checked + .switch__slider{background:#D4AF37;}
   .switch input:checked + .switch__slider::before{transform:translateX(24px);}
   @media (max-width:600px){.setup-toggle{flex-direction:column;align-items:stretch;}.setup-toggle__control{align-items:flex-start;}}
+
+  /* Who's behind it: bump the right-side prose so it fills the space with the founder photos. */
+  .found-right .prose--lead { font-size: clamp(1.25rem, 1.5vw, 1.5rem) !important; line-height: 1.55 !important; }
+  .found-right .prose--lead > p + p { margin-top: 1.5rem !important; }
+  @media (max-width: 900px) {
+    .found-right .prose--lead { font-size: 1.15rem !important; }
+  }
 </style>
 </head>
 <body>
