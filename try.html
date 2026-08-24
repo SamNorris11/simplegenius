@@ -74,21 +74,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .exchange__lead {
     font-family: 'Inter', sans-serif; font-weight: 800;
     text-transform: uppercase; letter-spacing: .04em;
-    font-size: clamp(1rem, 1.3vw, 1.15rem);
+    font-size: clamp(1.15rem, 1.5vw, 1.3rem);
     color: #1D1D1D;
-    margin: 0 0 .85rem;
-    padding-bottom: .75rem;
+    margin: 0 0 1rem;
+    padding-bottom: .85rem;
     border-bottom: 1px solid rgba(212, 175, 55, .45);
   }
   .exchange__list {
     list-style: none; margin: 0; padding: 0;
-    display: flex; flex-direction: column; gap: .55rem;
+    display: flex; flex-direction: column; gap: .7rem;
   }
   .exchange__list li {
     font-family: 'Inter', sans-serif; font-weight: 400;
-    font-size: clamp(1rem, 1.15vw, 1.075rem);
-    color: #1D1D1D; line-height: 1.4;
-    display: flex; align-items: flex-start; gap: .55rem;
+    font-size: clamp(1.1rem, 1.3vw, 1.2rem);
+    color: #1D1D1D; line-height: 1.45;
+    display: flex; align-items: flex-start; gap: .6rem;
   }
   .exchange__list li::before {
     content: "★";
@@ -134,18 +134,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .brief-outputs__title {
     font-family: 'Inter', sans-serif; font-weight: 800;
     text-transform: uppercase; letter-spacing: .04em;
-    /* Shrunk so "COMPETITIVE FINDINGS" fits on a single line in a
-       narrow card at 1440px. */
-    font-size: clamp(.95rem, 1.05vw, 1.05rem);
-    color: #1D1D1D; margin: 0 0 .75rem;
+    /* Kept small enough so "COMPETITIVE FINDINGS" fits on a single line
+       in a narrow card at 1440px. */
+    font-size: clamp(1rem, 1.15vw, 1.15rem);
+    color: #1D1D1D; margin: 0 0 .85rem;
     line-height: 1.25;
     white-space: nowrap;
-    padding-bottom: .75rem;
+    padding-bottom: .85rem;
     border-bottom: 1px solid rgba(212, 175, 55, .45);
   }
   .brief-outputs__body {
     font-family: 'Inter', sans-serif; font-weight: 400;
-    font-size: clamp(1.05rem, 1.25vw, 1.15rem); color: #5A5A5A; margin: 0; line-height: 1.5;
+    font-size: clamp(1.15rem, 1.4vw, 1.3rem);
+    color: #1D1D1D;
+    margin: 0; line-height: 1.5;
   }
   @media (max-width: 900px) {
     .brief-outputs { grid-template-columns: repeat(2, 1fr); }
