@@ -204,6 +204,48 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .cmpx__list{font-size:1rem;letter-spacing:.06em;}
   }
 
+  /* Plain body sentence inside a cmpx side (no list, no bullets) */
+  .cmpx__body{font-family:'Inter',sans-serif;font-weight:500;font-size:clamp(1.05rem,1.35vw,1.2rem);line-height:1.5;color:var(--c-steel,#5A5A5A);margin:0 0 clamp(1rem,1.75vw,1.35rem);letter-spacing:0;text-transform:none;}
+  .cmpx__side--sg .cmpx__body{color:#1D1D1D;}
+  .cmpx--dark .cmpx__body{color:rgba(247,247,247,.85);}
+  .cmpx--dark .cmpx__side--sg .cmpx__body{color:#F7F7F7;}
+  .cmpx__lede strong{font-family:'Inter',sans-serif;font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(1.4rem,2.2vw,1.9rem);color:var(--c-ink);}
+  .cmpx__side--sg .cmpx__lede strong{color:#7A5F16;}
+
+  /* Star bullets (used inside a cmpx SG side) */
+  .cmpx__list--stars{margin-top:.5rem;letter-spacing:.06em;font-size:clamp(.95rem,1.25vw,1.05rem);}
+  .cmpx__list--stars li{padding:.55rem 0 .55rem 1.9rem;border-bottom:1px solid rgba(28,26,23,.06);}
+  .cmpx__list--stars li:last-child{border-bottom:0;}
+  .cmpx__list--stars li::before{content:"★";position:absolute;left:.15rem;top:calc(50% - .8rem);width:auto;height:auto;border:0;background:transparent;color:#D4AF37;font-size:.95rem;line-height:1;}
+  .cmpx__list--stars li::after{display:none;}
+
+  /* Confirm-flow horizontal step ribbon (Step 4) */
+  .confirm-flow{list-style:none;margin:clamp(2.5rem,4.5vw,3.5rem) auto 0;padding:0;max-width:900px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.75rem 1rem;}
+  .confirm-flow__step{display:inline-flex;flex-direction:column;align-items:center;gap:.55rem;padding:1rem 1.25rem;min-width:9.5rem;border-radius:12px;background:rgba(28,29,29,.03);border:1px solid rgba(28,29,29,.08);}
+  .confirm-flow__step--sg{background:rgba(212,175,55,.10);border-color:rgba(212,175,55,.5);}
+  .confirm-flow__num{font-family:'Inter',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.16em;color:#5A5A5A;text-transform:uppercase;}
+  .confirm-flow__step--sg .confirm-flow__num{color:#7A5F16;}
+  .confirm-flow__label{font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(1rem,1.4vw,1.15rem);color:#1D1D1D;}
+  .confirm-flow__step--sg .confirm-flow__label{color:#7A5F16;}
+  .confirm-flow__arrow{color:#D4AF37;font-size:1.2rem;line-height:1;list-style:none;}
+  @media (max-width:640px){
+    .confirm-flow{flex-direction:column;gap:.4rem;}
+    .confirm-flow__step{min-width:12rem;width:100%;max-width:20rem;}
+    .confirm-flow__arrow{transform:rotate(90deg);padding:.2rem 0;}
+  }
+
+  /* Payoff shout used under confirm flow */
+  .hiw-shout--payoff{margin-top:clamp(2.5rem,4.5vw,3.5rem);max-width:32ch;margin-left:auto;margin-right:auto;}
+  .nowrap-gold{color:#7A5F16;white-space:nowrap;display:inline-block;}
+
+  /* Insight equation graphic (Step 5) */
+  .insight-eq{max-width:640px;margin:clamp(2.5rem,4.5vw,3.5rem) auto 0;text-align:center;padding:clamp(1.5rem,3vw,2.25rem);border:1px solid rgba(28,29,29,.1);border-radius:14px;background:rgba(28,29,29,.02);}
+  .insight-eq__row{display:flex;justify-content:center;align-items:center;gap:clamp(.75rem,2vw,1.5rem);flex-wrap:wrap;}
+  .insight-eq__term{font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:clamp(1rem,1.5vw,1.25rem);color:#1D1D1D;padding:.6rem 1rem;border:1px solid rgba(28,29,29,.15);border-radius:8px;background:#F7F7F7;}
+  .insight-eq__op{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2rem);color:#D4AF37;font-weight:400;line-height:1;}
+  .insight-eq__arrow{color:#D4AF37;font-size:1.35rem;line-height:1;padding:.75rem 0;}
+  .insight-eq__result{font-family:'Inter',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(1.25rem,2vw,1.65rem);color:#7A5F16;background:rgba(212,175,55,.14);border:1px solid rgba(212,175,55,.55);padding:.85rem 1.5rem;border-radius:10px;display:inline-block;}
+
   /* ============================================================
      BRING-IT-TOGETHER convergence (Step 2 — existing kept)
      ============================================================ */
@@ -215,11 +257,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      ============================================================ */
   .keep-hero{text-align:center;padding-block:clamp(3rem,5.5vw,4.5rem) clamp(1rem,2vw,1.5rem);}
   .keep-hero__eyebrow{display:block;font-family:'Inter',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.2em;font-size:.85rem;color:#D4AF37;margin:0 0 1rem;}
-  .keep-hero__title{font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(3.5rem,10vw,7rem);line-height:.95;color:#F7F7F7;margin:0;}
+  .keep-hero__title{font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(2.4rem,7vw,5rem);line-height:.98;color:#F7F7F7;margin:0;max-width:22ch;margin-left:auto;margin-right:auto;}
+  .keep-hero__title em{color:#D4AF37;font-style:normal;}
 
   .keep-split{display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr);gap:clamp(2rem,5vw,4rem);align-items:start;max-width:1100px;margin:2.5rem auto 0;padding:0 1rem;}
   .keep-split__left .cmp-label{margin-bottom:.9rem;}
   .keep-split__left-line{font-family:'Inter',sans-serif;font-weight:500;font-size:1.1rem;line-height:1.4;color:rgba(247,247,247,.7);margin:.55rem 0 0;}
+  .keep-split__left-line--emph{color:rgba(247,247,247,.55);font-style:italic;}
   .keep-split__right .cmp-label{margin-bottom:.9rem;}
   .keep-split__right-title{font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(2.4rem,5.5vw,4rem);line-height:1.02;color:#D4AF37;margin:0;}
   @media (max-width:820px){
@@ -242,6 +286,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .keep-work__shot img{display:block;width:100%;height:auto;}
   .keep-work__copy{max-width:52ch;margin:2rem auto 0;text-align:center;font-family:'Inter',sans-serif;font-size:1.1rem;line-height:1.55;color:rgba(247,247,247,.9);}
   .keep-work__copy p{margin:.55rem 0;}
+  .keep-work__list{list-style:none;margin:1rem 0 0;padding:0;display:flex;flex-direction:column;gap:.4rem;font-family:'Inter',sans-serif;font-size:1.05rem;line-height:1.45;color:rgba(247,247,247,.85);}
+  .keep-work__list li{padding-left:1.35rem;position:relative;text-align:left;}
+  .keep-work__list li::before{content:"·";position:absolute;left:.35rem;top:-.15rem;color:#D4AF37;font-size:1.55rem;line-height:1;}
   .keep-work__shout{font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(1.15rem,1.85vw,1.5rem);color:#F7F7F7;margin-top:1.5rem;line-height:1.3;}
 
   /* Payoff lines under stack */
@@ -416,14 +463,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- STEP 1 — LEARN THE BUSINESS. Build the Business Brain.                -->
+  <!-- STEP 1 — START WITH THE PEOPLE. Business Brain interviews.            -->
   <!-- ==================================================================== -->
-  <section class="section section--white section--tight section--seam">
+  <section class="section section--white section--tight section--seam" id="step-1">
     <div class="container">
       <div class="hiw-stack">
         <div class="hiw-stack__head">
           <span class="eyebrow">Step 1</span>
-          <h2 class="hiw-stack__title">Learn <em>the business.</em></h2>
+          <h2 class="hiw-stack__title">Start with <em>the people.</em></h2>
         </div>
 
         <figure class="hiw-stack__shot">
@@ -431,32 +478,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w, img/sg-business-brain-2400w.jpg 2400w"
                sizes="(max-width: 900px) 94vw, 90vw"
                width="1600" height="708"
-               alt="Business Brain: AI voice interviews with leadership and team, documents, and company data, brought together as one written record of how the business works."
+               alt="Business Brain: AI voice interviews with leadership and team, capturing how the business actually works."
                loading="lazy" decoding="async">
         </figure>
 
-        <div class="cmpx" aria-label="Traditional consulting captures the business once. Simple Genius keeps capturing it and refining it.">
+        <div class="cmpx" aria-label="A good consultant starts by talking to the people who actually run the business. Simple Genius does the same thing with AI voice interviews.">
           <div class="cmpx__side">
             <span class="cmp-label">Traditional consulting</span>
-            <p class="cmpx__lede">A brief moment in time.</p>
-            <ul class="cmpx__list">
-              <li>Consultant interviews leadership</li>
-              <li>Presents notes and decks</li>
-              <li>Weeks of gathering</li>
-              <li>Delivered once as a report</li>
-            </ul>
-            <div class="cmpx__tail"><span class="cmpx__stop">Goes on the shelf</span></div>
+            <p class="cmpx__lede">A good consultant starts by talking to the people who actually run the business.</p>
           </div>
           <div class="cmpx__side cmpx__side--sg">
             <span class="cmp-label cmp-label--sg">Simple Genius</span>
-            <p class="cmpx__lede">A continuous partner.</p>
-            <ul class="cmpx__list">
-              <li>AI voice interviews</li>
-              <li>One written record</li>
-              <li>Kept in the Business Brain</li>
-              <li>Can always change and iterate</li>
-            </ul>
-            <div class="cmpx__tail"><span class="cmpx__go">Stays with you</span></div>
+            <p class="cmpx__lede">AI voice interviews your leaders and your team to learn how the business actually works.</p>
           </div>
         </div>
 
@@ -467,14 +500,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- STEP 2 — STUDY THE COMPETITION. Competition Hub.                      -->
+  <!-- STEP 2 — GATHER WHAT THE COMPANY ALREADY KNOWS. Light treatment.      -->
   <!-- ==================================================================== -->
-  <section class="section section--ground section--tight section--seam">
+  <section class="section section--ground section--tight section--seam" id="step-2">
     <div class="container">
       <div class="hiw-stack">
         <div class="hiw-stack__head">
           <span class="eyebrow">Step 2</span>
-          <h2 class="hiw-stack__title">Constantly watch <em>your competition.</em></h2>
+          <h2 class="hiw-stack__title">Gather what <em>the company already knows.</em></h2>
+        </div>
+
+        <figure class="hiw-stack__shot">
+          <img src="img/sg-findings-1600w.jpg"
+               srcset="img/sg-findings-800w.jpg 800w, img/sg-findings-1600w.jpg 1600w, img/sg-findings-2400w.jpg 2400w"
+               sizes="(max-width: 900px) 94vw, 90vw"
+               width="1600" height="708"
+               alt="What the company already knows, brought together in one place and kept there."
+               loading="lazy" decoding="async">
+        </figure>
+
+        <div class="cmpx cmpx--stacked-simple" aria-label="Traditional consulting spends weeks gathering what your company already knows. Simple Genius brings it together once and keeps it there." style="grid-template-columns:1fr;gap:1rem;max-width:900px;margin-left:auto;margin-right:auto;">
+          <div class="cmpx__side" style="align-items:flex-start;">
+            <span class="cmp-label">Traditional consulting</span>
+            <p class="cmpx__lede" style="margin:0;">Traditional consulting spends weeks gathering what your company already knows.</p>
+          </div>
+          <div class="cmpx__side cmpx__side--sg" style="align-items:flex-start;">
+            <span class="cmp-label cmp-label--sg">Simple Genius</span>
+            <p class="cmpx__lede" style="margin:0;">Simple Genius brings it together once and keeps it there.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- STEP 3 — STUDY THE COMPETITION. Competition Hub.                      -->
+  <!-- ==================================================================== -->
+  <section class="section section--white section--tight section--seam" id="step-3">
+    <div class="container">
+      <div class="hiw-stack">
+        <div class="hiw-stack__head">
+          <span class="eyebrow">Step 3</span>
+          <h2 class="hiw-stack__title">Study <em>the competition.</em></h2>
         </div>
 
         <figure class="hiw-stack__shot">
@@ -482,88 +549,81 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                srcset="img/sg-competition-hub-800w.jpg 800w, img/sg-competition-hub-1600w.jpg 1600w, img/sg-competition-hub-2400w.jpg 2400w"
                sizes="(max-width: 900px) 94vw, 90vw"
                width="1600" height="708"
-               alt="Competition Hub: your chosen competitors, watched every day, with hires, launches, price moves, and any public information."
+               alt="Competition Hub: the competitors you choose, watched every day, showing what changed."
                loading="lazy" decoding="async">
         </figure>
 
-        <div class="cmpx" aria-label="Traditional competitive review is a snapshot in time. Simple Genius is a continuous live review.">
+        <div class="cmpx" aria-label="Traditional consulting delivers a snapshot competitive review. Simple Genius shows a live view of what changed.">
           <div class="cmpx__side">
             <span class="cmp-label">Traditional consulting</span>
-            <p class="cmpx__lede">A snapshot in time.</p>
-            <ul class="cmpx__list">
-              <li>Competitive review</li>
-              <li>Delivered for leadership review</li>
-              <li>Filed away</li>
-            </ul>
-            <div class="cmpx__tail"><span class="cmpx__stop">Gets old fast</span></div>
+            <p class="cmpx__lede"><strong>A snapshot.</strong></p>
+            <p class="cmpx__body">A competitive review that's already getting old when you receive it.</p>
           </div>
           <div class="cmpx__side cmpx__side--sg">
             <span class="cmp-label cmp-label--sg">Simple Genius</span>
-            <p class="cmpx__lede">A continuous live review.</p>
-            <ul class="cmpx__list">
-              <li>Competition Hub watches every day</li>
-              <li>Hires, launches, price moves</li>
-              <li>Any public information</li>
-              <li>Shows what changed</li>
-              <li>Always watching</li>
+            <p class="cmpx__lede"><strong>A live view.</strong></p>
+            <p class="cmpx__body">Competition Hub watches the competitors you choose and shows you what changed.</p>
+            <ul class="cmpx__list cmpx__list--stars">
+              <li>Hires</li>
+              <li>Launches</li>
+              <li>Price changes</li>
+              <li>What they're saying publicly</li>
             </ul>
-            <div class="cmpx__tail"><span class="cmpx__go">Always current</span></div>
           </div>
         </div>
 
-        <p class="hiw-shout-in hiw-shout-in--gold" style="margin-top:2rem;font-size:clamp(1.4rem,2vw,1.75rem);">We scan every day and show you exactly what changed.</p>
+        <p class="hiw-shout" style="margin-top:2.5rem;">We scan every day. <br><span style="color:#7A5F16;">You see what changed.</span></p>
       </div>
     </div>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- STEP 3 — CONFIRM THE FINDINGS.                                        -->
+  <!-- STEP 4 — GET THE BUSINESS RIGHT. Confirmation.                        -->
   <!-- ==================================================================== -->
-  <section class="section section--white section--tight section--seam">
+  <section class="section section--ground section--tight section--seam" id="step-4">
     <div class="container">
       <div class="hiw-head hiw-head--center">
-        <span class="eyebrow">Step 3</span>
-        <h2 class="display display--md">Confirm <em>the findings.</em></h2>
+        <span class="eyebrow">Step 4</span>
+        <h2 class="display display--md">Get <em>the business right.</em></h2>
       </div>
 
-      <div class="cmpx" style="max-width:1100px;margin-left:auto;margin-right:auto;" aria-label="Traditional consulting uses your corrections to finish the deck. Simple Genius keeps the corrected knowledge inside the Business Brain.">
+      <div class="cmpx cmpx--confirm" aria-label="Traditional consulting hands you findings for correction. Simple Genius shows you what it learned and you confirm what is right.">
         <div class="cmpx__side">
           <span class="cmp-label">Traditional consulting</span>
-          <p class="cmpx__lede">Leadership corrections finish the deck.</p>
-          <ul class="cmpx__list">
-            <li>Findings</li>
-            <li>You review</li>
-            <li>You correct</li>
-            <li>Recommendations</li>
-          </ul>
-          <div class="cmpx__tail"><span class="cmpx__stop">Ends on paper</span></div>
+          <p class="cmpx__lede">A consultant hands you their findings.</p>
+          <p class="cmpx__body">You read them, correct them, and push back where they're wrong.</p>
         </div>
         <div class="cmpx__side cmpx__side--sg">
           <span class="cmp-label cmp-label--sg">Simple Genius</span>
-          <p class="cmpx__lede">Corrections stay in the Business Brain.</p>
-          <ul class="cmpx__list">
-            <li>Learns</li>
-            <li>You review</li>
-            <li>You correct</li>
-            <li>You confirm</li>
-          </ul>
-          <div class="cmpx__tail"><span class="cmpx__loop">Constantly getting smarter</span></div>
+          <p class="cmpx__lede">Simple Genius shows you what it learned about your business.</p>
+          <p class="cmpx__body">You confirm what's right and correct what's wrong.</p>
         </div>
       </div>
 
-      <p class="hiw-shout" style="margin-top:2.75rem;">Nothing moves forward on an assumption <br><span style="color:#7A5F16;">you didn't approve.</span></p>
+      <!-- Confirmation flow: LEARN → REVIEW → CORRECT → CONFIRM -->
+      <ol class="confirm-flow" aria-label="Learn, review, correct, confirm.">
+        <li class="confirm-flow__step"><span class="confirm-flow__num">01</span><span class="confirm-flow__label">Learn</span></li>
+        <li class="confirm-flow__arrow" aria-hidden="true">→</li>
+        <li class="confirm-flow__step"><span class="confirm-flow__num">02</span><span class="confirm-flow__label">Review</span></li>
+        <li class="confirm-flow__arrow" aria-hidden="true">→</li>
+        <li class="confirm-flow__step"><span class="confirm-flow__num">03</span><span class="confirm-flow__label">Correct</span></li>
+        <li class="confirm-flow__arrow" aria-hidden="true">→</li>
+        <li class="confirm-flow__step confirm-flow__step--sg"><span class="confirm-flow__num">04</span><span class="confirm-flow__label">Confirm</span></li>
+      </ol>
+
+      <p class="hiw-shout hiw-shout--payoff">Nothing moves forward on an assumption <span class="nowrap-gold">you didn't approve.</span></p>
     </div>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- STEP 4 — TURN FINDINGS INTO ACTION. Strategic Insights.               -->
+  <!-- STEP 5 — TURN WHAT YOU KNOW INTO WHAT TO DO NEXT. Strategic Insights. -->
   <!-- ==================================================================== -->
-  <section class="section section--ground section--tight section--seam">
+  <section class="section section--white section--tight section--seam" id="step-5">
     <div class="container">
       <div class="hiw-stack">
         <div class="hiw-stack__head">
-          <span class="eyebrow">Step 4</span>
-          <h2 class="hiw-stack__title">Turn findings <em>into action.</em></h2>
+          <span class="eyebrow">Step 5</span>
+          <h2 class="hiw-stack__title">Turn what you know <em>into what to do next.</em></h2>
         </div>
 
         <figure class="hiw-stack__shot">
@@ -571,58 +631,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                srcset="img/sg-strategic-insights-800w.jpg 800w, img/sg-strategic-insights-1600w.jpg 1600w, img/sg-strategic-insights-2400w.jpg 2400w"
                sizes="(max-width: 900px) 94vw, 90vw"
                width="1600" height="800"
-               alt="Strategic Insights: the Business Brain and Competition Hub combine into clear insights tied to initiatives you can choose, own, and track."
+               alt="Strategic Insights: findings and competitor signals combine into a clear next step."
                loading="lazy" decoding="async">
         </figure>
 
-        <div class="cmpx" aria-label="Traditional consulting delivers a slide deck of recommendations and the project ends. Simple Genius turns findings into initiatives that get done.">
+        <div class="cmpx" aria-label="Traditional consulting delivers a recommendation and the engagement ends. Simple Genius connects what it knows about your business with what is changing around you.">
           <div class="cmpx__side">
             <span class="cmp-label">Traditional consulting</span>
-            <p class="cmpx__lede">Recommendations on paper.</p>
-            <ul class="cmpx__list">
-              <li>Consultant leaves a slide deck</li>
-              <li>Findings printed and handed off</li>
-              <li>Filed with last year's plan</li>
-              <li>No owner, no next step</li>
-            </ul>
-            <div class="cmpx__tail"><span class="cmpx__stop">The project ends</span></div>
+            <p class="cmpx__lede">You get the recommendation.</p>
+            <p class="cmpx__body">Then the engagement ends.</p>
           </div>
           <div class="cmpx__side cmpx__side--sg">
             <span class="cmp-label cmp-label--sg">Simple Genius</span>
-            <p class="cmpx__lede">Business Brain plus Competition Hub become Strategic Insights.</p>
-            <ul class="cmpx__list">
-              <li>Live insight surfaces</li>
-              <li>Tied to who you are and who they are</li>
-              <li>Owned as an initiative</li>
-              <li>Work that actually happens</li>
-              <li>New information comes back in</li>
-              <li>Next insight surfaces</li>
-            </ul>
-            <div class="cmpx__tail"><span class="cmpx__loop">Keeps looping</span></div>
+            <p class="cmpx__lede">Strategic Insights connects what Simple Genius knows about your business with what's changing around you.</p>
           </div>
         </div>
 
-        <p class="hiw-shout-in hiw-shout-in--gold" style="margin-top:2rem;">Traditional consulting delivers the recommendation.</p>
-        <p class="hiw-shout-in">Simple Genius keeps working from it.</p>
+        <!-- Findings + Competitor Signals → What to do next -->
+        <div class="insight-eq" aria-label="Findings plus competitor signals equals what to do next.">
+          <div class="insight-eq__row">
+            <span class="insight-eq__term">Findings</span>
+            <span class="insight-eq__op">+</span>
+            <span class="insight-eq__term">Competitor signals</span>
+          </div>
+          <div class="insight-eq__arrow" aria-hidden="true">↓</div>
+          <div class="insight-eq__result">What to do next</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- 8. STEP 6 — KEEP IT.  Full black payoff.                              -->
+  <!-- STEP 6 — KEEP WHAT YOU'VE BUILT. Full black payoff.                   -->
   <!-- ==================================================================== -->
-  <section class="section section--ink-deep section--seam" style="padding-block:clamp(2rem,4vw,3rem);">
+  <section class="section section--ink-deep section--seam" id="step-6" style="padding-block:clamp(3rem,5vw,4rem);">
     <div class="container">
       <div class="keep-hero">
         <span class="keep-hero__eyebrow">Step 6</span>
-        <h2 class="keep-hero__title">Keep it.</h2>
+        <h2 class="keep-hero__title">Keep what <em>you've built.</em></h2>
       </div>
 
       <div class="keep-split">
         <div class="keep-split__left">
           <span class="cmp-label">Traditional consulting</span>
-          <p class="keep-split__left-line">Project ends.</p>
-          <p class="keep-split__left-line">Context leaves.</p>
+          <p class="keep-split__left-line">The project ends.</p>
+          <p class="keep-split__left-line keep-split__left-line--emph">The context leaves with it.</p>
         </div>
         <div class="keep-split__right">
           <span class="cmp-label cmp-label--sg">Simple Genius</span>
@@ -630,20 +683,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- Accumulation stack -->
-      <div class="accum" aria-label="Team interviews, company knowledge, confirmed findings, competitor context, strategic insights, and workstreams keep building.">
+      <!-- Accumulation stack: builds and never restarts -->
+      <div class="accum" aria-label="Team interviews, company knowledge, confirmed findings, competitor context, strategic insights, workstreams, keeps building.">
         <div class="accum__box">Team interviews</div>
-        <div class="accum__arrow">↓</div>
+        <div class="accum__arrow" aria-hidden="true">↓</div>
         <div class="accum__box">Company knowledge</div>
-        <div class="accum__arrow">↓</div>
+        <div class="accum__arrow" aria-hidden="true">↓</div>
         <div class="accum__box">Confirmed findings</div>
-        <div class="accum__arrow">↓</div>
+        <div class="accum__arrow" aria-hidden="true">↓</div>
         <div class="accum__box">Competitor context</div>
-        <div class="accum__arrow">↓</div>
+        <div class="accum__arrow" aria-hidden="true">↓</div>
         <div class="accum__box">Strategic insights</div>
-        <div class="accum__arrow">↓</div>
+        <div class="accum__arrow" aria-hidden="true">↓</div>
         <div class="accum__box">Workstreams</div>
-        <div class="accum__arrow">↓</div>
+        <div class="accum__arrow" aria-hidden="true">↓</div>
         <div class="accum__box accum__box--top">Keeps building</div>
       </div>
 
@@ -659,17 +712,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </figure>
         <div class="keep-work__copy">
           <p>Your team puts that company knowledge to work every day in Workstreams.</p>
-          <p>Ask questions. Work through problems. Get things done with AI that already knows the business.</p>
+          <ul class="keep-work__list">
+            <li>Ask questions.</li>
+            <li>Work through problems.</li>
+            <li>Get things done with AI that already knows the business.</li>
+          </ul>
           <p class="keep-work__shout">An internal company AI your team can work with every day.</p>
         </div>
       </div>
 
-      <!-- Payoff -->
+      <!-- Final payoff -->
       <div class="keep-payoff">
-        <p class="hiw-shout">What the company learns stays inside <br><span style="color:#D4AF37;">your company's four walls.</span></p>
-        <p class="hiw-shout hiw-shout--xl" style="margin-top:1.75rem;">Your context. <span style="color:#D4AF37;">Yours.</span></p>
-        <p class="hiw-shout" style="margin-top:2rem;">It never stops.</p>
-        <p class="hiw-shout hiw-shout--gold" style="margin-top:.5rem;">And it never leaves.</p>
+        <p class="hiw-shout">What your company learns stays inside <br><span style="color:#D4AF37;">your company's four walls.</span></p>
+        <p class="hiw-shout hiw-shout--xl" style="margin-top:2rem;">Your context. <span style="color:#D4AF37;">Yours.</span></p>
       </div>
     </div>
   </section>
