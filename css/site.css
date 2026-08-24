@@ -849,10 +849,30 @@ body.grid-debug--rows::before {
   border-bottom: var(--bw) solid transparent;
 }
 .site-header__inner {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--sp-6);
   width: min(100% - (2 * var(--page-margin)), var(--maxw));
+}
+.site-header__rights {
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--c-steel);
+  opacity: .75;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.is-dark-top .site-header:not(.is-stuck) .site-header__rights {
+  color: rgba(247,247,247,.65);
+}
+@media (max-width: 900px) {
+  .site-header__rights { display: none; }
 }
 .site-header.is-stuck {
   background: rgba(237,235,232,.88);
