@@ -26,24 +26,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      Uses shared cream / black / gold system from css/site.css.
      ============================================================= */
 
-  /* Hero: stacked serif statement, three lines */
+  /* Hero: two-line serif statement, About-page scale */
   .try-hero { padding-block: clamp(4.5rem, 8vw, 7rem) clamp(3rem, 6vw, 5rem); }
-  .try-hero__lines {
-    display: flex; flex-direction: column;
-    gap: clamp(1rem, 2vw, 1.75rem);
+  .try-hero__title {
     text-align: center;
     text-wrap: balance;
-    margin: 0 auto;
     max-width: 22ch;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .try-hero__line { display: block; }
-  .try-hero__line em {
-    color: #D4AF37; font-style: italic; font-weight: inherit;
-  }
-  .try-hero__line--tag {
-    padding-top: clamp(1rem, 2vw, 1.5rem);
-    border-top: 1px solid rgba(212, 175, 55, .35);
-    margin-top: clamp(.25rem, 1vw, .75rem);
+  .try-hero__title em { color: #D4AF37; }
+  .try-hero__title--sub {
+    margin-top: clamp(.75rem, 1.5vw, 1.25rem);
   }
 
   /* Exchange — three horizontal boxes with gold arrows between */
@@ -281,11 +275,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="page-head page-head--ink try-hero">
   <div class="page-head__glow" aria-hidden="true"></div>
   <div class="container page-head__inner">
-    <h1 class="page-head__title try-hero__lines">
-      <span class="try-hero__line">This is what we can do <em>from the outside.</em></span>
-      <span class="try-hero__line">Imagine what we could do <em>from within.</em></span>
-      <span class="try-hero__line try-hero__line--tag">Simple Genius is the first step <em>in AI for business.</em></span>
-    </h1>
+    <h1 class="page-head__title try-hero__title">This is what we can do <em>from the outside.</em></h1>
+    <h2 class="page-head__title try-hero__title try-hero__title--sub">Imagine what we can do <em>from within.</em></h2>
   </div>
 </section>
 
