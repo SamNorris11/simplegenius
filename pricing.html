@@ -20,6 +20,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="favicon-16.png?v=1787253912" sizes="16x16" type="image/png">
 <link rel="icon" href="favicon-512.png?v=1787253912" sizes="512x512" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1787253912">
+<style>
+  /* Pricing page — Sam iteration 2026-08-24 */
+
+  /* 3 Tiers hero: bigger */
+  .pricing-hero__title{font-size:clamp(3.6rem,7.5vw,6.5rem)!important;letter-spacing:-.025em;line-height:1.02;}
+  .pricing-hero__sub{font-size:clamp(1.25rem,1.85vw,1.55rem);color:var(--c-steel);margin-top:1.25rem;}
+
+  /* Slim plan cards (removed 4/6/12 seats boxes, so cards should breathe less) */
+  .pricing-hero-section .plan{padding:clamp(1.5rem,2.8vw,2rem) clamp(1.25rem,2.4vw,1.75rem) clamp(1.5rem,2.8vw,2rem);}
+  .pricing-hero-section .plan__body{margin-bottom:0;}
+
+  /* Seats-row note in comparison table: quiet inline note under the label */
+  .pdu-seats-note{display:block;margin-top:.3rem;font-family:'Inter',sans-serif;font-weight:400;font-size:.78rem;letter-spacing:.02em;color:var(--c-mute);text-transform:none;}
+
+  /* Investment comparison chart: taller + skinnier bars */
+  .invcmp__chart{height:280px;}
+  .invcmp__bar{width:38%;max-width:78px;}
+  @media (max-width:720px){
+    .invcmp__chart{height:300px;}
+    .invcmp__bar{width:52%!important;max-width:64px;}
+  }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -117,8 +139,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="page-head__glow" aria-hidden="true"></div>
   <div class="container page-head__inner">
     <span class="eyebrow">Pricing</span>
-    <h1 class="page-head__title page-head__title--single">3 Tiers</h1>
-    <p class="page-head__sub">Choose how much you want to do with it.</p>
+    <h1 class="page-head__title page-head__title--single pricing-hero__title">3 Tiers</h1>
+    <p class="page-head__sub pricing-hero__sub">Choose how much you want to do with it.</p>
   </div>
 </section>
 
@@ -132,9 +154,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-gs-price data-base="299" data-guided="799">299</span><span class="plan__period">/month</span></span>
         <p class="plan__addon" data-gs-addon hidden>Includes Guided Setup</p>
         <p class="plan__body plan__body--tight"><strong>Build the foundation.</strong> Understand your business, keep track of your competitors, and see what you should do next.</p>
-        <div class="plan__specs">
-          <span class="plan__spec">4 seats included</span>
-        </div>
       </article>
 
       <article class="plan plan--featured">
@@ -143,9 +162,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-gs-price data-base="499" data-guided="999">499</span><span class="plan__period">/month</span></span>
         <p class="plan__addon" data-gs-addon hidden>Includes Guided Setup</p>
         <p class="plan__body plan__body--tight"><strong>Turn what you know into action.</strong> Everything in the first plan, plus Strategic Initiatives so your team can own and track the work that comes next.</p>
-        <div class="plan__specs">
-          <span class="plan__spec">6 seats included</span>
-        </div>
       </article>
 
       <article class="plan">
@@ -153,16 +169,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-gs-price data-base="899" data-guided="1,399">899</span><span class="plan__period">/month</span></span>
         <p class="plan__addon" data-gs-addon hidden>Includes Guided Setup</p>
         <p class="plan__body plan__body--tight"><strong>Bring more of your team into it.</strong> Everything in the $499 plan, plus Boardroom.</p>
-        <div class="plan__specs">
-          <span class="plan__spec">12 seats included</span>
-        </div>
       </article>
     </div>
 
     <!-- Guided Setup panel: two-column desktop, stacked mobile -->
     <div class="pcmp-wrap" aria-label="Guided Setup add on">
-      <p class="pcmp__seat-note">Additional seats: $75/month.</p>
-
       <!-- Guided Setup toggle: one checkbox controlling three plan prices -->
       <div class="gs-toggle-row" data-gs-toggle-root>
         <label class="gs-card">
@@ -241,7 +252,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <td><span class="pdu-check" aria-label="Included">&#10003;</span></td>
             </tr>
             <tr class="pdu-table__seats-row">
-              <th scope="row">Seats</th>
+              <th scope="row">Seats <span class="pdu-seats-note">Additional seats: $75/month.</span></th>
               <td><span class="pdu-seat">4</span></td>
               <td class="pdu-table__cell--mid"><span class="pdu-seat">6</span></td>
               <td><span class="pdu-seat">12</span></td>
@@ -312,13 +323,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="invcmp__cols">
         <div class="invcmp__col">
           <span class="invcmp__label">Option one</span>
-          <h3 class="invcmp__title">Hire an <br>employee.</h3>
-          <p class="invcmp__note"><span class="invcmp__star" aria-hidden="true">&#9733;</span><span>Expensive. Full time.</span></p>
+          <h3 class="invcmp__title">Bring in <br>a consultant.</h3>
+          <p class="invcmp__note"><span class="invcmp__star" aria-hidden="true">&#9733;</span><span>A project, not a lasting solution.</span></p>
         </div>
         <div class="invcmp__col">
           <span class="invcmp__label">Option two</span>
-          <h3 class="invcmp__title">Bring in <br>a consultant.</h3>
-          <p class="invcmp__note"><span class="invcmp__star" aria-hidden="true">&#9733;</span><span>A project, not a lasting solution.</span></p>
+          <h3 class="invcmp__title">Hire an <br>employee.</h3>
+          <p class="invcmp__note"><span class="invcmp__star" aria-hidden="true">&#9733;</span><span>Expensive. Full time.</span></p>
         </div>
         <div class="invcmp__col invcmp__col--us">
           <span class="invcmp__label invcmp__label--us">Option three</span>
@@ -327,7 +338,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="invcmp__chart" role="img" aria-label="Relative investment: Hire help is high, Bring in a consultant is medium, Simple Genius is low.">
+      <div class="invcmp__chart" role="img" aria-label="Relative investment: Bring in a consultant is high, Hire an employee is medium, Simple Genius is low.">
         <div class="invcmp__yaxis">
           <span class="invcmp__ylabel invcmp__ylabel--head">Investment</span>
           <span class="invcmp__ylabel invcmp__ylabel--high">High</span>
@@ -342,11 +353,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="invcmp__bars">
             <div class="invcmp__bar-wrap">
               <div class="invcmp__bar invcmp__bar--high"></div>
-              <span class="invcmp__xlabel">Hire an employee</span>
+              <span class="invcmp__xlabel">Bring in a consultant</span>
             </div>
             <div class="invcmp__bar-wrap">
               <div class="invcmp__bar invcmp__bar--med"></div>
-              <span class="invcmp__xlabel">Bring in a consultant</span>
+              <span class="invcmp__xlabel">Hire an employee</span>
             </div>
             <div class="invcmp__bar-wrap">
               <div class="invcmp__bar invcmp__bar--low"></div>
