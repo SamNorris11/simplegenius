@@ -28,6 +28,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Hero: two-line serif statement, About-page scale */
   .try-hero { padding-block: clamp(4.5rem, 8vw, 7rem) clamp(3rem, 6vw, 5rem); }
+  .try-hero .page-head__glow { display: none; }
   .try-hero__title {
     text-align: center;
     text-wrap: balance;
@@ -140,12 +141,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding: 0;
   }
   .outside-hook__title {
-    font-family: 'Inter', sans-serif; font-weight: 800;
-    text-transform: uppercase; letter-spacing: .02em;
-    font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.15;
+    font-family: 'Playfair Display', serif; font-weight: 500;
+    text-transform: none; letter-spacing: -.015em;
+    font-size: clamp(2rem, 4.4vw, 3.25rem); line-height: 1.15;
     color: #F7F7F7; margin: 0;
+    text-wrap: balance;
   }
-  .outside-hook__title em { color: #D4AF37; font-style: normal; }
+  .outside-hook__title em { color: #D4AF37; font-style: italic; }
 
   /* Tighter section utility — halve the shared --sp-9 padding */
   .section--try-tight { padding-block: clamp(2rem, 4vw, 3rem); }
