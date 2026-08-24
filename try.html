@@ -175,22 +175,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Outside-information hook — dark section */
   .outside-hook {
-    text-align: center; max-width: 44ch; margin: 0 auto;
+    text-align: center; max-width: 60ch; margin: 0 auto;
   }
-  .outside-hook { max-width: 60ch; }
+  .outside-hook__quote {
+    margin: 0 0 2.75rem;
+    position: relative;
+    padding: 0 clamp(1rem, 3vw, 2rem);
+  }
+  .outside-hook__quote::before,
+  .outside-hook__quote::after {
+    font-family: 'Playfair Display', serif;
+    color: #D4AF37;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1;
+    position: absolute;
+    opacity: .85;
+  }
+  .outside-hook__quote::before { content: "\201C"; top: -.25rem; left: -.5rem; }
+  .outside-hook__quote::after  { content: "\201D"; bottom: -1.75rem; right: -.5rem; }
   .outside-hook__title {
     font-family: 'Inter', sans-serif; font-weight: 800;
     text-transform: uppercase; letter-spacing: .02em;
-    font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.1;
-    color: #F7F7F7; margin: 0 0 1.25rem;
+    font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.15;
+    color: #F7F7F7; margin: 0;
   }
   .outside-hook__title em { color: #D4AF37; font-style: normal; }
-  .outside-hook__body {
-    font-family: 'Inter', sans-serif; font-weight: 800;
-    text-transform: uppercase; letter-spacing: .02em;
-    font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.1;
-    color: #D4AF37; margin: 0 0 2rem;
-  }
 
   /* Tighter section utility — halve the shared --sp-9 padding */
   .section--try-tight { padding-block: clamp(2rem, 4vw, 3rem); }
@@ -479,8 +488,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="section section--ink section--try-tight section--seam">
   <div class="container">
     <div class="outside-hook">
-      <h2 class="outside-hook__title">This is what we can find <em>from the outside.</em></h2>
-      <p class="outside-hook__body">Imagine what we can do from within.</p>
+      <blockquote class="outside-hook__quote">
+        <p class="outside-hook__title">Simple Genius is the first step <em>in AI for business.</em></p>
+      </blockquote>
       <a class="btn btn--gold" href="talk.html">Join the Waitlist
         <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
       </a>
