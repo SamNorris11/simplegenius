@@ -90,14 +90,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Feel secure — centered eyebrow + centered boxes */
   .feel__eyebrow{display:block;font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.55rem,2.6vw,2.15rem);color:#D4AF37;margin:clamp(3.5rem,5.5vw,4.5rem) auto clamp(1.75rem,2.6vw,2.25rem);letter-spacing:-.015em;text-align:center;text-wrap:balance;max-width:28ch;}
-  .feel__grid{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:clamp(1rem,1.6vw,1.35rem);}
-  @media (max-width:960px){.feel__grid{grid-template-columns:repeat(2, minmax(0,1fr));}}
-  @media (max-width:520px){.feel__grid{grid-template-columns:1fr;}}
-  .feel__box{padding:clamp(1.5rem,2.4vw,2rem) clamp(1rem,1.5vw,1.35rem);border:1.5px solid rgba(212,175,55,.35);border-radius:16px;background:linear-gradient(180deg, rgba(212,175,55,.06), rgba(212,175,55,.01));min-height:clamp(140px,14vw,170px);display:flex;align-items:center;justify-content:center;text-align:center;}
-  .feel__box p{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.15rem,1.6vw,1.4rem);line-height:1.25;color:#F7F7F7;margin:0;letter-spacing:-.015em;text-wrap:balance;}
+  /* 2x2 grid so each phrase can sit on ONE centered line */
+  .feel__grid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:clamp(1.1rem,1.8vw,1.5rem);max-width:1000px;margin-inline:auto;}
+  @media (max-width:640px){.feel__grid{grid-template-columns:1fr;max-width:440px;}}
+  .feel__box{padding:clamp(1.75rem,2.6vw,2.15rem) clamp(1.25rem,1.8vw,1.75rem);border:1.5px solid rgba(212,175,55,.4);border-radius:16px;background:linear-gradient(180deg, rgba(212,175,55,.07), rgba(212,175,55,.015));min-height:clamp(96px,7.5vw,110px);display:flex;align-items:center;justify-content:center;text-align:center;}
+  .feel__box p{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.1rem,1.55vw,1.4rem);line-height:1.2;color:#F7F7F7;margin:0;letter-spacing:-.01em;white-space:nowrap;}
+  @media (max-width:640px){.feel__box p{white-space:normal;text-wrap:balance;}}
 
-  /* Walls line — centered, big */
-  .answ__walls{margin:clamp(3.5rem,6vw,5rem) auto 0;font-family:'Playfair Display',serif;font-weight:500;color:#F7F7F7;font-size:clamp(1.75rem,3.4vw,2.75rem);line-height:1.15;letter-spacing:-.015em;max-width:26ch;text-wrap:balance;}
+  /* Walls line — centered, bigger to balance the section */
+  .answ__walls{margin:clamp(4rem,7vw,6rem) auto 0;font-family:'Playfair Display',serif;font-weight:500;color:#F7F7F7;font-size:clamp(2rem,4vw,3.25rem);line-height:1.1;letter-spacing:-.02em;max-width:22ch;text-wrap:balance;}
   .answ__walls em{font-style:italic;color:#D4AF37;}
 
   /* =========================================================
