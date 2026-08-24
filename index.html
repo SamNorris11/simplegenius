@@ -60,20 +60,61 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border: 1px solid rgba(29,29,29,.08) !important;
     overflow: hidden !important;
   }
+
+  /* Mirror of section--flip for Competition Hub + Strategic Insights:
+     copy LEFT, image RIGHT, image is the same big size as Business Brain
+     but bleeds out of the container to the section's RIGHT edge. */
+  .section--flip-right .grid--centred {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr) !important;
+    column-gap: var(--sp-8, 2.75rem) !important;
+    align-items: center !important;
+  }
+  .section--flip-right .grid--centred > .split__copy.col--1-5 {
+    grid-column: 1 / span 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
+  }
+  .section--flip-right .grid--centred > .shot.col--6-12 {
+    grid-column: 2 / span 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
+  }
+  .section--flip-right .grid--centred > .shot.col--6-12 .shot__img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+  .section--flip-right .grid--centred > .shot.col--6-12.shot--edge,
+  .section--flip-right .grid--centred > .shot.col--6-12.shot--edge-firm {
+    margin-left: 0 !important;
+    margin-right: calc(var(--page-margin, 24px) * -1) !important;
+    width: calc(100% + var(--page-margin, 24px)) !important;
+    max-width: none !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(212,175,55,.18) !important;
+    overflow: hidden !important;
+  }
+
   @media (max-width: 900px) {
-    .section--flip .grid--centred {
+    .section--flip .grid--centred,
+    .section--flip-right .grid--centred {
       grid-template-columns: 1fr !important;
     }
     .section--flip .grid--centred > .shot.col--6-12,
-    .section--flip .grid--centred > .split__copy.col--1-5 {
+    .section--flip .grid--centred > .split__copy.col--1-5,
+    .section--flip-right .grid--centred > .shot.col--6-12,
+    .section--flip-right .grid--centred > .split__copy.col--1-5 {
       grid-column: 1 / -1 !important;
       grid-row: auto !important;
       align-self: stretch !important;
     }
-    /* Reset the desktop left-bleed on mobile so the image fits the viewport */
+    /* Reset the desktop bleed on mobile so the image fits the viewport */
     .section--flip .grid--centred > .shot.col--6-12.shot--edge,
-    .section--flip .grid--centred > .shot.col--6-12.shot--edge-firm {
+    .section--flip .grid--centred > .shot.col--6-12.shot--edge-firm,
+    .section--flip-right .grid--centred > .shot.col--6-12.shot--edge,
+    .section--flip-right .grid--centred > .shot.col--6-12.shot--edge-firm {
       margin-left: 0 !important;
+      margin-right: 0 !important;
       width: 100% !important;
       border-radius: 14px !important;
     }
@@ -264,12 +305,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ===================================================== P2, COMPETITION HUB (LEAD)
      Ported from simple version. Black background, verbatim copy. -->
-<section class="section section--ink section--tight" id="competition">
+<section class="section section--ink section--tight section--flip-right" id="competition">
   <div class="container">
     <div class="grid grid--centred">
       <div class="col--1-5 split__copy">
         <div class="split__copy-head">
-          <span class="eyebrow">Competition</span>
+          <span class="eyebrow">Competition Hub</span>
           <h2 class="display display--md">We watch your competitors <em>for you</em>.</h2>
         </div>
         <div class="split__copy-body">
@@ -324,7 +365,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- =============================================== P5, STRATEGIC INSIGHTS (BLACK)
      Ported from simple version. Black background. Copy left, image right. -->
-<section class="section section--ink section--tight" id="insights">
+<section class="section section--ink section--tight section--flip-right" id="insights">
   <div class="container">
     <div class="grid grid--centred">
       <div class="col--1-5 split__copy">
