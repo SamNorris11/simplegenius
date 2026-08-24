@@ -30,12 +30,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <style>
   html{scroll-behavior:smooth;scroll-padding-top:76px;}
 
-  /* Backbar sits on the cream section 1. */
+  /* Backbar — now using .container so left edge matches every other page */
   .backbar{background:#F4EFE7;padding:calc(var(--header-h, 76px) + .9rem) 0 1.25rem;}
-  .backbar__inner{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);}
   .backbar__link{display:inline-flex;align-items:center;gap:.6rem;font-family:'Inter',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.005em;color:#1D1D1D;background:#D4AF37;text-decoration:none;padding:.85rem 1.5rem;border-radius:999px;box-shadow:0 6px 24px rgba(212,175,55,.28);transition:background .18s ease, transform .18s ease, box-shadow .18s ease;}
   .backbar__link:hover{background:#E8C24A;transform:translateX(-2px);box-shadow:0 8px 28px rgba(212,175,55,.4);color:#1D1D1D;}
   .backbar__link svg{width:16px;height:16px;flex:0 0 auto;stroke-width:2.4;}
+
+  /* Security hero — matches page-head--tall pattern used across the site */
+  .security-hero__title{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.3rem,6vw,5rem);line-height:1.08;letter-spacing:-.015em;color:var(--c-ink);margin:0 auto;max-width:22ch;text-wrap:balance;}
+  .security-hero__title em{font-style:italic;color:#7A5F16;}
+  .security-hero__sub{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.3;color:#7A5F16;margin:clamp(1.25rem,2.4vw,1.75rem) auto 0;max-width:32ch;}
 
   /* =========================================================
      Shared scaffolding
@@ -43,76 +47,70 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .sec{position:relative;padding:clamp(4rem,8vw,7rem) 0;overflow:hidden;}
   .sec--cream{background:#F4EFE7;color:#1D1D1D;}
   .sec--ink{background:#000;color:#F7F7F7;}
-  .sec__inner{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);}
-
-  .h-hero{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.75rem,6.4vw,5.25rem);line-height:1.04;letter-spacing:-.025em;margin:0;text-wrap:balance;}
-  .h-xxl {font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(3rem,7vw,5.75rem);line-height:1.02;letter-spacing:-.03em;margin:0;text-wrap:balance;}
-  .h-xl  {font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.5rem,5.4vw,4.25rem);line-height:1.06;letter-spacing:-.02em;margin:0;text-wrap:balance;}
-  .h-hero em,.h-xxl em,.h-xl em{font-style:italic;color:#8A6D18;}
-  .sec--ink .h-hero em,.sec--ink .h-xxl em,.sec--ink .h-xl em{color:#D4AF37;}
-
-  .dek{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;color:#8A6D18;font-size:clamp(1.5rem,2.8vw,2.15rem);line-height:1.2;letter-spacing:-.01em;margin:clamp(1.25rem,2vw,1.75rem) 0 0;}
-  .sec--ink .dek{color:#D4AF37;}
-
-  .lede{font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.5vw,1.35rem);line-height:1.55;color:#5A5A5A;margin:clamp(1.25rem,2.2vw,1.75rem) 0 0;max-width:56ch;}
-  .sec--ink .lede{color:rgba(247,247,247,.82);}
+  .sec__inner{width:min(100% - (2 * var(--page-margin)), var(--maxw));margin-inline:auto;}
 
   /* =========================================================
-     SECTION 1 — Hero (cream) — no eyebrow
+     PROBLEM SECTION (cream) — headline + copy + list + big question
+     with visual flavor on the right so it doesn't feel empty
      ========================================================= */
-  .sec-hero{padding-top:clamp(2rem,4vw,3rem);padding-bottom:clamp(3.5rem,6vw,5rem);}
-  .sec-hero .h-hero{max-width:22ch;}
+  .prob{padding:clamp(4.5rem,8vw,7rem) 0 clamp(5rem,9vw,8rem);}
+  .prob__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(2.5rem,5vw,4.5rem);align-items:start;}
+  @media (max-width:900px){.prob__grid{grid-template-columns:1fr;gap:2.5rem;}}
+  .prob__h{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2rem,4.2vw,3.35rem);line-height:1.08;letter-spacing:-.02em;color:#1D1D1D;margin:0;max-width:22ch;text-wrap:balance;}
+  .prob__h em{font-style:italic;color:#8A6D18;}
+  .prob__copy{margin:clamp(1.75rem,3vw,2.25rem) 0 0;font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.4vw,1.3rem);line-height:1.6;color:#1D1D1D;}
+  .prob__copy p{margin:0 0 1.15em;}
+  .prob__copy p:last-child{margin-bottom:0;}
+  .prob__copy strong{font-weight:600;}
+  .prob__list{list-style:none;padding:0;margin:1.5rem 0 1.5rem;display:grid;gap:.55rem;}
+  .prob__list li{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.35rem,2.1vw,1.7rem);line-height:1.25;color:#1D1D1D;letter-spacing:-.01em;}
+
+  /* Flavor column — quiet visual so right side doesn't feel dead */
+  .prob__aside{position:sticky;top:calc(var(--header-h,76px) + 2rem);display:grid;gap:clamp(.85rem,1.4vw,1.15rem);align-content:start;}
+  @media (max-width:900px){.prob__aside{position:static;}}
+  .prob__whisper{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#8A6D18;margin:0 0 .5rem;}
+  .prob__quote{position:relative;padding:clamp(1.5rem,2.4vw,2rem) clamp(1.5rem,2.2vw,1.85rem);border-radius:14px;background:rgba(255,255,255,.55);border:1px solid rgba(29,29,29,.08);box-shadow:0 6px 22px rgba(29,29,29,.05);}
+  .prob__quote p{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;font-size:clamp(1.15rem,1.55vw,1.4rem);line-height:1.4;color:#1D1D1D;margin:0;letter-spacing:-.005em;}
+  .prob__quote p + p{margin-top:.75em;}
+  .prob__quote::before{content:"\201C";position:absolute;top:-.2em;left:.4rem;font-family:'Playfair Display',serif;font-size:5rem;line-height:1;color:rgba(212,175,55,.35);}
+  .prob__cite{font-family:'Inter',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A6D18;margin:1rem 0 0;padding-left:.25rem;}
+
+  /* Big closing question — sits inside same section, centered, huge */
+  .prob__ask{margin:clamp(4rem,7vw,6rem) 0 0;padding-top:clamp(3rem,5vw,4rem);border-top:1px solid rgba(29,29,29,.12);text-align:center;}
+  .prob__ask h3{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.5rem,7vw,5.5rem);line-height:1.02;letter-spacing:-.03em;color:#1D1D1D;margin:0 auto;max-width:20ch;text-wrap:balance;}
+  .prob__ask h3 em{font-style:italic;color:#8A6D18;}
 
   /* =========================================================
-     SECTION 1b — Info block (cream)
+     ANSWER SECTION (ink) — CENTERED throughout
      ========================================================= */
-  .sec-info{padding-top:clamp(3rem,6vw,5rem);padding-bottom:clamp(4rem,7vw,6rem);}
-  .info__h{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2rem,3.8vw,3rem);line-height:1.1;letter-spacing:-.02em;color:#1D1D1D;margin:0;max-width:22ch;text-wrap:balance;}
-  .info__h em{font-style:italic;color:#8A6D18;}
-  .info__body{margin:clamp(2rem,4vw,3rem) 0 0;max-width:60ch;font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.4vw,1.3rem);line-height:1.6;color:#1D1D1D;}
-  .info__body p{margin:0 0 1.15em;}
-  .info__body p:last-child{margin-bottom:0;}
-  .info__body strong{font-weight:600;}
-  .info__list{list-style:none;padding:0;margin:1.75rem 0 1.75rem;display:grid;gap:.6rem;}
-  .info__list li{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.35rem,2.1vw,1.7rem);line-height:1.25;color:#1D1D1D;letter-spacing:-.01em;}
+  .answ{padding:clamp(5rem,9vw,8rem) 0;text-align:center;}
+  .answ__h{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.75rem,6.4vw,5rem);line-height:1.04;letter-spacing:-.03em;color:#F7F7F7;margin:0 auto;max-width:18ch;text-wrap:balance;}
+  .answ__h em{font-style:italic;color:#D4AF37;}
+  .answ__lede{margin:clamp(1.5rem,2.6vw,2rem) auto 0;max-width:48ch;font-family:'Inter',sans-serif;font-size:clamp(1.125rem,1.4vw,1.3rem);line-height:1.6;color:rgba(247,247,247,.82);}
 
-  /* =========================================================
-     SECTION 1c — The Question (cream, huge)
-     ========================================================= */
-  .sec-ask{padding:clamp(5rem,10vw,9rem) 0;text-align:center;}
-  .ask__h{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.75rem,7.4vw,6rem);line-height:1.02;letter-spacing:-.03em;color:#1D1D1D;margin:0 auto;max-width:18ch;text-wrap:balance;}
-  .ask__h em{font-style:italic;color:#8A6D18;}
-
-  /* =========================================================
-     SECTION 2 — Answer (ink)
-     ========================================================= */
-  .sec-answer{padding:clamp(5rem,9vw,8rem) 0;}
-  .answer__h{max-width:20ch;}
-  .answer__lede{max-width:56ch;}
-
-  /* Feel secure — four boxes */
-  .feel__eyebrow{display:block;font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.35rem,2.2vw,1.8rem);color:#D4AF37;margin:clamp(3rem,5vw,4rem) 0 clamp(1.5rem,2.4vw,2rem);letter-spacing:-.01em;}
+  /* Feel secure — centered eyebrow + centered boxes */
+  .feel__eyebrow{display:block;font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.55rem,2.6vw,2.15rem);color:#D4AF37;margin:clamp(3.5rem,5.5vw,4.5rem) auto clamp(1.75rem,2.6vw,2.25rem);letter-spacing:-.015em;text-align:center;text-wrap:balance;max-width:28ch;}
   .feel__grid{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:clamp(1rem,1.6vw,1.35rem);}
   @media (max-width:960px){.feel__grid{grid-template-columns:repeat(2, minmax(0,1fr));}}
   @media (max-width:520px){.feel__grid{grid-template-columns:1fr;}}
-  .feel__box{padding:clamp(1.5rem,2.4vw,2rem) clamp(1.25rem,2vw,1.75rem);border:1.5px solid rgba(212,175,55,.35);border-radius:16px;background:linear-gradient(180deg, rgba(212,175,55,.06), rgba(212,175,55,.01));min-height:clamp(150px,15vw,180px);display:flex;align-items:flex-start;}
-  .feel__box p{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.2rem,1.75vw,1.5rem);line-height:1.2;color:#F7F7F7;margin:0;letter-spacing:-.015em;text-wrap:balance;}
+  .feel__box{padding:clamp(1.5rem,2.4vw,2rem) clamp(1rem,1.5vw,1.35rem);border:1.5px solid rgba(212,175,55,.35);border-radius:16px;background:linear-gradient(180deg, rgba(212,175,55,.06), rgba(212,175,55,.01));min-height:clamp(140px,14vw,170px);display:flex;align-items:center;justify-content:center;text-align:center;}
+  .feel__box p{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.15rem,1.6vw,1.4rem);line-height:1.25;color:#F7F7F7;margin:0;letter-spacing:-.015em;text-wrap:balance;}
 
-  /* Walls close line */
-  .answer__walls{margin:clamp(4rem,7vw,5.5rem) auto 0;text-align:center;font-family:'Playfair Display',serif;font-weight:500;color:#F7F7F7;font-size:clamp(1.75rem,3.4vw,2.75rem);line-height:1.15;letter-spacing:-.015em;max-width:26ch;text-wrap:balance;}
-  .answer__walls em{font-style:italic;color:#D4AF37;}
+  /* Walls line — centered, big */
+  .answ__walls{margin:clamp(3.5rem,6vw,5rem) auto 0;font-family:'Playfair Display',serif;font-weight:500;color:#F7F7F7;font-size:clamp(1.75rem,3.4vw,2.75rem);line-height:1.15;letter-spacing:-.015em;max-width:26ch;text-wrap:balance;}
+  .answ__walls em{font-style:italic;color:#D4AF37;}
 
   /* =========================================================
-     SECTION 3 — Payoff (cream, minimal)
+     PAYOFF (cream, minimal) — unchanged look
      ========================================================= */
-  .sec-payoff{padding:clamp(5rem,10vw,9rem) 0 clamp(5rem,9vw,8rem);text-align:center;}
-  .payoff__lead{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.85rem,3.2vw,2.5rem);line-height:1.25;letter-spacing:-.015em;color:#1D1D1D;margin:0 auto;max-width:36ch;text-wrap:balance;}
-  .payoff__lead em{font-style:italic;color:#8A6D18;}
-  .payoff__final{margin:clamp(3.5rem,6vw,5rem) auto 0;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.75rem,7vw,5.75rem);line-height:1.02;letter-spacing:-.03em;color:#1D1D1D;max-width:18ch;text-wrap:balance;}
-  .payoff__final span{display:block;}
-  .payoff__final span:last-child{color:#8A6D18;font-style:italic;margin-top:.1em;}
+  .pay{padding:clamp(5rem,10vw,9rem) 0 clamp(5rem,9vw,8rem);text-align:center;}
+  .pay__lead{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.85rem,3.2vw,2.5rem);line-height:1.25;letter-spacing:-.015em;color:#1D1D1D;margin:0 auto;max-width:36ch;text-wrap:balance;}
+  .pay__lead em{font-style:italic;color:#8A6D18;}
+  .pay__final{margin:clamp(3.5rem,6vw,5rem) auto 0;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.75rem,7vw,5.75rem);line-height:1.02;letter-spacing:-.03em;color:#1D1D1D;max-width:18ch;text-wrap:balance;}
+  .pay__final span{display:block;}
+  .pay__final span:last-child{color:#8A6D18;font-style:italic;margin-top:.1em;}
 
-  .payoff__cta{margin:clamp(2.5rem,4.4vw,3.5rem) 0 0;display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center;}
+  .pay__cta{margin:clamp(2.5rem,4.4vw,3.5rem) 0 0;display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center;}
   .cta-btn{display:inline-flex;align-items:center;gap:.55rem;font-family:'Inter',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.005em;padding:1rem 1.75rem;border-radius:999px;text-decoration:none;transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease;}
   .cta-btn--gold{color:#1D1D1D;background:#D4AF37;box-shadow:0 6px 24px rgba(212,175,55,.28);}
   .cta-btn--gold:hover{background:#E8C24A;transform:translateY(-1px);box-shadow:0 8px 28px rgba(212,175,55,.4);}
@@ -125,15 +123,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      ========================================================= */
   @media (max-width:640px){
     .sec{padding:clamp(3.5rem,10vw,5rem) 0;}
-    .h-hero{font-size:2.4rem;line-height:1.06;}
-    .dek{font-size:1.35rem;}
-    .info__h{font-size:1.85rem;line-height:1.15;}
-    .info__list li{font-size:1.2rem;}
-    .ask__h{font-size:2.4rem;line-height:1.05;}
+    .security-hero__title{font-size:clamp(2rem,7.5vw,2.8rem);}
+    .prob__h{font-size:1.85rem;line-height:1.15;}
+    .prob__list li{font-size:1.2rem;}
+    .prob__ask h3{font-size:2.4rem;line-height:1.05;}
+    .answ__h{font-size:2.4rem;line-height:1.06;}
     .feel__box{min-height:auto;}
-    .answer__walls{font-size:1.65rem;}
-    .payoff__lead{font-size:1.55rem;line-height:1.3;}
-    .payoff__final{font-size:2.65rem;line-height:1.04;}
+    .answ__walls{font-size:1.65rem;}
+    .pay__lead{font-size:1.55rem;line-height:1.3;}
+    .pay__final{font-size:2.65rem;line-height:1.04;}
   }
 </style>
 </head>
@@ -174,7 +172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </header>
 
 <div class="backbar">
-  <div class="backbar__inner">
+  <div class="container">
     <a class="backbar__link" href="index.html#security" aria-label="Back to homepage">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Back to homepage
@@ -184,46 +182,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main id="main">
 
-  <!-- ================================ HERO (cream) -->
-  <section class="sec sec--cream sec-hero" aria-labelledby="s-hero">
-    <div class="sec__inner">
-      <h1 class="h-hero" id="s-hero">Your team is going to use AI. <em>They should.</em> It makes their jobs easier.</h1>
-      <p class="dek">But what are they giving it?</p>
+  <!-- ================================ HERO (matches HIW/pricing/about page-head--tall) -->
+  <section class="page-head page-head--tall">
+    <div class="page-head__glow" aria-hidden="true"></div>
+    <div class="container page-head__inner">
+      <span class="eyebrow">Security</span>
+      <h1 class="page-head__title page-head__title--single security-hero__title">Your team is going to use AI. <em>They should.</em> It makes their jobs easier.</h1>
+      <p class="page-head__sub security-hero__sub">But what are they giving it?</p>
     </div>
   </section>
 
-  <!-- ================================ INFO BLOCK (cream) -->
-  <section class="sec sec--cream sec-info" aria-labelledby="s-info">
+  <!-- ================================ THE PROBLEM (cream) -->
+  <section class="sec sec--cream prob" aria-labelledby="prob-title">
     <div class="sec__inner">
-      <h2 class="info__h" id="s-info">AI gets better when you give it <em>more information.</em></h2>
 
-      <div class="info__body">
-        <p>Most people who use public models give the following information:</p>
-        <ul class="info__list" aria-label="Information employees give public AI">
-          <li>Customer emails.</li>
-          <li>Sales plans.</li>
-          <li>Company documents.</li>
-          <li>Problems they&rsquo;re trying to solve.</li>
-          <li>Things only your team knows.</li>
-        </ul>
-        <p>They&rsquo;re not doing anything wrong. <strong>They&rsquo;re trying to get better answers to do a better job.</strong></p>
+      <div class="prob__grid">
+        <div class="prob__main">
+          <h2 class="prob__h" id="prob-title">AI gets better when you give it <em>more information.</em></h2>
+
+          <div class="prob__copy">
+            <p>Most people who use public models give the following information:</p>
+            <ul class="prob__list" aria-label="Information employees give public AI">
+              <li>Customer emails.</li>
+              <li>Sales plans.</li>
+              <li>Company documents.</li>
+              <li>Problems they&rsquo;re trying to solve.</li>
+              <li>Things only your team knows.</li>
+            </ul>
+            <p>They&rsquo;re not doing anything wrong. <strong>They&rsquo;re trying to get better answers to do a better job.</strong></p>
+          </div>
+        </div>
+
+        <aside class="prob__aside" aria-label="Why your people reach for AI">
+          <span class="prob__whisper">What&rsquo;s really happening</span>
+          <figure class="prob__quote">
+            <p>The customer emailed at 11 p.m. and wants an answer before Monday.</p>
+            <p>The board deck is due in an hour and the numbers still don&rsquo;t line up.</p>
+            <p>A new hire has questions only one person in the company can actually answer.</p>
+            <p>Every one of those people is going to open a public AI tool. Because it&rsquo;s the fastest way to keep moving.</p>
+          </figure>
+          <p class="prob__cite">Inside every business, right now</p>
+        </aside>
       </div>
+
+      <div class="prob__ask">
+        <h3>Where is <em>all that information</em> going?</h3>
+      </div>
+
     </div>
   </section>
 
-  <!-- ================================ THE QUESTION (cream) -->
-  <section class="sec sec--cream sec-ask" aria-labelledby="s-ask">
-    <div class="sec__inner">
-      <h2 class="ask__h" id="s-ask">Where is <em>all that information</em> going?</h2>
-    </div>
-  </section>
-
-  <!-- ================================ THE ANSWER (ink) -->
-  <section class="sec sec--ink sec-answer" aria-labelledby="s-answer">
+  <!-- ================================ THE ANSWER (ink, centered) -->
+  <section class="sec sec--ink answ" aria-labelledby="answ-title">
     <div class="sec__inner">
 
-      <h2 class="h-xxl answer__h" id="s-answer">Give them <em>your</em> AI.</h2>
-      <p class="lede answer__lede">Simple Genius gives your company its own private place to use AI. Your people work with company knowledge without putting that information at risk in public AI tools every time they need help.</p>
+      <h2 class="answ__h" id="answ-title">Give them <em>your</em> AI.</h2>
+      <p class="answ__lede">Simple Genius gives your company its own private place to use AI. Your people work with company knowledge without putting that information at risk in public AI tools every time they need help.</p>
 
       <p class="feel__eyebrow">Feel secure with Simple Genius.</p>
       <div class="feel__grid">
@@ -233,23 +247,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="feel__box"><p>Not used to train someone else&rsquo;s model.</p></div>
       </div>
 
-      <p class="answer__walls">Your company knowledge stays <em>inside the four walls of the business.</em></p>
+      <p class="answ__walls">Your company knowledge stays <em>inside the four walls of the business.</em></p>
 
     </div>
   </section>
 
   <!-- ================================ PAYOFF (cream) -->
-  <section class="sec sec--cream sec-payoff" aria-labelledby="s-payoff">
+  <section class="sec sec--cream pay" aria-labelledby="pay-title">
     <div class="sec__inner">
 
-      <p class="payoff__lead" id="s-payoff">With Simple Genius, your people get AI that helps them with their work. And you get to keep <em>all your company data in one place.</em></p>
+      <p class="pay__lead" id="pay-title">With Simple Genius, your people get AI that helps them with their work. And you get to keep <em>all your company data in one place.</em></p>
 
-      <p class="payoff__final">
+      <p class="pay__final">
         <span>Give your people AI.</span>
         <span>Keep your business data yours.</span>
       </p>
 
-      <div class="payoff__cta">
+      <div class="pay__cta">
         <a class="cta-btn cta-btn--gold" href="talk.html">Join the Waitlist
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
