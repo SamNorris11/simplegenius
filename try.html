@@ -29,7 +29,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* Hero refinement: tighten sub, extra top padding so eyebrow clears nav */
   .try-hero { padding-block: clamp(4rem, 7vw, 6rem) clamp(2.5rem, 5vw, 4.5rem); }
   .try-hero .page-head__title { text-wrap: balance; margin-bottom: .75rem; }
-  .try-hero .page-head__sub    { max-width: 46ch; }
+  .try-hero .page-head__sub    {
+    max-width: 52ch;
+    font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+    line-height: 1.5;
+  }
   .try-hero .page-head__free {
     color: #D4AF37; font-style: italic; font-weight: 600;
   }
