@@ -40,27 +40,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     margin-top: clamp(.75rem, 1.5vw, 1.25rem);
   }
 
-  /* Offer — single compact bridge between hero and form */
+  /* Offer — section title + three numbered steps */
   .try-offer {
-    text-align: center;
-    max-width: 1100px; margin: 0 auto;
+    max-width: 960px; margin: 0 auto;
   }
   .try-offer__title {
     font-family: 'Playfair Display', serif; font-weight: 500;
-    font-size: clamp(1.9rem, 3.2vw, 2.75rem);
-    line-height: 1.15; letter-spacing: -.015em;
+    font-size: clamp(2.25rem, 4.4vw, 3.75rem);
+    line-height: 1.1; letter-spacing: -.02em;
     color: #1D1D1D;
-    margin: 0 0 clamp(.75rem, 1.5vw, 1.25rem);
+    margin: 0 auto;
+    text-align: center;
     text-wrap: balance;
+    max-width: 22ch;
   }
   .try-offer__title em { color: #D4AF37; font-style: italic; }
-  .try-offer__give {
-    font-family: 'Inter', sans-serif; font-weight: 400;
-    font-size: clamp(1.1rem, 1.3vw, 1.25rem);
-    line-height: 1.5; color: #1D1D1D;
-    margin: 0 auto;
-    max-width: 46ch;
-  }
 
   .try-offer__rule {
     border: 0;
@@ -70,81 +64,54 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     margin: clamp(2rem, 4vw, 3rem) auto;
   }
 
-  .try-offer__intro {
-    font-family: 'Inter', sans-serif; font-weight: 400;
-    font-size: clamp(1rem, 1.15vw, 1.1rem);
-    color: #5A5A5A; letter-spacing: .01em;
-    margin: 0 auto clamp(1.25rem, 2.5vw, 1.75rem);
-  }
-  .try-offer__outputs {
-    list-style: none; margin: 0 auto;
+  .try-steps {
+    list-style: none;
+    margin: 0 auto;
     padding: 0;
-    display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-    max-width: 1100px;
+    max-width: 760px;
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.25rem);
   }
-  .try-offer__outputs li {
-    font-family: 'Inter', sans-serif; font-weight: 800;
-    text-transform: uppercase; letter-spacing: .06em;
-    font-size: clamp(1rem, 1.25vw, 1.2rem);
-    color: #1D1D1D;
-    padding: 0 clamp(1.25rem, 2.5vw, 2rem);
-    position: relative;
-    white-space: nowrap;
+  .try-steps__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    padding-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+    border-bottom: 1px solid rgba(28, 26, 23, .08);
   }
-  .try-offer__outputs li + li::before {
-    content: "";
-    position: absolute; left: 0; top: 50%;
-    width: 1px; height: 1.1em;
-    transform: translateY(-50%);
-    background: rgba(28, 26, 23, .18);
-  }
+  .try-steps__item:last-child { border-bottom: 0; padding-bottom: 0; }
 
-  .try-offer__free {
-    font-family: 'Inter', sans-serif; font-weight: 500;
-    font-size: clamp(1.1rem, 1.35vw, 1.3rem);
+  .try-steps__num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-weight: 500;
+    color: #D4AF37;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -.02em;
+  }
+  .try-steps__body {
+    font-family: 'Inter', sans-serif; font-weight: 400;
+    font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+    line-height: 1.45;
     color: #1D1D1D;
     margin: 0;
-    letter-spacing: .01em;
-    display: inline-flex; align-items: baseline; gap: .5rem;
-    flex-wrap: wrap; justify-content: center;
+    text-wrap: pretty;
   }
-  .try-offer__free em {
-    font-family: 'Playfair Display', serif;
-    font-style: italic; font-weight: 600;
-    color: #D4AF37;
-    font-size: 1.5em;
-    letter-spacing: -.01em;
-    line-height: 1;
-  }
-  .try-offer__free > span {
-    text-transform: uppercase; letter-spacing: .08em;
-    font-size: .95em; font-weight: 700;
+  .try-steps__body em {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
     color: #1D1D1D;
   }
 
   @media (max-width: 720px) {
-    .try-offer__outputs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      row-gap: 1.25rem; column-gap: 0;
-      max-width: 100%;
+    .try-steps__item {
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
     }
-    .try-offer__outputs li {
-      padding: 0 .5rem;
-      white-space: normal;
-      text-align: center;
-      font-size: .95rem;
-      line-height: 1.25;
-      letter-spacing: .04em;
-    }
-    .try-offer__outputs li + li::before { display: none; }
-    .try-offer__outputs li:nth-child(2n)::before {
-      content: "";
-      position: absolute; left: 0; top: 50%;
-      width: 1px; height: 1.4em;
-      transform: translateY(-50%);
-      background: rgba(28, 26, 23, .18);
-    }
+    .try-steps__num { font-size: 2.25rem; }
+    .try-steps__body { font-size: 1.05rem; line-height: 1.5; }
   }
 
   /* Form: use existing .form / .form__input / .form__group patterns */
@@ -275,26 +242,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ============================================================ OFFER (single compact explanation) -->
+<!-- ============================================================ OFFER (three numbered steps) -->
 <section class="section section--ground section--try-tight section--seam">
   <div class="container">
     <div class="try-offer">
-      <h2 class="try-offer__title">See what we can find about <em>your business.</em></h2>
-      <p class="try-offer__give">Give us your company website and two competitors.</p>
+      <h2 class="try-offer__title">Get a taste of working with <em>Simple Genius</em> for free.</h2>
 
       <hr class="try-offer__rule" aria-hidden="true">
 
-      <p class="try-offer__intro">We&rsquo;ll send you a free Simple Genius Brief with:</p>
-      <ul class="try-offer__outputs">
-        <li>Business Findings</li>
-        <li>Competitive Findings</li>
-        <li>Strategic Insights</li>
-        <li>What to Do Next</li>
-      </ul>
-
-      <hr class="try-offer__rule" aria-hidden="true">
-
-      <p class="try-offer__free"><em>Free.</em> <span>Sent to your inbox.</span></p>
+      <ol class="try-steps">
+        <li class="try-steps__item">
+          <span class="try-steps__num">1.</span>
+          <p class="try-steps__body">Fill out the form below. Give us your company website and two competitors.</p>
+        </li>
+        <li class="try-steps__item">
+          <span class="try-steps__num">2.</span>
+          <p class="try-steps__body">We&rsquo;ll send you a free Simple Genius Brief with <em>Business Findings, Competitive Findings, Strategic Insights,</em> and <em>What to Do Next.</em></p>
+        </li>
+        <li class="try-steps__item">
+          <span class="try-steps__num">3.</span>
+          <p class="try-steps__body">We send it straight to your inbox.</p>
+        </li>
+      </ol>
     </div>
   </div>
 </section>
