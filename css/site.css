@@ -139,7 +139,7 @@
   --bw-2:    2px;
   --ctl-h:   3rem;      /* every interactive control shares this height     */
   --ctl-h-sm: 2.75rem;              /* was 2.5rem — mobile tap targets ≥44px per §3.3 */
-  --header-h: 92px;                 /* was 78px — larger nav zone per §3.3 */
+  --header-h: 76px;                 /* trimmed from 92px per Sam — tighter nav zone */
   --logo-h:  44px;                  /* was 34px — bigger logo per §3.3 */
 
   /* --- component geometry (not space: shared artboards and fixed objects) - */
@@ -2458,6 +2458,12 @@ body.is-dark-top .site-header:not(.is-stuck) .btn--primary {
   outline-offset: var(--bw-2);
 }
 .plans--tight { row-gap: var(--sp-5); }
+
+/* Homepage tight-plan cards: center the tier label + price inside each box. */
+.plans--tight .plan { text-align: center; align-items: center; }
+.plans--tight .plan__name { text-align: center; }
+.plans--tight .plan__price { justify-content: center; }
+
 /* the shared note under the three cards, and the ledger footnote */
 .plan-note { max-width: 62ch; margin-inline: auto; text-align: center; }
 .table-scroll + .footnote { display: block; }
@@ -3312,7 +3318,7 @@ html:not(.no-js) .reveal.is-visible { opacity: 1; translate: 0 0; }
 /* 900 — nav collapses; every twelve-column set becomes a single column      */
 @media (max-width: 900px) {
   :root {
-    --header-h: 80px;                /* was 70px — mobile header height per §3.3 nav sizing bump */
+    --header-h: 68px;                /* trimmed from 80px per Sam — tighter mobile nav */
     --sp-9:  clamp(3rem, 7vw, 4.5rem);
     --sp-10: clamp(3.5rem, 9vw, 5.5rem);
     --sp-11: clamp(4.5rem, 12vw, 7rem);
