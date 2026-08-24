@@ -48,12 +48,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   /* Flipped sections: mirror Competition Hub's edge-bleed treatment. The image
      lives on the LEFT and bleeds off the LEFT page edge, with rounded corners
-     only on the right side. This gives the flipped software image the same
-     visual weight as Competition Hub / Strategic Insights, just mirrored. */
+     only on the right side. Grid negative-left-margin alone doesn't extend the
+     content box the way negative-right-margin does, so also grow the width by
+     the same +172px to match Competition Hub / Strategic Insights bleed. */
   .section--flip .shot--edge,
   .section--flip .shot--edge-firm {
     margin-left: -172px !important;
     margin-right: 0 !important;
+    width: calc(100% + 172px) !important;
+    max-width: none !important;
     border-radius: 0 16px 16px 0 !important;
     border: 0 !important;
   }
@@ -69,6 +72,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .section--flip .shot--edge,
     .section--flip .shot--edge-firm {
       margin-left: 0 !important;
+      width: 100% !important;
       border-radius: 14px !important;
     }
   }
