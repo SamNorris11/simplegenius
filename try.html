@@ -26,22 +26,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      Uses shared cream / black / gold system from css/site.css.
      ============================================================= */
 
-  /* Hero refinement: tighten sub, extra top padding so eyebrow clears nav */
-  .try-hero { padding-block: clamp(4rem, 7vw, 6rem) clamp(2.5rem, 5vw, 4.5rem); }
-  .try-hero .page-head__title { text-wrap: balance; margin-bottom: .75rem; }
-  .try-hero .page-head__sub    {
-    max-width: 52ch;
-    font-size: clamp(1.2rem, 1.6vw, 1.5rem);
-    line-height: 1.5;
+  /* Hero: stacked serif statement, three lines */
+  .try-hero { padding-block: clamp(4.5rem, 8vw, 7rem) clamp(3rem, 6vw, 5rem); }
+  .try-hero__lines {
+    display: flex; flex-direction: column;
+    gap: clamp(1rem, 2vw, 1.75rem);
+    text-align: center;
+    text-wrap: balance;
+    margin: 0 auto;
+    max-width: 22ch;
   }
-  .try-hero .page-head__free {
-    color: #D4AF37; font-style: italic; font-weight: 600;
+  .try-hero__line { display: block; }
+  .try-hero__line em {
+    color: #D4AF37; font-style: italic; font-weight: inherit;
   }
-  .try-hero .page-head__lead   {
-    max-width: 46ch; margin: 1rem auto 0;
-    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500;
-    font-size: clamp(1.15rem, 1.6vw, 1.35rem);
-    color: rgba(237, 235, 232, .84); line-height: 1.4;
+  .try-hero__line--tag {
+    padding-top: clamp(1rem, 2vw, 1.5rem);
+    border-top: 1px solid rgba(212, 175, 55, .35);
+    margin-top: clamp(.25rem, 1vw, .75rem);
   }
 
   /* Exchange — three horizontal boxes with gold arrows between */
@@ -178,21 +180,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     text-align: center; max-width: 60ch; margin: 0 auto;
   }
   .outside-hook__quote {
-    margin: 0 0 2.75rem;
-    position: relative;
-    padding: 0 clamp(1rem, 3vw, 2rem);
+    margin: 0 0 1.75rem;
+    padding: 0;
   }
-  .outside-hook__quote::before,
-  .outside-hook__quote::after {
-    font-family: 'Playfair Display', serif;
-    color: #D4AF37;
-    font-size: clamp(3rem, 6vw, 5rem);
-    line-height: 1;
-    position: absolute;
-    opacity: .85;
-  }
-  .outside-hook__quote::before { content: "\201C"; top: -.25rem; left: -.5rem; }
-  .outside-hook__quote::after  { content: "\201D"; bottom: -1.75rem; right: -.5rem; }
   .outside-hook__title {
     font-family: 'Inter', sans-serif; font-weight: 800;
     text-transform: uppercase; letter-spacing: .02em;
@@ -291,8 +281,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="page-head page-head--ink try-hero">
   <div class="page-head__glow" aria-hidden="true"></div>
   <div class="container page-head__inner">
-    <h1 class="page-head__title">Try Simple Genius <em>for free.</em></h1>
-    <p class="page-head__sub">Give us information about your business and two competitors. We will research what is publicly available and send you a personalized Simple Genius Brief <em class="page-head__free">for free.</em></p>
+    <h1 class="page-head__title try-hero__lines">
+      <span class="try-hero__line">This is what we can do <em>from the outside.</em></span>
+      <span class="try-hero__line">Imagine what we could do <em>from within.</em></span>
+      <span class="try-hero__line try-hero__line--tag">Simple Genius is the first step <em>in AI for business.</em></span>
+    </h1>
   </div>
 </section>
 
@@ -488,9 +481,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="section section--ink section--try-tight section--seam">
   <div class="container">
     <div class="outside-hook">
-      <blockquote class="outside-hook__quote">
+      <div class="outside-hook__quote">
         <p class="outside-hook__title">Simple Genius is the first step <em>in AI for business.</em></p>
-      </blockquote>
+      </div>
       <a class="btn btn--gold" href="talk.html">Join the Waitlist
         <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
       </a>
