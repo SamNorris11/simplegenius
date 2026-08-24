@@ -25,12 +25,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1787253912">
 <style>
   /* Homepage section flip: image LEFT, copy RIGHT for Business Brain + Workstreams.
-     Match the Competition Hub / Strategic Insights proportions (image gets the
-     7-col width, copy gets the 5-col width) so the software render is BIG and
-     the copy has proper room to breathe. */
+     Image is BIG: its top-left corner sits at the SECTION's left edge (page
+     margin), bleeding out of the container so the software render dominates.
+     Copy column stays inside the container at a comfortable width. */
   .section--flip .grid--centred {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr) !important;
-    column-gap: var(--sp-7, 2.25rem) !important;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr) !important;
+    column-gap: var(--sp-8, 2.75rem) !important;
+    align-items: center !important;
   }
   .section--flip .grid--centred > .shot.col--6-12 {
     grid-column: 1 / span 1 !important;
@@ -47,14 +48,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     grid-row: 1 !important;
     align-self: center !important;
   }
-  /* Flipped sections (Business Brain + Workstreams): image LEFT, copy RIGHT.
-     Software image sits barely inside the section: pull it slightly left of
-     the container edge, fill its column, all four corners rounded. */
+  /* Software image bleeds out of the container to the section's true left edge
+     (page-margin). Corners rounded, top-left touches the section corner. */
   .section--flip .grid--centred > .shot.col--6-12.shot--edge,
   .section--flip .grid--centred > .shot.col--6-12.shot--edge-firm {
-    margin-left: calc(var(--sp-6, 1.75rem) * -1) !important;
+    margin-left: calc(var(--page-margin, 24px) * -1) !important;
     margin-right: 0 !important;
-    width: calc(100% + var(--sp-6, 1.75rem)) !important;
+    width: calc(100% + var(--page-margin, 24px)) !important;
     max-width: none !important;
     border-radius: 16px !important;
     border: 1px solid rgba(29,29,29,.08) !important;
@@ -431,33 +431,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <article class="plan">
         <span class="plan__name">Starter</span>
         <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-base="299">299</span><span class="plan__period">/mo</span></span>
-        <div class="plan__specs">
-          <span class="plan__spec">For a small team</span>
-          <span class="plan__spec">Business Brain included</span>
-          <span class="plan__spec">One competitor tracked</span>
-          <span class="plan__spec">Workstreams for up to 5 people</span>
-        </div>
       </article>
       <article class="plan plan--featured">
         <span class="plan__tag">Most teams pick this</span>
         <span class="plan__name">Team</span>
         <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-base="499">499</span><span class="plan__period">/mo</span></span>
-        <div class="plan__specs">
-          <span class="plan__spec">For a growing company</span>
-          <span class="plan__spec">Business Brain included</span>
-          <span class="plan__spec">Three competitors tracked</span>
-          <span class="plan__spec">Workstreams for up to 15 people</span>
-        </div>
       </article>
       <article class="plan">
         <span class="plan__name">Company</span>
         <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-base="899">899</span><span class="plan__period">/mo</span></span>
-        <div class="plan__specs">
-          <span class="plan__spec">For a whole business</span>
-          <span class="plan__spec">Business Brain included</span>
-          <span class="plan__spec">Five competitors tracked</span>
-          <span class="plan__spec">Workstreams for up to 50 people</span>
-        </div>
       </article>
     </div>
 
@@ -475,11 +457,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <div class="section__head section__head--centered" style="margin-top:2.5rem;">
-      <p class="section__lede section__lede--center"><strong>Extra seats:</strong> $75 per person per month.</p>
-    </div>
-
-    <div class="btn-row btn-row--center btn-row--stack block-after">
+    <div class="btn-row btn-row--center btn-row--stack block-after" style="margin-top:2.5rem;">
       <a class="btn btn--secondary" href="pricing.html">See full pricing</a>
     </div>
 
