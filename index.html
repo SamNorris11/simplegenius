@@ -40,6 +40,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     height: auto !important;
     display: block !important;
   }
+  /* Match Workstreams to Business Brain visual size. The Workstreams source is
+     shorter (0.435 vs 0.52 h/w), so give the Workstreams section a wider
+     image column (72/28) so the same-width image renders at the same PIXEL
+     HEIGHT as Business Brain. Copy still fits comfortably. */
+  #work-streams.section--flip .grid--centred {
+    grid-template-columns: minmax(0, 74fr) minmax(0, 26fr) !important;
+  }
   .section--flip .grid--centred > .split__copy.col--1-5 {
     grid-column: 2 / span 1 !important;
     grid-row: 1 !important;
