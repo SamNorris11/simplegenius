@@ -356,6 +356,81 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* Big brand close */
   .hiw-brand-shout{font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(1.95rem,4.7vw,3.4rem);line-height:1.08;color:#F7F7F7;margin:0 auto;max-width:26ch;}
   .hiw-brand-shout em{color:#D4AF37;font-style:normal;}
+
+  /* =============================================================
+     MOBILE READABILITY PASS — enlarge comparison text, fix Step 3
+     arrows, restack Step 4 equation, tighten Step 5 spacing.
+     ============================================================= */
+  @media (max-width:640px){
+    /* Bigger comparison text everywhere on mobile */
+    .cmpx__lede{font-size:1.35rem;line-height:1.3;}
+    .cmpx__body{font-size:1.1rem;line-height:1.5;}
+    .cmp-label{font-size:.9rem;padding:.55rem 1rem;letter-spacing:.16em;}
+
+    /* Step 3 arrows: proper vertical arrows BETWEEN chips */
+    .confirm-flow{flex-direction:column;align-items:center;gap:0;max-width:20rem;}
+    .confirm-flow__step{min-width:0;width:100%;max-width:20rem;flex:0 0 auto;margin:0;}
+    .confirm-flow__arrow{
+      transform:none;
+      display:block;
+      width:100%;
+      padding:.55rem 0;
+      height:auto;
+      font-size:0;
+      line-height:1;
+      text-align:center;
+    }
+    .confirm-flow__arrow::before{content:"↓";display:block;color:#D4AF37;font-size:1.6rem;line-height:1;}
+
+    /* Step 4 equation: stack cleanly, centered */
+    .insight-eq__row{display:flex;flex-direction:column;align-items:center;gap:.65rem;}
+    .insight-eq__op{margin:0;font-size:1.5rem;line-height:1;color:#D4AF37;}
+    .insight-eq__term{width:auto;text-align:center;}
+    .insight-eq__arrow{margin:.35rem auto;}
+    .insight-eq{align-items:center;text-align:center;}
+
+    /* Step 5: bump 'Traditional consulting' spacing under title */
+    .keep-split{margin-top:2rem;}
+    .keep-split__left,.keep-split__right{align-items:center;text-align:center;}
+    .keep-hero__title{text-wrap:balance;}
+  }
+
+  /* Closing block: shrink section on all viewports */
+  .hiw-close-block{padding-block:clamp(1.25rem,2vw,1.75rem);}
+  .hiw-close-block__lead{font-size:clamp(1.2rem,2.2vw,1.75rem);}
+
+  /* Mobile-only converge diagram (stacked list → arrow → SG node) */
+  .converge-m{display:none;}
+  @media (max-width:640px){
+    .concept.concept--desktop-only{display:none;}
+    .converge-m{
+      display:flex;flex-direction:column;align-items:center;
+      margin:clamp(2rem,4vw,2.5rem) auto 0;
+      max-width:22rem;width:100%;text-align:center;
+    }
+    .converge-m__list{list-style:none;margin:0 0 1rem;padding:0;width:100%;display:flex;flex-direction:column;gap:.55rem;}
+    .converge-m__item{
+      font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;
+      letter-spacing:.14em;font-size:1rem;color:#1D1D1D;
+      padding:.85rem 1rem;background:#F7F7F7;border:1px solid rgba(28,29,29,.08);border-radius:10px;
+    }
+    .converge-m__arrow{color:#D4AF37;font-size:1.75rem;line-height:1;margin:.35rem 0 .75rem;}
+    .converge-m__node{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      width:9rem;height:9rem;border-radius:50%;
+      background:#F7F7F7;border:2px solid #D4AF37;
+      box-shadow:0 6px 20px -8px rgba(212,175,55,.4);
+    }
+    .converge-m__brand{
+      font-family:'Inter',sans-serif;font-weight:600;text-transform:uppercase;
+      letter-spacing:.16em;font-size:.8rem;line-height:1.4;color:#5A5A5A;
+    }
+    .converge-m__brand span{color:#7A5F16;display:block;}
+    .converge-m__caption{
+      margin-top:.4rem;font-family:'Inter',sans-serif;font-weight:500;
+      text-transform:uppercase;letter-spacing:.22em;font-size:.65rem;color:#5A5A5A;
+    }
+  }
 </style>
 </head>
 <body>
@@ -551,7 +626,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="hiw-shout hiw-shout--gold" style="margin-top:clamp(2.5rem,4.5vw,3.5rem);">The most important information about your company is in your leaders' heads.</p>
 
         <!-- Supportive sub-section: five inputs converge into Simple Genius -->
-        <div class="concept" aria-label="Bring it together: separate company knowledge sources converge into Simple Genius">
+        <!-- Mobile stacked version (readable at 390px) -->
+        <div class="converge-m" aria-hidden="true">
+          <ul class="converge-m__list">
+            <li class="converge-m__item">Team knowledge</li>
+            <li class="converge-m__item">Documents</li>
+            <li class="converge-m__item">SOPs</li>
+            <li class="converge-m__item">Process files</li>
+            <li class="converge-m__item">Company data</li>
+          </ul>
+          <div class="converge-m__arrow" aria-hidden="true">↓</div>
+          <div class="converge-m__node">
+            <span class="converge-m__brand">Simple <span>Genius</span></span>
+            <span class="converge-m__caption">One place</span>
+          </div>
+        </div>
+
+        <!-- Desktop SVG diagram -->
+        <div class="concept concept--desktop-only" aria-label="Bring it together: separate company knowledge sources converge into Simple Genius">
           <svg viewBox="0 0 960 460" xmlns="http://www.w3.org/2000/svg" role="img">
             <defs>
               <style>
@@ -790,9 +882,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="section section--ground section--tight section--seam">
     <div class="container">
       <div class="hiw-close-block">
-        <p class="hiw-close-block__eyebrow">The same discipline. A new engine.</p>
         <p class="hiw-close-block__lead">The same process <em>the best consultants have always used.</em></p>
-        <p class="hiw-close-block__line"><em>Faster.</em> <em>Always current.</em> <em>For a fraction of what it's always cost.</em></p>
+        <p class="hiw-close-block__line"><em>Just better, faster, and costs less.</em></p>
       </div>
     </div>
   </section>
