@@ -35,7 +35,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ---- HERO (centered, with gold accent words) ---- */
   .hiw-hero{padding-block:clamp(4.5rem,8vw,7rem) clamp(2.5rem,5vw,4rem);text-align:center;}
   .hiw-hero__eyebrow{display:block;font-family:'Inter',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.22em;font-size:1rem;color:#7A5F16;margin:0 0 2rem;}
-  .hiw-hero__title{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2rem,4.6vw,4rem);line-height:1.1;color:var(--c-ink);margin:0 auto;max-width:min(100%, 62rem);letter-spacing:-.015em;text-wrap:balance;}
+  .hiw-hero__title{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.75rem,3.4vw,3.15rem);line-height:1.15;color:var(--c-ink);margin:0 auto;max-width:min(100%, 78rem);letter-spacing:-.015em;text-wrap:balance;}
+  .hiw-hero__title--two-lines .hiw-hero__line{display:block;text-wrap:balance;}
+  .hiw-hero__title--two-lines .hiw-hero__line + .hiw-hero__line{margin-top:.35em;}
+  @media (max-width:900px){
+    .hiw-hero__title--two-lines{font-size:clamp(1.4rem,4.5vw,2.15rem);}
+  }
   .hiw-hero__title em{font-style:italic;color:var(--c-ink);}
   .hiw-hero__title .gold{color:#7A5F16;font-style:normal;font-weight:600;}
 
@@ -503,7 +508,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="page-head__glow" aria-hidden="true"></div>
     <div class="container page-head__inner">
       <span class="eyebrow">How It Works</span>
-      <h1 class="page-head__title page-head__title--single hiw-hero__title">The same process the best consultants have <span class="gold">always used.</span> Just better, faster, and <span class="gold">cost less.</span></h1>
+      <h1 class="page-head__title page-head__title--single hiw-hero__title hiw-hero__title--two-lines"><span class="hiw-hero__line">The same process the best consultants have <span class="gold">always used.</span></span><span class="hiw-hero__line">Just better, faster, and <span class="gold">cost less.</span></span></h1>
     </div>
   </section>
 
