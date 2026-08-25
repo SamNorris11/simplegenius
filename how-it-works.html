@@ -32,10 +32,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      Every section makes that comparison in a different way.
      ============================================================ */
 
-  /* ---- HERO: same layout as About. Tan ground. One Playfair face. ---- */
-  .hiw-hero .page-head__sub--serif{max-width:28ch;color:var(--c-ink);}
-  .hiw-hero .page-head__sub .gold{color:#D4AF37;font-style:normal;}
-  .hiw-hero .rule-gold{margin-top:var(--sp-6);margin-bottom:0;}
+  /* ---- HERO: ink band like About. Payoff is the same Playfair size. ---- */
+  .hiw-hero .hiw-hero__payoff{display:block;margin-top:.55em;}
+  .hiw-hero .gold{color:#D4AF37;font-style:normal;}
 
   /* Thesis headline: dark charcoal card with gold glow, brighter gold accents */
   .thesis-headline{position:relative;display:inline-block;margin:0 auto;padding:clamp(1.5rem,3vw,2.5rem) clamp(2rem,4.5vw,3.25rem);border-radius:18px;background:#1D1D1D;box-shadow:0 0 0 1px rgba(212,175,55,.55), 0 18px 60px -20px rgba(212,175,55,.35), 0 24px 48px -22px rgba(0,0,0,.35);isolation:isolate;overflow:visible;max-width:min(100%, 40rem);}
@@ -153,7 +152,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      Simple Genius rail overshoots and keeps going into open space.
      ============================================================ */
   /* Tighten the top of the comparison section; graph is the hero here */
-  .thesis-section{padding-block:clamp(1.1rem,2.2vw,1.75rem) clamp(2.75rem,5vw,4.25rem);}
+  .thesis-section{padding-block:clamp(3.25rem,6vw,5.5rem);}
   .thesis-container{max-width:1360px;padding-inline:clamp(1rem,2.5vw,2rem);}
   .thesis{margin:0 auto;max-width:1280px;width:100%;}
   .thesis__svg-wrap{display:block;}
@@ -498,13 +497,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ==================================================================== -->
   <!-- 1. HERO — matches pricing/about page-head pattern for consistency     -->
   <!-- ==================================================================== -->
-  <section class="page-head page-head--tall hiw-hero">
-    <div class="page-head__glow" aria-hidden="true"></div>
+  <section class="page-head page-head--ink page-head--tall hiw-hero">
     <div class="container page-head__inner">
       <span class="eyebrow">How It Works</span>
-      <h1 class="page-head__title">The same process the best consultants have always used.</h1>
-      <p class="page-head__sub page-head__sub--serif">Just <span class="gold">better</span>, <span class="gold">faster</span>, <span class="gold">cheaper</span>.</p>
-      <div class="rule-gold" aria-hidden="true"></div>
+      <h1 class="page-head__title">The same process the best consultants have always used.<span class="hiw-hero__payoff">Just <span class="gold">better</span>, <span class="gold">faster</span>, <span class="gold">cheaper</span>.</span></h1>
     </div>
   </section>
 
