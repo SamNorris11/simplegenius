@@ -381,7 +381,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---- Confirm: four premium process boxes, one per step. Compact so the
      added supporting line above does not grow the section. ---- */
-  .hiw-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem;margin:clamp(1rem,1.75vw,1.35rem) auto 0;max-width:920px;}
+  .hiw-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem;margin:clamp(.6rem,1vw,.85rem) auto 0;max-width:920px;}
   .hiw-step{border:1px solid rgba(28,26,23,.14);border-radius:14px;padding:.7rem .75rem .8rem;text-align:center;background:rgba(212,175,55,.035);}
   .hiw-step--sg{border-color:#D4AF37;background:rgba(212,175,55,.09);}
   .hiw-step__word{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.45rem,2.3vw,1.85rem);color:var(--c-ink);letter-spacing:-.01em;}
@@ -401,9 +401,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-flow__step--sg{color:#7A5F16;}
   .hiw-flow__arrow{color:#D4AF37;font-size:clamp(1.2rem,2.2vw,1.7rem);line-height:1;flex:0 0 auto;}
   @media (max-width:640px){ .hiw-flow{justify-content:center;gap:.5rem .75rem;} .hiw-flow__arrow{transform:rotate(90deg);} }
-  .hiw-confirm-close{margin-top:clamp(1.35rem,2.4vw,1.75rem);}
-  #confirm.section--tight{padding-block:clamp(2rem,3.2vw,3rem);}
+  .hiw-confirm-close{margin-top:clamp(1rem,1.6vw,1.35rem);}
+  #confirm.section--tight{padding-block:clamp(1.75rem,2.6vw,2.5rem);}
   #confirm .section__lede{margin-top:.5rem;}
+  #confirm .section__head{margin-bottom:clamp(1.5rem,2.5vw,2rem);}
 
   /* ---- Strategic Insights: three premium boxed terms, no screenshot. Sits
      in the image column and uses the full available canvas — the visual
