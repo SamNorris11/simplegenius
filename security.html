@@ -66,12 +66,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      Big lede + chip grid + closer line.
      ========================================================= */
   .sec-pattern{}
-  .sec-pattern__chips{margin:clamp(2.5rem,4.5vw,3.75rem) auto 0;display:grid;grid-template-columns:repeat(5, minmax(0,1fr));gap:.9rem;max-width:1120px;}
-  @media (max-width:1080px){.sec-pattern__chips{grid-template-columns:repeat(3, minmax(0,1fr));max-width:760px;}}
-  @media (max-width:640px){.sec-pattern__chips{grid-template-columns:repeat(2, minmax(0,1fr));max-width:520px;gap:.75rem;}}
+  .sec-pattern__chips{margin:clamp(2.5rem,4.5vw,3.75rem) auto 0;display:grid;grid-template-columns:repeat(5, minmax(0,1fr));gap:1rem;max-width:1180px;}
+  @media (max-width:1080px){.sec-pattern__chips{grid-template-columns:repeat(3, minmax(0,1fr));max-width:820px;}}
+  @media (max-width:640px){.sec-pattern__chips{grid-template-columns:repeat(2, minmax(0,1fr));max-width:560px;gap:.85rem;}}
   @media (max-width:420px){.sec-pattern__chips{grid-template-columns:1fr;}}
-  .sec-pattern__chip{display:flex;align-items:center;justify-content:center;gap:.55rem;font-family:'Inter',sans-serif;font-weight:600;font-size:clamp(.95rem,1.05vw,1.05rem);letter-spacing:-.005em;color:#1D1D1D;background:#FFFFFF;border:1px solid rgba(29,29,29,.1);padding:1.1rem .9rem;border-radius:14px;box-shadow:0 4px 14px rgba(29,29,29,.05);text-align:center;line-height:1.25;min-height:74px;}
-  .sec-pattern__chip svg{width:16px;height:16px;flex:0 0 auto;color:#B4922A;stroke-width:2.2;}
+  .sec-pattern__chip{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;font-family:'Inter',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.25vw,1.2rem);letter-spacing:-.005em;color:#1D1D1D;background:#FFFFFF;border:1px solid rgba(29,29,29,.1);padding:1.85rem 1rem;border-radius:16px;box-shadow:0 6px 20px rgba(29,29,29,.06);text-align:center;line-height:1.25;min-height:150px;}
+  .sec-pattern__chip svg{width:26px;height:26px;flex:0 0 auto;color:#B4922A;stroke-width:2.1;}
   .sec-pattern__close{margin:clamp(3rem,5vw,4rem) auto 0;text-align:center;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.65rem,3vw,2.4rem);line-height:1.2;letter-spacing:-.015em;max-width:26ch;text-wrap:balance;color:#1D1D1D;}
   .sec-pattern__close em{font-style:italic;color:#7A5F16;}
 
@@ -82,20 +82,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .sec-answer__attrs{margin:clamp(2.75rem,5vw,4rem) auto 0;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:1rem 1rem;max-width:1080px;}
   @media (max-width:900px){.sec-answer__attrs{grid-template-columns:repeat(2, minmax(0,1fr));max-width:640px;}}
   @media (max-width:520px){.sec-answer__attrs{grid-template-columns:1fr;max-width:420px;}}
-  .sec-answer__attr{background:linear-gradient(180deg, rgba(212,175,55,.08), rgba(212,175,55,.02));border:1.5px solid rgba(212,175,55,.35);border-radius:16px;padding:clamp(1.75rem,2.6vw,2.15rem) clamp(1rem,1.5vw,1.35rem);text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem;min-height:clamp(170px,17vw,200px);justify-content:center;box-shadow:0 8px 32px rgba(212,175,55,.06);}
-  .sec-answer__attr-icon{width:48px;height:48px;border-radius:50%;background:rgba(212,175,55,.18);border:1.5px solid rgba(212,175,55,.6);display:flex;align-items:center;justify-content:center;color:#D4AF37;box-shadow:0 0 24px rgba(212,175,55,.15);}
-  .sec-answer__attr-icon svg{width:22px;height:22px;stroke-width:2.2;}
-  .sec-answer__attr p{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.1rem,1.4vw,1.3rem);line-height:1.2;color:#F7F7F7;margin:0;letter-spacing:-.01em;text-wrap:balance;}
+  .sec-answer__attr{background:linear-gradient(180deg, rgba(212,175,55,.08), rgba(212,175,55,.02));border:1.5px solid rgba(212,175,55,.35);border-radius:18px;padding:clamp(2.25rem,3.2vw,2.85rem) clamp(1.15rem,1.6vw,1.5rem);text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.15rem;min-height:clamp(220px,20vw,260px);justify-content:center;box-shadow:0 10px 36px rgba(212,175,55,.07);}
+  .sec-answer__attr-icon{width:60px;height:60px;border-radius:50%;background:rgba(212,175,55,.18);border:1.5px solid rgba(212,175,55,.6);display:flex;align-items:center;justify-content:center;color:#D4AF37;box-shadow:0 0 28px rgba(212,175,55,.18);}
+  .sec-answer__attr-icon svg{width:28px;height:28px;stroke-width:2.1;}
+  .sec-answer__attr p{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.35rem,1.75vw,1.65rem);line-height:1.2;color:#F7F7F7;margin:0;letter-spacing:-.01em;text-wrap:balance;}
 
   /* =========================================================
      SECTION 3 — The close (cream)
      Give your people AI. Keep your business data yours. + CTAs.
      ========================================================= */
+  .sec--close-tight{padding-block:clamp(3rem,5.5vw,4.5rem);}
   .sec-close{text-align:center;}
-  .sec-close__final{margin:0 auto;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.4rem,5.6vw,4.5rem);line-height:1.02;letter-spacing:-.03em;color:#1D1D1D;max-width:18ch;text-wrap:balance;}
+  .sec-close__final{margin:0 auto;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;letter-spacing:-.03em;color:#1D1D1D;max-width:22ch;text-wrap:balance;}
   .sec-close__final span{display:block;}
-  .sec-close__final span:last-child{color:#7A5F16;font-style:italic;margin-top:.1em;}
-  .sec-close__cta{margin:clamp(2.5rem,4.4vw,3.5rem) 0 0;display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center;}
+  .sec-close__final span:last-child{color:#7A5F16;font-style:italic;margin-top:.15em;}
+  .sec-close__cta{margin:clamp(2rem,3.5vw,2.75rem) 0 0;display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center;}
   .cta-btn{display:inline-flex;align-items:center;gap:.55rem;font-family:'Inter',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.005em;padding:1rem 1.75rem;border-radius:999px;text-decoration:none;transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease;}
   .cta-btn--gold{color:#1D1D1D;background:#D4AF37;box-shadow:0 6px 24px rgba(212,175,55,.28);}
   .cta-btn--gold:hover{background:#E8C24A;transform:translateY(-1px);box-shadow:0 8px 28px rgba(212,175,55,.4);}
@@ -228,10 +229,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- ================================ SECTION 3 — The close (cream) -->
-  <section class="sec sec--cream sec-close" aria-labelledby="sec-close-title">
+  <!-- ================================ SECTION 3 — The close (cream, tight) -->
+  <section class="sec sec--cream sec--close-tight sec-close" aria-labelledby="sec-close-title">
     <div class="sec__inner">
-      <span class="sec-eyebrow">The close</span>
       <p class="sec-close__final" id="sec-close-title">
         <span>Give your people AI.</span>
         <span>Keep your business data yours.</span>
