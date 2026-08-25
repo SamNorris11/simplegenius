@@ -428,6 +428,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-equation__arrow{color:#D4AF37;font-size:clamp(1.4rem,2.2vw,1.75rem);line-height:1;margin:0;}
   .hiw-equation__arrow::before,.hiw-equation__arrow::after{content:"";display:inline-block;width:clamp(1.75rem,3.5vw,2.75rem);height:1px;background:rgba(212,175,55,.4);vertical-align:middle;margin:0 .7rem;}
   @media (max-width:900px){ .hiw-equation{padding:.5rem 1rem .25rem;} .hiw-eqbox{max-width:22rem;white-space:normal;} }
+  /* ---- Strategic Insights: bump the equation visual down and top-align it
+     with the headline row instead of centering it against the whole copy
+     column, and let the headline wrap to 2 lines instead of 3. ---- */
+  #strategic-insights .grid--centred > .hiw-equation{align-self:start;margin-top:3.6rem;}
+  #strategic-insights .split__copy-head h2{font-size:clamp(1.7rem,2.5vw,2.1rem);max-width:15ch;}
+  @media (max-width:900px){ #strategic-insights .grid--centred > .hiw-equation{margin-top:0;} #strategic-insights .split__copy-head h2{max-width:none;} }
 
   /* ---- Section 05: the reveal + Workstreams share ONE canvas. Reveal sits
      compact and centered above the flip grid. ---- */
@@ -440,7 +446,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ---- Page close: its own distinct closing section (light, same ground
      treatment as the opening comparison graph), clearly broken from the
      dark Workstreams band above it. ---- */
-  .hiw-close{padding-block:clamp(3.25rem,5vw,4.25rem);}
+  .hiw-close{padding-block:clamp(3.25rem,5vw,4.25rem);background:var(--c-ground-3);}
   .hiw-close-lines{margin-bottom:clamp(1.25rem,2.2vw,1.75rem);}
   .hiw-close-lines .statement{margin:0 auto .3rem;font-size:clamp(1.6rem,2.4vw,1.95rem);}
   .hiw-close-lines .statement:last-child{margin-bottom:0;}
@@ -620,7 +626,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="split__copy-body">
             <p class="section__lede section__lede--left">They talk to your people. They learn how the business really works.</p>
             <p class="hiw-shift">SIMPLE GENIUS DOES THE SAME THING.</p>
-            <p class="section__lede section__lede--left hiw-say-lg">Our AI voice model interviews your leaders and captures what they already know. Your internal documents fill in the rest.</p>
+            <p class="display display--sm hiw-authority">Our AI voice model interviews your leaders and captures what they already know.</p>
+            <p class="display display--sm hiw-authority">Your internal documents fill in the rest.</p>
+            <p class="section__lede section__lede--left" style="margin-top:.5rem;">The most valuable things your company knows aren&rsquo;t always written down.</p>
           </div>
         </div>
 
@@ -634,7 +642,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                loading="lazy" decoding="async">
         </figure>
       </div>
-      <p class="statement hiw-wide-statement">THE MOST VALUABLE THINGS YOUR COMPANY KNOWS AREN&rsquo;T ALWAYS WRITTEN DOWN.</p>
     </div>
   </section>
 
@@ -679,7 +686,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="section__head section__head--center">
         <span class="eyebrow eyebrow--center">Confirm</span>
         <h2 class="display display--lg display--center">Then, you make sure we got it right.</h2>
-        <p class="hiw-support">Nothing gets by you without your approval.</p>
+        <p class="hiw-support">Nothing moves forward on an assumption you didn&rsquo;t approve.</p>
         <p class="section__lede section__lede--center">Simple Genius shows you what it learned about your business.</p>
         <p class="section__lede section__lede--center">If anything&rsquo;s off, you correct what&rsquo;s wrong and confirm what&rsquo;s right.</p>
       </div>
@@ -702,8 +709,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="hiw-step__sub">Confirm what&rsquo;s right.</span>
         </div>
       </div>
-
-      <p class="statement statement--center hiw-confirm-close">NOTHING MOVES FORWARD ON AN ASSUMPTION <span class="display__accent">YOU DIDN&rsquo;T APPROVE.</span></p>
     </div>
   </section>
 
