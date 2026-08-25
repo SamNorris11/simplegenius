@@ -377,12 +377,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---- Confirm: a supporting statement between headline and body. Serif,
      lighter weight than the headline so it does not compete with it. ---- */
-  .hiw-support{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.3rem,1.9vw,1.6rem);color:#7A5F16;margin:.75rem 0 0;}
+  .hiw-support{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.3rem,1.9vw,1.6rem);color:#7A5F16;margin:.5rem 0 0;}
 
   /* ---- Confirm: four premium process boxes, one per step. Compact so the
      added supporting line above does not grow the section. ---- */
-  .hiw-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem;margin:clamp(1.5rem,2.75vw,2rem) auto 0;max-width:920px;}
-  .hiw-step{border:1px solid rgba(28,26,23,.14);border-radius:14px;padding:1rem .75rem 1.15rem;text-align:center;background:rgba(212,175,55,.035);}
+  .hiw-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem;margin:clamp(1rem,1.75vw,1.35rem) auto 0;max-width:920px;}
+  .hiw-step{border:1px solid rgba(28,26,23,.14);border-radius:14px;padding:.7rem .75rem .8rem;text-align:center;background:rgba(212,175,55,.035);}
   .hiw-step--sg{border-color:#D4AF37;background:rgba(212,175,55,.09);}
   .hiw-step__word{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.45rem,2.3vw,1.85rem);color:var(--c-ink);letter-spacing:-.01em;}
   .hiw-step--sg .hiw-step__word{color:#7A5F16;}
@@ -401,7 +401,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-flow__step--sg{color:#7A5F16;}
   .hiw-flow__arrow{color:#D4AF37;font-size:clamp(1.2rem,2.2vw,1.7rem);line-height:1;flex:0 0 auto;}
   @media (max-width:640px){ .hiw-flow{justify-content:center;gap:.5rem .75rem;} .hiw-flow__arrow{transform:rotate(90deg);} }
-  .hiw-confirm-close{margin-top:clamp(2.25rem,4vw,3rem);}
+  .hiw-confirm-close{margin-top:clamp(1.35rem,2.4vw,1.75rem);}
+  #confirm.section--tight{padding-block:clamp(2rem,3.2vw,3rem);}
+  #confirm .section__lede{margin-top:.5rem;}
 
   /* ---- Strategic Insights: three premium boxed terms, no screenshot. Sits
      in the image column and uses the full available canvas — the visual
@@ -418,15 +420,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---- Section 05: the reveal + Workstreams share ONE canvas. Reveal sits
      compact and centered above the flip grid. ---- */
-  .hiw-stays__reveal{max-width:50rem;margin:0 auto clamp(1.75rem,3.5vw,2.5rem);text-align:center;}
+  .hiw-stays__reveal{max-width:50rem;margin:0 auto clamp(1.1rem,2.2vw,1.5rem);text-align:center;}
   .hiw-workstreams-payoff{font-weight:600;color:var(--c-ink);}
-  .hiw-stays__lede{margin-top:.85rem;}
-  .hiw-stays__big{margin-top:clamp(1.1rem,2.2vw,1.6rem);font-size:clamp(3.1rem,6vw,5.1rem);}
+  .hiw-stays__lede{margin-top:.6rem;}
+  .hiw-stays__big{margin-top:clamp(.85rem,1.7vw,1.2rem);font-size:clamp(3.1rem,6vw,5.1rem);}
+  #workstreams.section--tight{padding-block:clamp(2.25rem,3.6vw,3.5rem);}
 
   /* ---- Page close: compact, three lines and a CTA — not another section. ---- */
-  .hiw-close{padding-block:clamp(2.5rem,4.5vw,3.5rem);}
-  .hiw-close-lines{margin-bottom:clamp(1.5rem,3vw,2.25rem);}
-  .hiw-close-lines .statement{margin:0 auto .35rem;font-size:clamp(1.75rem,2.9vw,2.35rem);}
+  .hiw-close{padding-block:clamp(2.25rem,3.6vw,3rem);}
+  .hiw-close-lines{margin-bottom:clamp(1.25rem,2.2vw,1.75rem);}
+  .hiw-close-lines .statement{margin:0 auto .3rem;font-size:clamp(1.6rem,2.4vw,1.95rem);}
   .hiw-close-lines .statement:last-child{margin-bottom:0;}
 
   /* Playfair Display's italic U+2019 renders as a floating mark that reads
