@@ -66,12 +66,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      Big lede + chip grid + closer line.
      ========================================================= */
   .sec-pattern{}
-  .sec-pattern__chips{margin:clamp(2.5rem,4.5vw,3.75rem) auto 0;display:grid;grid-template-columns:repeat(5, minmax(0,1fr));gap:1rem;max-width:1180px;}
+  .sec-pattern__chips{margin:clamp(2.5rem,4.5vw,3.75rem) auto 0;display:grid;grid-template-columns:repeat(5, minmax(0,1fr));gap:1.1rem;max-width:1180px;}
   @media (max-width:1080px){.sec-pattern__chips{grid-template-columns:repeat(3, minmax(0,1fr));max-width:820px;}}
   @media (max-width:640px){.sec-pattern__chips{grid-template-columns:repeat(2, minmax(0,1fr));max-width:560px;gap:.85rem;}}
   @media (max-width:420px){.sec-pattern__chips{grid-template-columns:1fr;}}
-  .sec-pattern__chip{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;font-family:'Inter',sans-serif;font-weight:600;font-size:clamp(1.05rem,1.25vw,1.2rem);letter-spacing:-.005em;color:#1D1D1D;background:#FFFFFF;border:1px solid rgba(29,29,29,.1);padding:1.85rem 1rem;border-radius:16px;box-shadow:0 6px 20px rgba(29,29,29,.06);text-align:center;line-height:1.25;min-height:150px;}
-  .sec-pattern__chip svg{width:26px;height:26px;flex:0 0 auto;color:#B4922A;stroke-width:2.1;}
+  .sec-pattern__chip{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.7rem;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.2rem,1.45vw,1.42rem);letter-spacing:-.01em;color:#1D1D1D;background:linear-gradient(180deg,#FFFFFF 0%,#FBF6EA 100%);border:1.5px solid rgba(212,175,55,.5);padding:1.7rem 1rem 1.45rem;border-radius:18px;box-shadow:0 12px 32px rgba(122,95,22,.1), 0 0 0 1px rgba(212,175,55,.08);text-align:center;line-height:1.2;}
+  .sec-pattern__icon{width:58px;height:58px;border-radius:50%;background:rgba(212,175,55,.16);border:1.5px solid rgba(212,175,55,.62);display:flex;align-items:center;justify-content:center;color:#B4922A;box-shadow:0 0 24px rgba(212,175,55,.2);flex:0 0 auto;}
+  .sec-pattern__icon svg{width:26px;height:26px;stroke-width:2.1;}
+  .sec-pattern__chip strong{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:inherit;letter-spacing:-.01em;}
+  .sec-pattern__hint{display:block;font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(.92rem,1.05vw,1.05rem);line-height:1.3;color:#7A5F16;max-width:16ch;}
   .sec-pattern__close{margin:clamp(3rem,5vw,4rem) auto 0;text-align:center;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.65rem,3vw,2.4rem);line-height:1.2;letter-spacing:-.015em;max-width:26ch;text-wrap:balance;color:#1D1D1D;}
   .sec-pattern__close em{font-style:italic;color:#7A5F16;}
 
@@ -79,13 +82,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      SECTION 2 — The answer (ink, gold accents)
      Give them your AI. + explainer + attribute grid.
      ========================================================= */
-  .sec-answer__attrs{margin:clamp(2.75rem,5vw,4rem) auto 0;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:1rem 1rem;max-width:1080px;}
+  .sec-answer__attrs{margin:clamp(2.75rem,5vw,4rem) auto 0;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:1rem;max-width:1080px;align-items:stretch;}
   @media (max-width:900px){.sec-answer__attrs{grid-template-columns:repeat(2, minmax(0,1fr));max-width:640px;}}
   @media (max-width:520px){.sec-answer__attrs{grid-template-columns:1fr;max-width:420px;}}
-  .sec-answer__attr{background:linear-gradient(180deg, rgba(212,175,55,.08), rgba(212,175,55,.02));border:1.5px solid rgba(212,175,55,.35);border-radius:18px;padding:clamp(2.25rem,3.2vw,2.85rem) clamp(1.15rem,1.6vw,1.5rem);text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.15rem;min-height:clamp(220px,20vw,260px);justify-content:center;box-shadow:0 10px 36px rgba(212,175,55,.07);}
-  .sec-answer__attr-icon{width:60px;height:60px;border-radius:50%;background:rgba(212,175,55,.18);border:1.5px solid rgba(212,175,55,.6);display:flex;align-items:center;justify-content:center;color:#D4AF37;box-shadow:0 0 28px rgba(212,175,55,.18);}
-  .sec-answer__attr-icon svg{width:28px;height:28px;stroke-width:2.1;}
-  .sec-answer__attr p{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.35rem,1.75vw,1.65rem);line-height:1.2;color:#F7F7F7;margin:0;letter-spacing:-.01em;text-wrap:balance;}
+  .sec-answer__attr{background:linear-gradient(180deg, rgba(212,175,55,.08), rgba(212,175,55,.02));border:1.5px solid rgba(212,175,55,.35);border-radius:16px;padding:1.25rem 1rem 1.15rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:.7rem;box-shadow:0 10px 36px rgba(212,175,55,.07);}
+  .sec-answer__attr-icon{width:52px;height:52px;border-radius:50%;background:rgba(212,175,55,.18);border:1.5px solid rgba(212,175,55,.6);display:flex;align-items:center;justify-content:center;color:#D4AF37;box-shadow:0 0 28px rgba(212,175,55,.18);flex:0 0 auto;}
+  .sec-answer__attr-icon svg{width:24px;height:24px;stroke-width:2.1;}
+  .sec-answer__attr p{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.15rem,1.45vw,1.35rem);line-height:1.22;color:#F7F7F7;margin:0;letter-spacing:-.01em;text-wrap:balance;min-height:2.5em;display:flex;align-items:flex-start;justify-content:center;}
 
   /* =========================================================
      SECTION 3 — The close (cream)
@@ -168,24 +171,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <ul class="sec-pattern__chips" aria-label="What employees paste into public AI">
         <li class="sec-pattern__chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 6l8 7 8-7"/></svg>
-          Customer emails
+          <span class="sec-pattern__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 6l8 7 8-7"/></svg></span>
+          <strong>Customer emails</strong>
+          <span class="sec-pattern__hint">Names. Asks. Promises.</span>
         </li>
         <li class="sec-pattern__chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 7-8"/><path d="M14 7h6v6"/></svg>
-          Sales plans
+          <span class="sec-pattern__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-8"/><path d="M14 7h6v6"/></svg></span>
+          <strong>Sales plans</strong>
+          <span class="sec-pattern__hint">Pipeline. Pricing. The play.</span>
         </li>
         <li class="sec-pattern__chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l5 5v13H6z"/><path d="M14 3v6h6"/></svg>
-          Company documents
+          <span class="sec-pattern__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13H6z"/><path d="M14 3v6h6"/></svg></span>
+          <strong>Company documents</strong>
+          <span class="sec-pattern__hint">Contracts. Strategy. Files.</span>
         </li>
         <li class="sec-pattern__chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>
-          Problems they&rsquo;re solving
+          <span class="sec-pattern__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg></span>
+          <strong>Problems they&rsquo;re solving</strong>
+          <span class="sec-pattern__hint">The real work. The real numbers.</span>
         </li>
         <li class="sec-pattern__chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="17" cy="6" r="2.5"/><path d="M15 12c2 0 4 1 5 2.5"/></svg>
-          Things only your team knows
+          <span class="sec-pattern__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="17" cy="6" r="2.5"/><path d="M15 12c2 0 4 1 5 2.5"/></svg></span>
+          <strong>Things only your team knows</strong>
+          <span class="sec-pattern__hint">What walks if you let it.</span>
         </li>
       </ul>
 
