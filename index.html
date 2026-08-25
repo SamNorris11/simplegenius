@@ -167,6 +167,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       grid-column: 1 / -1 !important;
       margin-top: .5rem !important;
     }
+    /* The grid's row-gap (sp-8 = 4rem) still applies between each of these
+       now-independent rows even though grid-template-columns collapses to
+       1fr here — kill it so the .5rem margins above are the only spacing. */
+    #competition .grid--centred,
+    #context .grid--centred,
+    #insights .grid--centred,
+    #work-streams .grid--centred {
+      gap: 0 !important;
+    }
   }
 
   /* Homepage "Who's behind it" (#about): mobile only — drop the statement

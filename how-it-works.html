@@ -323,6 +323,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       grid-column: 1 / -1 !important;
       margin-top: .5rem !important;
     }
+    /* Kill the grid's row-gap (sp-8 = 4rem) which still applies between
+       these now-independent rows even after collapsing to 1fr. */
+    #business-brain .grid--centred,
+    #competition-hub .grid--centred,
+    #strategic-insights .grid--centred {
+      gap: 0 !important;
+    }
 
     #workstreams .grid--centred > .split__copy {
       display: contents !important;
@@ -340,6 +347,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       grid-column: 1 / -1 !important;
       margin-top: 1.5rem;
     }
+    #workstreams .grid--centred { gap: 0 !important; }
   }
 
   /* Homepage's strict 40/60 ratio + top alignment for the four product
