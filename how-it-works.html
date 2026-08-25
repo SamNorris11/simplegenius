@@ -181,10 +181,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .thesis-m__rail::after{content:"";position:absolute;left:-4px;bottom:-2px;width:10px;height:10px;border-radius:50%;background:rgba(28,26,23,.35);}
     .thesis-m__track--sg .thesis-m__rail::after{background:#D4AF37;bottom:-6px;}
     .thesis-m__label{display:inline-block;margin-bottom:.85rem;}
-    .thesis-m__step{position:relative;font-family:'Inter',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:.85rem;color:var(--c-ink);padding:.35rem 0 .35rem .45rem;line-height:1.35;}
-    .thesis-m__step::before{content:"";position:absolute;left:-1.35rem;top:.7rem;width:8px;height:8px;border-radius:50%;background:#5A5A5A;}
+    .thesis-m__step{position:relative;padding:.55rem 0 .55rem .45rem;line-height:1.25;}
+    .thesis-m__step::before{content:"";position:absolute;left:-1.35rem;top:.95rem;width:8px;height:8px;border-radius:50%;background:#5A5A5A;}
     .thesis-m__track--sg .thesis-m__step::before{background:#D4AF37;}
-    .thesis-m__end{margin-top:.85rem;font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.9rem;color:var(--c-ink);padding-left:.2rem;border-top:2px solid rgba(28,26,23,.4);padding-top:.6rem;display:inline-block;}
+    .thesis-m__step .action{display:block;font-family:'Inter',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:1rem;color:var(--c-ink);line-height:1.15;}
+    .thesis-m__step .sub{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:.82rem;color:#5A5A5A;margin-top:.15rem;line-height:1.25;}
+    .thesis-m__end{margin-top:.85rem;font-family:'Inter',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:.95rem;color:var(--c-ink);padding-left:.2rem;border-top:2px solid rgba(28,26,23,.4);padding-top:.6rem;display:inline-block;}
     .thesis-m__cont{margin-top:.85rem;font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.95rem;color:#7A5F16;display:inline-block;}
     .thesis-m__cont::after{content:" →";color:#D4AF37;}
   }
@@ -527,10 +529,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 .th-label--sg{fill:#7A5F16;}
                 .th-label-bar{stroke:#5A5A5A;stroke-width:3;stroke-linecap:round;}
                 .th-label-bar--sg{stroke:#D4AF37;stroke-width:4;}
-                .th-step{font-family:'Inter',sans-serif;font-weight:700;font-size:17px;letter-spacing:.06em;text-transform:uppercase;fill:#1D1D1D;text-anchor:middle;}
-                .th-step-sub{font-family:'Inter',sans-serif;font-weight:500;font-size:14px;letter-spacing:.06em;text-transform:uppercase;fill:#5A5A5A;text-anchor:middle;}
-                .th-end{font-family:'Inter',sans-serif;font-weight:700;font-size:18px;letter-spacing:.08em;text-transform:uppercase;fill:#1D1D1D;text-anchor:middle;}
-                .th-cont{font-family:'Inter',sans-serif;font-weight:700;font-size:18px;letter-spacing:.08em;text-transform:uppercase;fill:#7A5F16;text-anchor:middle;}
+                .th-step{font-family:'Inter',sans-serif;font-weight:800;font-size:20px;letter-spacing:.08em;text-transform:uppercase;fill:#1D1D1D;text-anchor:middle;}
+                .th-step-sub{font-family:'Inter',sans-serif;font-weight:500;font-size:13px;letter-spacing:.06em;text-transform:none;fill:#5A5A5A;text-anchor:middle;}
+                .th-end{font-family:'Inter',sans-serif;font-weight:800;font-size:18px;letter-spacing:.08em;text-transform:uppercase;fill:#1D1D1D;text-anchor:middle;}
+                .th-cont{font-family:'Inter',sans-serif;font-weight:800;font-size:18px;letter-spacing:.08em;text-transform:uppercase;fill:#7A5F16;text-anchor:middle;}
                 .th-rail-gray{stroke:#5A5A5A;stroke-width:3.5;fill:none;stroke-linecap:round;opacity:.55;}
                 .th-terminator{stroke:#5A5A5A;stroke-width:3.5;stroke-linecap:round;opacity:.85;}
                 .th-rail-gold{stroke:#D4AF37;stroke-width:4;fill:none;stroke-linecap:round;}
@@ -547,27 +549,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <line class="th-tick" x1="770" y1="70" x2="770" y2="350"/>
 
             <!-- ============ TRADITIONAL CONSULTING (top track, gray, terminates at x=920) ============ -->
-            <text class="th-label" x="170" y="38" text-anchor="middle">Traditional consulting</text>
-            <line class="th-label-bar" x1="75" y1="52" x2="265" y2="52"/>
+            <!-- Label centered on Traditional rail midpoint x=545 -->
+            <text class="th-label" x="545" y="38" text-anchor="middle">Traditional consulting</text>
+            <line class="th-label-bar" x1="430" y1="52" x2="660" y2="52"/>
             <line class="th-rail-gray" x1="170" y1="130" x2="920" y2="130"/>
             <line class="th-terminator" x1="920" y1="108" x2="920" y2="152"/>
             <circle class="th-node-gray" cx="170" cy="130" r="10"/>
             <circle class="th-node-gray" cx="370" cy="130" r="10"/>
             <circle class="th-node-gray" cx="570" cy="130" r="10"/>
             <circle class="th-node-gray" cx="770" cy="130" r="10"/>
-            <text class="th-step" x="170" y="102" text-anchor="middle">Learn</text>
-            <text class="th-step-sub" x="170" y="85" text-anchor="middle">the business</text>
-            <text class="th-step" x="370" y="102" text-anchor="middle">Study</text>
-            <text class="th-step-sub" x="370" y="85" text-anchor="middle">the competition</text>
-            <text class="th-step" x="570" y="102" text-anchor="middle">Find</text>
-            <text class="th-step-sub" x="570" y="85" text-anchor="middle">what matters</text>
-            <text class="th-step" x="770" y="102" text-anchor="middle">Recommend</text>
-            <text class="th-step-sub" x="770" y="85" text-anchor="middle">what to do</text>
-            <text class="th-end" x="935" y="136" style="text-anchor:start;">Project ends</text>
+            <!-- Action word first (large), supporting word directly under (smaller) -->
+            <text class="th-step" x="170" y="92">Learn</text>
+            <text class="th-step-sub" x="170" y="112">the business</text>
+            <text class="th-step" x="370" y="92">Study</text>
+            <text class="th-step-sub" x="370" y="112">the competition</text>
+            <text class="th-step" x="570" y="92">Find</text>
+            <text class="th-step-sub" x="570" y="112">what matters</text>
+            <text class="th-step" x="770" y="92">Recommend</text>
+            <text class="th-step-sub" x="770" y="112">what to do</text>
+            <text class="th-end" x="935" y="136" style="text-anchor:start;">Ends</text>
 
             <!-- ============ SIMPLE GENIUS (bottom track, gold, overshoots to arrow) ============ -->
-            <text class="th-label th-label--sg" x="170" y="250" text-anchor="middle">Simple Genius</text>
-            <line class="th-label-bar th-label-bar--sg" x1="75" y1="264" x2="265" y2="264"/>
+            <!-- Label centered on Simple Genius rail midpoint x=630 -->
+            <text class="th-label th-label--sg" x="630" y="250" text-anchor="middle">Simple Genius</text>
+            <line class="th-label-bar th-label-bar--sg" x1="535" y1="264" x2="725" y2="264"/>
             <line class="th-rail-gold" x1="170" y1="290" x2="1090" y2="290"/>
             <polygon points="1090,280 1112,290 1090,300" fill="#D4AF37"/>
             <circle class="th-node-gold" cx="170" cy="290" r="11"/>
@@ -578,14 +583,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <circle cx="370" cy="290" r="4" fill="#D4AF37"/>
             <circle cx="570" cy="290" r="4" fill="#D4AF37"/>
             <circle cx="770" cy="290" r="4" fill="#D4AF37"/>
-            <text class="th-step" x="170" y="330" text-anchor="middle">Learn</text>
-            <text class="th-step-sub" x="170" y="348" text-anchor="middle">the business</text>
-            <text class="th-step" x="370" y="330" text-anchor="middle">Watch</text>
-            <text class="th-step-sub" x="370" y="348" text-anchor="middle">the competition</text>
-            <text class="th-step" x="570" y="330" text-anchor="middle">Find</text>
-            <text class="th-step-sub" x="570" y="348" text-anchor="middle">what matters</text>
-            <text class="th-step" x="770" y="330" text-anchor="middle">Decide</text>
-            <text class="th-step-sub" x="770" y="348" text-anchor="middle">what to do</text>
+            <!-- Action word first (large), supporting word directly under (smaller) -->
+            <text class="th-step" x="170" y="330">Learn</text>
+            <text class="th-step-sub" x="170" y="350">the business</text>
+            <text class="th-step" x="370" y="330">Watch</text>
+            <text class="th-step-sub" x="370" y="350">the competition</text>
+            <text class="th-step" x="570" y="330">Find</text>
+            <text class="th-step-sub" x="570" y="350">what matters</text>
+            <text class="th-step" x="770" y="330">Decide</text>
+            <text class="th-step-sub" x="770" y="350">what to do</text>
             <text class="th-cont" x="940" y="278" text-anchor="start">Keeps going</text>
           </svg>
         </div>
@@ -595,19 +601,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="thesis-m__track">
             <span class="cmp-label thesis-m__label">Traditional consulting</span>
             <div class="thesis-m__rail"></div>
-            <div class="thesis-m__step">Learn the business</div>
-            <div class="thesis-m__step">Study the competition</div>
-            <div class="thesis-m__step">Find what matters</div>
-            <div class="thesis-m__step">Recommend what to do</div>
-            <div class="thesis-m__end">Project ends</div>
+            <div class="thesis-m__step"><span class="action">Learn</span><span class="sub">the business</span></div>
+            <div class="thesis-m__step"><span class="action">Study</span><span class="sub">the competition</span></div>
+            <div class="thesis-m__step"><span class="action">Find</span><span class="sub">what matters</span></div>
+            <div class="thesis-m__step"><span class="action">Recommend</span><span class="sub">what to do</span></div>
+            <div class="thesis-m__end">Ends</div>
           </div>
           <div class="thesis-m__track thesis-m__track--sg">
             <span class="cmp-label cmp-label--sg thesis-m__label">Simple Genius</span>
             <div class="thesis-m__rail"></div>
-            <div class="thesis-m__step">Learn the business</div>
-            <div class="thesis-m__step">Watch the competition</div>
-            <div class="thesis-m__step">Find what matters</div>
-            <div class="thesis-m__step">Decide what to do</div>
+            <div class="thesis-m__step"><span class="action">Learn</span><span class="sub">the business</span></div>
+            <div class="thesis-m__step"><span class="action">Watch</span><span class="sub">the competition</span></div>
+            <div class="thesis-m__step"><span class="action">Find</span><span class="sub">what matters</span></div>
+            <div class="thesis-m__step"><span class="action">Decide</span><span class="sub">what to do</span></div>
             <div class="thesis-m__cont">Keeps going</div>
           </div>
         </div>
