@@ -41,6 +41,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .sec-hero__title{font-size:clamp(2rem,7.5vw,2.8rem);}
     .sec-hero__sub{font-size:1.55rem;}
   }
+</style>
+<style>
+  /* Site header is position:fixed at var(--header-h) = 92px desktop / 80px mobile.
+     Push the backbar below it and give it enough room to feel like a chrome bar.
+     Matches the pattern used on business-brain / competition-hub / strategic-insights / workstreams. */
+  .backbar{background:#000;padding:calc(var(--header-h, 92px) + .9rem) 0 1.25rem;}
+  .backbar__inner{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);}
+  .backbar__link{display:inline-flex;align-items:center;gap:.6rem;font-family:'Inter',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.005em;color:#1D1D1D;background:#D4AF37;text-decoration:none;padding:.85rem 1.5rem;border-radius:999px;box-shadow:0 6px 24px rgba(212,175,55,.28);transition:background .18s ease, transform .18s ease, box-shadow .18s ease;}
+  .backbar__link:hover{background:#E8C24A;transform:translateX(-2px);box-shadow:0 8px 28px rgba(212,175,55,.4);color:#1D1D1D;}
+  .backbar__link svg{width:16px;height:16px;flex:0 0 auto;stroke-width:2.4;}
+  /* Since backbar handles the header clearance, the hero's own top padding needs
+     to be zeroed out so we don't double-space (applies at both breakpoints). */
+  .backbar + main > section.sec-hero{padding-top:clamp(1rem,2vw,1.5rem);}
 
   /* Section scaffolding — three named sections, alternating grounds */
   .sec{padding-block:clamp(4.5rem,8vw,7rem);position:relative;}
@@ -116,7 +129,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 </style>
 </head>
-<body>
+<body class="is-dark-top">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P48GRGDB"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -151,6 +164,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="site-header__rights">&copy; 2026 Simple Genius LLC. All rights reserved.</span>
     </div>
 </header>
+
+<div class="backbar">
+  <div class="backbar__inner">
+    <a class="backbar__link" href="index.html" aria-label="Back to homepage">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to homepage
+    </a>
+  </div>
+</div>
 
 <main id="main">
 
