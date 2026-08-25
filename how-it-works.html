@@ -634,6 +634,126 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     max-width:26ch;
   }
   .hiw-brand-shout em{color:#D4AF37;font-style:normal;}
+
+  /* ============================================================
+     REBUILD v4 — five sections after the graph, real software
+     screenshots restored, section numbering, Confirm added back.
+     ============================================================ */
+  .story__num{
+    display:inline-block;
+    font-family:'Inter',sans-serif;
+    font-weight:800;
+    letter-spacing:.1em;
+    font-size:.78rem;
+    color:#D4AF37;
+    margin-right:.6em;
+  }
+
+  /* Real product screenshot blocks, reusing site .shot framing but
+     centered standalone (not the homepage split-grid layout) so this
+     page keeps its own identity while matching software presentation
+     quality. Width varies per section to create distinct rhythm. */
+  .story-shot{
+    margin:clamp(3.25rem,6.5vw,5.25rem) auto 0;
+    max-width:60rem;
+  }
+  .story-shot--wide{max-width:75rem;}
+  .story-shot--focus{max-width:38rem;}
+  .story-shot--small{max-width:27rem;}
+  .story-shot.shot{margin-left:auto;margin-right:auto;}
+
+  .story-italic{
+    margin:clamp(.85rem,1.8vw,1.25rem) auto 0;
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.3rem,2.7vw,1.9rem);
+    line-height:1.3;
+    color:var(--c-ink);
+    text-align:center;
+    max-width:30ch;
+  }
+  .story-italic em{color:#7A5F16;font-style:italic;}
+
+  /* S3 — Confirm. Restrained, centered, process ribbon is the star. */
+  .story--confirm{text-align:center;}
+  .story--confirm .story__h,
+  .story--confirm .story__kicker{
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .story--confirm .story__h{max-width:18ch;}
+  .confirm-flow{
+    list-style:none;
+    margin:clamp(2.5rem,4.5vw,3.5rem) auto 0;
+    padding:0;
+    max-width:900px;
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:stretch;
+    gap:.75rem 1rem;
+  }
+  .confirm-flow__step{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:.55rem;
+    padding:1rem 1.25rem;
+    min-width:9.5rem;
+    flex:1 1 9.5rem;
+    max-width:11rem;
+    border-radius:12px;
+    background:rgba(28,29,29,.03);
+    border:1px solid rgba(28,29,29,.08);
+  }
+  .confirm-flow__step--sg{background:rgba(212,175,55,.10);border-color:rgba(212,175,55,.5);}
+  .confirm-flow__label{
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:clamp(1rem,1.4vw,1.15rem);
+    color:#1D1D1D;
+  }
+  .confirm-flow__step--sg .confirm-flow__label{color:#7A5F16;}
+  .confirm-flow__arrow{
+    color:#D4AF37;
+    font-size:1.2rem;
+    line-height:1;
+    list-style:none;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+  }
+  @media (max-width:640px){
+    .confirm-flow{flex-direction:column;gap:.4rem;max-width:20rem;}
+    .confirm-flow__step{min-width:0;width:100%;max-width:none;flex:0 0 auto;}
+    .confirm-flow__arrow{transform:rotate(90deg);padding:.2rem 0;}
+  }
+  .hiw-shout--payoff{
+    margin-top:clamp(2.5rem,4.5vw,3.5rem);
+    max-width:36ch;
+    margin-left:auto;
+    margin-right:auto;
+    text-wrap:balance;
+  }
+  .nowrap-gold{color:#7A5F16;white-space:nowrap;display:inline-block;}
+
+  /* S5 — sublabels inside the final system diagram */
+  .sys__mod small{
+    display:block;
+    margin-top:.3rem;
+    font-weight:600;
+    letter-spacing:.05em;
+    text-transform:none;
+    font-size:.7em;
+    color:rgba(247,247,247,.62);
+  }
+  .sys__mod--gold small{color:rgba(212,175,55,.8);}
+
   @media (prefers-reduced-motion:reduce){
     .radar__you::after{animation:none;}
   }
@@ -794,22 +914,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- 3. BUSINESS BRAIN — First, we learn you.                             -->
+  <!-- 01. BUSINESS BRAIN — A good consultant starts by learning you.       -->
   <!-- ==================================================================== -->
   <section class="section section--white story" id="business-brain">
     <div class="container">
       <div class="story__inner">
-        <span class="eyebrow story__kicker">Business Brain</span>
-        <h2 class="story__h">First, we learn <em>you</em>.</h2>
+        <span class="eyebrow story__kicker"><span class="story__num">01</span>Business Brain</span>
+        <h2 class="story__h">A good consultant starts by learning <em>you</em>.</h2>
         <div class="story__copy">
-          <p>Good consultants have always started with the people. They sit down with leadership, ask questions, and learn how the business really works.</p>
-          <p>Simple Genius starts there too. Our AI interviews your leaders and captures what they know. Then your company documents and information add to the picture.</p>
+          <p>They sit down with your people. They ask questions. They learn how the business really works.</p>
+          <p>Simple Genius starts there too. Our AI interviews your leaders and captures what they know. Your company information adds to the picture.</p>
         </div>
 
-        <p class="story-yell">
-          <span>Some of the most valuable things your company knows aren&rsquo;t in a spreadsheet.</span>
-        </p>
-        <p class="story-yell story-yell--gold">They&rsquo;re in people&rsquo;s heads.</p>
+        <p class="story-yell">The most important things about your business aren&rsquo;t always in a spreadsheet.</p>
+        <p class="story-italic">A lot of them are in <em>people&rsquo;s heads.</em></p>
+
+        <figure class="story-shot shot shot--zoomable">
+          <img class="shot__img"
+               src="img/sg-business-brain-1600w.jpg"
+               srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w, img/sg-business-brain-2400w.jpg 2400w"
+               sizes="(max-width: 900px) 100vw, 58vw"
+               width="1600" height="832"
+               alt="Building a Business Brain: Foundation, Customer, GTM, Operations, Financial, and Strategy knowledge in one place."
+               loading="lazy" decoding="async">
+        </figure>
 
         <div class="know" aria-label="Leadership interviews and company knowledge become the Business Brain.">
           <span class="know__src">Leadership interviews</span>
@@ -818,57 +946,97 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="know__op" aria-hidden="true">&rarr;</span>
           <span class="know__dst">Business Brain</span>
         </div>
-
-        <p class="story-q">Who are you?</p>
       </div>
     </div>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- 4. COMPETITION HUB — Then, we watch them.                            -->
+  <!-- 02. COMPETITION HUB — Then, a good consultant studies the competition. -->
   <!-- ==================================================================== -->
   <section class="section section--ink story story--watch" id="competition-hub">
     <div class="container">
       <div class="story__inner">
-        <span class="eyebrow story__kicker">Competition Hub</span>
-        <h2 class="story__h">Then, we watch <em>them</em>.</h2>
+        <span class="eyebrow story__kicker"><span class="story__num">02</span>Competition Hub</span>
+        <h2 class="story__h">Then, a good consultant studies the competition.</h2>
         <div class="story__copy story__copy--center">
-          <p>Once a good consultant understands your business, they look at who you&rsquo;re up against.</p>
+          <p>They look at who you&rsquo;re up against and what they&rsquo;re doing.</p>
           <p>The problem is, a competitive report is a snapshot.</p>
         </div>
 
-        <p class="story-keep">Competition Hub keeps watching.</p>
+        <p class="story-keep">Simple Genius keeps watching.</p>
         <p class="story-signals">New hires. New products. Pricing changes. New markets. Public moves.</p>
 
-        <div class="radar" aria-label="Your company watched against competitors as they move.">
-          <span class="radar__sig radar__sig--1">Competitor A<b>New hire</b></span>
-          <span class="radar__sig radar__sig--2">Competitor B<b>New product</b></span>
-          <span class="radar__you">Your company</span>
-          <span class="radar__sig radar__sig--3">Competitor C<b>Price change</b></span>
-          <span class="radar__sig radar__sig--4">Competitor A<b>New market</b></span>
-          <span class="radar__sig radar__sig--5">News</span>
-        </div>
+        <figure class="story-shot story-shot--wide shot shot--zoomable">
+          <img class="shot__img"
+               src="img/sg-competition-hub-1600w.jpg"
+               srcset="img/sg-competition-hub-800w.jpg 800w, img/sg-competition-hub-1600w.jpg 1600w, img/sg-competition-hub-2400w.jpg 2400w"
+               sizes="(max-width: 900px) 100vw, 72vw"
+               width="1600" height="984"
+               alt="Competition Hub: tracked competitors, share of voice, win rate, and threat index, updated continuously."
+               loading="lazy" decoding="async">
+        </figure>
 
         <p class="story-yell story-yell--center story-yell--gold">We keep our eyes on the people trying to put you out of business.</p>
         <div class="story__copy story__copy--center" style="margin-top:1.75rem;">
-          <p>We keep watching and updating, so you always know what&rsquo;s happening.</p>
+          <p>We keep watching and updating as things change.</p>
         </div>
-        <p class="story-q story-q--center">Who are you up against?</p>
       </div>
     </div>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- 5. STRATEGIC INSIGHTS — Put the two together.                        -->
+  <!-- 03. CONFIRM — Then, you make sure we got it right.                   -->
   <!-- ==================================================================== -->
-  <section class="section section--ground story story--eq" id="strategic-insights">
+  <section class="section section--ground story story--confirm" id="confirm">
     <div class="container">
       <div class="story__inner">
-        <span class="eyebrow story__kicker">Strategic Insights</span>
-        <h2 class="story__h">Now, put the two together.</h2>
+        <span class="eyebrow story__kicker"><span class="story__num">03</span>Confirm</span>
+        <h2 class="story__h">Then, you make sure we got it right.</h2>
         <div class="story__copy story__copy--center">
-          <p>A good consultant connects what they learned about you with what they learned about your competition.</p>
-          <p>Simple Genius does the same thing, but it keeps going as things change.</p>
+          <p>Simple Genius shows you what it learned about your business. You correct what&rsquo;s wrong and confirm what&rsquo;s right.</p>
+        </div>
+
+        <ol class="confirm-flow" aria-label="Learn, review, correct, confirm.">
+          <li class="confirm-flow__step"><span class="confirm-flow__label">Learn</span></li>
+          <li class="confirm-flow__arrow" aria-hidden="true">&rarr;</li>
+          <li class="confirm-flow__step"><span class="confirm-flow__label">Review</span></li>
+          <li class="confirm-flow__arrow" aria-hidden="true">&rarr;</li>
+          <li class="confirm-flow__step"><span class="confirm-flow__label">Correct</span></li>
+          <li class="confirm-flow__arrow" aria-hidden="true">&rarr;</li>
+          <li class="confirm-flow__step confirm-flow__step--sg"><span class="confirm-flow__label">Confirm</span></li>
+        </ol>
+
+        <p class="story-yell story-yell--center hiw-shout--payoff">Nothing moves forward on an assumption <span class="nowrap-gold">you didn&rsquo;t approve.</span></p>
+
+        <figure class="story-shot story-shot--small shot shot--zoomable">
+          <img class="shot__img"
+               src="img/sg-findings-1600w.jpg"
+               srcset="img/sg-findings-800w.jpg 800w, img/sg-findings-1600w.jpg 1600w, img/sg-findings-2400w.jpg 2400w"
+               sizes="(max-width: 900px) 90vw, 27vw"
+               width="1600" height="828"
+               alt="Findings from your Q2 close, waiting for you to approve or review."
+               loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- 04. STRATEGIC INSIGHTS — Then, a good consultant puts it together.   -->
+  <!-- ==================================================================== -->
+  <section class="section section--white story story--eq" id="strategic-insights">
+    <div class="container">
+      <div class="story__inner">
+        <span class="eyebrow story__kicker"><span class="story__num">04</span>Strategic Insights</span>
+        <h2 class="story__h">Then, a good consultant puts it all together.</h2>
+        <div class="story__copy story__copy--center">
+          <p>They take what they learned about you and what they learned about your competition.</p>
+          <p>Then they tell you what they think you should do.</p>
+        </div>
+
+        <p class="story-yell story-yell--center story-yell--gold">Simple Genius does the same thing.</p>
+        <div class="story__copy story__copy--center" style="margin-top:1.25rem;">
+          <p>But it keeps going as things change.</p>
         </div>
 
         <div class="eq" aria-label="What we know about you plus what we know about them becomes what you should do.">
@@ -882,12 +1050,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="eq__op" aria-hidden="true">&darr;</span>
           <span class="eq__out">Strategic Insights</span>
         </div>
+
+        <figure class="story-shot story-shot--focus shot shot--zoomable">
+          <img class="shot__img"
+               src="img/sg-insight-move-crop.jpg"
+               srcset="img/sg-insight-move-crop-800w.jpg 760w, img/sg-insight-move-crop.jpg 1086w"
+               sizes="(max-width: 900px) 90vw, 38vw"
+               width="1086" height="640"
+               alt="Recommended moves ranked by impact, each one traced back to verified findings."
+               loading="lazy" decoding="async">
+        </figure>
       </div>
     </div>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- 6. WORKSTREAMS — The consultant leaves. Simple Genius stays.         -->
+  <!-- 05. WORKSTREAMS — Eventually, the consultant leaves.                 -->
   <!-- ==================================================================== -->
   <section class="section section--ink-deep story story--stay" id="workstreams">
     <div class="container">
@@ -905,7 +1083,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
 
         <div class="ws">
-          <span class="eyebrow story__kicker">Workstreams</span>
+          <span class="eyebrow story__kicker"><span class="story__num">05</span>Workstreams</span>
           <h3 class="story__h">Put what Simple Genius knows to work.</h3>
           <div class="story__copy">
             <p>Your team gets AI with the context of your business behind it. They can use it to think through problems and get work done.</p>
@@ -913,22 +1091,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
+        <figure class="story-shot shot shot--zoomable">
+          <img class="shot__img"
+               src="img/sg-workstreams-1600w.jpg"
+               srcset="img/sg-workstreams-800w.jpg 800w, img/sg-workstreams-1600w.jpg 1600w, img/sg-workstreams-2400w.jpg 2400w"
+               sizes="(max-width: 900px) 100vw, 55vw"
+               width="1600" height="832"
+               alt="An assistant that already knows your business, with Finance, Sales and Marketing, Operations, People, and Strategy assistants."
+               loading="lazy" decoding="async">
+        </figure>
+
         <div class="sys" aria-label="Business Brain and Competition Hub feed Strategic Insights, used through Workstreams.">
           <div class="sys__row">
-            <span class="sys__mod">Business Brain</span>
+            <span class="sys__mod">Business Brain<small>Who are you?</small></span>
             <span class="sys__op" aria-hidden="true">+</span>
-            <span class="sys__mod">Competition Hub</span>
+            <span class="sys__mod">Competition Hub<small>Who are you up against?</small></span>
           </div>
           <span class="sys__op" aria-hidden="true">&darr;</span>
-          <span class="sys__mod sys__mod--gold">Strategic Insights</span>
+          <span class="sys__mod sys__mod--gold">Strategic Insights<small>What should you do?</small></span>
           <span class="sys__op" aria-hidden="true">&darr;</span>
           <div class="sys__row sys__row--end">
-            <span class="sys__mod sys__mod--gold">Workstreams</span>
+            <span class="sys__mod sys__mod--gold">Workstreams<small>Put it to work.</small></span>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- ==================================================================== -->
   <!-- 7. CLOSE                                                             -->
