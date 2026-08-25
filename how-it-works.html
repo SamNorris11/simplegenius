@@ -47,6 +47,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (max-width:640px){
     .thesis-headline{padding:clamp(1.15rem,4vw,1.6rem) clamp(1.35rem,5vw,1.85rem);border-radius:14px;}
   }
+  /* Thesis quote card — dark, gold-glow, attributed */
+  .thesis-quote{position:relative;display:block;margin:0 auto;padding:clamp(2.25rem,4vw,3.25rem) clamp(2rem,4.5vw,3.5rem) clamp(2rem,3.5vw,2.75rem);border-radius:20px;background:#1D1D1D;box-shadow:0 0 0 1px rgba(212,175,55,.55), 0 22px 70px -22px rgba(212,175,55,.35), 0 24px 48px -22px rgba(0,0,0,.35);isolation:isolate;overflow:visible;max-width:min(100%, 46rem);text-align:center;}
+  .thesis-quote__glow{position:absolute;inset:-45% -14% -45% -14%;background:radial-gradient(ellipse at 50% 50%, rgba(212,175,55,.22), rgba(212,175,55,0) 62%);z-index:-1;pointer-events:none;filter:blur(4px);}
+  .thesis-quote__mark{position:absolute;top:1.35rem;left:1.75rem;width:34px;height:28px;color:rgba(212,175,55,.55);}
+  .thesis-quote__text{margin:0;}
+  .thesis-quote__text p{font-family:'Playfair Display',serif;font-weight:500;font-style:normal;font-size:clamp(1.55rem,2.6vw,2.15rem);line-height:1.25;letter-spacing:-.01em;color:#F7F7F7;margin:0;text-wrap:balance;}
+  .thesis-quote__text em{font-style:italic;color:#D4AF37;font-weight:600;text-shadow:0 0 22px rgba(212,175,55,.4);}
+  .thesis-quote__attr{display:flex;flex-direction:column;align-items:center;gap:.2rem;margin-top:clamp(1.35rem,2.4vw,1.85rem);padding-top:clamp(1.35rem,2.4vw,1.85rem);border-top:1px solid rgba(212,175,55,.25);}
+  .thesis-quote__name{font-family:'Inter',sans-serif;font-weight:700;font-size:1.05rem;color:#F7F7F7;letter-spacing:.005em;}
+  .thesis-quote__role{font-family:'Inter',sans-serif;font-weight:500;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(212,175,55,.85);}
+  @media (max-width:640px){
+    .thesis-quote{padding:1.85rem 1.35rem 1.6rem;border-radius:16px;}
+    .thesis-quote__mark{top:1rem;left:1rem;width:26px;height:22px;}
+  }
+
   .hiw-hero__title .under{display:inline;}
   @media (max-width:820px){
     .hiw-hero{padding-block:clamp(3rem,8vw,4.5rem) clamp(1.5rem,4vw,2.5rem);}
@@ -477,7 +492,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="page-head__glow" aria-hidden="true"></div>
     <div class="container page-head__inner">
       <span class="eyebrow">How It Works</span>
-      <h1 class="page-head__title page-head__title--single hiw-hero__title">The most expensive thing we're all paying for is the <span class="gold">information we don't know.</span></h1>
+      <h1 class="page-head__title page-head__title--single hiw-hero__title">The same process the best consultants have <span class="gold">always used.</span> Just better, faster, and <span class="gold">cost less.</span></h1>
     </div>
   </section>
 
@@ -487,10 +502,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="section section--ground section--tight section--seam">
     <div class="container">
       <div class="hiw-head hiw-head--center">
-        <div class="thesis-headline">
-          <div class="thesis-headline__glow" aria-hidden="true"></div>
-          <p class="hiw-shout thesis-headline__text" style="margin-top:0;"><em class="thesis-headline__gold">Simple Genius</em> has improved the process of <em class="thesis-headline__gold">traditional consulting.</em></p>
-        </div>
+        <figure class="thesis-quote">
+          <div class="thesis-quote__glow" aria-hidden="true"></div>
+          <svg class="thesis-quote__mark" viewBox="0 0 48 40" aria-hidden="true"><path d="M14 40C6 40 0 34 0 24 0 12 8 2 20 0l3 6C13 8 6 14 5 22h9v18H14zm28 0c-8 0-14-6-14-16 0-12 8-22 20-24l3 6c-10 2-17 8-18 16h9v18h-0z" fill="currentColor"/></svg>
+          <blockquote class="thesis-quote__text">
+            <p>The most expensive thing we&rsquo;re all paying for is <em>the information we don&rsquo;t know.</em></p>
+          </blockquote>
+          <figcaption class="thesis-quote__attr">
+            <span class="thesis-quote__name">Trent Hiott</span>
+            <span class="thesis-quote__role">Co&#8209;Founder, Simple Genius</span>
+          </figcaption>
+        </figure>
       </div>
 
       <div class="thesis">
