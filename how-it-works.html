@@ -36,6 +36,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-hero .eyebrow{color:#D4AF37;}
   .hiw-hero .page-head__title{color:#F7F7F7;}
   .hiw-hero .hiw-hero__payoff{display:block;margin-top:.55em;}
+  @media (max-width:900px){ .hiw-hero .hiw-hero__payoff{font-size:clamp(1.3rem,6vw,1.75rem);white-space:nowrap;margin-top:.35em;} }
   .hiw-hero .page-head__title em{color:#D4AF37;font-style:italic;}
   .hiw-hero .hiw-j{font-style:normal;display:inline-block;transform:skewX(-11deg);transform-origin:50% 75%;}
 
@@ -173,8 +174,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .thesis-m__rail{position:absolute;left:1rem;top:2.6rem;bottom:1.15rem;width:2px;background:rgba(28,26,23,.25);}
     .thesis-m__track--sg .thesis-m__rail{background:#D4AF37;bottom:-.5rem;}
     .thesis-m__rail::after{content:"";position:absolute;left:-4px;bottom:-2px;width:10px;height:10px;border-radius:50%;background:rgba(28,26,23,.35);}
-    .thesis-m__track--sg .thesis-m__rail::after{background:#D4AF37;bottom:-6px;}
+    .thesis-m__track--sg .thesis-m__rail::after{width:0;height:0;border-radius:0;background:transparent;border-left:6px solid transparent;border-right:6px solid transparent;border-top:10px solid #D4AF37;left:-5px;bottom:-9px;}
     .thesis-m__label{display:inline-block;margin-bottom:.85rem;}
+    .thesis-m__track:not(.thesis-m__track--sg) .thesis-m__label{font-size:.74rem;letter-spacing:.09em;white-space:nowrap;background:rgba(90,90,90,.14);border-color:rgba(90,90,90,.6);color:#3a3a3a;}
     .thesis-m__step{position:relative;padding:.55rem 0 .55rem .45rem;line-height:1.25;}
     .thesis-m__step::before{content:"";position:absolute;left:-1.35rem;top:.95rem;width:8px;height:8px;border-radius:50%;background:#5A5A5A;}
     .thesis-m__track--sg .thesis-m__step::before{background:#D4AF37;}
@@ -281,32 +283,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
   }
 
-  /* MOBILE: eyebrow + headline first, then image, then body copy.
-     Same ordering pattern as the homepage's four product sections. */
+  /* MOBILE: eyebrow → image/visual → headline → body copy, tight margins.
+     Same ordering pattern as the homepage's four product sections.
+     Workstreams keeps its original grouped order (eyebrow+headline together,
+     then image, then body) — not part of this reorder. */
   @media (max-width: 900px) {
     #business-brain .grid--centred > .split__copy,
     #competition-hub .grid--centred > .split__copy,
     #strategic-insights .grid--centred > .split__copy,
+    #business-brain .split__copy-head,
+    #competition-hub .split__copy-head,
+    #strategic-insights .split__copy-head {
+      display: contents !important;
+    }
+    #business-brain .split__copy-head .eyebrow,
+    #competition-hub .split__copy-head .eyebrow,
+    #strategic-insights .split__copy-head .eyebrow {
+      order: 1 !important;
+      grid-column: 1 / -1 !important;
+      margin-bottom: .5rem !important;
+    }
+    #business-brain .grid--centred > .shot,
+    #competition-hub .grid--centred > .shot,
+    #strategic-insights .grid--centred > .hiw-equation {
+      order: 2 !important;
+      margin: .5rem 0 !important;
+    }
+    #business-brain .split__copy-head h2,
+    #competition-hub .split__copy-head h2,
+    #strategic-insights .split__copy-head h2 {
+      order: 3 !important;
+      grid-column: 1 / -1 !important;
+      margin: .5rem 0 0 !important;
+    }
+    #business-brain .split__copy-body,
+    #competition-hub .split__copy-body,
+    #strategic-insights .split__copy-body {
+      order: 4 !important;
+      grid-column: 1 / -1 !important;
+      margin-top: .5rem !important;
+    }
+
     #workstreams .grid--centred > .split__copy {
       display: contents !important;
     }
-    #business-brain .split__copy-head,
-    #competition-hub .split__copy-head,
-    #strategic-insights .split__copy-head,
     #workstreams .split__copy-head {
       order: 1 !important;
       grid-column: 1 / -1 !important;
       margin-bottom: 1.25rem;
     }
-    #business-brain .grid--centred > .shot,
-    #competition-hub .grid--centred > .shot,
-    #strategic-insights .grid--centred > .hiw-equation,
     #workstreams .grid--centred > .shot {
       order: 2 !important;
     }
-    #business-brain .split__copy-body,
-    #competition-hub .split__copy-body,
-    #strategic-insights .split__copy-body,
     #workstreams .split__copy-body {
       order: 3 !important;
       grid-column: 1 / -1 !important;
@@ -411,6 +439,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   #confirm.section--tight{padding-block:clamp(1.75rem,2.6vw,2.5rem);}
   #confirm .section__lede{margin-top:.5rem;}
   #confirm .section__head{margin-bottom:clamp(1.5rem,2.5vw,2rem);}
+  @media (max-width:900px){
+    #confirm .hiw-support{display:none;}
+    #confirm .section__head .section__lede:first-of-type{margin-top:.3rem;}
+    #confirm .hiw-steps{margin-top:.5rem;}
+    #confirm.section--tight{padding-bottom:1.25rem;}
+  }
 
   /* ---- Strategic Insights: three premium boxed terms, no screenshot. Sits
      in the image column and uses the full available canvas — the visual
@@ -442,6 +476,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-stays__big{margin-top:0;font-size:clamp(3.1rem,6vw,5.1rem);}
   .hiw-stays__sub{margin-top:clamp(.85rem,1.7vw,1.2rem);}
   #workstreams.section--tight{padding-block:clamp(2.25rem,3.6vw,3.5rem);}
+  @media (max-width:900px){
+    .hiw-stays__big{font-size:clamp(1.7rem,8vw,2.3rem);white-space:nowrap;}
+    .hiw-stays__sub{font-size:clamp(1.05rem,5vw,1.35rem);white-space:nowrap;margin-top:.5rem;}
+  }
 
   /* ---- Page close: its own distinct closing section (light, same ground
      treatment as the opening comparison graph), clearly broken from the
@@ -450,6 +488,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-close-lines{margin-bottom:clamp(1.25rem,2.2vw,1.75rem);}
   .hiw-close-lines .statement{margin:0 auto .3rem;font-size:clamp(1.6rem,2.4vw,1.95rem);}
   .hiw-close-lines .statement:last-child{margin-bottom:0;}
+  .hiw-close .display__accent{color:#7A5F16;}
 
   /* Playfair Display's italic U+2019 renders as a floating mark that reads
      as a stray double-quote. Keep the gold/underline emphasis, drop the
@@ -721,7 +760,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="col--1-5 split__copy">
           <div class="split__copy-head">
             <span class="eyebrow">Strategic Insights</span>
-            <h2 class="display display--md">Then, a consultant gives you recommendations.</h2>
+            <h2 class="display display--md">A consultant gives you recommendations.</h2>
           </div>
           <div class="split__copy-body">
             <p class="section__lede section__lede--left">A traditional consultant puts together what they know about you and what they know about your competition, as of that time.</p>

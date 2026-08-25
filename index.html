@@ -120,39 +120,78 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
   }
 
-  /* MOBILE: eyebrow + headline first, then image, then body copy + CTA.
+  /* MOBILE: eyebrow, then image, then headline, then body copy + CTA.
      Applies to Competition Hub, Business Brain, Strategic Insights, Workstreams.
-     .split__copy uses display:contents on mobile so its two children
-     (.split__copy-head and .split__copy-body) become grid siblings and can be
-     ordered around the image. */
+     .split__copy and .split__copy-head both use display:contents on mobile so
+     the eyebrow and h2 become independent grid siblings and can be ordered
+     around the image, stacked tight with minimal margin. */
   @media (max-width: 900px) {
     #competition .grid--centred > .split__copy,
     #context .grid--centred > .split__copy,
     #insights .grid--centred > .split__copy,
-    #work-streams .grid--centred > .split__copy {
-      display: contents !important;
-    }
+    #work-streams .grid--centred > .split__copy,
     #competition .split__copy-head,
     #context .split__copy-head,
     #insights .split__copy-head,
     #work-streams .split__copy-head {
+      display: contents !important;
+    }
+    #competition .split__copy-head .eyebrow,
+    #context .split__copy-head .eyebrow,
+    #insights .split__copy-head .eyebrow,
+    #work-streams .split__copy-head .eyebrow {
       order: 1 !important;
       grid-column: 1 / -1 !important;
-      margin-bottom: 1.25rem;
+      margin-bottom: .5rem !important;
     }
     #competition .grid--centred > .shot,
     #context .grid--centred > .shot,
     #insights .grid--centred > .shot,
     #work-streams .grid--centred > .shot {
       order: 2 !important;
+      margin: .5rem 0 !important;
+    }
+    #competition .split__copy-head h2,
+    #context .split__copy-head h2,
+    #insights .split__copy-head h2,
+    #work-streams .split__copy-head h2 {
+      order: 3 !important;
+      grid-column: 1 / -1 !important;
+      margin: .5rem 0 0 !important;
     }
     #competition .split__copy-body,
     #context .split__copy-body,
     #insights .split__copy-body,
     #work-streams .split__copy-body {
-      order: 3 !important;
+      order: 4 !important;
       grid-column: 1 / -1 !important;
-      margin-top: 1.5rem;
+      margin-top: .5rem !important;
+    }
+  }
+
+  /* Homepage "Who's behind it" (#about): mobile only — drop the statement
+     line and keep the eyebrow top left (the shared .found-grid mobile rule
+     centers it for the About page, but this section wants it left). */
+  @media (max-width: 900px) {
+    #about .found__close .statement { display: none !important; }
+    #about .found-grid .found-left > .eyebrow { text-align: left !important; }
+  }
+
+  /* "Learn more about X" homepage CTAs: yellow bg, black text, one line. */
+  .btn--learnmore {
+    background: #D4AF37 !important;
+    color: #1D1D1D !important;
+    border-color: transparent !important;
+    white-space: nowrap !important;
+  }
+  .btn--learnmore:hover { background: #E6BF41 !important; }
+  @media (max-width: 900px) {
+    .btn--learnmore {
+      width: auto !important;
+      font-size: .8rem !important;
+      padding-inline: .9rem !important;
+      min-height: 2.5rem !important;
+      letter-spacing: 0 !important;
     }
   }
 
@@ -317,7 +356,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="split__copy-body">
           <p class="section__lede section__lede--left">We track new hires, new products, pricing changes, and other public moves your competitors make. Then we show you what changed, why it matters, and what you may want to do about it.</p>
           <p class="section__lede section__lede--left">We keep watching and updating, so you always know what&rsquo;s happening.</p>
-          <div style="margin-top:1.5rem;"><a class="btn btn--ghost" href="competition-hub.html">Learn more about Competition Hub</a></div>
+          <div style="margin-top:1.5rem;"><a class="btn btn--learnmore" href="competition-hub.html">Learn more about Competition Hub</a></div>
         </div>
       </div>
 
@@ -347,7 +386,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="split__copy-body">
           <p class="section__lede section__lede--left">An AI voice model interviews your leaders. It captures valuable intellectual knowledge about your business, from the people who are running it.</p>
           <p class="section__lede section__lede--left">Upload your documents, playbooks, and process files. Everything lives in one place. If a person leaves, the knowledge stays.</p>
-          <div style="margin-top:1.5rem;"><a class="btn btn--primary" href="business-brain.html">Learn more about Business Brain</a></div>
+          <div style="margin-top:1.5rem;"><a class="btn btn--learnmore" href="business-brain.html">Learn more about Business Brain</a></div>
         </div>
       </div>
 
@@ -377,7 +416,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="split__copy-body">
           <p class="section__lede section__lede--left">We know your business. We know your competitors. Strategic Insights is where we connect both sides and hand you the move.</p>
           <p class="section__lede section__lede--left">Every insight is grounded in your context, tied to competitor signals, and written as a clear insight.</p>
-          <div style="margin-top:1.5rem;"><a class="btn btn--ghost" href="strategic-insights.html">Learn more about Strategic Insights</a></div>
+          <div style="margin-top:1.5rem;"><a class="btn btn--learnmore" href="strategic-insights.html">Learn more about Strategic Insights</a></div>
         </div>
       </div>
 
@@ -406,10 +445,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h2 class="display display--md">AI that already knows <em>the business</em>.</h2>
         </div>
         <div class="split__copy-body">
-          <p class="section__lede section__lede--left">An LLM rooted in your company context. Everything your team learns stays inside the four walls of the business.</p>
+          <p class="section__lede section__lede--left">AI rooted in your company context. Everything your team learns stays inside the four walls of the business.</p>
           <p class="section__lede section__lede--left">A safe environment for your team to use AI on real work. Nothing they type leaves the platform.</p>
           <p class="section__lede section__lede--left">When someone walks out the door, what the company learned stays.</p>
-          <div style="margin-top:1.5rem;"><a class="btn btn--primary" href="workstreams.html">Learn more about Workstreams</a></div>
+          <div style="margin-top:1.5rem;"><a class="btn btn--learnmore" href="workstreams.html">Learn more about Workstreams</a></div>
         </div>
       </div>
 

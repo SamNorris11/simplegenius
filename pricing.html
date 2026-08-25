@@ -41,6 +41,58 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .invcmp__chart{height:300px;}
     .invcmp__bar{width:52%!important;max-width:64px;}
   }
+
+  /* Pricing page — Sam iteration 2026-08-25 (mobile/desktop pass) */
+
+  /* Hero: shrink dead space between subtitle and cards */
+  .pricing-page-head{padding-bottom:1.5rem!important;}
+  .pricing-hero-section{padding-top:1.75rem!important;}
+  @media (max-width:720px){
+    .pricing-page-head{padding-bottom:0.75rem!important;}
+    .pricing-hero-section{padding-top:0.9rem!important;}
+    .plans--triple{margin-top:1.25rem!important;}
+  }
+
+  /* Mobile plan cards: smaller so all 3 fit without excess height */
+  @media (max-width:720px){
+    .pricing-hero-section .plan{padding:1.1rem 1.1rem 1.25rem!important;}
+    .pricing-hero-section .plan__price{font-size:2.1rem!important;}
+    .pricing-hero-section .plan__body{font-size:0.92rem!important;line-height:1.4!important;}
+    .plans--triple{gap:0.85rem!important;}
+  }
+
+  /* Compare Plans: tighten top margin on mobile */
+  @media (max-width:720px){
+    .pricing-compare-section{padding-top:2rem!important;}
+  }
+
+  /* Mobile seats disclaimer on the $899 card (desktop table already has it) */
+  .pdu-mplan__seats-note{display:block;margin-top:.75rem;padding-top:.75rem;border-top:1px solid rgba(0,0,0,.08);font-family:'Inter',sans-serif;font-weight:400;font-size:.78rem;letter-spacing:.02em;color:var(--c-mute);text-transform:none;}
+
+  /* Comparison table titles: one line on desktop, controlled 2 line wrap on mobile */
+  @media (min-width:721px){
+    .invcmp__title br{display:none;}
+    .invcmp__title{font-size:clamp(1.05rem,1.35vw,1.3rem)!important;white-space:nowrap;}
+    .invcmp__col{padding:0 1rem!important;}
+  }
+  @media (max-width:720px){
+    .invcmp__title br{display:block!important;content:''!important;}
+    .invcmp__title{font-size:1.02rem!important;}
+    .invcmp__col{padding:1rem 0.55rem 1.1rem!important;}
+    .invcmp__note{font-size:0.8rem!important;line-height:1.3!important;}
+    .invcmp__chart{margin:1.25rem 0 0 0!important;}
+    .invcmp__chart::before{left:0!important;width:56px!important;text-align:right!important;}
+  }
+
+  /* FAQ eyebrow: one line on mobile */
+  @media (max-width:720px){
+    .eyebrow--ruled{white-space:nowrap;font-size:0.68rem!important;letter-spacing:0.08em!important;}
+  }
+
+  /* Final CTA: tighten top margin on mobile */
+  @media (max-width:720px){
+    .pricing-final-cta{padding-top:2.5rem!important;}
+  }
 </style>
 </head>
 <body>
@@ -136,7 +188,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main id="main">
 
 <!-- ============================================================ B1, HEAD -->
-<section class="page-head page-head--tall">
+<section class="page-head page-head--tall pricing-page-head">
   <div class="page-head__glow" aria-hidden="true"></div>
   <div class="container page-head__inner">
     <span class="eyebrow">Pricing</span>
@@ -197,7 +249,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ================================================== B2.6, PLAN CHART
      Feature comparison table across the three tiers. Sam request 2026-08-21. -->
-<section class="section section--ground section--seam">
+<section class="section section--ground section--seam pricing-compare-section">
   <div class="container container--mid">
     <div class="section__head section__head--center">
       <span class="eyebrow">Compare plans</span>
@@ -304,6 +356,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <li><span>Strategic Initiatives</span><span class="pdu-check" aria-label="Included">&#10003;</span></li>
             <li><span>Boardroom</span><span class="pdu-check" aria-label="Included">&#10003;</span></li>
           </ul>
+          <p class="pdu-mplan__seats-note">Additional seats: $75/month.</p>
         </article>
       </div>
     </div>
@@ -324,17 +377,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="invcmp__cols">
         <div class="invcmp__col">
           <span class="invcmp__label">Option one</span>
-          <h3 class="invcmp__title">Bring in <br>a consultant.</h3>
+          <h3 class="invcmp__title">Bring in a<br> consultant.</h3>
           <p class="invcmp__note"><span class="invcmp__star" aria-hidden="true">&#9733;</span><span>A project, not a lasting solution.</span></p>
         </div>
         <div class="invcmp__col">
           <span class="invcmp__label">Option two</span>
-          <h3 class="invcmp__title">Hire an <br>employee.</h3>
+          <h3 class="invcmp__title">Hire an<br> employee.</h3>
           <p class="invcmp__note"><span class="invcmp__star" aria-hidden="true">&#9733;</span><span>Expensive. Full time.</span></p>
         </div>
         <div class="invcmp__col invcmp__col--us">
           <span class="invcmp__label invcmp__label--us">Option three</span>
-          <h3 class="invcmp__title">Simple <br>Genius.</h3>
+          <h3 class="invcmp__title">Simple<br> Genius.</h3>
           <p class="invcmp__note"><span class="invcmp__star" aria-hidden="true">&#9733;</span><span>One monthly price. Always in your corner.</span></p>
         </div>
       </div>
@@ -456,7 +509,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- =========================================================== B7, CLOSE -->
-<section class="section section--ink-deep">
+<section class="section section--ink-deep pricing-final-cta">
   <div class="container container--mid">
     <div class="section__head section__head--center">
       <span class="eyebrow">One step</span>

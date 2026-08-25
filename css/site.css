@@ -3376,6 +3376,24 @@ html:not(.no-js) .reveal.is-visible { opacity: 1; translate: 0 0; }
   .header__actions .header__link { display: none; }
   .no-js .nav { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
 
+  /* the mobile drawer always opens on a light background (var(--c-ground)),
+     so the dark-top white nav-link override must not follow it in. Without
+     this, pages with a black hero (how-it-works, pricing, try, about) show
+     white text on the light drawer once it opens. */
+  body.is-dark-top .nav.is-open .nav__link,
+  body.is-dark-top .nav.is-open .header__link {
+    color: var(--c-steel);
+    font-weight: 500;
+  }
+  body.is-dark-top .nav.is-open .nav__link:hover,
+  body.is-dark-top .nav.is-open .header__link:hover {
+    color: var(--c-ink);
+  }
+  body.is-dark-top .nav.is-open .nav__link.is-current {
+    color: var(--c-ink);
+    font-weight: 600;
+  }
+
   /* every named twelve-column span collapses to the full field            */
   [class*="col--"] { grid-column: 1 / -1; }
   /* the ledger's glyph rail is no longer a grid column once stacked        */
