@@ -32,17 +32,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      Every section makes that comparison in a different way.
      ============================================================ */
 
-  /* ---- HERO (centered, with gold accent words) ---- */
-  .hiw-hero{padding-block:clamp(5.5rem,10vw,9rem) clamp(3rem,6vw,5rem);text-align:center;}
-  .hiw-hero__eyebrow{display:block;font-family:'Inter',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.24em;font-size:1.15rem;color:#7A5F16;margin:0 0 2.5rem;}
-  .hiw-hero__title{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.4rem,4.6vw,4.35rem);line-height:1.1;color:var(--c-ink);margin:0 auto;max-width:min(100%, 88rem);letter-spacing:-.015em;text-wrap:balance;}
-  .hiw-hero__title--two-lines .hiw-hero__line{display:block;text-wrap:balance;}
-  .hiw-hero__title--two-lines .hiw-hero__line + .hiw-hero__line{margin-top:.45em;}
-  @media (max-width:900px){
-    .hiw-hero__title--two-lines{font-size:clamp(1.8rem,5.8vw,2.8rem);}
+  /* ---- HERO: claim, then Just / BETTER. FASTER. CHEAPER. ---- */
+  .page-head.hiw-hero{padding-bottom:clamp(1.75rem,3vw,2.5rem);}
+  .hiw-hero__title{display:flex;flex-direction:column;align-items:center;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.35rem,4.4vw,4.1rem);line-height:1.12;color:var(--c-ink);margin:0 auto;max-width:min(100%, 22ch);letter-spacing:-.015em;}
+  .hiw-hero__claim{display:block;text-wrap:balance;}
+  .hiw-hero__payoff{display:flex;flex-direction:column;align-items:center;margin-top:1.15em;}
+  .hiw-hero__just{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.35rem,2.2vw,1.85rem);line-height:1;color:var(--c-ink);letter-spacing:0;margin:0 0 .35em;}
+  .hiw-hero__punch{display:block;font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(1.55rem,3.2vw,2.35rem);line-height:1.1;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;}
+  .hiw-hero__punch .gold{color:#D4AF37;font-style:normal;font-weight:800;}
+  @media (max-width:820px){
+    .page-head.hiw-hero{padding-bottom:1.5rem;}
+    .hiw-hero__title{font-size:clamp(1.85rem,7vw,2.55rem);max-width:16ch;}
+    .hiw-hero__punch{font-size:clamp(1.15rem,5.4vw,1.55rem);letter-spacing:.06em;}
   }
-  .hiw-hero__title em{font-style:italic;color:var(--c-ink);}
-  .hiw-hero__title .gold{color:#7A5F16;font-style:normal;font-weight:600;}
 
   /* Thesis headline: dark charcoal card with gold glow, brighter gold accents */
   .thesis-headline{position:relative;display:inline-block;margin:0 auto;padding:clamp(1.5rem,3vw,2.5rem) clamp(2rem,4.5vw,3.25rem);border-radius:18px;background:#1D1D1D;box-shadow:0 0 0 1px rgba(212,175,55,.55), 0 18px 60px -20px rgba(212,175,55,.35), 0 24px 48px -22px rgba(0,0,0,.35);isolation:isolate;overflow:visible;max-width:min(100%, 40rem);}
@@ -78,11 +80,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-close-quote__name{font-family:'Inter',sans-serif;font-weight:700;font-size:1.05rem;color:#1D1D1D;letter-spacing:.005em;}
   .hiw-close-quote__role{font-family:'Inter',sans-serif;font-weight:500;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:#7A5F16;}
 
-  .hiw-hero__title .under{display:inline;}
-  @media (max-width:820px){
-    .hiw-hero{padding-block:clamp(3rem,8vw,4.5rem) clamp(1.5rem,4vw,2.5rem);}
-    .hiw-hero__title{font-size:clamp(2rem,7.5vw,2.8rem);}
-  }
+
 
   /* ---- Universal comparison label chips (used everywhere) ---- */
   .cmp-label{display:inline-block;font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:.95rem;color:var(--c-steel,#5A5A5A);padding:.5rem .9rem;border:1px solid rgba(28,26,23,.16);border-radius:999px;background:transparent;line-height:1;}
@@ -164,7 +162,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      Simple Genius rail overshoots and keeps going into open space.
      ============================================================ */
   /* Tighten the top of the comparison section; graph is the hero here */
-  .thesis-section{padding-block:clamp(1.5rem,3.2vw,2.75rem) clamp(3rem,5.5vw,4.5rem);}
+  .thesis-section{padding-block:clamp(1.1rem,2.2vw,1.75rem) clamp(2.75rem,5vw,4.25rem);}
   .thesis-container{max-width:1360px;padding-inline:clamp(1rem,2.5vw,2rem);}
   .thesis{margin:0 auto;max-width:1280px;width:100%;}
   .thesis__svg-wrap{display:block;}
@@ -509,11 +507,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ==================================================================== -->
   <!-- 1. HERO — matches pricing/about page-head pattern for consistency     -->
   <!-- ==================================================================== -->
-  <section class="page-head page-head--tall">
+  <section class="page-head page-head--tall hiw-hero">
     <div class="page-head__glow" aria-hidden="true"></div>
     <div class="container page-head__inner">
       <span class="eyebrow">How It Works</span>
-      <h1 class="page-head__title page-head__title--single hiw-hero__title hiw-hero__title--two-lines"><span class="hiw-hero__line">The same process the best consultants have <span class="gold">always used.</span></span><span class="hiw-hero__line">Just better, faster, and <span class="gold">cheaper.</span></span></h1>
+      <h1 class="page-head__title page-head__title--single hiw-hero__title">
+        <span class="hiw-hero__claim">The same process the best consultants have always used.</span>
+        <span class="hiw-hero__payoff">
+          <span class="hiw-hero__just">Just</span>
+          <span class="hiw-hero__punch"><span class="gold">Better.</span> <span class="gold">Faster.</span> <span class="gold">Cheaper.</span></span>
+        </span>
+      </h1>
     </div>
   </section>
 
@@ -537,74 +541,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 .th-label-bar--sg{stroke:#D4AF37;stroke-width:4;}
                 .th-step{font-family:'Inter',sans-serif;font-weight:800;font-size:24px;letter-spacing:.09em;text-transform:uppercase;fill:#1D1D1D;text-anchor:middle;}
                 .th-step-sub{font-family:'Inter',sans-serif;font-weight:500;font-size:16px;letter-spacing:.02em;text-transform:none;fill:#5A5A5A;text-anchor:middle;}
-                .th-end{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;letter-spacing:.14em;text-transform:uppercase;fill:#1D1D1D;text-anchor:middle;}
-                .th-cont{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;letter-spacing:.14em;text-transform:uppercase;fill:#7A5F16;text-anchor:middle;}
+                .th-end{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;letter-spacing:.14em;text-transform:uppercase;fill:#1D1D1D;text-anchor:start;}
+                .th-cont{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;letter-spacing:.14em;text-transform:uppercase;fill:#7A5F16;text-anchor:start;}
                 .th-rail-gray{stroke:#5A5A5A;stroke-width:4;fill:none;stroke-linecap:round;opacity:.6;}
                 .th-terminator{stroke:#5A5A5A;stroke-width:4;stroke-linecap:round;opacity:.9;}
                 .th-rail-gold{stroke:#D4AF37;stroke-width:5;fill:none;stroke-linecap:round;}
                 .th-node-gray{fill:#F7F7F7;stroke:#5A5A5A;stroke-width:3;}
                 .th-node-gold{fill:#F7F7F7;stroke:#D4AF37;stroke-width:3.5;}
-                .th-tick{stroke:rgba(28,26,23,.28);stroke-width:1.25;stroke-dasharray:3 6;}
               </style>
             </defs>
 
-            <!-- Vertical connector ticks: same 4 columns, run through both rails -->
-            <line class="th-tick" x1="210" y1="210" x2="210" y2="360"/>
-            <line class="th-tick" x1="460" y1="210" x2="460" y2="360"/>
-            <line class="th-tick" x1="710" y1="210" x2="710" y2="360"/>
-            <line class="th-tick" x1="960" y1="210" x2="960" y2="360"/>
+            <!-- Centered visual system. Nodes 100 / 350 / 600 / 850. Full span ~45 to 1165, midpoint ~605. -->
+            <!-- No vertical connector ticks. Alignment alone carries the comparison. -->
 
             <!-- ============ TRADITIONAL CONSULTING (top row) ============ -->
-            <!-- Title centered on shared axis x=585 (midpoint of nodes 210..960) -->
-            <text class="th-label" x="585" y="52" text-anchor="middle">Traditional consulting</text>
-            <line class="th-label-bar" x1="440" y1="70" x2="730" y2="70"/>
+            <text class="th-label" x="600" y="52" text-anchor="middle">Traditional consulting</text>
+            <line class="th-label-bar" x1="455" y1="70" x2="745" y2="70"/>
 
-            <!-- Labels ABOVE the rail: action word then sub -->
-            <text class="th-step" x="210" y="140">Learn</text>
-            <text class="th-step-sub" x="210" y="166">the business</text>
-            <text class="th-step" x="460" y="140">Study</text>
-            <text class="th-step-sub" x="460" y="166">the competition</text>
-            <text class="th-step" x="710" y="140">Find</text>
-            <text class="th-step-sub" x="710" y="166">what matters</text>
-            <text class="th-step" x="960" y="140">Recommend</text>
-            <text class="th-step-sub" x="960" y="166">what to do</text>
+            <text class="th-step" x="100" y="140">Learn</text>
+            <text class="th-step-sub" x="100" y="166">the business</text>
+            <text class="th-step" x="350" y="140">Study</text>
+            <text class="th-step-sub" x="350" y="166">the competition</text>
+            <text class="th-step" x="600" y="140">Find</text>
+            <text class="th-step-sub" x="600" y="166">what matters</text>
+            <text class="th-step" x="850" y="140">Recommend</text>
+            <text class="th-step-sub" x="850" y="166">what to do</text>
 
-            <!-- Rail + nodes + hard terminator at x=1080 -->
-            <line class="th-rail-gray" x1="210" y1="210" x2="1080" y2="210"/>
-            <line class="th-terminator" x1="1080" y1="182" x2="1080" y2="238"/>
-            <circle class="th-node-gray" cx="210" cy="210" r="12"/>
-            <circle class="th-node-gray" cx="460" cy="210" r="12"/>
-            <circle class="th-node-gray" cx="710" cy="210" r="12"/>
-            <circle class="th-node-gray" cx="960" cy="210" r="12"/>
-            <text class="th-end" x="1100" y="217" style="text-anchor:start;">Ends</text>
+            <line class="th-rail-gray" x1="100" y1="210" x2="970" y2="210"/>
+            <line class="th-terminator" x1="970" y1="182" x2="970" y2="238"/>
+            <circle class="th-node-gray" cx="100" cy="210" r="12"/>
+            <circle class="th-node-gray" cx="350" cy="210" r="12"/>
+            <circle class="th-node-gray" cx="600" cy="210" r="12"/>
+            <circle class="th-node-gray" cx="850" cy="210" r="12"/>
+            <text class="th-end" x="992" y="217">Ends</text>
 
-            <!-- ============ SIMPLE GENIUS (bottom row — mirrors top) ============ -->
-            <!-- Title centered on same shared axis x=585 -->
-            <text class="th-label th-label--sg" x="585" y="312" text-anchor="middle">Simple Genius</text>
-            <line class="th-label-bar th-label-bar--sg" x1="440" y1="330" x2="730" y2="330"/>
+            <!-- ============ SIMPLE GENIUS (bottom row, mirrors top) ============ -->
+            <text class="th-label th-label--sg" x="600" y="312" text-anchor="middle">Simple Genius</text>
+            <line class="th-label-bar th-label-bar--sg" x1="455" y1="330" x2="745" y2="330"/>
 
-            <!-- Labels ABOVE the gold rail (mirroring top row) -->
-            <text class="th-step" x="210" y="400">Learn</text>
-            <text class="th-step-sub" x="210" y="426">the business</text>
-            <text class="th-step" x="460" y="400">Watch</text>
-            <text class="th-step-sub" x="460" y="426">the competition</text>
-            <text class="th-step" x="710" y="400">Find</text>
-            <text class="th-step-sub" x="710" y="426">what matters</text>
-            <text class="th-step" x="960" y="400">Decide</text>
-            <text class="th-step-sub" x="960" y="426">what to do</text>
+            <text class="th-step" x="100" y="400">Learn</text>
+            <text class="th-step-sub" x="100" y="426">the business</text>
+            <text class="th-step" x="350" y="400">Watch</text>
+            <text class="th-step-sub" x="350" y="426">the competition</text>
+            <text class="th-step" x="600" y="400">Find</text>
+            <text class="th-step-sub" x="600" y="426">what matters</text>
+            <text class="th-step" x="850" y="400">Decide</text>
+            <text class="th-step-sub" x="850" y="426">what to do</text>
 
-            <!-- Rail + nodes + arrow overshooting the terminator column -->
-            <line class="th-rail-gold" x1="210" y1="470" x2="1150" y2="470"/>
-            <polygon points="1150,459 1180,470 1150,481" fill="#D4AF37"/>
-            <circle class="th-node-gold" cx="210" cy="470" r="13"/>
-            <circle class="th-node-gold" cx="460" cy="470" r="13"/>
-            <circle class="th-node-gold" cx="710" cy="470" r="13"/>
-            <circle class="th-node-gold" cx="960" cy="470" r="13"/>
-            <circle cx="210" cy="470" r="5" fill="#D4AF37"/>
-            <circle cx="460" cy="470" r="5" fill="#D4AF37"/>
-            <circle cx="710" cy="470" r="5" fill="#D4AF37"/>
-            <circle cx="960" cy="470" r="5" fill="#D4AF37"/>
-            <text class="th-cont" x="1100" y="455" text-anchor="start">Keeps going</text>
+            <line class="th-rail-gold" x1="100" y1="470" x2="1120" y2="470"/>
+            <polygon points="1120,459 1152,470 1120,481" fill="#D4AF37"/>
+            <circle class="th-node-gold" cx="100" cy="470" r="13"/>
+            <circle class="th-node-gold" cx="350" cy="470" r="13"/>
+            <circle class="th-node-gold" cx="600" cy="470" r="13"/>
+            <circle class="th-node-gold" cx="850" cy="470" r="13"/>
+            <circle cx="100" cy="470" r="5" fill="#D4AF37"/>
+            <circle cx="350" cy="470" r="5" fill="#D4AF37"/>
+            <circle cx="600" cy="470" r="5" fill="#D4AF37"/>
+            <circle cx="850" cy="470" r="5" fill="#D4AF37"/>
+            <text class="th-cont" x="980" y="455">Keeps going</text>
           </svg>
         </div>
 
@@ -631,7 +625,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <p class="thesis-caption">The same proven process. <strong>Faster. Always current. Built to stay.</strong></p>
     </div>
   </section>
 
