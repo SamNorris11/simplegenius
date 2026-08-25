@@ -32,19 +32,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      Every section makes that comparison in a different way.
      ============================================================ */
 
-  /* ---- HERO: claim, then Just / BETTER. FASTER. CHEAPER. ---- */
-  .page-head.hiw-hero{padding-bottom:clamp(1.75rem,3vw,2.5rem);}
-  .hiw-hero__title{display:flex;flex-direction:column;align-items:center;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.35rem,4.4vw,4.1rem);line-height:1.12;color:var(--c-ink);margin:0 auto;max-width:min(100%, 22ch);letter-spacing:-.015em;}
-  .hiw-hero__claim{display:block;text-wrap:balance;}
-  .hiw-hero__payoff{display:flex;flex-direction:column;align-items:center;margin-top:1.15em;}
-  .hiw-hero__just{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.35rem,2.2vw,1.85rem);line-height:1;color:var(--c-ink);letter-spacing:0;margin:0 0 .35em;}
-  .hiw-hero__punch{display:block;font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(1.55rem,3.2vw,2.35rem);line-height:1.1;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;}
-  .hiw-hero__punch .gold{color:#D4AF37;font-style:normal;font-weight:800;}
-  @media (max-width:820px){
-    .page-head.hiw-hero{padding-bottom:1.5rem;}
-    .hiw-hero__title{font-size:clamp(1.85rem,7vw,2.55rem);max-width:16ch;}
-    .hiw-hero__punch{font-size:clamp(1.15rem,5.4vw,1.55rem);letter-spacing:.06em;}
-  }
+  /* ---- HERO: same layout as About. Tan ground. One Playfair face. ---- */
+  .hiw-hero .page-head__sub--serif{max-width:28ch;color:var(--c-ink);}
+  .hiw-hero .page-head__sub .gold{color:#D4AF37;font-style:normal;}
+  .hiw-hero .rule-gold{margin-top:var(--sp-6);margin-bottom:0;}
 
   /* Thesis headline: dark charcoal card with gold glow, brighter gold accents */
   .thesis-headline{position:relative;display:inline-block;margin:0 auto;padding:clamp(1.5rem,3vw,2.5rem) clamp(2rem,4.5vw,3.25rem);border-radius:18px;background:#1D1D1D;box-shadow:0 0 0 1px rgba(212,175,55,.55), 0 18px 60px -20px rgba(212,175,55,.35), 0 24px 48px -22px rgba(0,0,0,.35);isolation:isolate;overflow:visible;max-width:min(100%, 40rem);}
@@ -511,13 +502,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="page-head__glow" aria-hidden="true"></div>
     <div class="container page-head__inner">
       <span class="eyebrow">How It Works</span>
-      <h1 class="page-head__title page-head__title--single hiw-hero__title">
-        <span class="hiw-hero__claim">The same process the best consultants have always used.</span>
-        <span class="hiw-hero__payoff">
-          <span class="hiw-hero__just">Just</span>
-          <span class="hiw-hero__punch"><span class="gold">Better.</span> <span class="gold">Faster.</span> <span class="gold">Cheaper.</span></span>
-        </span>
-      </h1>
+      <h1 class="page-head__title">The same process the best consultants have always used.</h1>
+      <p class="page-head__sub page-head__sub--serif">Just <span class="gold">better</span>, <span class="gold">faster</span>, <span class="gold">cheaper</span>.</p>
+      <div class="rule-gold" aria-hidden="true"></div>
     </div>
   </section>
 
