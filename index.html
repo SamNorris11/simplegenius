@@ -186,6 +186,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     #about .found-grid .found-left > .eyebrow { text-align: left !important; }
   }
 
+  /* Homepage "Who's behind it": too much margin above the eyebrow and
+     between eyebrow/H2/rule/photos on mobile — tighten the whole stack. */
+  @media (max-width: 900px) {
+    #about.found-section { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+    #about .found-grid { gap: .5rem !important; }
+    #about .found-grid .found-left > .eyebrow { margin-bottom: .25rem !important; }
+    #about .found-grid .found-h2 { margin-top: .25rem !important; margin-bottom: .5rem !important; }
+    #about .found-grid .rule-gold { margin: .5rem auto !important; }
+  }
+
   /* "Learn more about X" homepage CTAs: yellow bg, black text, one line, centered. */
   .learnmore-row { text-align: center; }
   .btn--learnmore {
