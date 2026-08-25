@@ -220,18 +220,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Mobile-only: bolder/bigger "shift" headlines in the 4 product sections
      (Competition Hub, Business Brain, Strategic Insights, Workstreams), so
-     they pop more against the smaller supporting copy. Workstreams gets a
-     fluid size so its longer line stays on one row. */
+     they pop more against the smaller supporting copy. All 4 share the same
+     size for consistency — Workstreams stacks to 2 lines rather than shrink. */
   @media (max-width: 900px) {
     #competition .split__copy-head .display--md,
     #context .split__copy-head .display--md,
-    #insights .split__copy-head .display--md {
-      font-size: 2rem !important;
-      font-weight: 700 !important;
-      line-height: 1.1 !important;
-    }
+    #insights .split__copy-head .display--md,
     #work-streams .split__copy-head .display--md {
-      font-size: 1.4rem !important;
+      font-size: 2rem !important;
       font-weight: 700 !important;
       line-height: 1.1 !important;
     }
