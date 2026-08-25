@@ -354,11 +354,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
   }
 
-  /* ---- Bold/gold shift line — the recurring "Simple Genius does the same
-     thing" beat. Sans, heavy, tracked. Darker gold on white sections for
-     contrast (matches .cmp-label--sg's on-light treatment). ---- */
-  .hiw-shift{font-family:'Inter',sans-serif;font-weight:800;letter-spacing:.01em;font-size:clamp(1.05rem,1.4vw,1.25rem);line-height:1.4;color:#D4AF37;margin:1.15rem 0 0;}
-  .section--white .hiw-shift{color:#7A5F16;}
+  /* ---- The recurring "Simple Genius" turn beat — the moment each section
+     pivots from how a consultant works to how Simple Genius does it. Uses
+     the same Playfair Display italic/gold treatment as the hero's
+     "Just better, faster, cheaper." payoff so these moments read as one
+     visual family. Sized to carry weight without adding section height. ---- */
+  .hiw-shift{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.008em;font-size:clamp(1.9rem,3.3vw,2.65rem);line-height:1.14;color:#D4AF37;margin:1.35rem 0 0;text-shadow:0 0 22px rgba(212,175,55,.25);}
+  .section--white .hiw-shift{color:#7A5F16;text-shadow:none;}
+
+  /* ---- Business Brain: nudge the image up so its top edge aligns with the
+     headline baseline instead of the copy block's vertical center. ---- */
+  #business-brain .grid--centred > *{align-self:start;}
+  .hiw-brain-shot{margin-top:-.35rem;}
+  @media (max-width:900px){ #business-brain .grid--centred > *{align-self:auto;} .hiw-brain-shot{margin-top:0;} }
+
+  /* ---- Wide footer statement — runs full width beneath a product section's
+     grid instead of stacking inside the narrow copy column. ---- */
+  .hiw-wide-statement{max-width:none;width:100%;margin-top:clamp(1.75rem,3.25vw,2.5rem);font-size:clamp(1.5rem,2.5vw,1.95rem);text-wrap:balance;}
+
+  /* ---- One enlarged body line inside a product section's copy column. ---- */
+  .hiw-say-lg{font-size:clamp(1.25rem,1.85vw,1.4rem);line-height:1.5;}
+
+  /* ---- Confirm: a supporting statement between headline and body. Serif,
+     lighter weight than the headline so it does not compete with it. ---- */
+  .hiw-support{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(1.3rem,1.9vw,1.6rem);color:#7A5F16;margin:.75rem 0 0;}
+
+  /* ---- Confirm: four premium process boxes, one per step. Compact so the
+     added supporting line above does not grow the section. ---- */
+  .hiw-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem;margin:clamp(1.5rem,2.75vw,2rem) auto 0;max-width:920px;}
+  .hiw-step{border:1px solid rgba(28,26,23,.14);border-radius:14px;padding:1rem .75rem 1.15rem;text-align:center;background:rgba(212,175,55,.035);}
+  .hiw-step--sg{border-color:#D4AF37;background:rgba(212,175,55,.09);}
+  .hiw-step__word{display:block;font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.45rem,2.3vw,1.85rem);color:var(--c-ink);letter-spacing:-.01em;}
+  .hiw-step--sg .hiw-step__word{color:#7A5F16;}
+  .hiw-step__sub{display:block;margin-top:.35rem;font-family:'Inter',sans-serif;font-size:.92rem;line-height:1.3;color:#5A5A5A;}
+  @media (max-width:640px){ .hiw-steps{grid-template-columns:repeat(2,1fr);} }
 
   /* ---- Authority lines — a beat that needs to read bigger than body copy
      but still lives inside the copy column (Competition Hub). ---- */
@@ -374,26 +403,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (max-width:640px){ .hiw-flow{justify-content:center;gap:.5rem .75rem;} .hiw-flow__arrow{transform:rotate(90deg);} }
   .hiw-confirm-close{margin-top:clamp(2.25rem,4vw,3rem);}
 
-  /* ---- Strategic Insights: pure typographic equation, no card, no
-     screenshot. Sits in the image column at full weight. ---- */
-  .hiw-equation{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(.6rem,1.3vw,1rem);text-align:center;padding:clamp(2rem,4vw,3rem) clamp(1rem,3vw,2rem);}
-  .hiw-equation__term{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.5rem,2.6vw,2.15rem);letter-spacing:-.01em;color:#F7F7F7;line-height:1.15;}
-  .hiw-equation__op{color:#D4AF37;font-size:clamp(1.3rem,2vw,1.7rem);font-weight:300;line-height:1;}
-  .hiw-equation__arrow{color:#D4AF37;font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1;margin:.15rem 0;}
-  .hiw-equation__arrow::before,.hiw-equation__arrow::after{content:"";display:inline-block;width:clamp(2rem,4vw,3.5rem);height:1px;background:rgba(212,175,55,.4);vertical-align:middle;margin:0 .75rem;}
-  .hiw-equation__result{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;color:#D4AF37;font-size:clamp(2.1rem,4vw,3.15rem);letter-spacing:-.01em;line-height:1.1;margin-top:.15rem;}
-  @media (max-width:900px){ .hiw-equation{padding:2rem 1rem 1rem;} }
+  /* ---- Strategic Insights: three premium boxed terms, no screenshot. Sits
+     in the image column and uses the full available canvas — the visual
+     itself is the payoff, so it gets real presence, not a thin equation. ---- */
+  .hiw-equation{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(.75rem,1.6vw,1.15rem);text-align:center;padding:clamp(1.5rem,3vw,2.25rem) clamp(1rem,3vw,2rem);width:100%;}
+  .hiw-eqbox{width:100%;max-width:26rem;border:1px solid rgba(212,175,55,.3);border-radius:16px;padding:clamp(1.1rem,2.4vw,1.6rem) clamp(1.5rem,3vw,2.25rem);background:rgba(212,175,55,.05);}
+  .hiw-eqbox__label{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.65rem,2.9vw,2.3rem);letter-spacing:-.01em;color:#F7F7F7;line-height:1.15;}
+  .hiw-eqbox--result{border-color:#D4AF37;background:rgba(212,175,55,.13);box-shadow:0 0 46px -12px rgba(212,175,55,.4);}
+  .hiw-eqbox--result .hiw-eqbox__label{font-style:italic;font-size:clamp(2rem,3.6vw,2.75rem);color:#D4AF37;}
+  .hiw-equation__op{color:#D4AF37;font-size:clamp(1.4rem,2.2vw,1.85rem);font-weight:300;line-height:1;}
+  .hiw-equation__arrow{color:#D4AF37;font-size:clamp(1.7rem,2.8vw,2.25rem);line-height:1;margin:.1rem 0;}
+  .hiw-equation__arrow::before,.hiw-equation__arrow::after{content:"";display:inline-block;width:clamp(2.25rem,4.5vw,3.75rem);height:1px;background:rgba(212,175,55,.4);vertical-align:middle;margin:0 .85rem;}
+  @media (max-width:900px){ .hiw-equation{padding:1.5rem 1rem .5rem;} .hiw-eqbox{max-width:22rem;} }
 
   /* ---- Section 05: the reveal + Workstreams share ONE canvas. Reveal sits
      compact and centered above the flip grid. ---- */
-  .hiw-stays__reveal{max-width:46rem;margin:0 auto clamp(2rem,4vw,2.75rem);text-align:center;}
+  .hiw-stays__reveal{max-width:50rem;margin:0 auto clamp(1.75rem,3.5vw,2.5rem);text-align:center;}
+  .hiw-workstreams-payoff{font-weight:600;color:var(--c-ink);}
   .hiw-stays__lede{margin-top:.85rem;}
-  .hiw-stays__big{margin-top:clamp(1.25rem,2.4vw,1.75rem);}
+  .hiw-stays__big{margin-top:clamp(1.1rem,2.2vw,1.6rem);font-size:clamp(3.1rem,6vw,5.1rem);}
 
   /* ---- Page close: compact, three lines and a CTA — not another section. ---- */
   .hiw-close{padding-block:clamp(2.5rem,4.5vw,3.5rem);}
-  .hiw-close-lines{margin-bottom:clamp(1rem,2vw,1.5rem);}
-  .hiw-close-lines .statement{margin:0 auto .35rem;font-size:var(--fs-4);}
+  .hiw-close-lines{margin-bottom:clamp(1.5rem,3vw,2.25rem);}
+  .hiw-close-lines .statement{margin:0 auto .35rem;font-size:clamp(1.75rem,2.9vw,2.35rem);}
   .hiw-close-lines .statement:last-child{margin-bottom:0;}
 
   /* Playfair Display's italic U+2019 renders as a floating mark that reads
@@ -571,12 +604,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="split__copy-body">
             <p class="section__lede section__lede--left">They talk to your people. They learn how the business really works.</p>
             <p class="hiw-shift">SIMPLE GENIUS DOES THE SAME THING.</p>
-            <p class="section__lede section__lede--left">Our AI interviews your leaders and captures what they already know. Your documents fill in the rest.</p>
-            <p class="statement" style="margin-top:1.25rem;">THE MOST VALUABLE THINGS YOUR COMPANY KNOWS AREN&rsquo;T ALWAYS WRITTEN DOWN.</p>
+            <p class="section__lede section__lede--left hiw-say-lg">Our AI voice model interviews your leaders and captures what they already know. Your internal documents fill in the rest.</p>
           </div>
         </div>
 
-        <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
+        <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12 hiw-brain-shot">
           <img class="shot__img"
                src="img/sg-business-brain-1600w.jpg"
                srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w, img/sg-business-brain-2400w.jpg 2400w"
@@ -586,6 +618,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                loading="lazy" decoding="async">
         </figure>
       </div>
+      <p class="statement hiw-wide-statement">THE MOST VALUABLE THINGS YOUR COMPANY KNOWS AREN&rsquo;T ALWAYS WRITTEN DOWN.</p>
     </div>
   </section>
 
@@ -598,10 +631,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="col--1-5 split__copy">
           <div class="split__copy-head">
             <span class="eyebrow">Competition Hub</span>
-            <h2 class="display display--md">Then, they study <em>them</em>.</h2>
+            <h2 class="display display--md">Then, they study <em>your competitors</em>.</h2>
           </div>
           <div class="split__copy-body">
-            <p class="section__lede section__lede--left">A good consultant studies your competition.</p>
+            <p class="section__lede section__lede--left">A good consultant studies your competition and shows you what they see at that moment.</p>
             <p class="hiw-shift">SIMPLE GENIUS KEEPS WATCHING THEM.</p>
             <p class="display display--sm hiw-authority">We keep our eyes on the people trying to put you out of business.</p>
             <p class="display display--sm hiw-authority">And we don&rsquo;t stop watching.</p>
@@ -629,20 +662,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="container container--mid">
       <div class="section__head section__head--center">
         <span class="eyebrow eyebrow--center">Confirm</span>
-        <h2 class="display display--md display--center">Then, you make sure we got it right.</h2>
+        <h2 class="display display--lg display--center">Then, you make sure we got it right.</h2>
+        <p class="hiw-support">Nothing gets by you without your approval.</p>
         <p class="section__lede section__lede--center">Simple Genius shows you what it learned about your business.</p>
-        <p class="section__lede section__lede--center">You correct what&rsquo;s wrong and confirm what&rsquo;s right.</p>
+        <p class="section__lede section__lede--center">If anything&rsquo;s off, you correct what&rsquo;s wrong and confirm what&rsquo;s right.</p>
       </div>
 
-      <ol class="hiw-flow" aria-label="Learn, review, correct, confirm.">
-        <li class="hiw-flow__step">Learn</li>
-        <li class="hiw-flow__arrow" aria-hidden="true">&rarr;</li>
-        <li class="hiw-flow__step">Review</li>
-        <li class="hiw-flow__arrow" aria-hidden="true">&rarr;</li>
-        <li class="hiw-flow__step">Correct</li>
-        <li class="hiw-flow__arrow" aria-hidden="true">&rarr;</li>
-        <li class="hiw-flow__step hiw-flow__step--sg">Confirm</li>
-      </ol>
+      <div class="hiw-steps" role="list" aria-label="Learn, review, correct, confirm.">
+        <div class="hiw-step" role="listitem">
+          <span class="hiw-step__word">Learn</span>
+          <span class="hiw-step__sub">Simple Genius learns you.</span>
+        </div>
+        <div class="hiw-step" role="listitem">
+          <span class="hiw-step__word">Review</span>
+          <span class="hiw-step__sub">See what we learned.</span>
+        </div>
+        <div class="hiw-step" role="listitem">
+          <span class="hiw-step__word">Correct</span>
+          <span class="hiw-step__sub">Correct what&rsquo;s wrong.</span>
+        </div>
+        <div class="hiw-step hiw-step--sg" role="listitem">
+          <span class="hiw-step__word">Confirm</span>
+          <span class="hiw-step__sub">Confirm what&rsquo;s right.</span>
+        </div>
+      </div>
 
       <p class="statement statement--center hiw-confirm-close">NOTHING MOVES FORWARD ON AN ASSUMPTION <span class="display__accent">YOU DIDN&rsquo;T APPROVE.</span></p>
     </div>
@@ -657,7 +700,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="col--1-5 split__copy">
           <div class="split__copy-head">
             <span class="eyebrow">Strategic Insights</span>
-            <h2 class="display display--md">Then, they tell you what to do.</h2>
+            <h2 class="display display--md">Then, a consultant gives you recommendations.</h2>
           </div>
           <div class="split__copy-body">
             <p class="section__lede section__lede--left">A traditional consultant puts together what they know about you and what they know about your competition.</p>
@@ -667,11 +710,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="hiw-equation col--6-12" aria-label="Your business plus your competition becomes your next move.">
-          <span class="hiw-equation__term">YOUR BUSINESS</span>
+          <div class="hiw-eqbox"><span class="hiw-eqbox__label">YOUR BUSINESS</span></div>
           <span class="hiw-equation__op" aria-hidden="true">+</span>
-          <span class="hiw-equation__term">YOUR COMPETITION</span>
+          <div class="hiw-eqbox"><span class="hiw-eqbox__label">YOUR COMPETITION</span></div>
           <span class="hiw-equation__arrow" aria-hidden="true">&rarr;</span>
-          <span class="hiw-equation__result">YOUR NEXT MOVE</span>
+          <div class="hiw-eqbox hiw-eqbox--result"><span class="hiw-eqbox__label">YOUR NEXT MOVE</span></div>
         </div>
       </div>
     </div>
@@ -683,7 +726,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="section section--ink-deep section--tight section--flip" id="workstreams">
     <div class="container">
       <div class="hiw-stays__reveal">
-        <h2 class="display display--sm display--center">Eventually, the consultant leaves.</h2>
+        <h2 class="display display--md display--center">Eventually, the consultant leaves.</h2>
         <p class="section__lede section__lede--center hiw-stays__lede">The project ends. They get on a plane and go help the next company.</p>
         <p class="display display--lg display--center hiw-stays__big">Simple Genius <span class="display__accent">stays.</span></p>
       </div>
@@ -697,7 +740,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="split__copy-body">
             <p class="section__lede section__lede--left">Your team can put everything Simple Genius knows to work.</p>
             <p class="section__lede section__lede--left">A private AI for your team, grounded in your company context.</p>
-            <p class="section__lede section__lede--left">Everyone works with the same understanding of the business.</p>
+            <p class="section__lede section__lede--left">Your team can work with Simple Genius whenever they need it.</p>
+            <p class="section__lede section__lede--left hiw-workstreams-payoff">The context stays. The help stays.</p>
           </div>
         </div>
 
