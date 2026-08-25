@@ -6229,33 +6229,26 @@ html:not(.no-js) .reveal.is-visible .dg .d-draw { animation: dg-draw 1000ms var(
 .section--ink .pull-quote__cite,
 .section--ink-deep .pull-quote__cite { color: var(--c-on-dark-2); }
 
-/* About page "we built it for work like ours" quote — Sam 8/25: bigger,
-   centered, needs presence instead of reading as a stray paragraph. */
+/* About page "we built it for work like ours" quote — Sam 8/25: real
+   quotation marks in the copy (no decorative glyph), section sized tight
+   around the text instead of floating in a sea of white space. */
+.about-quote-band { padding-block: var(--sp-7); }
 .about-quote {
   position: relative;
-  max-width: 42rem;
+  max-width: 46rem;
   margin: 0 auto;
-  padding-top: var(--sp-7);
   text-align: center;
-}
-.about-quote::before {
-  content: "\201C";
-  display: block;
-  font-family: var(--ff-display);
-  font-size: 4.5rem;
-  line-height: 1;
-  color: var(--c-gold);
-  margin-bottom: var(--sp-2);
 }
 .about-quote .pull-quote__q {
-  font-size: var(--fs-2);
+  font-size: var(--fs-1);
+  line-height: 1.15;
   text-align: center;
-  max-width: 32ch;
+  max-width: 27ch;
   margin: 0 auto;
 }
 .about-quote .pull-quote__cite {
   text-align: center;
-  margin-top: var(--sp-5);
+  margin-top: var(--sp-4);
 }
 .about-quote .pull-quote__cite::before {
   content: "";
@@ -6266,9 +6259,9 @@ html:not(.no-js) .reveal.is-visible .dg .d-draw { animation: dg-draw 1000ms var(
   margin: 0 auto var(--sp-4);
 }
 @media (max-width: 900px) {
-  .about-quote { padding-top: var(--sp-5); max-width: 26rem; }
-  .about-quote::before { font-size: 3.25rem; }
-  .about-quote .pull-quote__q { font-size: var(--fs-3); max-width: 24ch; }
+  .about-quote-band { padding-block: var(--sp-5); }
+  .about-quote { max-width: 24rem; }
+  .about-quote .pull-quote__q { font-size: var(--fs-2); max-width: 24ch; }
 }
 
 
@@ -9710,8 +9703,17 @@ body.lightbox-open { overflow: hidden; }
   /* Drop the "We've been on your side of the table" line on mobile; keep the gold rule */
   .about-band .found-grid .found-left .found__close > p.display--md { display: none; }
 
-  /* Founder name under each photo never wraps to two lines */
-  .about-band .founder-card__name { white-space: nowrap; }
+  /* Condense the gap between the gold rule and the founder photo card */
+  .found-grid .found-left .rule-gold { margin-bottom: 0 !important; }
+  .found-grid .founders-photo { padding-top: .75rem; }
+
+  /* Founder name under each photo never wraps to two lines, and stays
+     small enough that it can't force the grid columns out of balance
+     (that unequal-photo-size bug came from nowrap text stretching a track) */
+  .about-band .founder-card__name { white-space: nowrap; font-size: .875rem; }
+  .found-grid .founders-photo .founders-photo__pair {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
 }
 
 /* 3) Pricing: on mobile, put "Add Guided Setup" BEFORE "Additional seats" note */
