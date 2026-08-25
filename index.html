@@ -208,10 +208,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   @media (max-width: 900px) {
     .btn--learnmore {
       width: auto !important;
-      font-size: .8rem !important;
-      padding-inline: .9rem !important;
+      font-size: 1rem !important;
+      font-weight: 700 !important;
+      padding-inline: .85rem !important;
       min-height: 2.5rem !important;
       letter-spacing: 0 !important;
+      box-shadow: 0 4px 12px rgba(212,175,55,.35) !important;
+      border-radius: 8px !important;
+    }
+  }
+
+  /* Mobile-only: bolder/bigger "shift" headlines in the 4 product sections
+     (Competition Hub, Business Brain, Strategic Insights, Workstreams), so
+     they pop more against the smaller supporting copy. Workstreams gets a
+     fluid size so its longer line stays on one row. */
+  @media (max-width: 900px) {
+    #competition .split__copy-head .display--md,
+    #context .split__copy-head .display--md,
+    #insights .split__copy-head .display--md {
+      font-size: 2rem !important;
+      font-weight: 700 !important;
+      line-height: 1.1 !important;
+    }
+    #work-streams .split__copy-head .display--md {
+      font-size: clamp(1.55rem, 7.2vw, 2rem) !important;
+      font-weight: 700 !important;
+      line-height: 1.1 !important;
+      white-space: nowrap !important;
+    }
+  }
+
+  /* Mobile-only: keep "Mark Combs, CFA" on one line under his photo. */
+  @media (max-width: 900px) {
+    .found-grid .founders-photo .founder-card__name {
+      white-space: nowrap !important;
+      font-size: 1rem !important;
     }
   }
 
