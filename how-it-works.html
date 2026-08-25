@@ -359,7 +359,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      the same Playfair Display italic/gold treatment as the hero's
      "Just better, faster, cheaper." payoff so these moments read as one
      visual family. Sized to carry weight without adding section height. ---- */
-  .hiw-shift{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.008em;font-size:clamp(1.9rem,3.3vw,2.65rem);line-height:1.12;color:#D4AF37;margin:1.1rem 0 0;text-shadow:0 0 22px rgba(212,175,55,.25);}
+  .hiw-shift{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;letter-spacing:-.006em;font-size:clamp(1.6rem,2.7vw,2.2rem);line-height:1.08;color:#D4AF37;margin:.95rem 0 0;text-shadow:0 0 18px rgba(212,175,55,.22);}
   .section--white .hiw-shift{color:#7A5F16;text-shadow:none;}
 
   /* ---- Business Brain: nudge the image up so its top edge aligns with the
@@ -391,8 +391,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---- Authority lines — a beat that needs to read bigger than body copy
      but still lives inside the copy column (Competition Hub). ---- */
-  .hiw-authority{margin-top:.65rem;}
-  .hiw-authority + .hiw-authority{margin-top:.35rem;}
+  .hiw-authority{margin-top:.4rem;}
+  .hiw-authority + .hiw-authority{margin-top:.15rem;}
 
   /* ---- Confirm: its own compact, full-width visual character. Flow spans
      the full column width rather than clustering center. ---- */
@@ -406,15 +406,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* ---- Strategic Insights: three premium boxed terms, no screenshot. Sits
      in the image column and uses the full available canvas — the visual
      itself is the payoff, so it gets real presence, not a thin equation. ---- */
-  .hiw-equation{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(.75rem,1.6vw,1.15rem);text-align:center;padding:clamp(1.5rem,3vw,2.25rem) clamp(1rem,3vw,2rem);width:100%;}
-  .hiw-eqbox{width:100%;max-width:26rem;border:1px solid rgba(212,175,55,.3);border-radius:16px;padding:clamp(1.1rem,2.4vw,1.6rem) clamp(1.5rem,3vw,2.25rem);background:rgba(212,175,55,.05);}
-  .hiw-eqbox__label{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.65rem,2.9vw,2.3rem);letter-spacing:-.01em;color:#F7F7F7;line-height:1.15;}
+  .hiw-equation{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(.55rem,1.1vw,.85rem);text-align:center;padding:clamp(.5rem,1.5vw,1rem) clamp(1rem,3vw,2rem);width:100%;}
+  .hiw-eqbox{width:100%;max-width:30rem;border:1px solid rgba(212,175,55,.3);border-radius:14px;padding:clamp(.7rem,1.5vw,1rem) clamp(1.25rem,2.5vw,1.75rem);background:rgba(212,175,55,.05);white-space:nowrap;}
+  .hiw-eqbox__label{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.35rem,2.1vw,1.75rem);letter-spacing:-.01em;color:#F7F7F7;line-height:1.1;}
   .hiw-eqbox--result{border-color:#D4AF37;background:rgba(212,175,55,.13);box-shadow:0 0 46px -12px rgba(212,175,55,.4);}
-  .hiw-eqbox--result .hiw-eqbox__label{font-style:italic;font-size:clamp(2rem,3.6vw,2.75rem);color:#D4AF37;}
-  .hiw-equation__op{color:#D4AF37;font-size:clamp(1.4rem,2.2vw,1.85rem);font-weight:300;line-height:1;}
-  .hiw-equation__arrow{color:#D4AF37;font-size:clamp(1.7rem,2.8vw,2.25rem);line-height:1;margin:.1rem 0;}
-  .hiw-equation__arrow::before,.hiw-equation__arrow::after{content:"";display:inline-block;width:clamp(2.25rem,4.5vw,3.75rem);height:1px;background:rgba(212,175,55,.4);vertical-align:middle;margin:0 .85rem;}
-  @media (max-width:900px){ .hiw-equation{padding:1.5rem 1rem .5rem;} .hiw-eqbox{max-width:22rem;} }
+  .hiw-eqbox--result .hiw-eqbox__label{font-style:italic;font-size:clamp(1.6rem,2.6vw,2.05rem);color:#D4AF37;}
+  .hiw-equation__op{color:#D4AF37;font-size:clamp(1.2rem,1.9vw,1.5rem);font-weight:300;line-height:1;}
+  .hiw-equation__arrow{color:#D4AF37;font-size:clamp(1.4rem,2.2vw,1.75rem);line-height:1;margin:0;}
+  .hiw-equation__arrow::before,.hiw-equation__arrow::after{content:"";display:inline-block;width:clamp(1.75rem,3.5vw,2.75rem);height:1px;background:rgba(212,175,55,.4);vertical-align:middle;margin:0 .7rem;}
+  @media (max-width:900px){ .hiw-equation{padding:.5rem 1rem .25rem;} .hiw-eqbox{max-width:22rem;white-space:normal;} }
 
   /* ---- Section 05: the reveal + Workstreams share ONE canvas. Reveal sits
      compact and centered above the flip grid. ---- */
@@ -638,7 +638,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="hiw-shift">SIMPLE GENIUS KEEPS WATCHING THEM.</p>
             <p class="display display--sm hiw-authority">We keep our eyes on the people trying to put you out of business.</p>
             <p class="display display--sm hiw-authority">And we don&rsquo;t stop watching.</p>
-            <p class="section__lede section__lede--left" style="margin-top:1rem;">New hires. New products. Pricing changes. New markets. Public moves.</p>
+            <p class="section__lede section__lede--left" style="margin-top:.5rem;">New hires. New products. Pricing changes. New markets. Public moves.</p>
           </div>
         </div>
 
