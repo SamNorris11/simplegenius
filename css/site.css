@@ -670,7 +670,8 @@ body.grid-debug--rows::before {
 }
 .section__lede--left { margin-left: 0; }
 .section--ink .section__lede,
-.section--ink-deep .section__lede { color: var(--c-on-dark-2); }
+.section--ink-deep .section__lede,
+.section--ink-soft .section__lede { color: var(--c-on-dark-2); }
 
 .section__afterword { margin-top: var(--sp-9); }
 
@@ -9241,7 +9242,8 @@ body.lightbox-open { overflow: hidden; }
 
 /* Section ledes on dark bands - lift muted secondary text --- */
 .section--ink .section__lede,
-.section--ink-deep .section__lede { color: var(--c-on-dark-2); }
+.section--ink-deep .section__lede,
+.section--ink-soft .section__lede { color: var(--c-on-dark-2); }
 
 /* Accordion (FAQ / Straight Answers) ------------------------ */
 .accordion__panel {
