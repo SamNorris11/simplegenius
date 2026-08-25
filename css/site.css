@@ -857,6 +857,7 @@ body.grid-debug--rows::before {
   width: min(100% - (2 * var(--page-margin)), var(--maxw));
 }
 .site-header__rights {
+  display: none;
   position: absolute;
   right: 0;
   bottom: 4px;
