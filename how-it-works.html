@@ -395,6 +395,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-close-lines{margin-bottom:clamp(1rem,2vw,1.5rem);}
   .hiw-close-lines .statement{margin:0 auto .35rem;font-size:var(--fs-4);}
   .hiw-close-lines .statement:last-child{margin-bottom:0;}
+
+  /* Playfair Display's italic U+2019 renders as a floating mark that reads
+     as a stray double-quote. Keep the gold/underline emphasis, drop the
+     italic slant only where an apostrophe sits inside it. */
+  .hiw-confirm-close .display__accent{font-style:normal;}
 </style>
 </head>
 <body class="is-dark-top">
