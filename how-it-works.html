@@ -186,577 +186,211 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   /* ============================================================
-     HOW IT WORKS — story after the approved graph.
-     Four distinct sections. Short copy. Big type. No comparison boxes.
+     HOW IT WORKS — body rebuild v4.
+     Ported LITERALLY from the homepage's own component library
+     (index.html inline <style> + css/site.css). Same classes,
+     same values. Only the copy and image sources change.
      ============================================================ */
 
-  .story{
-    padding-block:clamp(5.5rem,11vw,9.25rem);
+  /* ---- Homepage section flip: image LEFT, copy RIGHT (Business Brain,
+     Workstreams). Ported verbatim from index.html. ---- */
+  .section--flip .grid--centred {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr) !important;
+    column-gap: var(--sp-8, 2.75rem) !important;
+    align-items: center !important;
   }
-  .story__inner{
-    max-width:68rem;
-    margin:0 auto;
+  .section--flip .grid--centred > .shot.col--6-12 {
+    grid-column: 1 / span 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
   }
-  .story__inner--narrow{
-    max-width:42rem;
+  .section--flip .grid--centred > .shot.col--6-12 .shot__img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
   }
-  .story__kicker{
-    display:block;
-    margin:0 0 1.35rem;
+  .section--flip .grid--centred > .split__copy.col--1-5 {
+    grid-column: 2 / span 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
   }
-  .story__h{
-    font-family:'Playfair Display',serif;
-    font-weight:500;
-    font-size:clamp(2.15rem,5.4vw,4.35rem);
-    line-height:1.05;
-    letter-spacing:-.02em;
-    color:var(--c-ink);
-    margin:0;
-    max-width:16ch;
-    text-wrap:balance;
-  }
-  .story__h em{
-    font-style:italic;
-    color:#7A5F16;
-  }
-  .section--ink .story__h,
-  .section--ink-deep .story__h{color:#F7F7F7;}
-  .section--ink .story__h em,
-  .section--ink-deep .story__h em{color:#D4AF37;}
-  .story__copy{
-    margin:clamp(1.75rem,3vw,2.5rem) 0 0;
-    max-width:38ch;
-  }
-  .story__copy p{
-    font-family:'Inter',sans-serif;
-    font-size:clamp(1.05rem,1.35vw,1.2rem);
-    line-height:1.55;
-    color:var(--c-ink);
-    margin:0;
-  }
-  .story__copy p + p{margin-top:1.15rem;}
-  .section--ink .story__copy p,
-  .section--ink-deep .story__copy p{color:rgba(247,247,247,.88);}
-  .story__copy--center{
-    margin-left:auto;
-    margin-right:auto;
-    text-align:left;
-  }
-  @media (min-width:820px){
-    .story__copy--center{text-align:center;max-width:42ch;}
+  .section--flip .grid--centred > .shot.col--6-12.shot--edge,
+  .section--flip .grid--centred > .shot.col--6-12.shot--edge-firm {
+    margin-left: calc(var(--page-margin, 24px) * -1) !important;
+    margin-right: 0 !important;
+    width: calc(100% + var(--page-margin, 24px)) !important;
+    max-width: none !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(29,29,29,.08) !important;
+    overflow: hidden !important;
   }
 
-  /* Giant type lockups */
-  .story-yell{
-    font-family:'Inter',sans-serif;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.035em;
-    font-size:clamp(1.45rem,4.1vw,3.05rem);
-    line-height:1.12;
-    color:var(--c-ink);
-    margin:clamp(3.5rem,8vw,6rem) 0 0;
-    max-width:18ch;
-    text-wrap:balance;
+  /* Mirror: copy LEFT, image RIGHT (Competition Hub, Strategic Insights). */
+  .section--flip-right .grid--centred {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr) !important;
+    column-gap: var(--sp-8, 2.75rem) !important;
+    align-items: center !important;
   }
-  .story-yell--center{
-    text-align:center;
-    margin-left:auto;
-    margin-right:auto;
-    max-width:16ch;
+  .section--flip-right .grid--centred > .split__copy.col--1-5 {
+    grid-column: 1 / span 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
   }
-  .story-yell--gold{color:#7A5F16;}
-  .section--ink .story-yell,
-  .section--ink-deep .story-yell{color:#F7F7F7;}
-  .section--ink .story-yell--gold,
-  .section--ink-deep .story-yell--gold{color:#D4AF37;}
-  .story-yell span{
-    display:block;
+  .section--flip-right .grid--centred > .shot.col--6-12 {
+    grid-column: 2 / span 1 !important;
+    grid-row: 1 !important;
+    align-self: center !important;
   }
-
-  .story-q{
-    margin:clamp(2.75rem,5vw,4rem) 0 0;
-    font-family:'Inter',sans-serif;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.22em;
-    font-size:.78rem;
-    color:#7A5F16;
+  .section--flip-right .grid--centred > .shot.col--6-12 .shot__img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
   }
-  .story-q--center{text-align:center;}
-  .section--ink .story-q,
-  .section--ink-deep .story-q{color:#D4AF37;}
-
-  /* S1 — knowledge flow. Type, not cards. */
-  .know{
-    margin:clamp(3.25rem,7vw,5.5rem) 0 0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:clamp(.85rem,2.4vw,1.75rem);
-    flex-wrap:wrap;
-    text-align:center;
-  }
-  .know__src,
-  .know__dst{
-    font-family:'Inter',sans-serif;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.14em;
-    font-size:clamp(.78rem,1.15vw,.95rem);
-    line-height:1.35;
-    color:var(--c-ink);
-  }
-  .know__dst{
-    color:#7A5F16;
-    letter-spacing:.16em;
-    font-size:clamp(.95rem,1.4vw,1.15rem);
-    padding-bottom:.4rem;
-    border-bottom:3px solid #D4AF37;
-  }
-  .know__op{
-    font-family:'Playfair Display',serif;
-    font-style:italic;
-    font-size:clamp(1.6rem,2.6vw,2.15rem);
-    color:#D4AF37;
-    line-height:1;
-  }
-  @media (max-width:640px){
-    .know{flex-direction:column;gap:.7rem;}
-    .know__op{transform:rotate(90deg);}
+  .section--flip-right .grid--centred > .shot.col--6-12.shot--edge,
+  .section--flip-right .grid--centred > .shot.col--6-12.shot--edge-firm {
+    margin-left: 0 !important;
+    margin-right: calc(var(--page-margin, 24px) * -1) !important;
+    width: calc(100% + var(--page-margin, 24px)) !important;
+    max-width: none !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(212,175,55,.18) !important;
+    overflow: hidden !important;
   }
 
-  /* S2 — live watch. Signals around the company. */
-  .story--watch{text-align:center;}
-  .story--watch .story__h,
-  .story--watch .story__copy{
-    margin-left:auto;
-    margin-right:auto;
-  }
-  .story--watch .story__h{max-width:none;}
-  .story-keep{
-    margin:clamp(2.5rem,5vw,3.75rem) auto 0;
-    font-family:'Inter',sans-serif;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.16em;
-    font-size:clamp(1.05rem,2.1vw,1.45rem);
-    color:#D4AF37;
-  }
-  .story-signals{
-    margin:1.35rem auto 0;
-    max-width:34rem;
-    font-family:'Inter',sans-serif;
-    font-weight:600;
-    font-size:clamp(1.05rem,1.6vw,1.3rem);
-    line-height:1.7;
-    color:#F7F7F7;
-  }
-  .radar{
-    margin:clamp(3.25rem,7vw,5.25rem) auto 0;
-    max-width:46rem;
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:clamp(1.1rem,3vw,2.25rem) clamp(.6rem,2vw,1.5rem);
-    align-items:center;
-    justify-items:center;
-  }
-  .radar__you{
-    grid-column:2;
-    grid-row:2;
-    width:9.25rem;
-    height:9.25rem;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'Inter',sans-serif;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.12em;
-    font-size:.82rem;
-    color:#D4AF37;
-    text-align:center;
-    position:relative;
-    border:1px solid rgba(212,175,55,.5);
-    border-radius:50%;
-  }
-  .radar__you::after{
-    content:"";
-    position:absolute;
-    inset:-16px;
-    border:1px solid rgba(212,175,55,.4);
-    border-radius:50%;
-    animation:radarPulse 2.8s ease-out infinite;
-    pointer-events:none;
-  }
-  @keyframes radarPulse{
-    0%{transform:scale(.72);opacity:.7;}
-    100%{transform:scale(1.35);opacity:0;}
-  }
-  .radar__sig{
-    font-family:'Inter',sans-serif;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.12em;
-    font-size:clamp(.68rem,1.05vw,.82rem);
-    color:rgba(247,247,247,.78);
-    text-align:center;
-    line-height:1.35;
-  }
-  .radar__sig b{
-    display:block;
-    margin-top:.35rem;
-    font-weight:600;
-    letter-spacing:.08em;
-    font-size:.72em;
-    color:#D4AF37;
-  }
-  .radar__sig--1{grid-column:1;grid-row:1;}
-  .radar__sig--2{grid-column:3;grid-row:1;}
-  .radar__sig--3{grid-column:1;grid-row:2;}
-  .radar__sig--4{grid-column:3;grid-row:2;}
-  .radar__sig--5{grid-column:2;grid-row:3;}
-  @media (max-width:640px){
-    .radar{
-      grid-template-columns:1fr;
-      gap:1rem;
+  @media (max-width: 900px) {
+    .section--flip .grid--centred,
+    .section--flip-right .grid--centred {
+      grid-template-columns: 1fr !important;
     }
-    .radar__you,
-    .radar__sig--1,
-    .radar__sig--2,
-    .radar__sig--3,
-    .radar__sig--4,
-    .radar__sig--5{
-      grid-column:1;
-      grid-row:auto;
+    .section--flip .grid--centred > .shot.col--6-12,
+    .section--flip .grid--centred > .split__copy.col--1-5,
+    .section--flip-right .grid--centred > .shot.col--6-12,
+    .section--flip-right .grid--centred > .split__copy.col--1-5 {
+      grid-column: 1 / -1 !important;
+      grid-row: auto !important;
+      align-self: stretch !important;
     }
-    .radar{display:flex;flex-direction:column;align-items:center;}
-    .radar__you{order:-1;margin:.5rem 0 1rem;}
-    .radar__you::after{inset:-14px;}
+    .section--flip .grid--centred > .shot.col--6-12.shot--edge,
+    .section--flip .grid--centred > .shot.col--6-12.shot--edge-firm,
+    .section--flip-right .grid--centred > .shot.col--6-12.shot--edge,
+    .section--flip-right .grid--centred > .shot.col--6-12.shot--edge-firm {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      width: 100% !important;
+      border-radius: 14px !important;
+    }
   }
 
-  /* S3 — equation poster */
-  .story--eq{text-align:center;}
-  .story--eq .story__h{
-    margin-left:auto;
-    margin-right:auto;
-    max-width:12ch;
-  }
-  .eq{
-    margin:clamp(3rem,7vw,5rem) auto 0;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:clamp(1rem,2.4vw,1.6rem);
-  }
-  .eq__row{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:clamp(.7rem,2vw,1.4rem);
-    flex-wrap:wrap;
-  }
-  .eq__term{
-    font-family:'Inter',sans-serif;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.12em;
-    font-size:clamp(.78rem,1.2vw,.95rem);
-    line-height:1.35;
-    color:var(--c-ink);
-    text-align:center;
-  }
-  .eq__term small{
-    display:block;
-    margin-top:.4rem;
-    font-weight:700;
-    letter-spacing:.18em;
-    font-size:.68em;
-    color:#7A5F16;
-  }
-  .eq__op{
-    font-family:'Playfair Display',serif;
-    font-style:italic;
-    font-size:clamp(1.7rem,2.8vw,2.3rem);
-    color:#D4AF37;
-    line-height:1;
-  }
-  .eq__ask{
-    font-family:'Playfair Display',serif;
-    font-style:italic;
-    font-weight:500;
-    font-size:clamp(1.55rem,3.2vw,2.35rem);
-    color:var(--c-ink);
-    line-height:1.15;
-  }
-  .eq__out{
-    font-family:'Inter',sans-serif;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.16em;
-    font-size:clamp(1.05rem,1.8vw,1.35rem);
-    color:#7A5F16;
-    padding-bottom:.4rem;
-    border-bottom:3px solid #D4AF37;
+  /* MOBILE: eyebrow + headline first, then image, then body copy.
+     Same ordering pattern as the homepage's four product sections. */
+  @media (max-width: 900px) {
+    #business-brain .grid--centred > .split__copy,
+    #competition-hub .grid--centred > .split__copy,
+    #strategic-insights .grid--centred > .split__copy,
+    #workstreams-product .grid--centred > .split__copy {
+      display: contents !important;
+    }
+    #business-brain .split__copy-head,
+    #competition-hub .split__copy-head,
+    #strategic-insights .split__copy-head,
+    #workstreams-product .split__copy-head {
+      order: 1 !important;
+      grid-column: 1 / -1 !important;
+      margin-bottom: 1.25rem;
+    }
+    #business-brain .grid--centred > .shot,
+    #competition-hub .grid--centred > .shot,
+    #strategic-insights .grid--centred > .shot,
+    #workstreams-product .grid--centred > .shot {
+      order: 2 !important;
+    }
+    #business-brain .split__copy-body,
+    #competition-hub .split__copy-body,
+    #strategic-insights .split__copy-body,
+    #workstreams-product .split__copy-body {
+      order: 3 !important;
+      grid-column: 1 / -1 !important;
+      margin-top: 1.5rem;
+    }
   }
 
-  /* S4 — consultant leaves / Simple Genius stays */
-  .story--stay{text-align:left;}
-  .story--stay .story__inner{max-width:58rem;}
-  .leave{
-    font-family:'Playfair Display',serif;
-    font-weight:500;
-    font-size:clamp(2.1rem,5.6vw,4.6rem);
-    line-height:1.05;
-    letter-spacing:-.02em;
-    color:#F7F7F7;
-    margin:0;
-    max-width:12ch;
+  /* Homepage's strict 40/60 ratio + top alignment for the four product
+     sections — ported to this page's own IDs. */
+  #business-brain .grid--centred > *,
+  #competition-hub .grid--centred > *,
+  #strategic-insights .grid--centred > *,
+  #workstreams-product .grid--centred > * {
+    align-self: start;
   }
-  .leave-note{
-    margin:clamp(1.5rem,3vw,2.15rem) 0 0;
-    max-width:34ch;
-    font-family:'Inter',sans-serif;
-    font-size:clamp(1.05rem,1.35vw,1.2rem);
-    line-height:1.55;
-    color:rgba(247,247,247,.86);
+  #business-brain .split__copy .eyebrow,
+  #competition-hub .split__copy .eyebrow,
+  #strategic-insights .split__copy .eyebrow,
+  #workstreams-product .split__copy .eyebrow {
+    margin-top: 0;
   }
-  .stay{
-    margin:clamp(3.5rem,8vw,6.5rem) 0 0;
-    font-family:'Inter',sans-serif;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.03em;
-    font-size:clamp(2.6rem,8vw,5.6rem);
-    line-height:.92;
-    color:#D4AF37;
-    max-width:8ch;
+  #business-brain .grid--centred,
+  #competition-hub .grid--centred,
+  #strategic-insights .grid--centred,
+  #workstreams-product .grid--centred {
+    grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
+    gap: var(--sp-8, 3rem);
   }
-  .stay-list{
-    list-style:none;
-    margin:clamp(2.75rem,6vw,4.5rem) 0 0;
-    padding:0;
-    display:grid;
-    gap:clamp(.85rem,2vw,1.15rem);
-  }
-  .stay-list li{
-    font-family:'Inter',sans-serif;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    font-size:clamp(1.05rem,2.1vw,1.55rem);
-    color:#F7F7F7;
-    line-height:1.2;
+  #business-brain .col--1-5,
+  #competition-hub .col--1-5,
+  #strategic-insights .col--1-5,
+  #workstreams-product .col--1-5 { grid-column: 1 / span 1; max-width: 44ch; }
+  #business-brain .col--6-12,
+  #competition-hub .col--6-12,
+  #strategic-insights .col--6-12,
+  #workstreams-product .col--6-12 { grid-column: 2 / span 1; }
+  @media (max-width: 900px) {
+    #business-brain .grid--centred,
+    #competition-hub .grid--centred,
+    #strategic-insights .grid--centred,
+    #workstreams-product .grid--centred { grid-template-columns: 1fr; }
+    #business-brain .col--1-5, #competition-hub .col--1-5, #strategic-insights .col--1-5, #workstreams-product .col--1-5,
+    #business-brain .col--6-12, #competition-hub .col--6-12, #strategic-insights .col--6-12, #workstreams-product .col--6-12 {
+      grid-column: 1 / -1; max-width: none;
+    }
   }
 
-  .ws{
-    margin:clamp(5.5rem,12vw,8.5rem) 0 0;
-    padding-top:clamp(3rem,6vw,4.5rem);
-    border-top:1px solid rgba(212,175,55,.28);
-  }
-  .ws .story__h{max-width:14ch;}
-  .ws .story__copy{max-width:36ch;}
+  /* ---- Dark, centered typography-only moment for the big reveal beats.
+     Ported verbatim (values) from the homepage's .sec-prompt component,
+     scoped under its own class so it can repeat per section. ---- */
+  .hiw-prompt{background:#000;color:#F7F7F7;padding:clamp(2.25rem,4.5vw,3.5rem) 0;}
+  .hiw-prompt__inner{max-width:900px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);text-align:center;}
+  .hiw-prompt__h{font-family:'Playfair Display',serif;font-weight:500;color:#F7F7F7;font-size:clamp(2.4rem,5.8vw,4.6rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 clamp(.9rem,1.8vw,1.4rem);}
+  .hiw-prompt__q{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;color:#D4AF37;font-size:clamp(1.6rem,3.6vw,2.9rem);line-height:1.15;letter-spacing:-.01em;margin:0 auto clamp(1.75rem,3.2vw,2.4rem);max-width:34ch;}
+  .hiw-prompt__line{font-family:'Inter',sans-serif;font-weight:500;color:rgba(247,247,247,.86);font-size:clamp(1.05rem,1.6vw,1.2rem);line-height:1.5;margin:0 auto;max-width:44ch;}
+  @media (max-width:640px){ .hiw-prompt{padding:2.25rem 0;} }
 
-  /* Final system */
-  .sys{
-    margin:clamp(3.5rem,8vw,5.75rem) auto 0;
-    max-width:44rem;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:clamp(.85rem,2vw,1.25rem);
-    text-align:center;
-  }
-  .sys__row{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:clamp(.7rem,2.2vw,1.5rem);
-    flex-wrap:wrap;
-  }
-  .sys__mod{
-    font-family:'Inter',sans-serif;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.14em;
-    font-size:clamp(.78rem,1.2vw,.95rem);
-    color:#F7F7F7;
-  }
-  .sys__mod--gold{color:#D4AF37;}
-  .sys__op{
-    font-family:'Playfair Display',serif;
-    font-style:italic;
-    font-size:clamp(1.5rem,2.5vw,2rem);
-    color:#D4AF37;
-    line-height:1;
-  }
-  @media (max-width:640px){
-    .sys__row{flex-direction:column;gap:.45rem;}
-    .sys__op{transform:rotate(90deg);}
-    .sys__row--end .sys__op{transform:none;}
-  }
+  /* ---- Confirm: its own compact, full-width visual character. ---- */
+  .hiw-flow{list-style:none;margin:clamp(2.5rem,4.5vw,3.5rem) auto 0;padding:0;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:clamp(.6rem,1.6vw,1.25rem);max-width:64rem;}
+  .hiw-flow__step{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.5rem,3.4vw,2.5rem);letter-spacing:-.01em;color:var(--c-ink);line-height:1;}
+  .hiw-flow__step--sg{color:#7A5F16;}
+  .hiw-flow__arrow{color:#D4AF37;font-size:clamp(1.1rem,2vw,1.5rem);line-height:1;}
+  @media (max-width:640px){ .hiw-flow{gap:.5rem .75rem;} .hiw-flow__arrow{transform:rotate(90deg);} }
+  .hiw-confirm-close{margin-top:clamp(2.5rem,4.5vw,3.5rem);}
 
-  /* Close */
-  .story-end{
-    text-align:center;
-    padding-block:clamp(5rem,10vw,8rem);
-  }
-  .story-end__a,
-  .story-end__b{
-    font-family:'Inter',sans-serif;
-    font-weight:800;
-    text-transform:uppercase;
-    letter-spacing:.06em;
-    margin:0 auto;
-    line-height:1.12;
-  }
-  .story-end__a{
-    font-size:clamp(1.55rem,3.6vw,2.55rem);
-    color:var(--c-ink);
-    max-width:16ch;
-  }
-  .story-end__b{
-    margin-top:1rem;
-    font-size:clamp(1.55rem,3.6vw,2.55rem);
-    color:#7A5F16;
-    max-width:14ch;
-  }
+  /* ---- Strategic Insights: compact equation, supporting only. ---- */
+  .hiw-eq{margin:1.75rem 0 0;padding:1.25rem 1.5rem;border:1px solid rgba(247,247,247,.16);border-radius:14px;background:rgba(247,247,247,.04);}
+  .hiw-eq__row{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem .85rem;font-family:'Inter',sans-serif;font-weight:600;font-size:.98rem;color:rgba(247,247,247,.86);}
+  .hiw-eq__plus{color:#D4AF37;font-weight:700;}
+  .hiw-eq__down{display:block;margin:.65rem 0;color:#D4AF37;font-size:1.1rem;}
+  .hiw-eq__out{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;color:#D4AF37;font-size:clamp(1.15rem,1.8vw,1.4rem);margin:0;}
 
-  .hiw-brand-shout{
-    font-family:'Inter',sans-serif;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.02em;
-    font-size:clamp(1.95rem,4.7vw,3.4rem);
-    line-height:1.08;
-    color:#F7F7F7;
-    margin:0 auto;
-    max-width:26ch;
-  }
-  .hiw-brand-shout em{color:#D4AF37;font-style:normal;}
+  /* ---- Workstreams: opening reveal on ink-deep, four plain lines, no cards. ---- */
+  .hiw-leave{padding-block:clamp(4.5rem,8vw,7rem) clamp(3rem,5.5vw,4.5rem);}
+  .hiw-leave__inner{max-width:52rem;margin:0 auto;text-align:center;}
+  .hiw-leave__lede{margin-top:1rem;}
+  .hiw-stay{margin-top:clamp(2.25rem,4vw,3rem);}
+  .hiw-stay-list{list-style:none;margin:clamp(2.25rem,4vw,3rem) auto 0;padding:0;max-width:34rem;display:grid;gap:.75rem;text-align:center;}
+  .hiw-stay-list li{font-family:'Inter',sans-serif;font-size:clamp(1.05rem,1.6vw,1.2rem);color:rgba(247,247,247,.86);line-height:1.5;}
 
-  /* ============================================================
-     REBUILD v4 — five sections after the graph, real software
-     screenshots restored, section numbering, Confirm added back.
-     ============================================================ */
-  .story__num{
-    display:inline-block;
-    font-family:'Inter',sans-serif;
-    font-weight:800;
-    letter-spacing:.1em;
-    font-size:.78rem;
-    color:#D4AF37;
-    margin-right:.6em;
-  }
-
-  /* Real product screenshot blocks, reusing site .shot framing but
-     centered standalone (not the homepage split-grid layout) so this
-     page keeps its own identity while matching software presentation
-     quality. Width varies per section to create distinct rhythm. */
-  .story-shot{
-    margin:clamp(3.25rem,6.5vw,5.25rem) auto 0;
-    max-width:60rem;
-  }
-  .story-shot--wide{max-width:75rem;}
-  .story-shot--focus{max-width:38rem;}
-  .story-shot--small{max-width:27rem;}
-  .story-shot.shot{margin-left:auto;margin-right:auto;}
-
-  .story-italic{
-    margin:clamp(.85rem,1.8vw,1.25rem) auto 0;
-    font-family:'Playfair Display',serif;
-    font-style:italic;
-    font-weight:500;
-    font-size:clamp(1.3rem,2.7vw,1.9rem);
-    line-height:1.3;
-    color:var(--c-ink);
-    text-align:center;
-    max-width:30ch;
-  }
-  .story-italic em{color:#7A5F16;font-style:italic;}
-
-  /* S3 — Confirm. Restrained, centered, process ribbon is the star. */
-  .story--confirm{text-align:center;}
-  .story--confirm .story__h,
-  .story--confirm .story__kicker{
-    margin-left:auto;
-    margin-right:auto;
-  }
-  .story--confirm .story__h{max-width:18ch;}
-  .confirm-flow{
-    list-style:none;
-    margin:clamp(2.5rem,4.5vw,3.5rem) auto 0;
-    padding:0;
-    max-width:900px;
-    width:100%;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    align-items:stretch;
-    gap:.75rem 1rem;
-  }
-  .confirm-flow__step{
-    display:inline-flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:.55rem;
-    padding:1rem 1.25rem;
-    min-width:9.5rem;
-    flex:1 1 9.5rem;
-    max-width:11rem;
-    border-radius:12px;
-    background:rgba(28,29,29,.03);
-    border:1px solid rgba(28,29,29,.08);
-  }
-  .confirm-flow__step--sg{background:rgba(212,175,55,.10);border-color:rgba(212,175,55,.5);}
-  .confirm-flow__label{
-    font-family:'Inter',sans-serif;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    font-size:clamp(1rem,1.4vw,1.15rem);
-    color:#1D1D1D;
-  }
-  .confirm-flow__step--sg .confirm-flow__label{color:#7A5F16;}
-  .confirm-flow__arrow{
-    color:#D4AF37;
-    font-size:1.2rem;
-    line-height:1;
-    list-style:none;
-    flex:0 0 auto;
-    display:flex;
-    align-items:center;
-  }
-  @media (max-width:640px){
-    .confirm-flow{flex-direction:column;gap:.4rem;max-width:20rem;}
-    .confirm-flow__step{min-width:0;width:100%;max-width:none;flex:0 0 auto;}
-    .confirm-flow__arrow{transform:rotate(90deg);padding:.2rem 0;}
-  }
-  .hiw-shout--payoff{
-    margin-top:clamp(2.5rem,4.5vw,3.5rem);
-    max-width:36ch;
-    margin-left:auto;
-    margin-right:auto;
-    text-wrap:balance;
-  }
-  .nowrap-gold{color:#7A5F16;white-space:nowrap;display:inline-block;}
-
-  /* S5 — sublabels inside the final system diagram */
-  .sys__mod small{
-    display:block;
-    margin-top:.3rem;
-    font-weight:600;
-    letter-spacing:.05em;
-    text-transform:none;
-    font-size:.7em;
-    color:rgba(247,247,247,.62);
-  }
-  .sys__mod--gold small{color:rgba(212,175,55,.8);}
-
-  @media (prefers-reduced-motion:reduce){
-    .radar__you::after{animation:none;}
-  }
+  /* ---- Page close: literal homepage closing pattern, three stacked beats. ---- */
+  .hiw-close-lines{margin-bottom:clamp(1.5rem,3vw,2.25rem);}
+  .hiw-close-lines .statement{margin:0 auto .5rem;}
+  .hiw-close-lines .statement:last-child{margin-bottom:0;}
 </style>
 </head>
 <body class="is-dark-top">
@@ -914,150 +548,143 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- 01. BUSINESS BRAIN — A good consultant starts by learning you.       -->
+  <!-- 01. BUSINESS BRAIN — homepage's literal .section--flip product block -->
   <!-- ==================================================================== -->
-  <section class="section section--white story" id="business-brain">
+  <section class="section section--white section--seam section--tight section--clip section--flip" id="business-brain">
     <div class="container">
-      <div class="story__inner">
-        <span class="eyebrow story__kicker"><span class="story__num">01</span>Business Brain</span>
-        <h2 class="story__h">A good consultant starts by learning <em>you</em>.</h2>
-        <div class="story__copy">
-          <p>They sit down with your people. They ask questions. They learn how the business really works.</p>
-          <p>Simple Genius starts there too. Our AI interviews your leaders and captures what they know. Your company information adds to the picture.</p>
+      <div class="grid grid--centred">
+        <div class="col--1-5 split__copy">
+          <div class="split__copy-head">
+            <span class="eyebrow">Business Brain</span>
+            <h2 class="display display--md">A good consultant starts by learning <em>you</em>.</h2>
+          </div>
+          <div class="split__copy-body">
+            <p class="section__lede section__lede--left">They sit down with your people. They ask questions. They learn how your business really works.</p>
+            <p class="section__lede section__lede--left">Simple Genius starts there too.</p>
+            <p class="section__lede section__lede--left">Our AI interviews your leaders and captures what they know. Your company information adds to the picture.</p>
+          </div>
         </div>
 
-        <p class="story-yell">The most important things about your business aren&rsquo;t always in a spreadsheet.</p>
-        <p class="story-italic">A lot of them are in <em>people&rsquo;s heads.</em></p>
-
-        <figure class="story-shot shot shot--zoomable">
+        <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
           <img class="shot__img"
                src="img/sg-business-brain-1600w.jpg"
                srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w, img/sg-business-brain-2400w.jpg 2400w"
-               sizes="(max-width: 900px) 100vw, 58vw"
-               width="1600" height="832"
-               alt="Building a Business Brain: Foundation, Customer, GTM, Operations, Financial, and Strategy knowledge in one place."
+               sizes="(max-width: 900px) 100vw, 68vw"
+               width="1600" height="708"
+               alt="Business Brain: leadership interviews and company documents captured in one written record."
                loading="lazy" decoding="async">
         </figure>
-
-        <div class="know" aria-label="Leadership interviews and company knowledge become the Business Brain.">
-          <span class="know__src">Leadership interviews</span>
-          <span class="know__op" aria-hidden="true">+</span>
-          <span class="know__src">Company knowledge</span>
-          <span class="know__op" aria-hidden="true">&rarr;</span>
-          <span class="know__dst">Business Brain</span>
-        </div>
       </div>
     </div>
   </section>
 
+  <section class="section section--white section--tight">
+    <div class="container container--mid">
+      <p class="statement statement--center">The most important things about your business aren&rsquo;t always in a spreadsheet.</p>
+      <p class="statement statement--center" style="margin-top:.65rem;"><span class="display__accent">A lot of them are in people&rsquo;s heads.</span></p>
+    </div>
+  </section>
+
   <!-- ==================================================================== -->
-  <!-- 02. COMPETITION HUB — Then, a good consultant studies the competition. -->
+  <!-- 02. COMPETITION HUB — homepage's literal .section--flip-right block  -->
   <!-- ==================================================================== -->
-  <section class="section section--ink story story--watch" id="competition-hub">
+  <section class="section section--ink section--tight section--flip-right" id="competition-hub">
     <div class="container">
-      <div class="story__inner">
-        <span class="eyebrow story__kicker"><span class="story__num">02</span>Competition Hub</span>
-        <h2 class="story__h">Then, a good consultant studies the competition.</h2>
-        <div class="story__copy story__copy--center">
-          <p>They look at who you&rsquo;re up against and what they&rsquo;re doing.</p>
-          <p>The problem is, a competitive report is a snapshot.</p>
+      <div class="grid grid--centred">
+        <div class="col--1-5 split__copy">
+          <div class="split__copy-head">
+            <span class="eyebrow">Competition Hub</span>
+            <h2 class="display display--md">Then, a good consultant studies the competition.</h2>
+          </div>
+          <div class="split__copy-body">
+            <p class="section__lede section__lede--left">They look at who you&rsquo;re up against and what they&rsquo;re doing.</p>
+            <p class="section__lede section__lede--left">But a competitive report is a snapshot.</p>
+          </div>
         </div>
 
-        <p class="story-keep">Simple Genius keeps watching.</p>
-        <p class="story-signals">New hires. New products. Pricing changes. New markets. Public moves.</p>
-
-        <figure class="story-shot story-shot--wide shot shot--zoomable">
+        <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
           <img class="shot__img"
                src="img/sg-competition-hub-1600w.jpg"
                srcset="img/sg-competition-hub-800w.jpg 800w, img/sg-competition-hub-1600w.jpg 1600w, img/sg-competition-hub-2400w.jpg 2400w"
-               sizes="(max-width: 900px) 100vw, 72vw"
-               width="1600" height="984"
-               alt="Competition Hub: tracked competitors, share of voice, win rate, and threat index, updated continuously."
-               loading="lazy" decoding="async">
-        </figure>
-
-        <p class="story-yell story-yell--center story-yell--gold">We keep our eyes on the people trying to put you out of business.</p>
-        <div class="story__copy story__copy--center" style="margin-top:1.75rem;">
-          <p>We keep watching and updating as things change.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================================================================== -->
-  <!-- 03. CONFIRM — Then, you make sure we got it right.                   -->
-  <!-- ==================================================================== -->
-  <section class="section section--ground story story--confirm" id="confirm">
-    <div class="container">
-      <div class="story__inner">
-        <span class="eyebrow story__kicker"><span class="story__num">03</span>Confirm</span>
-        <h2 class="story__h">Then, you make sure we got it right.</h2>
-        <div class="story__copy story__copy--center">
-          <p>Simple Genius shows you what it learned about your business. You correct what&rsquo;s wrong and confirm what&rsquo;s right.</p>
-        </div>
-
-        <ol class="confirm-flow" aria-label="Learn, review, correct, confirm.">
-          <li class="confirm-flow__step"><span class="confirm-flow__label">Learn</span></li>
-          <li class="confirm-flow__arrow" aria-hidden="true">&rarr;</li>
-          <li class="confirm-flow__step"><span class="confirm-flow__label">Review</span></li>
-          <li class="confirm-flow__arrow" aria-hidden="true">&rarr;</li>
-          <li class="confirm-flow__step"><span class="confirm-flow__label">Correct</span></li>
-          <li class="confirm-flow__arrow" aria-hidden="true">&rarr;</li>
-          <li class="confirm-flow__step confirm-flow__step--sg"><span class="confirm-flow__label">Confirm</span></li>
-        </ol>
-
-        <p class="story-yell story-yell--center hiw-shout--payoff">Nothing moves forward on an assumption <span class="nowrap-gold">you didn&rsquo;t approve.</span></p>
-
-        <figure class="story-shot story-shot--small shot shot--zoomable">
-          <img class="shot__img"
-               src="img/sg-findings-1600w.jpg"
-               srcset="img/sg-findings-800w.jpg 800w, img/sg-findings-1600w.jpg 1600w, img/sg-findings-2400w.jpg 2400w"
-               sizes="(max-width: 900px) 90vw, 27vw"
-               width="1600" height="828"
-               alt="Findings from your Q2 close, waiting for you to approve or review."
+               sizes="(max-width: 900px) 100vw, 68vw"
+               width="1600" height="708"
+               alt="Competition Hub: competitor moves tracked and updated continuously."
                loading="lazy" decoding="async">
         </figure>
       </div>
     </div>
   </section>
 
+  <section class="hiw-prompt">
+    <div class="hiw-prompt__inner">
+      <h2 class="hiw-prompt__h">Simple Genius keeps watching.</h2>
+      <p class="hiw-prompt__q">New hires. New products. Pricing changes. New markets. Public moves.</p>
+      <h2 class="hiw-prompt__h" style="font-size:clamp(1.9rem,4.2vw,3.1rem);">We keep our eyes on the people trying to put you out of business.</h2>
+      <p class="hiw-prompt__line">We keep watching as things change.</p>
+    </div>
+  </section>
+
   <!-- ==================================================================== -->
-  <!-- 04. STRATEGIC INSIGHTS — Then, a good consultant puts it together.   -->
+  <!-- 03. CONFIRM — its own compact, full width visual character           -->
   <!-- ==================================================================== -->
-  <section class="section section--white story story--eq" id="strategic-insights">
+  <section class="section section--ground section--tight" id="confirm">
+    <div class="container container--mid">
+      <div class="section__head section__head--center">
+        <span class="eyebrow eyebrow--center">Confirm</span>
+        <h2 class="display display--md display--center">Then, you make sure we got it right.</h2>
+        <p class="section__lede section__lede--center">Simple Genius shows you what it learned about your business.</p>
+        <p class="section__lede section__lede--center">You correct what&rsquo;s wrong and confirm what&rsquo;s right.</p>
+      </div>
+
+      <ol class="hiw-flow" aria-label="Learn, review, correct, confirm.">
+        <li class="hiw-flow__step">Learn</li>
+        <li class="hiw-flow__arrow" aria-hidden="true">&rarr;</li>
+        <li class="hiw-flow__step">Review</li>
+        <li class="hiw-flow__arrow" aria-hidden="true">&rarr;</li>
+        <li class="hiw-flow__step">Correct</li>
+        <li class="hiw-flow__arrow" aria-hidden="true">&rarr;</li>
+        <li class="hiw-flow__step hiw-flow__step--sg">Confirm</li>
+      </ol>
+
+      <p class="statement statement--center hiw-confirm-close">Nothing moves forward on an assumption <span class="display__accent">you didn&rsquo;t approve.</span></p>
+    </div>
+  </section>
+
+  <!-- ==================================================================== -->
+  <!-- 04. STRATEGIC INSIGHTS — homepage's literal .section--flip-right block -->
+  <!-- ==================================================================== -->
+  <section class="section section--ink section--tight section--flip-right" id="strategic-insights">
     <div class="container">
-      <div class="story__inner">
-        <span class="eyebrow story__kicker"><span class="story__num">04</span>Strategic Insights</span>
-        <h2 class="story__h">Then, a good consultant puts it all together.</h2>
-        <div class="story__copy story__copy--center">
-          <p>They take what they learned about you and what they learned about your competition.</p>
-          <p>Then they tell you what they think you should do.</p>
-        </div>
-
-        <p class="story-yell story-yell--center story-yell--gold">Simple Genius does the same thing.</p>
-        <div class="story__copy story__copy--center" style="margin-top:1.25rem;">
-          <p>But it keeps going as things change.</p>
-        </div>
-
-        <div class="eq" aria-label="What we know about you plus what we know about them becomes what you should do.">
-          <div class="eq__row">
-            <span class="eq__term">What we know about you<small>Business Brain</small></span>
-            <span class="eq__op" aria-hidden="true">+</span>
-            <span class="eq__term">What we know about them<small>Competition Hub</small></span>
+      <div class="grid grid--centred">
+        <div class="col--1-5 split__copy">
+          <div class="split__copy-head">
+            <span class="eyebrow">Strategic Insights</span>
+            <h2 class="display display--md">Then, a good consultant puts it all together.</h2>
           </div>
-          <span class="eq__op" aria-hidden="true">&darr;</span>
-          <p class="eq__ask">What should you do?</p>
-          <span class="eq__op" aria-hidden="true">&darr;</span>
-          <span class="eq__out">Strategic Insights</span>
+          <div class="split__copy-body">
+            <p class="section__lede section__lede--left">They take what they learned about you and what they learned about your competition.</p>
+            <p class="section__lede section__lede--left">Then they tell you what they think you should do.</p>
+            <p class="display display--sm" style="margin-top:1.5rem;">Simple Genius does the same thing.</p>
+            <div class="hiw-eq" aria-label="What we know about you plus what we know about them becomes what should you do.">
+              <div class="hiw-eq__row">
+                <span>What we know about you</span>
+                <span class="hiw-eq__plus" aria-hidden="true">+</span>
+                <span>What we know about them</span>
+              </div>
+              <span class="hiw-eq__down" aria-hidden="true">&darr;</span>
+              <p class="hiw-eq__out">What should you do?</p>
+            </div>
+            <p class="section__lede section__lede--left" style="margin-top:1.5rem;">But it keeps going as things change.</p>
+          </div>
         </div>
 
-        <figure class="story-shot story-shot--focus shot shot--zoomable">
+        <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
           <img class="shot__img"
-               src="img/sg-insight-move-crop.jpg"
-               srcset="img/sg-insight-move-crop-800w.jpg 760w, img/sg-insight-move-crop.jpg 1086w"
-               sizes="(max-width: 900px) 90vw, 38vw"
-               width="1086" height="640"
-               alt="Recommended moves ranked by impact, each one traced back to verified findings."
+               src="img/sg-strategic-insights-1600w.jpg"
+               srcset="img/sg-strategic-insights-800w.jpg 800w, img/sg-strategic-insights-1600w.jpg 1600w, img/sg-strategic-insights-2400w.jpg 2400w"
+               sizes="(max-width: 900px) 100vw, 68vw"
+               width="1600" height="800"
+               alt="Strategic Insights: what you know about you and your competitors, turned into a recommendation."
                loading="lazy" decoding="async">
         </figure>
       </div>
@@ -1065,76 +692,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- 05. WORKSTREAMS — Eventually, the consultant leaves.                 -->
+  <!-- 05. WORKSTREAMS — major visual break, then homepage's flip block     -->
   <!-- ==================================================================== -->
-  <section class="section section--ink-deep story story--stay" id="workstreams">
+  <section class="section section--ink-deep hiw-leave">
     <div class="container">
-      <div class="story__inner">
-        <h2 class="leave">Eventually, the consultant leaves.</h2>
-        <p class="leave-note">The project ends. They get on a plane and go help the next company.</p>
-
-        <p class="stay">Simple Genius stays.</p>
-
-        <ul class="stay-list">
+      <div class="hiw-leave__inner">
+        <h2 class="display display--md display--center">Eventually, the consultant leaves.</h2>
+        <p class="section__lede section__lede--center hiw-leave__lede">The project ends. They get on a plane and go help the next company.</p>
+        <h2 class="display display--xl display--center hiw-stay">Simple Genius <span class="display__accent">stays.</span></h2>
+        <ul class="hiw-stay-list">
           <li>Keeps learning your business.</li>
           <li>Keeps watching your competition.</li>
           <li>Keeps updating your insights.</li>
           <li>Works with your team.</li>
         </ul>
-
-        <div class="ws">
-          <span class="eyebrow story__kicker"><span class="story__num">05</span>Workstreams</span>
-          <h3 class="story__h">Put what Simple Genius knows to work.</h3>
-          <div class="story__copy">
-            <p>Your team gets AI with the context of your business behind it. They can use it to think through problems and get work done.</p>
-            <p>That&rsquo;s Workstreams.</p>
-          </div>
-        </div>
-
-        <figure class="story-shot shot shot--zoomable">
-          <img class="shot__img"
-               src="img/sg-workstreams-1600w.jpg"
-               srcset="img/sg-workstreams-800w.jpg 800w, img/sg-workstreams-1600w.jpg 1600w, img/sg-workstreams-2400w.jpg 2400w"
-               sizes="(max-width: 900px) 100vw, 55vw"
-               width="1600" height="832"
-               alt="An assistant that already knows your business, with Finance, Sales and Marketing, Operations, People, and Strategy assistants."
-               loading="lazy" decoding="async">
-        </figure>
-
-        <div class="sys" aria-label="Business Brain and Competition Hub feed Strategic Insights, used through Workstreams.">
-          <div class="sys__row">
-            <span class="sys__mod">Business Brain<small>Who are you?</small></span>
-            <span class="sys__op" aria-hidden="true">+</span>
-            <span class="sys__mod">Competition Hub<small>Who are you up against?</small></span>
-          </div>
-          <span class="sys__op" aria-hidden="true">&darr;</span>
-          <span class="sys__mod sys__mod--gold">Strategic Insights<small>What should you do?</small></span>
-          <span class="sys__op" aria-hidden="true">&darr;</span>
-          <div class="sys__row sys__row--end">
-            <span class="sys__mod sys__mod--gold">Workstreams<small>Put it to work.</small></span>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ==================================================================== -->
-  <!-- 7. CLOSE                                                             -->
-  <!-- ==================================================================== -->
-  <section class="section section--white story-end">
+  <section class="section section--white section--seam section--tight section--clip section--flip" id="workstreams-product">
     <div class="container">
-      <p class="story-end__a">The same proven process.</p>
-      <p class="story-end__b">It just doesn&rsquo;t leave.</p>
+      <div class="grid grid--centred">
+        <div class="col--1-5 split__copy">
+          <div class="split__copy-head">
+            <span class="eyebrow">Workstreams</span>
+            <h2 class="display display--md">Put what Simple Genius knows to work.</h2>
+          </div>
+          <div class="split__copy-body">
+            <p class="section__lede section__lede--left">Your team gets AI with the context of your business behind it.</p>
+            <p class="section__lede section__lede--left">They can use it to think through problems and get work done.</p>
+            <p class="section__lede section__lede--left"><em>That&rsquo;s Workstreams.</em></p>
+          </div>
+        </div>
+
+        <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
+          <img class="shot__img"
+               src="img/sg-workstreams-1600w.jpg"
+               srcset="img/sg-workstreams-800w.jpg 800w, img/sg-workstreams-1600w.jpg 1600w, img/sg-workstreams-2400w.jpg 2400w"
+               sizes="(max-width: 900px) 100vw, 68vw"
+               width="1600" height="832"
+               alt="Workstreams: an assistant that already knows your business, for Finance, Sales and Marketing, Operations, People, and Strategy."
+               loading="lazy" decoding="async">
+        </figure>
+      </div>
     </div>
   </section>
 
-  <section class="section section--ink-deep">
-    <div class="container" style="text-align:center;">
-      <p class="hiw-brand-shout">Simple Genius is <em>the first step</em> in AI for business.</p>
-      <div class="btn-row btn-row--center" style="margin-top:2.5rem;">
-        <a class="btn btn--gold" href="talk.html">Join the Waitlist</a>
-        <a class="btn btn--ghost" href="try.html">Try Simple Genius for Free</a>
+  <!-- ==================================================================== -->
+  <!-- CLOSE — homepage's literal .section--ink-deep.section--tall closing  -->
+  <!-- ==================================================================== -->
+  <section class="section section--ink-deep section--tall">
+    <div class="container">
+      <div class="grid">
+        <div class="col--2-11">
+          <div class="hiw-close-lines" style="text-align:center;">
+            <p class="statement statement--center">The same proven process.</p>
+            <p class="statement statement--center"><span class="display__accent">It just doesn&rsquo;t leave.</span></p>
+          </div>
+          <h2 class="display display--xl display--center">Simple Genius is <span class="display__accent">the first step</span> in AI for business.</h2>
+        </div>
+
+        <div class="col--3-10">
+          <div class="btn-row btn-row--center btn-row--stack">
+            <a class="btn btn--gold" href="talk.html">Join the Waitlist <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn--secondary btn--on-dark" href="try.html">Try Simple Genius for Free <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
