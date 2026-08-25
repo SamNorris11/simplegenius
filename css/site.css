@@ -6229,6 +6229,48 @@ html:not(.no-js) .reveal.is-visible .dg .d-draw { animation: dg-draw 1000ms var(
 .section--ink .pull-quote__cite,
 .section--ink-deep .pull-quote__cite { color: var(--c-on-dark-2); }
 
+/* About page "we built it for work like ours" quote — Sam 8/25: bigger,
+   centered, needs presence instead of reading as a stray paragraph. */
+.about-quote {
+  position: relative;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding-top: var(--sp-7);
+  text-align: center;
+}
+.about-quote::before {
+  content: "\201C";
+  display: block;
+  font-family: var(--ff-display);
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--c-gold);
+  margin-bottom: var(--sp-2);
+}
+.about-quote .pull-quote__q {
+  font-size: var(--fs-2);
+  text-align: center;
+  max-width: 32ch;
+  margin: 0 auto;
+}
+.about-quote .pull-quote__cite {
+  text-align: center;
+  margin-top: var(--sp-5);
+}
+.about-quote .pull-quote__cite::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--c-gold);
+  margin: 0 auto var(--sp-4);
+}
+@media (max-width: 900px) {
+  .about-quote { padding-top: var(--sp-5); max-width: 26rem; }
+  .about-quote::before { font-size: 3.25rem; }
+  .about-quote .pull-quote__q { font-size: var(--fs-3); max-width: 24ch; }
+}
+
 
 /* ==============================================================
    HOMEPAGE REORDER (handbook v4 §9), 2026-08-18
@@ -9655,6 +9697,21 @@ body.lightbox-open { overflow: hidden; }
   /* Recentre eyebrow + rule on mobile since the section flows single-column */
   .found-grid .found-left > .eyebrow { display: block; text-align: center; }
   .found-grid .found-left .rule-gold--left { margin-left: auto; margin-right: auto; }
+}
+
+/* 2c) About page — Sam 8/25 mobile refinements */
+@media (max-width: 900px) {
+  /* Shrink the gap between the hero and the Grounds-for-believing section */
+  .page-head--tall + .found-section { padding-top: var(--sp-4); }
+
+  /* Shrink margin between the eyebrow and the H2 (about page only) */
+  .about-band .found-grid .found-left > .eyebrow { margin-bottom: var(--sp-2); }
+
+  /* Drop the "We've been on your side of the table" line on mobile; keep the gold rule */
+  .about-band .found-grid .found-left .found__close > p.display--md { display: none; }
+
+  /* Founder name under each photo never wraps to two lines */
+  .about-band .founder-card__name { white-space: nowrap; }
 }
 
 /* 3) Pricing: on mobile, put "Add Guided Setup" BEFORE "Additional seats" note */
