@@ -178,6 +178,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-story__body .hiw-shift__lead,.hiw-story__body--sg .hiw-shift__lead{color:#8A6D1F;font-weight:700;}
   .hiw-declare{font-family:var(--ff-declaration);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:.98em;}
   .hiw-declare-inline{display:block;margin-bottom:.4rem;font-family:var(--ff-declaration);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:.98em;}
+  .hiw-story__body-plain{font-weight:400;color:var(--c-steel);}
   .hiw-story__art{margin:0;border-radius:16px;overflow:hidden;box-shadow:0 24px 60px -24px rgba(27,27,26,.28);background:#1D1D1D;}
   .hiw-story__art img{display:block;width:100%;height:auto;}
   @media (min-width:901px){
@@ -187,6 +188,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hiw-story__title::before{left:-1.6rem;}
     .hiw-story__blocks{padding-left:1.6rem;}
     .hiw-story__title{font-size:1.5rem;}
+    .hiw-story .spine__track{display:block;}
+    .hiw-story__block-copy{order:2;}
+    .hiw-story__art{order:1;}
   }
 
   /* ============================================================
@@ -573,7 +577,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="hiw-story__block-copy">
               <h3 class="hiw-story__title">A consultant starts by learning <em>you</em>.</h3>
               <p class="hiw-story__body">They talk to your people. They learn how the business really works.</p>
-              <p class="hiw-story__body hiw-story__body--sg"><span class="hiw-declare-inline"><span class="hiw-shift__lead">Simple Genius</span> does the same thing.</span>Our AI voice model interviews your leaders and captures what they already know.</p>
+              <p class="hiw-story__body hiw-story__body--sg"><span class="hiw-declare-inline"><span class="hiw-shift__lead">Simple Genius</span> does the same thing.</span><span class="hiw-story__body-plain">Our AI voice model interviews your leaders and captures what they already know.</span></p>
             </div>
             <figure class="hiw-story__art shot--zoomable"><img src="img/sg-business-brain-1600w.jpg" srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w" sizes="(max-width: 900px) 100vw, 60vw" width="1600" height="832" alt="Business Brain: leadership interviews and company documents captured in one written record." loading="lazy" decoding="async"></figure>
           </div>
