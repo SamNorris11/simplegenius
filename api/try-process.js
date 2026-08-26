@@ -46,12 +46,31 @@ async function markFailed(job, err) {
   );
 }
 
+function sleep(ms) { return new Promise((resolve) => setTimeout(resolve, ms)); }
+
+async function callWithRetry(promptFn, label) {
+  let lastErr;
+  for (let i = 0; i < 4; i++) {
+    try {
+      const { content } = await callPerplexity(promptFn());
+      return extractJson(content);
+    } catch (err) {
+      lastErr = err;
+      const isRateLimit = /429|rate limit/i.test(String(err?.message || ''));
+      if (!isRateLimit) throw err;
+      console.warn(`${label}: rate limited, retrying in ${(i + 1) * 3}s`);
+      await sleep((i + 1) * 3000);
+    }
+  }
+  throw lastErr;
+}
+
 async function runResearchStage(job) {
-  const [target, comp1, comp2] = await Promise.all([
-    callPerplexity(researchPrompt({ name: job.company, site: job.website, role: 'target' })).then((r) => extractJson(r.content)),
-    callPerplexity(researchPrompt({ name: job.competitor1_name, site: job.competitor1_site, role: 'competitor' })).then((r) => extractJson(r.content)),
-    callPerplexity(researchPrompt({ name: job.competitor2_name, site: job.competitor2_site, role: 'competitor' })).then((r) => extractJson(r.content))
-  ]);
+  // Sequential with backoff — this API key's tier does not tolerate 3
+  // concurrent Sonar requests, so we trade a little latency for reliability.
+  const target = await callWithRetry(() => researchPrompt({ name: job.company, site: job.website, role: 'target' }), 'target');
+  const comp1 = await callWithRetry(() => researchPrompt({ name: job.competitor1_name, site: job.competitor1_site, role: 'competitor' }), 'comp1');
+  const comp2 = await callWithRetry(() => researchPrompt({ name: job.competitor2_name, site: job.competitor2_site, role: 'competitor' }), 'comp2');
   await setStatus(job.id, 'SYNTHESIZING', {
     research_target: JSON.stringify(target),
     research_competitor1: JSON.stringify(comp1),
@@ -64,15 +83,13 @@ async function runSynthesisStage(job) {
   const target = job.research_target;
   const comp1 = job.research_competitor1;
   const comp2 = job.research_competitor2;
-  const { content } = await callPerplexity(synthesisPrompt({ target, comp1, comp2 }));
-  const synthesis = extractJson(content);
+  const synthesis = await callWithRetry(() => synthesisPrompt({ target, comp1, comp2 }), 'synthesis');
   await setStatus(job.id, 'INSIGHTS', { synthesis: JSON.stringify(synthesis) });
   return { ...job, status: 'INSIGHTS', synthesis };
 }
 
 async function runInsightsStage(job) {
-  const { content } = await callPerplexity(insightsPrompt({ synthesis: job.synthesis, target: job.research_target }));
-  const insights = extractJson(content);
+  const insights = await callWithRetry(() => insightsPrompt({ synthesis: job.synthesis, target: job.research_target }), 'insights');
   await setStatus(job.id, 'FACT_CHECKING', { insights: JSON.stringify(insights) });
   return { ...job, status: 'FACT_CHECKING', insights };
 }
