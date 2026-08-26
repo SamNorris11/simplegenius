@@ -4,11 +4,21 @@
 // the job DELIVERED. Never silently loses a job — any failure parks the job
 // at NEEDS_REVIEW with last_error set instead of leaving it stuck or
 // pretending it succeeded.
-const { put } = require('@vercel/blob');
-const { query } = require('../lib/db');
-const { renderBriefHtml } = require('../lib/pdf-template');
-const { renderPdfFromHtml } = require('../lib/pdf-render');
-const { syncBriefDelivered } = require('../lib/activecampaign');
+// Requires are wrapped so that a resolution/load failure for any dependency
+// (e.g. a bundling issue with the Chromium binary) surfaces as a normal JSON
+// error response instead of an opaque Vercel FUNCTION_INVOCATION_FAILED page
+// with no diagnostic information.
+let put, query, renderBriefHtml, renderPdfFromHtml, syncBriefDelivered, requireError;
+try {
+  put = require('@vercel/blob').put;
+  query = require('../lib/db').query;
+  renderBriefHtml = require('../lib/pdf-template').renderBriefHtml;
+  renderPdfFromHtml = require('../lib/pdf-render').renderPdfFromHtml;
+  syncBriefDelivered = require('../lib/activecampaign').syncBriefDelivered;
+} catch (err) {
+  requireError = err;
+  console.error('try-deliver: module load failed', err);
+}
 
 async function getJob(id) {
   const { rows } = await query('SELECT * FROM brief_jobs WHERE id = $1', [id]);
@@ -30,15 +40,25 @@ async function markDelivered(jobId, pdfUrl) {
 }
 
 module.exports = async (req, res) => {
+  if (requireError) {
+    return res.status(500).json({ ok: false, error: `module load failed: ${String(requireError?.stack || requireError)}`.slice(0, 4000) });
+  }
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ ok: false, error: 'Method not allowed' });
   }
-  const jobId = req.body?.jobId || (typeof req.body === 'string' ? JSON.parse(req.body).jobId : null);
-  if (!jobId) return res.status(400).json({ ok: false, error: 'jobId required' });
 
-  const job = await getJob(jobId);
-  if (!job) return res.status(404).json({ ok: false, error: 'job not found' });
+  let jobId, job;
+  try {
+    jobId = req.body?.jobId || (typeof req.body === 'string' ? JSON.parse(req.body).jobId : null);
+    if (!jobId) return res.status(400).json({ ok: false, error: 'jobId required' });
+
+    job = await getJob(jobId);
+    if (!job) return res.status(404).json({ ok: false, error: 'job not found' });
+  } catch (err) {
+    console.error('try-deliver: failed reading request/job', err);
+    return res.status(500).json({ ok: false, error: `request/job lookup failed: ${String(err?.stack || err)}`.slice(0, 4000) });
+  }
 
   // Idempotency: only act on jobs actually waiting for PDF generation. A job
   // that's already DELIVERED or elsewhere in the pipeline should not be
@@ -99,6 +119,6 @@ module.exports = async (req, res) => {
     await markNeedsReview(jobId, `PDF/delivery failed: ${String(err?.message || err)}`).catch((e2) =>
       console.error('markNeedsReview also failed', e2)
     );
-    return res.status(500).json({ ok: false, jobId, error: String(err?.message || err) });
+    return res.status(500).json({ ok: false, jobId, error: String(err?.stack || err).slice(0, 4000) });
   }
 };
