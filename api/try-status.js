@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
             (research_competitor2 IS NOT NULL) AS has_research_competitor2,
             (synthesis IS NOT NULL) AS has_synthesis,
             (insights IS NOT NULL) AS has_insights,
-            qc_result
+            qc_result, pdf_url, delivered_at
      FROM brief_jobs WHERE id = $1`,
     [jobId]
   );
