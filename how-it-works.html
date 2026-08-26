@@ -41,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hiw-hero .hiw-hero__payoff{font-size:1.85rem;font-weight:700;white-space:nowrap;margin-top:.35em;}
   }
   .hiw-hero .page-head__title em{color:#D4AF37;font-style:italic;}
-  .hiw-hero .hiw-j{font-style:normal;display:inline-block;transform:skewX(-11deg);transform-origin:50% 75%;}
+  .hiw-hero .hiw-j{font-style:italic;display:inline;}
 
   /* Thesis headline: dark charcoal card with gold glow, brighter gold accents */
   .thesis-headline{position:relative;display:inline-block;margin:0 auto;padding:clamp(1.5rem,3vw,2.5rem) clamp(2rem,4.5vw,3.25rem);border-radius:18px;background:#1D1D1D;box-shadow:0 0 0 1px rgba(212,175,55,.55), 0 18px 60px -20px rgba(212,175,55,.35), 0 24px 48px -22px rgba(0,0,0,.35);isolation:isolate;overflow:visible;max-width:min(100%, 40rem);}
@@ -154,40 +154,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-list li::before{content:"";position:absolute;left:0;top:.55em;width:14px;height:14px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4AF37'><path d='M12 2l2.9 6.9L22 10l-5.5 4.8L18 22l-6-3.7L6 22l1.5-7.2L2 10l7.1-1.1z'/></svg>") center/contain no-repeat;}
 
   /* ============================================================
-     THESIS VISUAL — TWO PROCESS TIMELINES (SVG on desktop, stacked on mobile)
-     Traditional rail stops at PROJECT ENDS.
-     Simple Genius rail overshoots and keeps going into open space.
+     HIW STORY — scroll narrative, white/off-gray ground, one text size
+     and one title size for the whole rebuilt section (per Trent review).
+     Left column reuses the site's existing .spine/.spine__fill scroll-fill
+     mechanism (js/site.js, unchanged) scoped to this column. Right column
+     is a sticky screenshot stack swapped by a small scoped script below.
      ============================================================ */
-  /* Tighten the top of the comparison section; graph is the hero here */
-  .thesis-section{padding-block:clamp(3.25rem,6vw,5.5rem);}
-  .thesis-container{max-width:1360px;padding-inline:clamp(1rem,2.5vw,2rem);}
-  .thesis{margin:0 auto;max-width:1280px;width:100%;}
-  .thesis__svg-wrap{display:block;}
-  .thesis__svg{display:block;width:100%;height:auto;overflow:visible;}
-  .thesis-caption{text-align:center;margin:clamp(2.25rem,4vw,3rem) auto 0;font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.3vw,1.95rem);color:var(--c-ink);line-height:1.4;max-width:44ch;font-weight:500;}
-  .thesis-caption strong{font-family:'Inter',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.85em;color:#7A5F16;font-style:normal;display:inline;}
-
-  /* Mobile fallback — vertical stops with a rail down the left */
-  .thesis-m{display:none;}
-  @media (max-width:820px){
-    .thesis__svg-wrap{display:none;}
-    .thesis-m{display:grid;gap:1.75rem;margin:0 auto;max-width:520px;}
-    .thesis-m__track{position:relative;padding:1.15rem 1.15rem 1.15rem 2.25rem;border:1px solid rgba(28,26,23,.1);border-radius:14px;background:rgba(247,247,247,.55);}
-    .thesis-m__track--sg{border-color:rgba(212,175,55,.55);background:rgba(212,175,55,.06);}
-    .thesis-m__rail{position:absolute;left:17.4px;top:2.6rem;bottom:1.15rem;width:2px;background:rgba(28,26,23,.25);}
-    .thesis-m__track--sg .thesis-m__rail{background:#D4AF37;}
-    .thesis-m__rail::after{content:"";position:absolute;left:-4px;bottom:-2px;width:10px;height:10px;border-radius:50%;background:rgba(28,26,23,.35);}
-    .thesis-m__track--sg .thesis-m__rail::after{width:0;height:0;border-radius:0;background:transparent;border-left:6px solid transparent;border-right:6px solid transparent;border-top:10px solid #D4AF37;left:-5px;bottom:-2px;}
-    .thesis-m__label{display:inline-block;margin-bottom:.85rem;}
-    .thesis-m__track:not(.thesis-m__track--sg) .thesis-m__label{font-size:.74rem;letter-spacing:.09em;white-space:nowrap;background:rgba(90,90,90,.14);border-color:rgba(90,90,90,.6);color:#3a3a3a;}
-    .thesis-m__step{position:relative;padding:.55rem 0 .55rem .45rem;line-height:1.25;}
-    .thesis-m__step::before{content:"";position:absolute;left:-1.35rem;top:.95rem;width:8px;height:8px;border-radius:50%;background:#5A5A5A;}
-    .thesis-m__track--sg .thesis-m__step::before{background:#D4AF37;}
-    .thesis-m__step .action{display:block;font-family:'Inter',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:1rem;color:var(--c-ink);line-height:1.15;}
-    .thesis-m__step .sub{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:.82rem;color:#5A5A5A;margin-top:.15rem;line-height:1.25;}
-    .thesis-m__end{margin-top:.85rem;font-family:'Inter',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:.95rem;color:var(--c-ink);padding-left:.2rem;border-top:2px solid rgba(28,26,23,.4);padding-top:.6rem;display:inline-block;}
-    .thesis-m__cont{margin-top:.85rem;font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.95rem;color:#7A5F16;display:inline-block;}
-    .thesis-m__cont::after{content:"";}
+  .hiw-story{padding-block:clamp(3.5rem,7vw,6.5rem);}
+  .hiw-story__container{display:block;}
+  .hiw-story__blocks.spine{display:block;column-gap:0;row-gap:0;}
+  .hiw-story__blocks{position:relative;padding-left:2.1rem;}
+  .hiw-story .spine__track{position:absolute;top:.4rem;bottom:.4rem;left:0;width:2px;background:var(--c-line);}
+  .hiw-story .spine__fill{display:block;width:100%;height:0;background:linear-gradient(to bottom,#D4AF37,#8A6D1F);}
+  .hiw-story__block{position:relative;padding:2.75rem 0;border-bottom:1px solid var(--c-line);}
+  .hiw-story__block:first-child{padding-top:.4rem;}
+  .hiw-story__block:last-child{border-bottom:none;}
+  .hiw-story__block-grid{display:grid;grid-template-columns:1fr;gap:1.75rem;align-items:start;}
+  .hiw-story__title{position:relative;font-family:'Playfair Display',serif;font-weight:500;font-size:var(--fs-3);line-height:1.22;letter-spacing:-.01em;color:var(--c-ink);margin:0 0 .95rem;max-width:26ch;}
+  .hiw-story__title::before{content:"";position:absolute;left:-2.1rem;top:.32em;width:9px;height:9px;border-radius:50%;background:#D4AF37;transform:translateX(-3.5px);}
+  .hiw-story__title em{font-style:italic;color:#8A6D1F;}
+  .hiw-story__body{font-family:'Inter',sans-serif;font-size:var(--fs-lead);line-height:1.6;color:var(--c-steel);margin:0 0 .75rem;max-width:44ch;}
+  .hiw-story__body--sg{color:var(--c-ink);font-weight:500;}
+  .hiw-story__body .hiw-shift__lead,.hiw-story__body--sg .hiw-shift__lead{color:#8A6D1F;font-weight:700;}
+  .hiw-story__art{margin:0;border-radius:16px;overflow:hidden;box-shadow:0 24px 60px -24px rgba(27,27,26,.28);background:#1D1D1D;}
+  .hiw-story__art img{display:block;width:100%;height:auto;}
+  @media (min-width:901px){
+    .hiw-story__block-grid{grid-template-columns:minmax(0,40fr) minmax(0,60fr);gap:clamp(2.5rem,5vw,4.5rem);}
+  }
+  @media (max-width:900px){
+    .hiw-story__title::before{left:-1.6rem;}
+    .hiw-story__blocks{padding-left:1.6rem;}
+    .hiw-story__title{font-size:1.5rem;}
   }
 
   /* ============================================================
@@ -559,274 +556,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- ==================================================================== -->
-  <!-- 2. THESIS — THE PROCESS WAS NEVER THE PROBLEM. Two process tracks.     -->
+  <!-- 2. STORY — scroll narrative. Left: copy + fill rail. Right (desktop): -->
+  <!-- sticky screenshot that swaps per step. Mobile: stacked, image inline. -->
+  <!-- Replaces the old two-track SVG comparison (kept for reuse in         -->
+  <!-- hiw-thesis-comparison-snippet.html — Trent liked it, not for this page). -->
   <!-- ==================================================================== -->
-  <section class="section section--ground thesis-section">
-    <div class="container thesis-container">
-      <div class="thesis">
-        <!-- DESKTOP: SVG timeline. viewBox 1120x520. -->
-        <!-- 4 shared node columns x = 210, 460, 710, 960. -->
-        <!-- Terminator column at x = 1080 (shared payoff position). -->
-        <!-- Traditional rail y=190. Simple Genius rail y=380. Titles centered on shared axis x=585 (midpoint of 210..960). -->
-        <div class="thesis__svg-wrap" aria-label="Traditional consulting stops when the project ends. Simple Genius keeps going.">
-          <svg class="thesis__svg" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              <style>
-                .th-label{font-family:'Inter',sans-serif;font-weight:800;font-size:26px;letter-spacing:.2em;text-transform:uppercase;fill:#1D1D1D;}
-                .th-label--sg{fill:#7A5F16;}
-                .th-label-bar{stroke:#5A5A5A;stroke-width:3;stroke-linecap:round;}
-                .th-label-bar--sg{stroke:#D4AF37;stroke-width:4;}
-                .th-step{font-family:'Inter',sans-serif;font-weight:800;font-size:24px;letter-spacing:.09em;text-transform:uppercase;fill:#1D1D1D;text-anchor:middle;}
-                .th-step-sub{font-family:'Inter',sans-serif;font-weight:500;font-size:16px;letter-spacing:.02em;text-transform:none;fill:#5A5A5A;text-anchor:middle;}
-                .th-end{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;letter-spacing:.14em;text-transform:uppercase;fill:#1D1D1D;text-anchor:start;}
-                .th-cont{font-family:'Inter',sans-serif;font-weight:800;font-size:22px;letter-spacing:.14em;text-transform:uppercase;fill:#7A5F16;text-anchor:start;}
-                .th-rail-gray{stroke:#5A5A5A;stroke-width:4;fill:none;stroke-linecap:round;opacity:.6;}
-                .th-terminator{stroke:#5A5A5A;stroke-width:4;stroke-linecap:round;opacity:.9;}
-                .th-rail-gold{stroke:#D4AF37;stroke-width:5;fill:none;stroke-linecap:round;}
-                .th-node-gray{fill:#F7F7F7;stroke:#5A5A5A;stroke-width:3;}
-                .th-node-gold{fill:#F7F7F7;stroke:#D4AF37;stroke-width:3.5;}
-              </style>
-            </defs>
+  <section class="section section--ground hiw-story" id="hiw-story">
+    <div class="container hiw-story__container">
+      <div class="hiw-story__blocks spine">
+        <div class="spine__track" aria-hidden="true"><span class="spine__fill"></span></div>
 
-            <!-- Centered visual system. Nodes 100 / 350 / 600 / 850. Full span ~45 to 1165, midpoint ~605. -->
-            <!-- No vertical connector ticks. Alignment alone carries the comparison. -->
-
-            <!-- ============ TRADITIONAL CONSULTING (top row) ============ -->
-            <text class="th-label" x="600" y="52" text-anchor="middle">Traditional consulting</text>
-            <line class="th-label-bar" x1="455" y1="70" x2="745" y2="70"/>
-
-            <text class="th-step" x="100" y="140">Learn</text>
-            <text class="th-step-sub" x="100" y="166">the business</text>
-            <text class="th-step" x="350" y="140">Study</text>
-            <text class="th-step-sub" x="350" y="166">the competition</text>
-            <text class="th-step" x="600" y="140">Find</text>
-            <text class="th-step-sub" x="600" y="166">what matters</text>
-            <text class="th-step" x="850" y="140">Recommend</text>
-            <text class="th-step-sub" x="850" y="166">what to do</text>
-
-            <line class="th-rail-gray" x1="100" y1="210" x2="970" y2="210"/>
-            <line class="th-terminator" x1="970" y1="182" x2="970" y2="238"/>
-            <circle class="th-node-gray" cx="100" cy="210" r="12"/>
-            <circle class="th-node-gray" cx="350" cy="210" r="12"/>
-            <circle class="th-node-gray" cx="600" cy="210" r="12"/>
-            <circle class="th-node-gray" cx="850" cy="210" r="12"/>
-            <text class="th-end" x="992" y="217">Ends</text>
-
-            <!-- ============ SIMPLE GENIUS (bottom row, mirrors top) ============ -->
-            <text class="th-label th-label--sg" x="600" y="312" text-anchor="middle">Simple Genius</text>
-            <line class="th-label-bar th-label-bar--sg" x1="455" y1="330" x2="745" y2="330"/>
-
-            <text class="th-step" x="100" y="400">Learn</text>
-            <text class="th-step-sub" x="100" y="426">the business</text>
-            <text class="th-step" x="350" y="400">Watch</text>
-            <text class="th-step-sub" x="350" y="426">the competition</text>
-            <text class="th-step" x="600" y="400">Find</text>
-            <text class="th-step-sub" x="600" y="426">what matters</text>
-            <text class="th-step" x="850" y="400">Decide</text>
-            <text class="th-step-sub" x="850" y="426">what to do</text>
-
-            <line class="th-rail-gold" x1="100" y1="470" x2="1120" y2="470"/>
-            <polygon points="1120,459 1152,470 1120,481" fill="#D4AF37"/>
-            <circle class="th-node-gold" cx="100" cy="470" r="13"/>
-            <circle class="th-node-gold" cx="350" cy="470" r="13"/>
-            <circle class="th-node-gold" cx="600" cy="470" r="13"/>
-            <circle class="th-node-gold" cx="850" cy="470" r="13"/>
-            <circle cx="100" cy="470" r="5" fill="#D4AF37"/>
-            <circle cx="350" cy="470" r="5" fill="#D4AF37"/>
-            <circle cx="600" cy="470" r="5" fill="#D4AF37"/>
-            <circle cx="850" cy="470" r="5" fill="#D4AF37"/>
-            <text class="th-cont" x="980" y="455">Keeps going</text>
-          </svg>
-        </div>
-
-        <!-- MOBILE: two stacked vertical mini-timelines -->
-        <div class="thesis-m" aria-hidden="true">
-          <div class="thesis-m__track">
-            <span class="cmp-label thesis-m__label">Traditional consulting</span>
-            <div class="thesis-m__rail"></div>
-            <div class="thesis-m__step"><span class="action">Learn</span><span class="sub">the business</span></div>
-            <div class="thesis-m__step"><span class="action">Study</span><span class="sub">the competition</span></div>
-            <div class="thesis-m__step"><span class="action">Find</span><span class="sub">what matters</span></div>
-            <div class="thesis-m__step"><span class="action">Recommend</span><span class="sub">what to do</span></div>
-            <div class="thesis-m__end">Ends</div>
+        <article class="hiw-story__block">
+          <div class="hiw-story__block-grid">
+            <div class="hiw-story__block-copy">
+              <h3 class="hiw-story__title">A consultant starts by learning <em>you</em>.</h3>
+              <p class="hiw-story__body">They talk to your people. They learn how the business really works.</p>
+              <p class="hiw-story__body hiw-story__body--sg"><span class="hiw-shift__lead">Simple Genius</span> does the same thing. Our AI voice model interviews your leaders and captures what they already know.</p>
+            </div>
+            <figure class="hiw-story__art"><img src="img/sg-business-brain-1600w.jpg" srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w" sizes="(max-width: 900px) 100vw, 60vw" width="1600" height="832" alt="Business Brain: leadership interviews and company documents captured in one written record." loading="lazy" decoding="async"></figure>
           </div>
-          <div class="thesis-m__track thesis-m__track--sg">
-            <span class="cmp-label cmp-label--sg thesis-m__label">Simple Genius</span>
-            <div class="thesis-m__rail"></div>
-            <div class="thesis-m__step"><span class="action">Learn</span><span class="sub">the business</span></div>
-            <div class="thesis-m__step"><span class="action">Watch</span><span class="sub">the competition</span></div>
-            <div class="thesis-m__step"><span class="action">Find</span><span class="sub">what matters</span></div>
-            <div class="thesis-m__step"><span class="action">Decide</span><span class="sub">what to do</span></div>
-            <div class="thesis-m__cont">Keeps going</div>
+        </article>
+
+        <article class="hiw-story__block">
+          <div class="hiw-story__block-grid">
+            <div class="hiw-story__block-copy">
+              <h3 class="hiw-story__title">Then, they study <em>your competitors</em>.</h3>
+              <p class="hiw-story__body">A good consultant studies your competition and shows you what they see at that moment.</p>
+              <p class="hiw-story__body hiw-story__body--sg"><span class="hiw-shift__lead">Simple Genius</span> keeps watching them.</p>
+            </div>
+            <figure class="hiw-story__art"><img src="img/sg-competition-hub-1600w.jpg" srcset="img/sg-competition-hub-800w.jpg 800w, img/sg-competition-hub-1600w.jpg 1600w" sizes="(max-width: 900px) 100vw, 60vw" width="1600" height="984" alt="Competition Hub: competitor moves tracked and updated continuously." loading="lazy" decoding="async"></figure>
           </div>
-        </div>
-      </div>
+        </article>
 
-    </div>
-  </section>
-
-  <!-- ==================================================================== -->
-  <!-- 01. BUSINESS BRAIN — homepage's literal .section--flip product block -->
-  <!-- ==================================================================== -->
-  <section class="section section--white section--seam section--tight section--clip section--flip" id="business-brain">
-    <div class="container">
-      <div class="grid grid--centred">
-        <div class="col--1-5 split__copy">
-          <div class="split__copy-head">
-            <span class="eyebrow">Business Brain</span>
-            <h2 class="display display--md">A consultant starts by learning <em>you</em>.</h2>
+        <article class="hiw-story__block">
+          <div class="hiw-story__block-grid">
+            <div class="hiw-story__block-copy">
+              <h3 class="hiw-story__title">Then, you make sure we got it right.</h3>
+              <p class="hiw-story__body hiw-story__body--sg">Nothing moves forward on an assumption you didn&rsquo;t approve.</p>
+            </div>
+            <figure class="hiw-story__art"><img src="img/sg-findings-1600w.jpg" srcset="img/sg-findings-800w.jpg 800w, img/sg-findings-1600w.jpg 1600w" sizes="(max-width: 900px) 100vw, 60vw" width="1600" height="828" alt="Business findings, cited and awaiting your approval." loading="lazy" decoding="async"></figure>
           </div>
-          <div class="split__copy-body">
-            <p class="section__lede section__lede--left">They talk to your people. They learn how the business really works.</p>
-            <p class="hiw-shift"><span class="hiw-shift__lead">Simple Genius</span> does the same thing.</p>
-            <p class="display display--sm hiw-authority">Our AI voice model interviews your leaders and captures what they already know.</p>
-            <p class="display display--sm hiw-authority">Your internal documents fill in the rest.</p>
-            <p class="section__lede section__lede--left" style="margin-top:.5rem;">The most valuable things your company knows aren&rsquo;t always written down.</p>
+        </article>
+
+        <article class="hiw-story__block">
+          <div class="hiw-story__block-grid">
+            <div class="hiw-story__block-copy">
+              <h3 class="hiw-story__title">A consultant gives you recommendations.</h3>
+              <p class="hiw-story__body hiw-story__body--sg"><span class="hiw-shift__lead">Genius</span> does that too, and continuously turns what it knows into your next move.</p>
+            </div>
+            <figure class="hiw-story__art"><img src="img/sg-insight-move-crop.jpg" sizes="(max-width: 900px) 100vw, 60vw" width="1086" height="640" alt="Strategic Insights: your recommended next move, ranked and cited." loading="lazy" decoding="async"></figure>
           </div>
-        </div>
+        </article>
 
-        <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12 hiw-brain-shot">
-          <img class="shot__img"
-               src="img/sg-business-brain-1600w.jpg"
-               srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w, img/sg-business-brain-2400w.jpg 2400w"
-               sizes="(max-width: 900px) 100vw, 68vw"
-               width="1600" height="708"
-               alt="Business Brain: leadership interviews and company documents captured in one written record."
-               loading="lazy" decoding="async">
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================================================================== -->
-  <!-- 02. COMPETITION HUB — homepage's literal .section--flip-right block  -->
-  <!-- ==================================================================== -->
-  <section class="section section--ink section--tight section--flip-right" id="competition-hub">
-    <div class="container">
-      <div class="grid grid--centred">
-        <div class="col--1-5 split__copy">
-          <div class="split__copy-head">
-            <span class="eyebrow">Competition Hub</span>
-            <h2 class="display display--md">Then, they study <em>your competitors</em>.</h2>
+        <article class="hiw-story__block">
+          <div class="hiw-story__block-grid">
+            <div class="hiw-story__block-copy">
+              <h3 class="hiw-story__title">Eventually, the consultant leaves. <em>Simple Genius stays.</em></h3>
+              <p class="hiw-story__body">The project ends. They get on a plane and go help the next company.</p>
+              <p class="hiw-story__body">Your team can put everything Simple Genius knows to work. A private AI for your team, grounded in your company.</p>
+              <p class="hiw-story__body hiw-story__body--sg"><span class="hiw-shift__lead">Your data</span> stays within your four walls.</p>
+            </div>
+            <figure class="hiw-story__art"><img src="img/sg-workstreams-1600w.jpg" srcset="img/sg-workstreams-800w.jpg 800w, img/sg-workstreams-1600w.jpg 1600w, img/sg-workstreams-2400w.jpg 2400w" sizes="(max-width: 900px) 100vw, 60vw" width="1600" height="832" alt="Workstreams: an assistant that already knows your business, for Finance, Sales and Marketing, Operations, People, and Strategy." loading="lazy" decoding="async"></figure>
           </div>
-          <div class="split__copy-body">
-            <p class="section__lede section__lede--left">A good consultant studies your competition and shows you what they see at that moment.</p>
-            <p class="hiw-shift"><span class="hiw-shift__lead">Simple Genius</span> keeps<br>watching them.</p>
-            <p class="display display--sm hiw-authority">We keep our eyes on the people trying to put you out of business.</p>
-            <p class="display display--sm hiw-authority">And we don&rsquo;t stop watching.</p>
-            <p class="section__lede section__lede--left" style="margin-top:.5rem;">New hires. New products. Pricing changes. New markets. Public moves.</p>
-          </div>
-        </div>
-
-        <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
-          <img class="shot__img"
-               src="img/sg-competition-hub-1600w.jpg"
-               srcset="img/sg-competition-hub-800w.jpg 800w, img/sg-competition-hub-1600w.jpg 1600w, img/sg-competition-hub-2400w.jpg 2400w"
-               sizes="(max-width: 900px) 100vw, 68vw"
-               width="1600" height="708"
-               alt="Competition Hub: competitor moves tracked and updated continuously."
-               loading="lazy" decoding="async">
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================================================================== -->
-  <!-- 03. CONFIRM — its own compact, full width visual character           -->
-  <!-- ==================================================================== -->
-  <section class="section section--ground section--tight" id="confirm">
-    <div class="container container--mid">
-      <div class="section__head section__head--center">
-        <span class="eyebrow eyebrow--center">Confirm</span>
-        <h2 class="display display--lg display--center">Then, you make sure we got it right.</h2>
-        <p class="hiw-support">Nothing moves forward on an assumption you didn&rsquo;t approve.</p>
-        <p class="section__lede section__lede--center">Simple Genius shows you what it learned about your business.</p>
-        <p class="section__lede section__lede--center">If anything&rsquo;s off, you correct what&rsquo;s wrong and confirm what&rsquo;s right.</p>
-      </div>
-
-      <div class="hiw-steps" role="list" aria-label="Learn, review, correct, confirm.">
-        <div class="hiw-step" role="listitem">
-          <span class="hiw-step__word">Learn</span>
-          <span class="hiw-step__sub">Simple Genius learns you.</span>
-        </div>
-        <div class="hiw-step" role="listitem">
-          <span class="hiw-step__word">Review</span>
-          <span class="hiw-step__sub">See what we learned.</span>
-        </div>
-        <div class="hiw-step" role="listitem">
-          <span class="hiw-step__word">Correct</span>
-          <span class="hiw-step__sub">Correct what&rsquo;s wrong.</span>
-        </div>
-        <div class="hiw-step hiw-step--sg" role="listitem">
-          <span class="hiw-step__word">Confirm</span>
-          <span class="hiw-step__sub">Confirm what&rsquo;s right.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================================================================== -->
-  <!-- 04. STRATEGIC INSIGHTS — homepage's literal .section--flip-right block -->
-  <!-- ==================================================================== -->
-  <section class="section section--ink-soft section--tight section--flip-right" id="strategic-insights">
-    <div class="container">
-      <div class="grid grid--centred">
-        <div class="col--1-5 split__copy">
-          <div class="split__copy-head">
-            <span class="eyebrow">Strategic Insights</span>
-            <h2 class="display display--md">A consultant gives you recommendations.</h2>
-          </div>
-          <div class="split__copy-body">
-            <p class="section__lede section__lede--left">A traditional consultant puts together what they know about you and what they know about your competition, as of that time.</p>
-            <p class="hiw-shift"><span class="hiw-shift__lead">Simple Genius</span> continuously turns what it knows into your next move.</p>
-          </div>
-        </div>
-
-        <div class="hiw-equation col--6-12" aria-label="Your business plus your competition becomes your next move.">
-          <div class="hiw-eqbox"><span class="hiw-eqbox__label">YOUR BUSINESS</span></div>
-          <span class="hiw-equation__op" aria-hidden="true">+</span>
-          <div class="hiw-eqbox"><span class="hiw-eqbox__label">YOUR COMPETITION</span></div>
-          <span class="hiw-equation__arrow" aria-hidden="true">&rarr;</span>
-          <div class="hiw-eqbox hiw-eqbox--result"><span class="hiw-eqbox__label">YOUR NEXT MOVE</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================================================================== -->
-  <!-- 05. SIMPLE GENIUS STAYS + WORKSTREAMS — one shared canvas            -->
-  <!-- ==================================================================== -->
-  <section class="section section--ink-deep section--tight section--flip" id="workstreams">
-    <div class="container">
-      <div class="hiw-stays__reveal">
-        <p class="display display--lg display--center hiw-stays__big">Simple Genius <span class="display__accent">stays.</span></p>
-        <h2 class="display display--md display--center hiw-stays__sub">Eventually, the consultant <span class="display__accent">leaves</span>.</h2>
-        <p class="section__lede section__lede--center hiw-stays__lede">The project ends. They get on a plane and go help the next company.</p>
-      </div>
-
-      <div class="grid grid--centred">
-        <div class="col--1-5 split__copy">
-          <div class="split__copy-head">
-            <span class="eyebrow">Workstreams</span>
-            <h2 class="display display--md">AI that already knows your business.</h2>
-          </div>
-          <div class="split__copy-body">
-            <p class="section__lede section__lede--left">Your team can put everything Simple Genius knows to work.</p>
-            <p class="section__lede section__lede--left">A private AI for your team, grounded in your company.</p>
-            <p class="section__lede section__lede--left">Your team can work with Simple Genius whenever they need it.</p>
-            <p class="hiw-shift"><span class="hiw-shift__lead">Simple Genius</span> stays in your corner.</p>
-          </div>
-        </div>
-
-        <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
-          <img class="shot__img"
-               src="img/sg-workstreams-1600w.jpg"
-               srcset="img/sg-workstreams-800w.jpg 800w, img/sg-workstreams-1600w.jpg 1600w, img/sg-workstreams-2400w.jpg 2400w"
-               sizes="(max-width: 900px) 100vw, 68vw"
-               width="1600" height="832"
-               alt="Workstreams: an assistant that already knows your business, for Finance, Sales and Marketing, Operations, People, and Strategy."
-               loading="lazy" decoding="async">
-        </figure>
+        </article>
       </div>
     </div>
   </section>
