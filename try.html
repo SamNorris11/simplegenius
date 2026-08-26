@@ -164,40 +164,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Post-submit confirmation state */
   .confirm-state {
-    max-width: 640px; margin: 0 auto; text-align: center;
-    padding: clamp(2rem, 4vw, 3rem) 0;
+    max-width: 600px; margin: 0 auto; text-align: center;
+    padding: clamp(1.5rem, 3vw, 2.25rem) 0;
   }
   .confirm-state__eyebrow {
-    display: inline-block;
+    display: inline-flex; align-items: center; gap: .55rem;
     font-family: 'Inter', sans-serif; font-weight: 700;
-    text-transform: uppercase; letter-spacing: .22em;
-    font-size: .85rem; color: #7A5F16;
-    padding: .6rem 1.1rem;
+    text-transform: uppercase; letter-spacing: .18em;
+    font-size: .8rem; color: #7A5F16;
+    padding: .55rem 1.1rem .55rem .9rem;
     border: 1px solid #D4AF37; border-radius: 999px;
-    margin: 0 0 1.5rem;
+    background: rgba(212, 175, 55, .07);
+    margin: 0 0 1.75rem;
+  }
+  .confirm-state__eyebrow::before {
+    content: ''; width: 7px; height: 7px; flex: none;
+    border-radius: 50%; background: #D4AF37;
+    animation: sg-pulse 1.6s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .confirm-state__eyebrow::before { animation: none; }
+  }
+  @keyframes sg-pulse {
+    0%, 100% { opacity: .45; transform: scale(.8); }
+    50% { opacity: 1; transform: scale(1.15); box-shadow: 0 0 0 4px rgba(212, 175, 55, .18); }
   }
   .confirm-state__title {
     font-family: 'Playfair Display', serif; font-weight: 500;
     font-size: clamp(2rem, 3.75vw, 3rem); line-height: 1.15;
-    color: #1D1D1D; margin: 0 0 1.5rem; letter-spacing: -.01em;
+    color: #1D1D1D; margin: 0 0 1.25rem; letter-spacing: -.01em;
   }
   .confirm-state__title em { color: #7A5F16; font-style: italic; }
   .confirm-state__body {
     font-family: 'Inter', sans-serif;
-    font-size: 1.1rem; line-height: 1.5; color: #5A5A5A;
+    font-size: 1.08rem; line-height: 1.55; color: #5A5A5A;
     margin: 0 0 1rem;
   }
   .confirm-state__email {
-    display: inline-block;
+    display: inline-flex; align-items: center; gap: .55rem;
     font-family: 'Inter', sans-serif; font-weight: 700;
     color: #1D1D1D; background: rgba(212, 175, 55, .12);
     border: 1px solid rgba(212, 175, 55, .5);
-    padding: .5rem .85rem; border-radius: 8px;
-    margin: .25rem 0 1.5rem;
+    padding: .6rem 1rem; border-radius: 8px;
+    margin: .35rem 0 1.75rem;
   }
+  .confirm-state__email svg { flex: none; color: #7A5F16; }
   .confirm-state__note {
-    font-family: 'Inter', sans-serif; font-size: .95rem;
-    color: #5A5A5A; margin: 1.5rem 0 0;
+    font-family: 'Inter', sans-serif; font-size: .9rem;
+    color: #8A8A8A; margin: 1.5rem 0 0;
+    padding-top: 1.25rem; border-top: 1px solid #EFEFEF;
   }
 </style>
 </head>
@@ -392,7 +407,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="confirm-state__eyebrow">Your brief is being built</span>
         <h2 class="confirm-state__title">Your Simple Genius Brief is <em>on the way.</em></h2>
         <p class="confirm-state__body">We are researching your business and the competitors you chose. We will send the finished brief to:</p>
-        <span class="confirm-state__email" data-fill="email">your@email.com</span>
+        <span class="confirm-state__email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" focusable="false"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg><span data-fill="email">your@email.com</span></span>
         <p class="confirm-state__body">Keep an eye on your inbox. You can close this page. Your brief will show up when it is ready.</p>
         <p class="confirm-state__note">Built from publicly available information.</p>
       </div>
