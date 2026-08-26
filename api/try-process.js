@@ -65,18 +65,30 @@ async function callWithRetry(promptFn, label) {
   throw lastErr;
 }
 
-async function runResearchStage(job) {
-  // Sequential with backoff — this API key's tier does not tolerate 3
-  // concurrent Sonar requests, so we trade a little latency for reliability.
+// Research used to run as 3 sequential Perplexity calls inside one
+// invocation. That alone could approach or exceed the 60s function budget
+// (see vercel.json) even before counting rate-limit backoff, and a kill
+// mid-way left the job stuck with zero DB write. Each of the 3 lookups is
+// now its own stage with its own status, self-chained via a fresh fetch to
+// this same endpoint (same handoff pattern already used for
+// GENERATING_PDF -> try-deliver) so no single invocation ever has to cover
+// more than one external call.
+async function runResearchTargetStage(job) {
   const target = await callWithRetry(() => researchPrompt({ name: job.company, site: job.website, role: 'target' }), 'target');
+  await setStatus(job.id, 'RESEARCHING_COMP1', { research_target: JSON.stringify(target) });
+  return { ...job, status: 'RESEARCHING_COMP1', research_target: target };
+}
+
+async function runResearchComp1Stage(job) {
   const comp1 = await callWithRetry(() => researchPrompt({ name: job.competitor1_name, site: job.competitor1_site, role: 'competitor' }), 'comp1');
+  await setStatus(job.id, 'RESEARCHING_COMP2', { research_competitor1: JSON.stringify(comp1) });
+  return { ...job, status: 'RESEARCHING_COMP2', research_competitor1: comp1 };
+}
+
+async function runResearchComp2Stage(job) {
   const comp2 = await callWithRetry(() => researchPrompt({ name: job.competitor2_name, site: job.competitor2_site, role: 'competitor' }), 'comp2');
-  await setStatus(job.id, 'SYNTHESIZING', {
-    research_target: JSON.stringify(target),
-    research_competitor1: JSON.stringify(comp1),
-    research_competitor2: JSON.stringify(comp2)
-  });
-  return { ...job, status: 'SYNTHESIZING', research_target: target, research_competitor1: comp1, research_competitor2: comp2 };
+  await setStatus(job.id, 'SYNTHESIZING', { research_competitor2: JSON.stringify(comp2) });
+  return { ...job, status: 'SYNTHESIZING', research_competitor2: comp2 };
 }
 
 async function runSynthesisStage(job) {
@@ -104,6 +116,39 @@ async function runQcStage(job) {
   return { ...job, status: 'GENERATING_PDF', qc_result: qc };
 }
 
+// Maps a job's current status to the single stage function that advances
+// it by exactly one step. Kept as a lookup (not an if/else cascade) so each
+// invocation performs at most one external call before either handing off
+// to try-deliver or self-chaining back to this endpoint for the next stage.
+const STAGE_RUNNERS = {
+  SUBMITTED: runResearchTargetStage,
+  RESEARCHING_COMP1: runResearchComp1Stage,
+  RESEARCHING_COMP2: runResearchComp2Stage,
+  SYNTHESIZING: runSynthesisStage,
+  INSIGHTS: runInsightsStage,
+  FACT_CHECKING: runQcStage
+};
+
+const TERMINAL_STATUSES = new Set(['NEEDS_REVIEW', 'DELIVERED', 'FAILED']);
+
+async function triggerSelf(req, jobId) {
+  const url = `${baseUrl(req)}/api/try-process`;
+  await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ jobId })
+  }).catch((err) => console.error('try-process self-chain kickoff failed', err));
+}
+
+async function triggerDeliver(req, jobId) {
+  const url = `${baseUrl(req)}/api/try-deliver`;
+  await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ jobId })
+  }).catch((err) => console.error('try-deliver kickoff failed', err));
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -121,23 +166,31 @@ module.exports = async (req, res) => {
 
   const work = (async () => {
     try {
-      if (job.status === 'SUBMITTED') job = await runResearchStage(job);
-      if (job.status === 'SYNTHESIZING') job = await runSynthesisStage(job);
-      if (job.status === 'INSIGHTS') job = await runInsightsStage(job);
-      if (job.status === 'FACT_CHECKING') job = await runQcStage(job);
+      // Run exactly ONE stage per invocation. Running multiple sequential
+      // Perplexity calls in a single call used to be able to exceed the 60s
+      // function budget (see vercel.json), and a platform kill mid-stage
+      // left the job stuck forever with no error ever written to the DB.
+      // Bounding each invocation to one stage keeps it well under budget,
+      // and the per-call timeout in lib/perplexity.js means any hang now
+      // surfaces as a caught, recorded error instead of a silent kill.
+      const runStage = STAGE_RUNNERS[job.status];
+      if (runStage) {
+        job = await runStage(job);
+      }
 
-      if (job.status === 'GENERATING_PDF' || job.status === 'NEEDS_REVIEW' || job.status === 'DELIVERED' || job.status === 'FAILED') {
-        if (job.status === 'GENERATING_PDF') {
-          // Hand off to the PDF/delivery stage as its own invocation so a slow
-          // headless-render never blocks this function's budget.
-          const url = `${baseUrl(req)}/api/try-deliver`;
-          await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ jobId })
-          }).catch((err) => console.error('try-deliver kickoff failed', err));
-        }
+      if (job.status === 'GENERATING_PDF') {
+        // Hand off to the PDF/delivery stage as its own invocation so a slow
+        // headless-render never blocks this function's budget.
+        await triggerDeliver(req, jobId);
         return;
+      }
+      if (TERMINAL_STATUSES.has(job.status)) {
+        return;
+      }
+      if (runStage) {
+        // Advanced one stage and there's more to do — hand off the next
+        // stage to a fresh invocation rather than continuing in this one.
+        await triggerSelf(req, jobId);
       }
     } catch (err) {
       await markFailed(job, err).catch((e2) => console.error('markFailed also failed', e2));
