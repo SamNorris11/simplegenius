@@ -1,7 +1,32 @@
 // POST /api/try-process { jobId }
-// Self-chaining pipeline engine. Each call advances one job by as many
-// stages as it can, then (if not finished) triggers itself again so no
-// single invocation has to run the whole pipeline in one shot.
+// Runs a job forward through as many pipeline stages as are ready, all
+// in-process within a single invocation, then (only for the final PDF
+// hand-off) makes one outbound call to try-deliver.
+//
+// History: this used to self-chain via repeated outbound fetches to this
+// same endpoint, one per stage, each awaited before responding (or,
+// briefly, deferred via waitUntil). Both patterns stalled silently in
+// live testing -- the job would sit at a status forever with
+// attempts:0/last_error:null, meaning the invocation was torn down mid
+// self-fetch before any retry/catch code ever ran. That happened whether
+// the fetch was awaited synchronously or deferred with waitUntil.
+//
+// The actual fix: stop making the interior stages talk to each other over
+// HTTP at all. RESEARCHING_* / SYNTHESIZING / INSIGHTS / FACT_CHECKING are
+// all plain async functions with no special runtime needs (no chromium,
+// no extra memory), so there was never a real reason to hop to a fresh
+// invocation between them -- looping over them in-process removes the
+// self-fetch reliability problem for the entire interior of the pipeline.
+// Fluid Compute is enabled on this project (verified via the Vercel
+// project API), which raises Hobby's function budget to up to 300s, so a
+// handful of sequential Perplexity calls (each capped at 40s, see
+// lib/perplexity.js) comfortably fits in one invocation. See vercel.json
+// for the matching maxDuration bump.
+//
+// try-deliver.js is left as the one genuine external hop, because it
+// needs a different runtime profile (2GB memory, headless chromium) and
+// already runs fully synchronously end to end (it only responds once the
+// PDF is rendered, uploaded, and the lead is synced/emailed).
 const { query } = require('../lib/db');
 const { callPerplexity, extractJson } = require('../lib/perplexity');
 const { researchPrompt, synthesisPrompt, insightsPrompt } = require('../lib/prompts');
@@ -64,14 +89,12 @@ async function callWithRetry(promptFn, label) {
   throw lastErr;
 }
 
-// Research used to run as 3 sequential Perplexity calls inside one
-// invocation. That alone could approach or exceed the 60s function budget
-// (see vercel.json) even before counting rate-limit backoff, and a kill
-// mid-way left the job stuck with zero DB write. Each of the 3 lookups is
-// now its own stage with its own status, self-chained via a fresh fetch to
-// this same endpoint (same handoff pattern already used for
-// GENERATING_PDF -> try-deliver) so no single invocation ever has to cover
-// more than one external call.
+// Each stage does its one external call (if any), writes its result to the
+// DB immediately, and returns the updated in-memory job. Writing to the DB
+// after every single stage (not just at the end of the loop) means that
+// even if this invocation were ever killed mid-loop, whatever stages
+// already completed are durably saved and a fresh call to this endpoint
+// picks up exactly where it left off -- no work is silently lost.
 async function runResearchTargetStage(job) {
   const target = await callWithRetry(() => researchPrompt({ name: job.company, site: job.website, role: 'target' }), 'target');
   await setStatus(job.id, 'RESEARCHING_COMP1', { research_target: JSON.stringify(target) });
@@ -116,9 +139,8 @@ async function runQcStage(job) {
 }
 
 // Maps a job's current status to the single stage function that advances
-// it by exactly one step. Kept as a lookup (not an if/else cascade) so each
-// invocation performs at most one external call before either handing off
-// to try-deliver or self-chaining back to this endpoint for the next stage.
+// it by exactly one step. All of these run in-process in the loop below --
+// none of them is an HTTP hop.
 const STAGE_RUNNERS = {
   SUBMITTED: runResearchTargetStage,
   RESEARCHING_COMP1: runResearchComp1Stage,
@@ -130,16 +152,15 @@ const STAGE_RUNNERS = {
 
 const TERMINAL_STATUSES = new Set(['NEEDS_REVIEW', 'DELIVERED', 'FAILED']);
 
-// Self-chain kickoffs are plain outbound fetches to our own domain, and
-// like any HTTP call they can hit a transient blip (DNS, connection reset,
-// a cold-start race with waitUntil). A single failed kickoff used to leave
-// the job sitting at its current status forever with nothing recorded —
-// the exact silent-stall symptom this fix set out to remove, just moved
-// one step later in the chain. Retry a couple of times with backoff, and
-// if it still can't get through, fall back to markFailed so the failure
-// is at least written to the DB (attempts/last_error) and the job stays
-// eligible for a manual or future automated retry instead of vanishing.
-async function triggerWithRetry(url, jobId, label, job) {
+// The one remaining outbound self-referential call in this file. Retried
+// with backoff; if it still can't get through, the failure is written to
+// the DB (attempts/last_error) via markFailed so the job is at least
+// visibly stuck instead of silently vanishing, and a manual or future
+// automated re-call to this same endpoint will retry the hand-off (a job
+// already at GENERATING_PDF just re-fires this call; try-deliver itself is
+// idempotent-safe to re-invoke for the same jobId).
+async function triggerDeliverWithRetry(req, jobId, job) {
+  const url = `${baseUrl(req)}/api/try-deliver`;
   let lastErr;
   for (let i = 0; i < 3; i++) {
     try {
@@ -151,20 +172,12 @@ async function triggerWithRetry(url, jobId, label, job) {
       return;
     } catch (err) {
       lastErr = err;
-      console.error(`${label} kickoff attempt ${i + 1} failed`, err);
+      console.error(`try-deliver kickoff attempt ${i + 1} failed`, err);
       if (i < 2) await sleep(1000 * (i + 1));
     }
   }
-  await markFailed(job, new Error(`${label} kickoff failed after retries: ${lastErr?.message || lastErr}`))
+  await markFailed(job, new Error(`try-deliver kickoff failed after retries: ${lastErr?.message || lastErr}`))
     .catch((e2) => console.error('markFailed also failed', e2));
-}
-
-async function triggerSelf(req, jobId, job) {
-  await triggerWithRetry(`${baseUrl(req)}/api/try-process`, jobId, 'try-process self-chain', job);
-}
-
-async function triggerDeliver(req, jobId, job) {
-  await triggerWithRetry(`${baseUrl(req)}/api/try-deliver`, jobId, 'try-deliver', job);
 }
 
 module.exports = async (req, res) => {
@@ -178,41 +191,20 @@ module.exports = async (req, res) => {
   let job = await getJob(jobId);
   if (!job) return res.status(404).json({ ok: false, error: 'job not found' });
 
-  // IMPORTANT: this stage's work, and the kickoff of the next stage, are
-  // both awaited BEFORE responding — not deferred into the background via
-  // waitUntil. Live testing showed waitUntil-deferred work after an early
-  // response can get silently dropped on this project (no Fluid Compute),
-  // which reproduced the exact silent-stall bug this fix targets, just one
-  // hop later in the chain, with retries never even getting a chance to
-  // run. Doing the work inline keeps each invocation well under the 60s
-  // budget (one bounded Perplexity call plus one fast internal ack) and
-  // means nothing about this job's progress depends on best-effort
-  // background execution after the response is sent.
   try {
-    // Run exactly ONE stage per invocation. Running multiple sequential
-    // Perplexity calls in a single call used to be able to exceed the 60s
-    // function budget (see vercel.json), and a platform kill mid-stage
-    // left the job stuck forever with no error ever written to the DB.
-    // Bounding each invocation to one stage keeps it well under budget,
-    // and the per-call timeout in lib/perplexity.js means any hang now
-    // surfaces as a caught, recorded error instead of a silent kill.
-    const runStage = STAGE_RUNNERS[job.status];
-    if (runStage) {
+    // Advance through every ready stage in one loop, in-process. Each
+    // iteration is one bounded external call (<=40s) plus a DB write, so
+    // even a handful of stages back to back stays well inside the 280s
+    // budget set for this function in vercel.json (Fluid Compute is
+    // enabled on this project, which raises Hobby's ceiling to 300s).
+    let runStage;
+    while ((runStage = STAGE_RUNNERS[job.status])) {
       job = await runStage(job);
+      if (TERMINAL_STATUSES.has(job.status) || job.status === 'GENERATING_PDF') break;
     }
 
     if (job.status === 'GENERATING_PDF') {
-      // Hand off to the PDF/delivery stage as its own invocation so a slow
-      // headless-render never blocks this function's budget. try-deliver
-      // sends its own 202 immediately, so this await only waits on that
-      // fast ack, not on the actual render.
-      await triggerDeliver(req, jobId, job);
-    } else if (!TERMINAL_STATUSES.has(job.status) && runStage) {
-      // Advanced one stage and there's more to do — hand off the next
-      // stage to a fresh invocation. That invocation sends its own 202
-      // immediately, so this await only waits on that fast ack, not on
-      // the next stage's actual work.
-      await triggerSelf(req, jobId, job);
+      await triggerDeliverWithRetry(req, jobId, job);
     }
   } catch (err) {
     await markFailed(job, err).catch((e2) => console.error('markFailed also failed', e2));
