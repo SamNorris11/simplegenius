@@ -131,22 +131,41 @@ const STAGE_RUNNERS = {
 
 const TERMINAL_STATUSES = new Set(['NEEDS_REVIEW', 'DELIVERED', 'FAILED']);
 
-async function triggerSelf(req, jobId) {
-  const url = `${baseUrl(req)}/api/try-process`;
-  await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ jobId })
-  }).catch((err) => console.error('try-process self-chain kickoff failed', err));
+// Self-chain kickoffs are plain outbound fetches to our own domain, and
+// like any HTTP call they can hit a transient blip (DNS, connection reset,
+// a cold-start race with waitUntil). A single failed kickoff used to leave
+// the job sitting at its current status forever with nothing recorded —
+// the exact silent-stall symptom this fix set out to remove, just moved
+// one step later in the chain. Retry a couple of times with backoff, and
+// if it still can't get through, fall back to markFailed so the failure
+// is at least written to the DB (attempts/last_error) and the job stays
+// eligible for a manual or future automated retry instead of vanishing.
+async function triggerWithRetry(url, jobId, label, job) {
+  let lastErr;
+  for (let i = 0; i < 3; i++) {
+    try {
+      await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ jobId })
+      });
+      return;
+    } catch (err) {
+      lastErr = err;
+      console.error(`${label} kickoff attempt ${i + 1} failed`, err);
+      if (i < 2) await sleep(1000 * (i + 1));
+    }
+  }
+  await markFailed(job, new Error(`${label} kickoff failed after retries: ${lastErr?.message || lastErr}`))
+    .catch((e2) => console.error('markFailed also failed', e2));
 }
 
-async function triggerDeliver(req, jobId) {
-  const url = `${baseUrl(req)}/api/try-deliver`;
-  await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ jobId })
-  }).catch((err) => console.error('try-deliver kickoff failed', err));
+async function triggerSelf(req, jobId, job) {
+  await triggerWithRetry(`${baseUrl(req)}/api/try-process`, jobId, 'try-process self-chain', job);
+}
+
+async function triggerDeliver(req, jobId, job) {
+  await triggerWithRetry(`${baseUrl(req)}/api/try-deliver`, jobId, 'try-deliver', job);
 }
 
 module.exports = async (req, res) => {
@@ -181,7 +200,7 @@ module.exports = async (req, res) => {
       if (job.status === 'GENERATING_PDF') {
         // Hand off to the PDF/delivery stage as its own invocation so a slow
         // headless-render never blocks this function's budget.
-        await triggerDeliver(req, jobId);
+        await triggerDeliver(req, jobId, job);
         return;
       }
       if (TERMINAL_STATUSES.has(job.status)) {
@@ -190,7 +209,7 @@ module.exports = async (req, res) => {
       if (runStage) {
         // Advanced one stage and there's more to do — hand off the next
         // stage to a fresh invocation rather than continuing in this one.
-        await triggerSelf(req, jobId);
+        await triggerSelf(req, jobId, job);
       }
     } catch (err) {
       await markFailed(job, err).catch((e2) => console.error('markFailed also failed', e2));
