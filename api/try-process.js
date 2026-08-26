@@ -2,7 +2,6 @@
 // Self-chaining pipeline engine. Each call advances one job by as many
 // stages as it can, then (if not finished) triggers itself again so no
 // single invocation has to run the whole pipeline in one shot.
-const { waitUntil } = require('@vercel/functions');
 const { query } = require('../lib/db');
 const { callPerplexity, extractJson } = require('../lib/perplexity');
 const { researchPrompt, synthesisPrompt, insightsPrompt } = require('../lib/prompts');
@@ -179,42 +178,46 @@ module.exports = async (req, res) => {
   let job = await getJob(jobId);
   if (!job) return res.status(404).json({ ok: false, error: 'job not found' });
 
-  // Respond immediately; do the work in the background via waitUntil so the
-  // caller (try-submit, or the cron safety net) never has to wait on us.
-  res.status(202).json({ ok: true, jobId, status: job.status });
-
-  const work = (async () => {
-    try {
-      // Run exactly ONE stage per invocation. Running multiple sequential
-      // Perplexity calls in a single call used to be able to exceed the 60s
-      // function budget (see vercel.json), and a platform kill mid-stage
-      // left the job stuck forever with no error ever written to the DB.
-      // Bounding each invocation to one stage keeps it well under budget,
-      // and the per-call timeout in lib/perplexity.js means any hang now
-      // surfaces as a caught, recorded error instead of a silent kill.
-      const runStage = STAGE_RUNNERS[job.status];
-      if (runStage) {
-        job = await runStage(job);
-      }
-
-      if (job.status === 'GENERATING_PDF') {
-        // Hand off to the PDF/delivery stage as its own invocation so a slow
-        // headless-render never blocks this function's budget.
-        await triggerDeliver(req, jobId, job);
-        return;
-      }
-      if (TERMINAL_STATUSES.has(job.status)) {
-        return;
-      }
-      if (runStage) {
-        // Advanced one stage and there's more to do — hand off the next
-        // stage to a fresh invocation rather than continuing in this one.
-        await triggerSelf(req, jobId, job);
-      }
-    } catch (err) {
-      await markFailed(job, err).catch((e2) => console.error('markFailed also failed', e2));
+  // IMPORTANT: this stage's work, and the kickoff of the next stage, are
+  // both awaited BEFORE responding — not deferred into the background via
+  // waitUntil. Live testing showed waitUntil-deferred work after an early
+  // response can get silently dropped on this project (no Fluid Compute),
+  // which reproduced the exact silent-stall bug this fix targets, just one
+  // hop later in the chain, with retries never even getting a chance to
+  // run. Doing the work inline keeps each invocation well under the 60s
+  // budget (one bounded Perplexity call plus one fast internal ack) and
+  // means nothing about this job's progress depends on best-effort
+  // background execution after the response is sent.
+  try {
+    // Run exactly ONE stage per invocation. Running multiple sequential
+    // Perplexity calls in a single call used to be able to exceed the 60s
+    // function budget (see vercel.json), and a platform kill mid-stage
+    // left the job stuck forever with no error ever written to the DB.
+    // Bounding each invocation to one stage keeps it well under budget,
+    // and the per-call timeout in lib/perplexity.js means any hang now
+    // surfaces as a caught, recorded error instead of a silent kill.
+    const runStage = STAGE_RUNNERS[job.status];
+    if (runStage) {
+      job = await runStage(job);
     }
-  })();
 
-  waitUntil(work);
+    if (job.status === 'GENERATING_PDF') {
+      // Hand off to the PDF/delivery stage as its own invocation so a slow
+      // headless-render never blocks this function's budget. try-deliver
+      // sends its own 202 immediately, so this await only waits on that
+      // fast ack, not on the actual render.
+      await triggerDeliver(req, jobId, job);
+    } else if (!TERMINAL_STATUSES.has(job.status) && runStage) {
+      // Advanced one stage and there's more to do — hand off the next
+      // stage to a fresh invocation. That invocation sends its own 202
+      // immediately, so this await only waits on that fast ack, not on
+      // the next stage's actual work.
+      await triggerSelf(req, jobId, job);
+    }
+  } catch (err) {
+    await markFailed(job, err).catch((e2) => console.error('markFailed also failed', e2));
+    return res.status(202).json({ ok: true, jobId, status: job.status, error: String(err?.message || err) });
+  }
+
+  return res.status(202).json({ ok: true, jobId, status: job.status });
 };
