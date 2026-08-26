@@ -7,7 +7,7 @@
     "api/try-process.js": { "maxDuration": 60 },
     "api/try-deliver.js": {
       "maxDuration": 120,
-      "memory": 3009,
+      "memory": 2048,
       "includeFiles": "node_modules/@sparticuz/chromium/**"
     }
   }
