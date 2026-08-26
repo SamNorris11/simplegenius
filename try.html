@@ -279,7 +279,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <form class="form try-form" id="try-form"
-            data-endpoint="/api/submit-lead"
+            data-endpoint="/api/try-submit"
             data-status="try-status"
             data-submitting="Building your brief&hellip;"
             novalidate>
@@ -466,19 +466,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="js/site.js?v=1787276638" defer></script>
 <script>
-  // Preview-only confirmation state toggle. Backend will replace this later.
+  // Fill the confirmation state's email placeholder with the real submitted
+  // address once the shared form handler (js/site.js) shows the success state.
   (function () {
     var form = document.getElementById('try-form');
     var status = document.getElementById('try-status');
     if (!form || !status) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+    form.addEventListener('submit', function () {
       var email = form.querySelector('[name="email"]');
       var target = status.querySelector('[data-fill="email"]');
       if (email && target && email.value) target.textContent = email.value;
-      form.hidden = true;
-      status.hidden = false;
-      status.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   })();
 </script>

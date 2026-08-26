@@ -1,5 +1,10 @@
 {
   "version": 2,
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "functions": {
+    "api/try-submit.js": { "maxDuration": 30 },
+    "api/try-process.js": { "maxDuration": 60 },
+    "api/try-deliver.js": { "maxDuration": 60 }
+  }
 }
