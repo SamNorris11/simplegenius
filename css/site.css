@@ -69,6 +69,12 @@
   /* --- type families ----------------------------------------------------- */
   --ff-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
   --ff-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --ff-declaration: "Raleway", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* legacy font-var aliases — some older blocks reference these names directly */
+  --font-display: var(--ff-display);
+  --font-sans: var(--ff-sans);
+  --font-eyebrow: var(--ff-sans);
 
   /* --- type scale: display (Playfair) ------------------------------------ */
   --fs-hero:    clamp(3.1rem, 6.6vw, 6rem);
@@ -6107,7 +6113,7 @@ html:not(.no-js) .reveal.is-visible .dg .d-draw { animation: dg-draw 1000ms var(
 .tile:not(.tile--dark) .tile__label { color: var(--c-mute); }
 .tile__num {
   display: block;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--ff-display);
   font-weight: 400;
   font-size: var(--fs-2);
   line-height: 1;
@@ -6151,7 +6157,7 @@ html:not(.no-js) .reveal.is-visible .dg .d-draw { animation: dg-draw 1000ms var(
   vertical-align: middle;
 }
 .band__range {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--ff-display);
   font-size: var(--fs-4);
   color: var(--c-on-dark-2);
   vertical-align: middle;
@@ -8078,7 +8084,7 @@ body.lightbox-open { overflow: hidden; }
 
 .pdu-table__price {
   display: inline-block;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--ff-sans);
   font-size: clamp(1.9rem, 2.4vw, 2.25rem);
   font-weight: 500;
   color: #1c1a17;
@@ -8147,7 +8153,7 @@ body.lightbox-open { overflow: hidden; }
 }
 
 .pdu-seat {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--ff-sans);
   font-size: 1.375rem;
   font-weight: 500;
   color: #1c1a17;
@@ -8203,7 +8209,7 @@ body.lightbox-open { overflow: hidden; }
 
 .pdu-gs__title {
   margin: 0;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--ff-sans);
   font-size: clamp(1.5rem, 2.2vw, 1.875rem);
   font-weight: 500;
   color: #1c1a17;
@@ -8212,7 +8218,7 @@ body.lightbox-open { overflow: hidden; }
 }
 
 .pdu-gs__price {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--ff-sans);
   font-size: clamp(1.5rem, 2.2vw, 1.875rem);
   font-weight: 500;
   color: #d4af37;
@@ -8221,7 +8227,7 @@ body.lightbox-open { overflow: hidden; }
 }
 
 .pdu-gs__period {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: var(--ff-sans);
   font-size: 0.95rem;
   font-weight: 500;
   color: #5a5a5a;
@@ -8278,7 +8284,7 @@ body.lightbox-open { overflow: hidden; }
     margin-bottom: 0.85rem;
   }
   .pdu-mplan__price {
-    font-family: "Playfair Display", Georgia, serif;
+    font-family: var(--ff-sans);
     font-size: 2rem;
     font-weight: 500;
     color: #1c1a17;
@@ -8506,7 +8512,7 @@ body.lightbox-open { overflow: hidden; }
 .gs-card:hover { border-color: rgba(212,175,55,0.55); box-shadow: 0 4px 18px rgba(29,29,29,0.09); }
 .gs-card:focus-within { border-color: #b08d2a; box-shadow: 0 0 0 3px rgba(176,141,42,0.18); }
 .gs-card__text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.gs-card__title { font-family: var(--font-serif, "Cormorant Garamond", serif); font-weight: 600; font-size: 1.375rem; color: #1d1d1d; line-height: 1.15; }
+.gs-card__title { font-family: var(--ff-sans); font-weight: 600; font-size: 1.375rem; color: #1d1d1d; line-height: 1.15; }
 .gs-card__desc { font-size: 0.9375rem; color: #5a5a5a; line-height: 1.4; }
 .gs-card__side { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
 .gs-card__price { font-weight: 600; font-size: 1.0625rem; color: #1d1d1d; white-space: nowrap; }
@@ -8987,7 +8993,7 @@ body.lightbox-open { overflow: hidden; }
 .invcmp__label--us { color: #d4af37; }
 .invcmp__title {
   margin: 0 0 0.75rem;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--ff-display);
   font-weight: 500;
   font-size: clamp(1.5rem, 2vw, 1.9rem);
   line-height: 1.05;

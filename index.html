@@ -17,7 +17,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:description" content="Simple Genius is the first step in AI for business.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css?v=1787510927">
 <link rel="icon" href="favicon-32.png?v=1787253912" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png?v=1787253912" sizes="16x16" type="image/png">
@@ -244,10 +244,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* Guided setup toggle (ported from simple version) */
   .setup-toggle{max-width:640px;margin:2.5rem auto 0;background:#F7F7F7;border:1px solid rgba(29,29,29,.08);border-radius:16px;padding:1.5rem 1.75rem;display:flex;align-items:center;gap:1.25rem;}
   .setup-toggle__body{flex:1;}
-  .setup-toggle__title{display:block;font-family:'Playfair Display',serif;font-size:1.35rem;color:#1D1D1D;line-height:1.25;margin-bottom:.35rem;}
+  .setup-toggle__title{display:block;font-family:var(--ff-sans);font-size:1.35rem;color:#1D1D1D;line-height:1.25;margin-bottom:.35rem;}
   .setup-toggle__desc{display:block;color:#5A5A5A;font-size:.98rem;line-height:1.5;}
   .setup-toggle__control{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0;}
-  .setup-toggle__price{font-family:'Playfair Display',serif;font-size:1.4rem;color:#1D1D1D;white-space:nowrap;}
+  .setup-toggle__price{font-family:var(--ff-sans);font-size:1.4rem;color:#1D1D1D;white-space:nowrap;}
   .switch{position:relative;display:inline-block;width:52px;height:28px;}
   .switch input{opacity:0;width:0;height:0;}
   .switch__slider{position:absolute;cursor:pointer;inset:0;background:#c4c4c4;border-radius:28px;transition:.2s;}
@@ -516,10 +516,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <style>
   .sec-prompt{background:#000;color:#F7F7F7;padding:clamp(2.25rem,4.5vw,3.5rem) 0;}
   .sec-prompt__inner{max-width:960px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);text-align:center;}
-  .sec-prompt__eyebrow{display:block;font-family:'Inter',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#D4AF37;margin-bottom:clamp(1rem,2vw,1.5rem);}
-  .sec-prompt__h{font-family:'Playfair Display',serif;font-weight:500;color:#F7F7F7;font-size:clamp(2.4rem,5.8vw,4.6rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 clamp(.9rem,1.8vw,1.4rem);}
-  .sec-prompt__q{font-family:'Playfair Display',serif;font-weight:400;font-style:italic;color:#D4AF37;font-size:clamp(1.6rem,3.6vw,2.9rem);line-height:1.15;letter-spacing:-.01em;margin:0 auto clamp(1.75rem,3.2vw,2.4rem);max-width:26ch;}
-  .sec-prompt__cta{display:inline-flex;align-items:center;gap:.55rem;font-family:'Inter',sans-serif;font-weight:600;font-size:.98rem;letter-spacing:.02em;color:#000;background:#D4AF37;padding:.85rem 1.5rem;border-radius:6px;text-decoration:none;transition:transform .18s ease, background .18s ease;}
+  .sec-prompt__eyebrow{display:block;font-family:var(--ff-sans);font-weight:600;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#D4AF37;margin-bottom:clamp(1rem,2vw,1.5rem);}
+  .sec-prompt__h{font-family:var(--ff-display);font-weight:500;color:#F7F7F7;font-size:clamp(2.4rem,5.8vw,4.6rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 clamp(.9rem,1.8vw,1.4rem);}
+  .sec-prompt__q{font-family:var(--ff-display);font-weight:400;font-style:italic;color:#D4AF37;font-size:clamp(1.6rem,3.6vw,2.9rem);line-height:1.15;letter-spacing:-.01em;margin:0 auto clamp(1.75rem,3.2vw,2.4rem);max-width:26ch;}
+  .sec-prompt__cta{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--ff-sans);font-weight:600;font-size:.98rem;letter-spacing:.02em;color:#000;background:#D4AF37;padding:.85rem 1.5rem;border-radius:6px;text-decoration:none;transition:transform .18s ease, background .18s ease;}
   .sec-prompt__cta:hover{background:#E6BF41;transform:translateY(-1px);}
   .sec-prompt__cta svg{width:14px;height:14px;}
   @media (max-width:640px){

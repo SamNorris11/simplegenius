@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="canonical" href="https://www.simplegenius.com/how-it-works">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css?v=1787315874">
 <link rel="icon" href="favicon-32.png?v=1787253912" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16.png?v=1787253912" sizes="16x16" type="image/png">
@@ -40,8 +40,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hiw-hero .page-head__title{font-size:2.25rem;}
     .hiw-hero .hiw-hero__payoff{font-size:1.85rem;font-weight:700;white-space:nowrap;margin-top:.35em;}
   }
-  .hiw-hero .page-head__title em{color:#D4AF37;font-style:italic;}
-  .hiw-hero .hiw-j{font-style:italic;display:inline;}
+  .hiw-hero .page-head__title em{color:#D4AF37;font-style:normal;}
+  .hiw-hero .hiw-j{font-style:normal;display:inline;}
 
   /* Thesis headline: dark charcoal card with gold glow, brighter gold accents */
   .thesis-headline{position:relative;display:inline-block;margin:0 auto;padding:clamp(1.5rem,3vw,2.5rem) clamp(2rem,4.5vw,3.25rem);border-radius:18px;background:#1D1D1D;box-shadow:0 0 0 1px rgba(212,175,55,.55), 0 18px 60px -20px rgba(212,175,55,.35), 0 24px 48px -22px rgba(0,0,0,.35);isolation:isolate;overflow:visible;max-width:min(100%, 40rem);}
@@ -176,6 +176,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-story__body{font-family:'Inter',sans-serif;font-size:var(--fs-lead);line-height:1.6;color:var(--c-steel);margin:0 0 .75rem;max-width:44ch;}
   .hiw-story__body--sg{color:var(--c-ink);font-weight:500;}
   .hiw-story__body .hiw-shift__lead,.hiw-story__body--sg .hiw-shift__lead{color:#8A6D1F;font-weight:700;}
+  .hiw-declare{font-family:var(--ff-declaration);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:.98em;}
+  .hiw-declare-inline{display:block;margin-bottom:.4rem;font-family:var(--ff-declaration);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:.98em;}
   .hiw-story__art{margin:0;border-radius:16px;overflow:hidden;box-shadow:0 24px 60px -24px rgba(27,27,26,.28);background:#1D1D1D;}
   .hiw-story__art img{display:block;width:100%;height:auto;}
   @media (min-width:901px){
@@ -498,7 +500,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      dark Workstreams band above it. ---- */
   .hiw-close{padding-block:clamp(3.25rem,5vw,4.25rem);background:var(--c-ground-3);}
   .hiw-close-lines{margin-bottom:clamp(1.25rem,2.2vw,1.75rem);}
-  .hiw-close-lines .statement{margin:0 auto .3rem;font-size:clamp(1.6rem,2.4vw,1.95rem);}
+  .hiw-close-lines .statement{margin:0 auto .3rem;font-size:clamp(1.6rem,2.4vw,1.95rem);font-family:var(--ff-declaration);font-weight:700;letter-spacing:.01em;}
   .hiw-close-lines .statement:last-child{margin-bottom:0;}
   .hiw-close .display__accent{color:#7A5F16;}
 
@@ -506,7 +508,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      as a stray double-quote. Keep the gold/underline emphasis, drop the
      italic slant only where an apostrophe sits inside it. */
   .hiw-confirm-close .display__accent,
-  .hiw-close-lines .display__accent{font-style:normal;font-weight:800;}
+  .hiw-close-lines .display__accent{font-style:normal;font-weight:800;font-family:var(--ff-declaration);}
 </style>
 </head>
 <body class="is-dark-top">
@@ -571,7 +573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="hiw-story__block-copy">
               <h3 class="hiw-story__title">A consultant starts by learning <em>you</em>.</h3>
               <p class="hiw-story__body">They talk to your people. They learn how the business really works.</p>
-              <p class="hiw-story__body hiw-story__body--sg"><span class="hiw-shift__lead">Simple Genius</span> does the same thing. Our AI voice model interviews your leaders and captures what they already know.</p>
+              <p class="hiw-story__body hiw-story__body--sg"><span class="hiw-declare-inline"><span class="hiw-shift__lead">Simple Genius</span> does the same thing.</span>Our AI voice model interviews your leaders and captures what they already know.</p>
             </div>
             <figure class="hiw-story__art shot--zoomable"><img src="img/sg-business-brain-1600w.jpg" srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w" sizes="(max-width: 900px) 100vw, 60vw" width="1600" height="832" alt="Business Brain: leadership interviews and company documents captured in one written record." loading="lazy" decoding="async"></figure>
           </div>
@@ -582,7 +584,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="hiw-story__block-copy">
               <h3 class="hiw-story__title">Then, they study <em>your competitors</em>.</h3>
               <p class="hiw-story__body">A good consultant studies your competition and shows you what they see at that moment.</p>
-              <p class="hiw-story__body hiw-story__body--sg"><span class="hiw-shift__lead">Simple Genius</span> keeps watching them.</p>
+              <p class="hiw-story__body hiw-story__body--sg hiw-declare"><span class="hiw-shift__lead">Simple Genius</span> keeps watching them.</p>
               <p class="hiw-story__body">We watch your competitors as they move, so you don&rsquo;t have to keep checking.</p>
               <p class="hiw-story__body">When something changes, we see it and keep you up to date.</p>
             </div>
@@ -594,7 +596,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="hiw-story__block-grid">
             <div class="hiw-story__block-copy">
               <h3 class="hiw-story__title">Then, you make sure we got it right.</h3>
-              <p class="hiw-story__body hiw-story__body--sg">Nothing gets by you without your approval.</p>
+              <p class="hiw-story__body hiw-story__body--sg hiw-declare">Nothing gets by you without your approval.</p>
               <p class="hiw-story__body">Simple Genius learns your business, but you know it better than anyone.</p>
               <p class="hiw-story__body">We show you what we learned. You correct what&rsquo;s wrong and confirm what&rsquo;s right.</p>
             </div>
@@ -608,7 +610,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <h3 class="hiw-story__title">Then, a consultant gives you recommendations.</h3>
               <p class="hiw-story__body">A traditional consultant puts together what they know about you and what they know about your competition.</p>
               <p class="hiw-story__body">Then they turn that information into recommendations.</p>
-              <p class="hiw-story__body hiw-story__body--sg"><span class="hiw-shift__lead">Simple Genius</span> continuously turns what it knows into your next move.</p>
+              <p class="hiw-story__body hiw-story__body--sg hiw-declare"><span class="hiw-shift__lead">Simple Genius</span> continuously turns what it knows into your next move.</p>
               <p class="hiw-story__body">As your business changes and your competitors move, Simple Genius keeps putting the two together.</p>
             </div>
             <figure class="hiw-story__art shot--zoomable"><img src="img/sg-insight-move-crop.jpg" sizes="(max-width: 900px) 100vw, 60vw" width="1086" height="640" alt="Strategic Insights: your recommended next move, ranked and cited." loading="lazy" decoding="async"></figure>
