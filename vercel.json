@@ -5,6 +5,10 @@
   "functions": {
     "api/try-submit.js": { "maxDuration": 30 },
     "api/try-process.js": { "maxDuration": 60 },
-    "api/try-deliver.js": { "maxDuration": 120 }
+    "api/try-deliver.js": {
+      "maxDuration": 120,
+      "memory": 3009,
+      "includeFiles": "node_modules/@sparticuz/chromium/**"
+    }
   }
 }
