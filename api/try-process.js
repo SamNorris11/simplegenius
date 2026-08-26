@@ -6,7 +6,7 @@ const { waitUntil } = require('@vercel/functions');
 const { query } = require('../lib/db');
 const { callPerplexity, extractJson } = require('../lib/perplexity');
 const { researchPrompt, synthesisPrompt, insightsPrompt } = require('../lib/prompts');
-const { runQc } = require('../lib/qc');
+const { runQc, normalizeSynthesis } = require('../lib/qc');
 
 const MAX_ATTEMPTS = 3;
 
@@ -83,7 +83,7 @@ async function runSynthesisStage(job) {
   const target = job.research_target;
   const comp1 = job.research_competitor1;
   const comp2 = job.research_competitor2;
-  const synthesis = await callWithRetry(() => synthesisPrompt({ target, comp1, comp2 }), 'synthesis');
+  const synthesis = normalizeSynthesis(await callWithRetry(() => synthesisPrompt({ target, comp1, comp2 }), 'synthesis'));
   await setStatus(job.id, 'INSIGHTS', { synthesis: JSON.stringify(synthesis) });
   return { ...job, status: 'INSIGHTS', synthesis };
 }
