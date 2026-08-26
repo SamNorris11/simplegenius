@@ -5,6 +5,6 @@
   "functions": {
     "api/try-submit.js": { "maxDuration": 30 },
     "api/try-process.js": { "maxDuration": 60 },
-    "api/try-deliver.js": { "maxDuration": 60 }
+    "api/try-deliver.js": { "maxDuration": 120 }
   }
 }
