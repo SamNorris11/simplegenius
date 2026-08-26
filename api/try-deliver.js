@@ -102,6 +102,7 @@ module.exports = async (req, res) => {
       email: job.email,
       firstName: job.first_name,
       lastName: job.last_name,
+      pdfUrl: blob.url,
     });
     if (!acResult.ok && !acResult.skipped) {
       console.error(`job ${jobId} delivered but AC sync failed:`, acResult.error);
