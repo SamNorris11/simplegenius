@@ -4,6 +4,7 @@
 const crypto = require('crypto');
 const { waitUntil } = require('@vercel/functions');
 const { query } = require('../lib/db');
+const { syncTryLead } = require('../lib/zoho-leads');
 
 function trimTrailingSlash(s) {
   return typeof s === 'string' ? s.replace(/\/+$/, '') : s;
@@ -36,7 +37,7 @@ module.exports = async (req, res) => {
   }
   body = body || {};
 
-  const required = ['firstName', 'lastName', 'email', 'company', 'website', 'competitor1Name', 'competitor1Site', 'competitor2Name', 'competitor2Site'];
+  const required = ['firstName', 'lastName', 'email', 'role', 'company', 'website', 'competitor1Name', 'competitor1Site', 'competitor2Name', 'competitor2Site'];
   const missing = required.filter((k) => !body[k] || !String(body[k]).trim());
   if (missing.length) {
     return res.status(400).json({ ok: false, error: `Missing required fields: ${missing.join(', ')}` });
@@ -81,7 +82,19 @@ module.exports = async (req, res) => {
     return res.status(500).json({ ok: false, error: 'Could not save your submission. Please try again in a minute.' });
   }
 
-  // Kick off the pipeline without making the browser wait for it.
+  // Create/update the CRM lead directly. ActiveCampaign's contact sync only
+  // carries basic identity fields, so it is not the source of truth for CRM
+  // business details or website attribution.
+  let zoho = null;
+  let zohoError = null;
+  try {
+    zoho = await syncTryLead(body);
+  } catch (err) {
+    zohoError = String(err?.message || err).slice(0, 500);
+    console.error('try-submit Zoho sync failed (brief pipeline continues):', zohoError);
+  }
+
+  // Kick off the brief pipeline without making the browser wait for it.
   const url = `${baseUrl(req)}/api/try-process`;
   const kickoff = fetch(url, {
     method: 'POST',
@@ -90,5 +103,10 @@ module.exports = async (req, res) => {
   }).catch((err) => console.error('try-process kickoff failed', err));
   waitUntil(kickoff);
 
-  return res.status(202).json({ ok: true, jobId: id });
+  return res.status(202).json({
+    ok: true,
+    jobId: id,
+    zoho,
+    zohoError
+  });
 };
