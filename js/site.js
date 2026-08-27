@@ -332,6 +332,53 @@
   }
   refreshAttributionFields(document);
 
+  function formConversionEvent(form) {
+    var explicit = form.getAttribute('data-conversion-event');
+    if (explicit) return explicit;
+    var source = String(
+      (form.querySelector('[name="source"]') || {}).value || ''
+    ).toLowerCase();
+    if (source === 'try-simple-genius-free') return 'free_brief_submit';
+    if (source === 'lets-talk' || source === 'conversation-request') {
+      return 'conversation_request';
+    }
+    if (source === 'waitlist') return 'waitlist_submit';
+    return 'generate_lead';
+  }
+
+  function trackFormConversion(form, payload) {
+    var eventName = formConversionEvent(form);
+    var eventData = {
+      event: eventName,
+      form_id: form.id || '',
+      form_source: payload.source || '',
+      lead_source: 'Website Direct',
+      page_location: payload.page_url || window.location.href || '',
+      page_referrer: payload.referrer || document.referrer || '',
+      utm_source: payload.utm_source || '',
+      utm_medium: payload.utm_medium || '',
+      utm_campaign: payload.utm_campaign || '',
+      utm_content: payload.utm_content || '',
+      utm_term: payload.utm_term || ''
+    };
+
+    // Never send names, email addresses, company details, or other form PII
+    // to Google Analytics. GTM receives only conversion and attribution data.
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(eventData);
+
+    // GA4 is loaded through the sitewide GTM container. Send the same
+    // successful conversion directly to GA4 so it does not depend on a
+    // separate custom-event trigger being created in the GTM workspace.
+    if (typeof window.gtag === 'function') {
+      var gaParams = {};
+      Object.keys(eventData).forEach(function (key) {
+        if (key !== 'event') gaParams[key] = eventData[key];
+      });
+      window.gtag('event', eventName, gaParams);
+    }
+  }
+
   Array.prototype.forEach.call(document.querySelectorAll('.form'), function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -381,6 +428,7 @@
           if (!res.ok) throw new Error('HTTP ' + res.status);
           return res.json().catch(function () { return {}; });
         }).then(function () {
+          trackFormConversion(form, payload);
           showSuccess();
         }).catch(function (err) {
           // Surface a soft error — leave the form visible so the user can retry.
@@ -587,4 +635,3 @@
     apply(false);
   });
 })();
-
