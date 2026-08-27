@@ -370,13 +370,14 @@
     // GA4 is loaded through the sitewide GTM container. Send the same
     // successful conversion directly to GA4 so it does not depend on a
     // separate custom-event trigger being created in the GTM workspace.
-    if (typeof window.gtag === 'function') {
-      var gaParams = {};
-      Object.keys(eventData).forEach(function (key) {
-        if (key !== 'event') gaParams[key] = eventData[key];
-      });
-      window.gtag('event', eventName, gaParams);
+    if (typeof window.gtag !== 'function') {
+      window.gtag = function () { window.dataLayer.push(arguments); };
     }
+    var gaParams = {};
+    Object.keys(eventData).forEach(function (key) {
+      if (key !== 'event') gaParams[key] = eventData[key];
+    });
+    window.gtag('event', eventName, gaParams);
   }
 
   Array.prototype.forEach.call(document.querySelectorAll('.form'), function (form) {
