@@ -8,13 +8,14 @@
 // (e.g. a bundling issue with the Chromium binary) surfaces as a normal JSON
 // error response instead of an opaque Vercel FUNCTION_INVOCATION_FAILED page
 // with no diagnostic information.
-let put, query, renderBriefHtml, renderPdfFromHtml, syncBriefDelivered, requireError;
+let put, query, renderBriefHtml, renderPdfFromHtml, syncBriefDelivered, sendBriefReadyEmail, requireError;
 try {
   put = require('@vercel/blob').put;
   query = require('../lib/db').query;
   renderBriefHtml = require('../lib/pdf-template').renderBriefHtml;
   renderPdfFromHtml = require('../lib/pdf-render').renderPdfFromHtml;
   syncBriefDelivered = require('../lib/activecampaign').syncBriefDelivered;
+  sendBriefReadyEmail = require('../lib/sendgrid').sendBriefReadyEmail;
 } catch (err) {
   requireError = err;
   console.error('try-deliver: module load failed', err);
@@ -109,12 +110,28 @@ module.exports = async (req, res) => {
       console.error(`job ${jobId} delivered but AC sync failed:`, acResult.error);
     }
 
+    // 6. Send the "Brief Ready" email directly via SendGrid with the real
+    //    PDF URL baked in as literal text. AC's merge-tag engine does not
+    //    resolve custom-field tags inside href attributes in raw Custom
+    //    HTML blocks (confirmed via a live test), so AC no longer sends
+    //    this specific email — it still owns the contact/field/tag sync
+    //    above. Best-effort: never blocks marking the job DELIVERED.
+    const emailResult = await sendBriefReadyEmail({
+      email: job.email,
+      firstName: job.first_name,
+      pdfUrl: blob.url,
+    });
+    if (!emailResult.ok && !emailResult.skipped) {
+      console.error(`job ${jobId} delivered but Brief Ready email failed:`, emailResult.error);
+    }
+
     return res.status(200).json({
       ok: true,
       jobId,
       status: 'DELIVERED',
       pdfUrl: blob.url,
       activeCampaign: acResult,
+      email: emailResult,
     });
   } catch (err) {
     console.error(`job ${jobId} failed during PDF/delivery stage`, err);
