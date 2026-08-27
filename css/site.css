@@ -2492,6 +2492,9 @@ body.is-dark-top .site-header:not(.is-stuck) .btn--primary {
 .plans--tight .plan__name { text-align: center; }
 .plans--tight .plan__price { justify-content: center; }
 
+/* Pricing page triple cards: center just the price line inside each box. */
+.plans--triple .plan__price { justify-content: center; }
+
 /* the shared note under the three cards, and the ledger footnote */
 .plan-note { max-width: 62ch; margin-inline: auto; text-align: center; }
 .table-scroll + .footnote { display: block; }

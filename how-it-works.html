@@ -169,6 +169,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-story__block{position:relative;padding:2.75rem 0;border-bottom:1px solid var(--c-line);}
   .hiw-story__block:first-child{padding-top:.4rem;}
   .hiw-story__block:last-child{border-bottom:none;}
+  .hiw-story__block--white::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:var(--c-white);z-index:-1;}
   .hiw-story__block-grid{display:grid;grid-template-columns:1fr;gap:1.75rem;align-items:start;}
   .hiw-story__title{position:relative;font-family:'Playfair Display',serif;font-weight:500;font-size:var(--fs-3);line-height:1.22;letter-spacing:-.01em;color:var(--c-ink);margin:0 0 .95rem;max-width:26ch;}
   .hiw-story__title::before{content:"";position:absolute;left:-2.1rem;top:.32em;width:9px;height:9px;border-radius:50%;background:#D4AF37;transform:translateX(-3.5px);}
@@ -581,7 +582,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </article>
 
-        <article class="hiw-story__block">
+        <article class="hiw-story__block hiw-story__block--white">
           <div class="hiw-story__block-grid">
             <div class="hiw-story__block-copy">
               <h3 class="hiw-story__title">Then, they study <em>your competitors</em>.</h3>
@@ -598,7 +599,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="hiw-story__block-grid">
             <div class="hiw-story__block-copy">
               <h3 class="hiw-story__title">Then, <em>you make sure</em> we got it right.</h3>
-              <p class="hiw-story__body hiw-story__body--sg hiw-declare"><span class="hiw-shift__lead">Simple Genius</span> learns your business, but you know it better than anyone.</p>
+              <p class="hiw-story__body">Simple Genius learns your business, but you know it better than anyone.</p>
               <p class="hiw-story__body hiw-story__body--sg hiw-declare">Nothing gets by <span class="hiw-shift__lead">you</span> without your approval.</p>
               <p class="hiw-story__body">We show you what we learned. You correct what&rsquo;s wrong and confirm what&rsquo;s right.</p>
             </div>
@@ -606,14 +607,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </article>
 
-        <article class="hiw-story__block">
+        <article class="hiw-story__block hiw-story__block--white">
           <div class="hiw-story__block-grid">
             <div class="hiw-story__block-copy">
-              <h3 class="hiw-story__title">Then, a consultant gives you recommendations.</h3>
-              <p class="hiw-story__body">A traditional consultant puts together what they know about you and what they know about your competition.</p>
-              <p class="hiw-story__body">Then they turn that information into recommendations.</p>
+              <h3 class="hiw-story__title">Then, a consultant gives <em>you recommendations</em>.</h3>
+              <p class="hiw-story__body">A traditional consultant turns what they know about you and your competition into recommendations.</p>
               <p class="hiw-story__body hiw-story__body--sg hiw-declare"><span class="hiw-shift__lead">Simple Genius</span> continuously turns what it knows into your next move.</p>
-              <p class="hiw-story__body">As your business changes and your competitors move, Simple Genius keeps putting the two together.</p>
+              <p class="hiw-story__body">As your business and competitors change, Simple Genius keeps up.</p>
             </div>
             <figure class="hiw-story__art shot--zoomable"><img src="img/sg-insight-move-crop.jpg" sizes="(max-width: 900px) 100vw, 60vw" width="1086" height="640" alt="Strategic Insights: your recommended next move, ranked and cited." loading="lazy" decoding="async"></figure>
           </div>
@@ -624,8 +624,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="hiw-story__block-copy">
               <h3 class="hiw-story__title">Eventually, the consultant leaves. <em>Simple Genius stays.</em></h3>
               <p class="hiw-story__body">The project ends. They get on a plane and go help the next company.</p>
-              <p class="hiw-story__body">Your team can put everything Simple Genius knows to work. A private AI for your team, grounded in your company.</p>
-              <p class="hiw-story__body hiw-story__body--sg"><span class="hiw-shift__lead">Your data</span> stays within your four walls.</p>
+              <p class="hiw-story__body hiw-story__body--sg hiw-declare"><span class="hiw-shift__lead">Simple Genius</span> stays in your corner.</p>
+              <p class="hiw-story__body">An AI that your employees can work with, personalized for your business.</p>
+              <p class="hiw-story__body">It&rsquo;s private, rooted in your company, and always current. Your business data stays within your&nbsp;four&nbsp;walls.</p>
             </div>
             <figure class="hiw-story__art shot--zoomable"><img src="img/sg-workstreams-1600w.jpg" srcset="img/sg-workstreams-800w.jpg 800w, img/sg-workstreams-1600w.jpg 1600w, img/sg-workstreams-2400w.jpg 2400w" sizes="(max-width: 900px) 100vw, 60vw" width="1600" height="832" alt="Workstreams: an assistant that already knows your business, for Finance, Sales and Marketing, Operations, People, and Strategy." loading="lazy" decoding="async"></figure>
           </div>
