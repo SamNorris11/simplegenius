@@ -377,6 +377,7 @@
     Object.keys(eventData).forEach(function (key) {
       if (key !== 'event') gaParams[key] = eventData[key];
     });
+    gaParams.send_to = 'G-4Z4HG583H7';
     window.gtag('event', eventName, gaParams);
   }
 
