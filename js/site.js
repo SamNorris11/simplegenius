@@ -346,30 +346,36 @@
     return 'generate_lead';
   }
 
-  function trackFormConversion(form, payload) {
-    var eventName = formConversionEvent(form);
-    var eventData = {
-      event: eventName,
+  function formTrackingData(form) {
+    function fieldValue(name) {
+      var field = form.querySelector('[name="' + name + '"]');
+      return field ? field.value || '' : '';
+    }
+    return {
       form_id: form.id || '',
-      form_source: payload.source || '',
+      form_source: fieldValue('source'),
       lead_source: 'Website Direct',
-      page_location: payload.page_url || window.location.href || '',
-      page_referrer: payload.referrer || document.referrer || '',
-      utm_source: payload.utm_source || '',
-      utm_medium: payload.utm_medium || '',
-      utm_campaign: payload.utm_campaign || '',
-      utm_content: payload.utm_content || '',
-      utm_term: payload.utm_term || ''
+      page_location: fieldValue('page_url') || window.location.href || '',
+      page_referrer: fieldValue('referrer') || document.referrer || '',
+      utm_source: fieldValue('utm_source'),
+      utm_medium: fieldValue('utm_medium'),
+      utm_campaign: fieldValue('utm_campaign'),
+      utm_content: fieldValue('utm_content'),
+      utm_term: fieldValue('utm_term')
     };
+  }
 
-    // Never send names, email addresses, company details, or other form PII
-    // to Google Analytics. GTM receives only conversion and attribution data.
+  function trackGaEvent(eventName, params) {
+    var eventData = { event: eventName };
+    Object.keys(params || {}).forEach(function (key) {
+      eventData[key] = params[key];
+    });
+
+    // Analytics receives behavioral and attribution metadata only. Never add
+    // names, email addresses, company details, messages, or other form PII.
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(eventData);
 
-    // GA4 is loaded through the sitewide GTM container. Send the same
-    // successful conversion directly to GA4 so it does not depend on a
-    // separate custom-event trigger being created in the GTM workspace.
     if (typeof window.gtag !== 'function') {
       window.gtag = function () { window.dataLayer.push(arguments); };
     }
@@ -381,7 +387,42 @@
     window.gtag('event', eventName, gaParams);
   }
 
+  function trackFormConversion(form, payload) {
+    var eventName = formConversionEvent(form);
+    var eventData = {
+      form_id: form.id || '',
+      form_source: payload.source || '',
+      lead_source: 'Website Direct',
+      page_location: payload.page_url || window.location.href || '',
+      page_referrer: payload.referrer || document.referrer || '',
+      utm_source: payload.utm_source || '',
+      utm_medium: payload.utm_medium || '',
+      utm_campaign: payload.utm_campaign || '',
+      utm_content: payload.utm_content || '',
+      utm_term: payload.utm_term || ''
+    };
+    trackGaEvent(eventName, eventData);
+  }
+
   Array.prototype.forEach.call(document.querySelectorAll('.form'), function (form) {
+    var startEvent = form.getAttribute('data-start-event');
+    var startTracked = false;
+    function trackStartOnce(e) {
+      if (startTracked || !startEvent) return;
+      if (e && e.target && e.target.type === 'hidden') return;
+      startTracked = true;
+      refreshAttributionFields(form);
+      trackGaEvent(startEvent, formTrackingData(form));
+      form.removeEventListener('focusin', trackStartOnce);
+      form.removeEventListener('input', trackStartOnce);
+      form.removeEventListener('change', trackStartOnce);
+    }
+    if (startEvent) {
+      form.addEventListener('focusin', trackStartOnce);
+      form.addEventListener('input', trackStartOnce);
+      form.addEventListener('change', trackStartOnce);
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!validate(form)) return;
@@ -454,6 +495,23 @@
 
     Array.prototype.forEach.call(form.querySelectorAll('.form__input'), function (input) {
       input.addEventListener('input', function () { clearError(input.closest('.form__group')); });
+    });
+  });
+
+  // Calendly's inline embed posts this message only after a booking is
+  // completed. The listener is harmless until a Calendly embed is present.
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://calendly.com') return;
+    if (!e.data || e.data.event !== 'calendly.event_scheduled') return;
+    trackGaEvent('call_scheduled', {
+      booking_platform: 'calendly',
+      page_location: window.location.href || '',
+      page_referrer: document.referrer || '',
+      utm_source: storedAttribution('utm_source'),
+      utm_medium: storedAttribution('utm_medium'),
+      utm_campaign: storedAttribution('utm_campaign'),
+      utm_content: storedAttribution('utm_content'),
+      utm_term: storedAttribution('utm_term')
     });
   });
 
