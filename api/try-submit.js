@@ -46,13 +46,34 @@ module.exports = async (req, res) => {
   if (!emailOk) {
     return res.status(400).json({ ok: false, error: 'Invalid email address.' });
   }
+  const email = String(body.email).trim().toLowerCase();
+
+  // One scan per email address. Blocks repeat/abuse submissions from the
+  // same email; the only exception is a prior job that hard-FAILED (a
+  // pipeline/system error on our end, not a delivered scan) so a real
+  // person isn't permanently locked out by our own bug.
+  try {
+    const { rows: existing } = await query(
+      `SELECT id, status FROM brief_jobs WHERE email = $1 ORDER BY created_at DESC LIMIT 1`,
+      [email]
+    );
+    if (existing[0] && existing[0].status !== 'FAILED') {
+      return res.status(429).json({
+        ok: false,
+        error: 'A Competitive AI Scan has already been run for this email address. Check your inbox for the report.'
+      });
+    }
+  } catch (err) {
+    console.error('try-submit: duplicate-email check failed', err);
+    return res.status(500).json({ ok: false, error: 'Could not save your submission. Please try again in a minute.' });
+  }
 
   const id = crypto.randomUUID();
   const params = [
     id,
     String(body.firstName).trim(),
     String(body.lastName).trim(),
-    String(body.email).trim().toLowerCase(),
+    email,
     body.role ? String(body.role).trim() : null,
     String(body.company).trim(),
     normalizeUrl(body.website),
