@@ -169,6 +169,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-story__block{position:relative;padding:2.75rem 0;border-bottom:1px solid var(--c-line);}
   .hiw-story__block:first-child{padding-top:.4rem;}
   .hiw-story__block:last-child{border-bottom:none;}
+  .hiw-story__block--white::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:var(--c-white);z-index:-1;}
   .hiw-story__block-grid{display:grid;grid-template-columns:1fr;gap:1.75rem;align-items:start;}
   .hiw-story__title{position:relative;font-family:'Playfair Display',serif;font-weight:500;font-size:var(--fs-3);line-height:1.22;letter-spacing:-.01em;color:var(--c-ink);margin:0 0 .95rem;max-width:26ch;}
   .hiw-story__title::before{content:"";position:absolute;left:-2.1rem;top:.32em;width:9px;height:9px;border-radius:50%;background:#D4AF37;transform:translateX(-3.5px);}
@@ -581,7 +582,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </article>
 
-        <article class="hiw-story__block">
+        <article class="hiw-story__block hiw-story__block--white">
           <div class="hiw-story__block-grid">
             <div class="hiw-story__block-copy">
               <h3 class="hiw-story__title">Then, they study <em>your competitors</em>.</h3>
@@ -606,7 +607,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </article>
 
-        <article class="hiw-story__block">
+        <article class="hiw-story__block hiw-story__block--white">
           <div class="hiw-story__block-grid">
             <div class="hiw-story__block-copy">
               <h3 class="hiw-story__title">Then, a consultant gives <em>you recommendations</em>.</h3>
