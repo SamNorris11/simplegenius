@@ -169,7 +169,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .hiw-story__block{position:relative;padding:2.75rem 0;border-bottom:1px solid var(--c-line);}
   .hiw-story__block:first-child{padding-top:.4rem;}
   .hiw-story__block:last-child{border-bottom:none;}
-  .hiw-story__block--white::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:var(--c-white);z-index:-1;}
+  .hiw-story__block--white::before{content:"";position:absolute;top:0;bottom:0;left:var(--hiw-bl,50%);width:var(--hiw-bw,100vw);transform:var(--hiw-bt,translateX(-50%));background:var(--c-white);z-index:-1;}
   .hiw-story__block-grid{display:grid;grid-template-columns:1fr;gap:1.75rem;align-items:start;}
   .hiw-story__title{position:relative;font-family:'Playfair Display',serif;font-weight:500;font-size:var(--fs-3);line-height:1.22;letter-spacing:-.01em;color:var(--c-ink);margin:0 0 .95rem;max-width:26ch;}
   .hiw-story__title::before{content:"";position:absolute;left:-2.1rem;top:.32em;width:9px;height:9px;border-radius:50%;background:#D4AF37;transform:translateX(-3.5px);}
@@ -629,7 +629,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <p class="hiw-story__body">An AI that your employees can work with, personalized for your business.</p>
               <p class="hiw-story__body" style="max-width:none;">It&rsquo;s private, rooted in your company, and always current. Your business data stays within your&nbsp;four&nbsp;walls.</p>
             </div>
-            <figure class="hiw-story__art shot--zoomable"><img src="img/sg-workstreams-1600w.jpg" srcset="img/sg-workstreams-800w.jpg 800w, img/sg-workstreams-1600w.jpg 1600w, img/sg-workstreams-2400w.jpg 2400w" sizes="(max-width: 900px) 100vw, 60vw" width="1600" height="832" alt="Workstreams: an assistant that already knows your business, for Finance, Sales and Marketing, Operations, People, and Strategy." loading="lazy" decoding="async"></figure>
+            <figure class="hiw-story__art shot--zoomable"><img src="img/sg-workstreams-1600w.jpg" srcset="img/sg-workstreams-800w.jpg 800w, img/sg-workstreams-1600w.jpg 1600w, img/sg-workstreams-2400w.jpg 2400w" sizes="(max-width: 900px) 100vw, 60vw" width="1600" height="763" alt="Workstreams: an assistant that already knows your business, for Finance, Sales and Marketing, Operations, People, and Strategy." loading="lazy" decoding="async"></figure>
           </div>
         </article>
       </div>
@@ -713,5 +713,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script src="js/site.js?v=1787276638" defer></script>
+<script>(function(){function fixBleed(){document.querySelectorAll('.hiw-story__block--white').forEach(function(el){var r=el.getBoundingClientRect();el.style.setProperty('--hiw-bl',(-r.left)+'px');el.style.setProperty('--hiw-bw',document.documentElement.clientWidth+'px');el.style.setProperty('--hiw-bt','none');});}fixBleed();window.addEventListener('resize',fixBleed);window.addEventListener('load',fixBleed);})();</script>
 </body>
 </html>
