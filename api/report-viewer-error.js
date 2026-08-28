@@ -25,8 +25,28 @@ async function ensureTable() {
 }
 
 module.exports = async (req, res) => {
+  if (req.method === 'GET') {
+    // Internal-only diagnostic view, gated by a private key so this data
+    // (PDF urls, user agents, error text) is never publicly readable.
+    const key = req.query && req.query.key;
+    const expected = process.env.VIEWER_DIAG_KEY;
+    if (!expected || key !== expected) {
+      return res.status(404).end();
+    }
+    try {
+      await ensureTable();
+      const { rows } = await query(
+        `SELECT id, created_at, pdf_url, user_agent, error_name, error_message, stage
+         FROM viewer_errors ORDER BY created_at DESC LIMIT 25`
+      );
+      return res.status(200).json({ ok: true, count: rows.length, rows });
+    } catch (e) {
+      return res.status(500).json({ ok: false, error: e && e.message });
+    }
+  }
+
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
+    res.setHeader('Allow', 'GET, POST');
     return res.status(405).json({ ok: false });
   }
 
