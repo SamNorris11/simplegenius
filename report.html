@@ -89,6 +89,52 @@
 <div id="viewerWrap"></div>
 <footer class="note">Links in this report open in a new tab so you never lose your place. &middot; <a href="https://www.simplegenius.com" style="color:var(--steel)">simplegenius.com</a></footer>
 
+<script>
+  // Compatibility polyfill: our self-hosted pdf.js build (v6.2.108) calls the
+  // brand-new native Uint8Array.prototype.toHex()/toBase64() methods (and the
+  // static Uint8Array.fromHex()/fromBase64()). Those only landed in very
+  // recent Chrome releases -- on a browser even a little behind, pdf.js
+  // throws "toHex is not a function" deep inside document loading and the
+  // whole report fails to render. This is the actual root cause of the
+  // intermittent failures. Polyfilling here, in a plain script that always
+  // runs before the module script below, fixes it for every browser.
+  (function () {
+    function toHexPoly() {
+      let out = "";
+      for (let i = 0; i < this.length; i++) out += this[i].toString(16).padStart(2, "0");
+      return out;
+    }
+    function toBase64Poly() {
+      let bin = "";
+      for (let i = 0; i < this.length; i++) bin += String.fromCharCode(this[i]);
+      return btoa(bin);
+    }
+    function fromHexPoly(hex) {
+      const clean = String(hex).replace(/\s/g, "");
+      const out = new Uint8Array(clean.length / 2);
+      for (let i = 0; i < out.length; i++) out[i] = parseInt(clean.substr(i * 2, 2), 16);
+      return out;
+    }
+    function fromBase64Poly(b64) {
+      const bin = atob(b64);
+      const out = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+      return out;
+    }
+    if (typeof Uint8Array.prototype.toHex !== "function") {
+      Uint8Array.prototype.toHex = toHexPoly;
+    }
+    if (typeof Uint8Array.prototype.toBase64 !== "function") {
+      Uint8Array.prototype.toBase64 = toBase64Poly;
+    }
+    if (typeof Uint8Array.fromHex !== "function") {
+      Uint8Array.fromHex = fromHexPoly;
+    }
+    if (typeof Uint8Array.fromBase64 !== "function") {
+      Uint8Array.fromBase64 = fromBase64Poly;
+    }
+  })();
+</script>
 <script type="module">
 // Self-hosted on simplegenius.com (not loaded from a third-party CDN).
 // A prior version loaded these from cdn.jsdelivr.net, which could be
@@ -269,16 +315,14 @@ function showInlineFallback(url, err) {
   // page, still sees the report right here, and still has Download PDF
   // -- they just lose the forced new-tab link behavior in this fallback
   // path specifically, since that depends on the canvas overlay working.
+  // Sam's explicit call: never show a status box, error text, or "here's
+  // what went wrong" message to the visitor. Just show the PDF, silently.
+  // The diagnostic still goes to reportViewerError() so we see it, but the
+  // visitor sees nothing except the report.
   wrapEl.innerHTML = "";
   pageCountEl.textContent = "";
-  const reason = err && (err.message || err.name) ? `${err.name || "Error"}: ${err.message || ""}` : String(err);
-  statusEl.innerHTML = `
-    <div style="margin-bottom:14px;">Showing the report below. <a href="${url}" target="_blank" rel="noopener">Open in a new tab instead</a>.</div>
-    <div style="font-size:11px;color:#B9B7B0;font-family:monospace;word-break:break-all;">Diagnostic: ${reason.replace(/</g, "&lt;")}</div>
-  `;
-  statusEl.style.maxWidth = "900px";
-  statusEl.style.textAlign = "left";
-  statusEl.classList.add("show");
+  statusEl.innerHTML = "";
+  statusEl.classList.remove("show");
   const iframe = document.createElement("iframe");
   iframe.src = url;
   iframe.style.width = "100%";
