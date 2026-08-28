@@ -235,6 +235,40 @@ async function renderReportWithRetry(url) {
   }
 }
 
+function showInlineFallback(url, err) {
+  // Never dead-end on a bare error card. If the enhanced canvas + link
+  // overlay view fails for any reason (seen in the wild on a real
+  // browser even with pdf.js self-hosted -- most likely a privacy /
+  // anti-fingerprinting extension blocking canvas readback, which is
+  // consistent with failing regardless of where pdf.js is served from),
+  // fall back to showing the actual PDF inline via the browser's native
+  // PDF renderer in an iframe. The visitor still lands on this branded
+  // page, still sees the report right here, and still has Download PDF
+  // -- they just lose the forced new-tab link behavior in this fallback
+  // path specifically, since that depends on the canvas overlay working.
+  wrapEl.innerHTML = "";
+  pageCountEl.textContent = "";
+  const reason = err && (err.message || err.name) ? `${err.name || "Error"}: ${err.message || ""}` : String(err);
+  statusEl.innerHTML = `
+    <div style="margin-bottom:14px;">Showing the report below. <a href="${url}" target="_blank" rel="noopener">Open in a new tab instead</a>.</div>
+    <div style="font-size:11px;color:#B9B7B0;font-family:monospace;word-break:break-all;">Diagnostic: ${reason.replace(/</g, "&lt;")}</div>
+  `;
+  statusEl.style.maxWidth = "900px";
+  statusEl.style.textAlign = "left";
+  statusEl.classList.add("show");
+  const iframe = document.createElement("iframe");
+  iframe.src = url;
+  iframe.style.width = "100%";
+  iframe.style.maxWidth = "900px";
+  iframe.style.height = "calc(100vh - 220px)";
+  iframe.style.minHeight = "600px";
+  iframe.style.border = "1px solid var(--border)";
+  iframe.style.borderRadius = "6px";
+  iframe.style.display = "block";
+  iframe.style.margin = "0 auto";
+  wrapEl.appendChild(iframe);
+}
+
 const rawSrc = getSrcParam();
 const src = validateSrc(rawSrc);
 
@@ -245,9 +279,7 @@ if (!src) {
 } else {
   renderReportWithRetry(src).catch((err) => {
     console.error("Report render failed after retry:", err);
-    showStatus(
-      `We couldn't load the report here. <a href="${src}" target="_blank" rel="noopener">Open the PDF directly instead</a>.`
-    );
+    showInlineFallback(src, err);
   });
 }
 </script>
