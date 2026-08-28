@@ -7335,7 +7335,7 @@ body.lightbox-open { overflow: hidden; }
 .film--framed .film__coming-label{ line-height: 1; }
 @media (max-width: 640px){
   .film--framed{ padding: 8px; }
-  .film--framed .film__stage{ aspect-ratio: 4 / 3; }
+  .film--framed .film__stage{ aspect-ratio: 16 / 9; }
   .film--framed .film__q{ font-size: 1.15rem; }
   .film--framed .film__coming{
     bottom: 14px; right: 14px;
@@ -7429,7 +7429,7 @@ body.lightbox-open { overflow: hidden; }
 /* mobile: don't force single-fold, but keep compact rhythm */
 @media (max-width: 720px){
   .hero--fold{ min-height: 0; padding-bottom: var(--sp-6); }
-  .film--fold .film__stage{ aspect-ratio: 4 / 3; max-height: none; }
+  .film--fold .film__stage{ aspect-ratio: 16 / 9; max-height: none; }
 }
 
 /* =========================================================================
@@ -9426,7 +9426,7 @@ body.lightbox-open { overflow: hidden; }
     line-height: 1.05;
   }
   .film--fold { width: 82%; max-width: 82%; }
-  .film--fold .film__stage { aspect-ratio: 4 / 3; }
+  .film--fold .film__stage { aspect-ratio: 16 / 9; }
 
   /* Buttons: shorter (auto width, not full-bleed). Text size unchanged. */
   .hero__actions,
