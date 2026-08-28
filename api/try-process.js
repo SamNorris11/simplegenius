@@ -30,7 +30,7 @@
 const { query } = require('../lib/db');
 const { callPerplexity, extractJson } = require('../lib/perplexity');
 const { researchPrompt, synthesisPrompt, insightsPrompt } = require('../lib/prompts');
-const { runQc, normalizeSynthesis } = require('../lib/qc');
+const { runQc, normalizeSynthesis, normalizeInsights } = require('../lib/qc');
 
 const MAX_ATTEMPTS = 3;
 
@@ -123,7 +123,7 @@ async function runSynthesisStage(job) {
 }
 
 async function runInsightsStage(job) {
-  const insights = await callWithRetry(() => insightsPrompt({ synthesis: job.synthesis, target: job.research_target }), 'insights');
+  const insights = normalizeInsights(await callWithRetry(() => insightsPrompt({ synthesis: job.synthesis, target: job.research_target }), 'insights'));
   await setStatus(job.id, 'FACT_CHECKING', { insights: JSON.stringify(insights) });
   return { ...job, status: 'FACT_CHECKING', insights };
 }
