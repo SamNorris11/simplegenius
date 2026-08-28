@@ -6,7 +6,7 @@
 <title>Your Simple Genius Report</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/favicon-32.png">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pdfjs-dist@6.2.108/web/pdf_viewer.css">
+<link rel="stylesheet" href="/vendor/pdfjs/web/pdf_viewer.css">
 <style>
   :root{
     --charcoal:#1D1D1D;
@@ -90,10 +90,16 @@
 <footer class="note">Links in this report open in a new tab so you never lose your place. &middot; <a href="https://www.simplegenius.com" style="color:var(--steel)">simplegenius.com</a></footer>
 
 <script type="module">
-import * as pdfjsLib from "https://cdn.jsdelivr.net/npm/pdfjs-dist@6.2.108/build/pdf.mjs";
-import { SimpleLinkService, LinkTarget } from "https://cdn.jsdelivr.net/npm/pdfjs-dist@6.2.108/web/pdf_viewer.mjs";
+// Self-hosted on simplegenius.com (not loaded from a third-party CDN).
+// A prior version loaded these from cdn.jsdelivr.net, which could be
+// slow, rate-limited, or blocked by ad blockers / privacy extensions on
+// a given visitor's machine -- causing an intermittent, unreproducible
+// "couldn't load the report" failure. Serving them from our own domain
+// removes that entire class of failure.
+import * as pdfjsLib from "/vendor/pdfjs/build/pdf.mjs";
+import { SimpleLinkService, LinkTarget } from "/vendor/pdfjs/web/pdf_viewer.mjs";
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@6.2.108/build/pdf.worker.mjs";
+pdfjsLib.GlobalWorkerOptions.workerSrc = "/vendor/pdfjs/build/pdf.worker.mjs";
 
 const ALLOWED_HOST_SUFFIX = ".public.blob.vercel-storage.com";
 const statusEl = document.getElementById("status");
@@ -208,6 +214,27 @@ async function renderReport(url) {
   }
 }
 
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// One automatic retry before giving up. Most real failures here are
+// transient (a slow first fetch of the PDF or the pdf.js worker, a
+// dropped request) rather than permanent, so a single retry after a
+// short pause clears the vast majority of them without ever showing
+// the visitor an error at all.
+async function renderReportWithRetry(url) {
+  try {
+    await renderReport(url);
+  } catch (err) {
+    console.error("Report render failed, retrying once:", err);
+    wrapEl.innerHTML = "";
+    pageCountEl.textContent = "";
+    await wait(1200);
+    await renderReport(url);
+  }
+}
+
 const rawSrc = getSrcParam();
 const src = validateSrc(rawSrc);
 
@@ -216,8 +243,8 @@ if (!src) {
     "This report link isn't valid. Please reply to the email you received and we'll resend it directly."
   );
 } else {
-  renderReport(src).catch((err) => {
-    console.error("Report render failed:", err);
+  renderReportWithRetry(src).catch((err) => {
+    console.error("Report render failed after retry:", err);
     showStatus(
       `We couldn't load the report here. <a href="${src}" target="_blank" rel="noopener">Open the PDF directly instead</a>.`
     );
