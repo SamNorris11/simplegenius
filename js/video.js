@@ -48,8 +48,8 @@
   video = document.createElement('video');
   video.className = 'film__video';
   video.muted = true;
-  video.loop = false;
-  video.preload = 'metadata';
+  video.loop = true;
+  video.preload = 'auto';
   video.setAttribute('playsinline', '');
   var poster = stage.getAttribute('data-poster');
   if (poster) video.poster = poster;
