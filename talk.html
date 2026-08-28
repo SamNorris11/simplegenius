@@ -31,6 +31,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     text-wrap: balance;
   }
   .talk-nudge__title em { color: #D4AF37; font-style: italic; }
+
+  /* Form intro — flavor heading inside the booking form card */
+  .form__intro { margin-bottom: var(--sp-6); }
+  .form__intro .quiet__title {
+    font-family: 'Playfair Display', serif; font-weight: 500;
+    font-size: clamp(1.6rem, 2.7vw, 2.15rem); line-height: 1.2;
+    letter-spacing: -.015em; margin: 0;
+  }
+  .form__intro .quiet__title em { font-style: normal; color: #D4AF37; }
+  .form__intro .section__lede { margin-top: var(--sp-2); text-align: center; }
 </style>
 </head>
 <body class="is-dark-top">
@@ -127,19 +137,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="page-head page-head--ink">
   <div class="container page-head__inner">
     <span class="eyebrow">Let&rsquo;s talk.</span>
-    <h1 class="page-head__title">Let&rsquo;s get to know <em>each other.</em></h1>
+    <h1 class="page-head__title">Let&rsquo;s get to know each other.</h1>
   </div>
 </section>
 
 <!-- ========================================================= B3, BOOKING -->
 <section class="section section--tight section--ground section--seam">
   <div class="container container--narrow">
-      <div class="section__head section__head--tight">
-        <h2 class="display display--sm">We get to know you, and your company, and talk to you about what it looks like to work with Simple Genius.</h2>
-        <p class="section__lede">Fill out the form below to pick a time.</p>
-      </div>
       <div>
         <form class="form" id="talk-form" data-status="talk-status" data-required-message="invite" data-submitting="Scheduling&hellip;" novalidate>
+          <div class="form__intro">
+            <h2 class="quiet__title quiet__title--center">Show Us What You&rsquo;re Building.<br><em>We&rsquo;ll Show You How We Can Help.</em></h2>
+            <p class="section__lede">Fill out the form below to schedule a time.</p>
+          </div>
           <div class="form__group">
             <label class="form__label" for="talk-name">Your name</label>
             <input class="form__input" id="talk-name" name="fullName" type="text" autocomplete="name" data-required required>
