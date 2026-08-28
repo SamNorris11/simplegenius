@@ -369,9 +369,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <figure class="film film--framed film--fold" data-placeholder="homepage-video">
       <div class="film__stage" data-src="video/homepage-hero.mp4" data-poster="img/homepage-hero-poster.jpg"></div>
-      <button class="film__play" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
-        <span class="film__play-label">Sound</span>
+      <button class="film__unmute" type="button" aria-label="Click to hear this video with sound">
+        <span class="film__unmute-card">
+          <svg class="film__unmute-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18 6a8 8 0 0 1 0 12"/></svg>
+          <span class="film__unmute-title">Your Video Is Playing</span>
+          <span class="film__unmute-sub">Click To Unmute</span>
+        </span>
       </button>
     </figure>
 

@@ -2577,33 +2577,50 @@ body.is-dark-top .site-header:not(.is-stuck) .btn--primary {
   text-transform: uppercase;
   color: var(--c-on-dark-2);
 }
-/* the play control — bottom right, over the plate or over the film */
-.film__play {
+/* the unmute prompt — full-stage click target with a centered card, styled
+   after the "your video is playing, click to unmute" pattern. One click
+   unmutes, restarts the film from the top, and removes itself for good. */
+.film__unmute {
   position: absolute;
-  right: var(--sp-5);
-  bottom: var(--sp-5);
+  inset: 0;
   z-index: 2;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: var(--sp-3);
-  min-height: var(--ctl-h);
-  padding: var(--sp-2) var(--sp-5) var(--sp-2) var(--sp-3);
-  background: rgba(13,13,12,.72);
-  color: var(--c-on-dark);
+  justify-content: center;
+  background: rgba(13,13,12,.28);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.film__unmute-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-5) var(--sp-7);
+  background: rgba(13,13,12,.82);
   border: var(--bw) solid var(--c-line-dark-strong);
-  border-radius: var(--r-pill);
+  border-radius: var(--r-md);
+  transition: border-color var(--dur-2) var(--ease);
+}
+.film__unmute:hover .film__unmute-card { border-color: var(--c-gold); }
+.film__unmute-icon { width: var(--sp-7); height: var(--sp-7); color: var(--c-gold); flex: 0 0 auto; }
+.film__unmute-title {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--c-on-dark);
+}
+.film__unmute-sub {
   font-family: var(--ff-sans);
   font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  cursor: pointer;
-  transition: border-color var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
+  color: var(--c-gold);
 }
-.film__play:hover { border-color: var(--c-gold); color: var(--c-gold); }
-.film__play svg { width: var(--sp-5); height: var(--sp-5); flex: 0 0 auto; }
 /* with JS off nothing can play, so the control is not shown at all */
-.no-js .film__play { display: none; }
+.no-js .film__unmute { display: none; }
 .film__caption {
   margin-top: var(--sp-4);
   padding-top: var(--sp-4);
@@ -2639,12 +2656,13 @@ body.is-dark-top .site-header:not(.is-stuck) .btn--primary {
   .film__rule { width: var(--sp-8); }
   .film__q { font-size: var(--fs-6); max-width: 26ch; }
   .film__sub { display: none; }
-  .film__play {
-    right: var(--sp-3);
-    bottom: var(--sp-3);
-    padding: var(--sp-2) var(--sp-4) var(--sp-2) var(--sp-3);
+  .film__unmute-card {
+    padding: var(--sp-4) var(--sp-5);
+    gap: var(--sp-1);
   }
-  .film__play-label { display: none; }
+  .film__unmute-icon { width: var(--sp-6); height: var(--sp-6); }
+  .film__unmute-title { font-size: var(--fs-xs); }
+  .film__unmute-sub { font-size: 10px; }
 }
 
 /* §2.3 RECOGNITION — one hairline runs behind the row and through every beat,
@@ -5159,6 +5177,13 @@ html:not(.no-js) .reveal.is-visible { opacity: 1; translate: 0 0; }
 }
 .calendar-plate__art { width: 100%; height: auto; }
 .calendar-plate__note { margin: 0; font-size: var(--fs-sm); color: var(--c-mute); }
+.calendar-plate[data-placeholder="calendly-embed"] {
+  min-height: 22rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-style: dashed;
+}
 
 /* three-up beats row (call agenda) — shares .beat styling from site.css */
 /* NB no grid-template-columns here: .beats is a 12-track grid and

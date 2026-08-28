@@ -19,16 +19,10 @@
   if (!film) return;
 
   var stage = film.querySelector('.film__stage');
-  var btn = film.querySelector('.film__play');
-  var label = film.querySelector('.film__play-label');
+  var btn = film.querySelector('.film__unmute');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var src = stage ? stage.getAttribute('data-src') : null;
   var video = null;
-
-  var say = function (text, aria) {
-    if (label) label.textContent = text;
-    if (btn) btn.setAttribute('aria-label', aria);
-  };
 
   /* ---- no file yet: the placeholder is the whole behaviour --------------
      Nothing is inserted into the stage. An empty <video> with no src and no
@@ -36,10 +30,7 @@
      shipped: the plate, the question and the caption are the whole unit until
      a file exists. */
   if (!stage || !src) {
-    if (btn) {
-      btn.disabled = true;
-      say('Film coming', 'The film is not published yet');
-    }
+    if (btn) btn.remove();
     return;
   }
 
@@ -73,17 +64,14 @@
     io.observe(video);
   }
 
+  /* one click: unmute, restart from the top, and the prompt is gone for good
+     — this session never asks again. */
   if (btn) {
-    say('Sound', 'Play the film with sound');
     btn.addEventListener('click', function () {
-      if (video.muted) {
-        video.muted = false;
-        say('Mute', 'Mute the film');
-        start();
-      } else {
-        video.muted = true;
-        say('Sound', 'Play the film with sound');
-      }
-    });
+      video.currentTime = 0;
+      video.muted = false;
+      start();
+      btn.remove();
+    }, { once: true });
   }
 })();
