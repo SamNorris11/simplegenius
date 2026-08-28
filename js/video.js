@@ -78,7 +78,6 @@
     btn.addEventListener('click', function () {
       if (video.muted) {
         video.muted = false;
-        video.controls = true;
         say('Mute', 'Mute the film');
         start();
       } else {
