@@ -54,3 +54,20 @@ CREATE TABLE IF NOT EXISTS brief_jobs (
 CREATE INDEX IF NOT EXISTS idx_brief_jobs_status ON brief_jobs (status);
 CREATE INDEX IF NOT EXISTS idx_brief_jobs_created_at ON brief_jobs (created_at);
 CREATE INDEX IF NOT EXISTS idx_brief_jobs_email ON brief_jobs (email);
+
+-- Automatic client-side diagnostics from the /report PDF viewer. Populated
+-- by api/report-viewer-error.js whenever the in-page renderer fails in a
+-- real visitor's browser, so we can see the exact error without needing
+-- the visitor to send a screenshot.
+CREATE TABLE IF NOT EXISTS viewer_errors (
+  id             SERIAL PRIMARY KEY,
+  created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
+  pdf_url        TEXT,
+  user_agent     TEXT,
+  error_name     TEXT,
+  error_message  TEXT,
+  error_stack    TEXT,
+  stage          TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_viewer_errors_created_at ON viewer_errors (created_at);

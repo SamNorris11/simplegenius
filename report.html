@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Simple Genius Report</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon-32.png">
+<link rel="stylesheet" href="/vendor/pdfjs/web/pdf_viewer.css">
+<style>
+  :root{
+    --charcoal:#1D1D1D;
+    --gold:#D4AF37;
+    --cloud:#F7F7F7;
+    --steel:#5A5A5A;
+    --border:#E5E3DD;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--cloud);font-family:Arial,Helvetica,sans-serif;color:var(--charcoal);}
+  header{
+    position:sticky;top:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;
+    background:var(--charcoal);
+    padding:12px 20px;
+    border-bottom:4px solid var(--gold);
+  }
+  header .brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  header img{display:block;height:28px;width:auto;flex:none;}
+  header .brand-text{color:#fff;font-size:14px;font-weight:bold;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  header .actions{display:flex;align-items:center;gap:8px;flex:none;}
+  header button, header a.btn{
+    appearance:none;border:1px solid #3A3A3A;background:#2A2A2A;color:#fff;
+    font-size:13px;font-weight:bold;padding:8px 12px;border-radius:4px;
+    cursor:pointer;text-decoration:none;line-height:1;white-space:nowrap;
+  }
+  header a.btn.gold{background:var(--gold);color:var(--charcoal);border-color:var(--gold);}
+  header button:hover, header a.btn:hover{opacity:0.88;}
+  #status{
+    display:none;
+    max-width:640px;margin:64px auto;padding:28px 24px;
+    background:#fff;border:1px solid var(--border);border-radius:6px;
+    text-align:center;color:var(--steel);font-size:15px;line-height:1.6;
+  }
+  #status.show{display:block;}
+  #status a{color:var(--gold);font-weight:bold;}
+  #pageCount{color:#cfcfcf;font-size:13px;white-space:nowrap;}
+  #viewerWrap{
+    display:flex;flex-direction:column;align-items:center;
+    padding:24px 12px 64px;
+    gap:20px;
+  }
+  .pageContainer{
+    position:relative;
+    background:#fff;
+    box-shadow:0 2px 14px rgba(0,0,0,0.14);
+    max-width:100%;
+  }
+  .pageContainer canvas{display:block;max-width:100%;height:auto;}
+  .pageContainer .annotationLayer{
+    position:absolute;top:0;left:0;
+  }
+  .pageContainer .annotationLayer a[href]{
+    position:absolute;
+  }
+  footer.note{
+    text-align:center;color:var(--steel);font-size:12px;padding:0 20px 40px;
+  }
+  @media (max-width:640px){
+    header .brand-text{display:none;}
+    header{padding:10px 12px;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <img src="/img/logo-dark-112h.png" alt="Simple Genius">
+    <span class="brand-text">Your Competitor Report</span>
+  </div>
+  <div class="actions">
+    <span id="pageCount"></span>
+    <a class="btn" id="downloadBtn" href="#" download>Download PDF</a>
+    <a class="btn gold" href="https://www.simplegenius.com" target="_blank" rel="noopener">Let's talk</a>
+  </div>
+</header>
+
+<div id="status"></div>
+<div id="viewerWrap"></div>
+<footer class="note">Links in this report open in a new tab so you never lose your place. &middot; <a href="https://www.simplegenius.com" style="color:var(--steel)">simplegenius.com</a></footer>
+
+<script>
+  // Compatibility polyfill: our self-hosted pdf.js build (v6.2.108) calls the
+  // brand-new native Uint8Array.prototype.toHex()/toBase64() methods (and the
+  // static Uint8Array.fromHex()/fromBase64()). Those only landed in very
+  // recent Chrome releases -- on a browser even a little behind, pdf.js
+  // throws "toHex is not a function" deep inside document loading and the
+  // whole report fails to render. This is the actual root cause of the
+  // intermittent failures. Polyfilling here, in a plain script that always
+  // runs before the module script below, fixes it for every browser.
+  (function () {
+    function toHexPoly() {
+      let out = "";
+      for (let i = 0; i < this.length; i++) out += this[i].toString(16).padStart(2, "0");
+      return out;
+    }
+    function toBase64Poly() {
+      let bin = "";
+      for (let i = 0; i < this.length; i++) bin += String.fromCharCode(this[i]);
+      return btoa(bin);
+    }
+    function fromHexPoly(hex) {
+      const clean = String(hex).replace(/\s/g, "");
+      const out = new Uint8Array(clean.length / 2);
+      for (let i = 0; i < out.length; i++) out[i] = parseInt(clean.substr(i * 2, 2), 16);
+      return out;
+    }
+    function fromBase64Poly(b64) {
+      const bin = atob(b64);
+      const out = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+      return out;
+    }
+    if (typeof Uint8Array.prototype.toHex !== "function") {
+      Uint8Array.prototype.toHex = toHexPoly;
+    }
+    if (typeof Uint8Array.prototype.toBase64 !== "function") {
+      Uint8Array.prototype.toBase64 = toBase64Poly;
+    }
+    if (typeof Uint8Array.fromHex !== "function") {
+      Uint8Array.fromHex = fromHexPoly;
+    }
+    if (typeof Uint8Array.fromBase64 !== "function") {
+      Uint8Array.fromBase64 = fromBase64Poly;
+    }
+  })();
+</script>
+<script type="module">
+// Self-hosted on simplegenius.com (not loaded from a third-party CDN).
+// A prior version loaded these from cdn.jsdelivr.net, which could be
+// slow, rate-limited, or blocked by ad blockers / privacy extensions on
+// a given visitor's machine -- causing an intermittent, unreproducible
+// "couldn't load the report" failure. Serving them from our own domain
+// removes that entire class of failure.
+import * as pdfjsLib from "/vendor/pdfjs/build/pdf.mjs";
+import { SimpleLinkService, LinkTarget } from "/vendor/pdfjs/web/pdf_viewer.mjs";
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = "/vendor/pdfjs/build/pdf.worker.mjs";
+
+const ALLOWED_HOST_SUFFIX = ".public.blob.vercel-storage.com";
+const statusEl = document.getElementById("status");
+const wrapEl = document.getElementById("viewerWrap");
+const pageCountEl = document.getElementById("pageCount");
+const downloadBtn = document.getElementById("downloadBtn");
+
+function showStatus(html) {
+  statusEl.innerHTML = html;
+  statusEl.classList.add("show");
+}
+
+function getSrcParam() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("src");
+}
+
+function validateSrc(raw) {
+  if (!raw) return null;
+  let parsed;
+  try {
+    parsed = new URL(raw);
+  } catch (e) {
+    return null;
+  }
+  if (parsed.protocol !== "https:" || !parsed.hostname.endsWith(ALLOWED_HOST_SUFFIX)) {
+    return null;
+  }
+  return parsed.toString();
+}
+
+async function renderReport(url) {
+  downloadBtn.href = url;
+
+  const linkService = new SimpleLinkService({
+    externalLinkTarget: LinkTarget.BLANK,
+    externalLinkRel: "noopener noreferrer"
+  });
+
+  const loadingTask = pdfjsLib.getDocument({ url, withCredentials: false });
+  const pdf = await loadingTask.promise;
+
+  pageCountEl.textContent = pdf.numPages + (pdf.numPages === 1 ? " page" : " pages");
+
+  const containerMaxWidth = Math.min(900, window.innerWidth - 24);
+
+  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+    const page = await pdf.getPage(pageNum);
+    const baseViewport = page.getViewport({ scale: 1 });
+    const scale = containerMaxWidth / baseViewport.width;
+    const viewport = page.getViewport({ scale });
+    const outputScale = window.devicePixelRatio || 1;
+
+    const pageContainer = document.createElement("div");
+    pageContainer.className = "pageContainer";
+    pageContainer.style.width = `${Math.floor(viewport.width)}px`;
+    pageContainer.style.height = `${Math.floor(viewport.height)}px`;
+    // pdf.js's AnnotationLayer sizes itself with a CSS round() expression
+    // that reads --total-scale-factor plus --scale-round-x/-y. Those are
+    // normally set by the full PDFPageView component via a CSS rule
+    // scoped to ".pdfViewer .page" (which computes --total-scale-factor
+    // from --scale-factor * --user-unit). We use the lighter
+    // AnnotationLayer API directly and never have that class on any
+    // ancestor, so that rule never applies and --total-scale-factor is
+    // never defined at all -- not even as an unresolved reference, the
+    // custom property simply doesn't exist -- which collapses the whole
+    // annotation layer, and every link inside it, to 0x0 even though the
+    // <a> tags render with the right href/target="_blank". Setting
+    // --total-scale-factor directly (bypassing the calc() chain) is what
+    // actually fixes it; --scale-factor/--user-unit alone are not enough
+    // because nothing in our page ever combines them into
+    // --total-scale-factor without that missing rule.
+    pageContainer.style.setProperty("--total-scale-factor", String(scale));
+    pageContainer.style.setProperty("--scale-factor", String(scale));
+    pageContainer.style.setProperty("--user-unit", "1");
+    pageContainer.style.setProperty("--scale-round-x", "1px");
+    pageContainer.style.setProperty("--scale-round-y", "1px");
+
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.floor(viewport.width * outputScale);
+    canvas.height = Math.floor(viewport.height * outputScale);
+    canvas.style.width = `${Math.floor(viewport.width)}px`;
+    canvas.style.height = `${Math.floor(viewport.height)}px`;
+    const ctx = canvas.getContext("2d");
+    const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
+
+    pageContainer.appendChild(canvas);
+    wrapEl.appendChild(pageContainer);
+
+    await page.render({ canvasContext: ctx, viewport, transform }).promise;
+
+    const annotations = await page.getAnnotations({ intent: "display" });
+    if (annotations.length) {
+      const annotationLayerDiv = document.createElement("div");
+      annotationLayerDiv.className = "annotationLayer";
+      pageContainer.appendChild(annotationLayerDiv);
+
+      linkService.setDocument(pdf, url);
+
+      const annotationLayer = new pdfjsLib.AnnotationLayer({
+        div: annotationLayerDiv,
+        page,
+        viewport: viewport.clone({ dontFlip: true }),
+        linkService
+      });
+
+      await annotationLayer.render({
+        annotations,
+        renderForms: false
+      });
+    }
+  }
+}
+
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// One automatic retry before giving up. Most real failures here are
+// transient (a slow first fetch of the PDF or the pdf.js worker, a
+// dropped request) rather than permanent, so a single retry after a
+// short pause clears the vast majority of them without ever showing
+// the visitor an error at all.
+async function renderReportWithRetry(url) {
+  try {
+    await renderReport(url);
+  } catch (err) {
+    console.error("Report render failed, retrying once:", err);
+    reportViewerError(url, err, "render_failed_first_attempt");
+    wrapEl.innerHTML = "";
+    pageCountEl.textContent = "";
+    await wait(1200);
+    await renderReport(url);
+  }
+}
+
+function reportViewerError(url, err, stage) {
+  // Fire-and-forget diagnostics so we can see the exact browser + error the
+  // next time this happens, instead of waiting on a screenshot.
+  try {
+    const payload = JSON.stringify({
+      pdfUrl: url || "",
+      errorName: (err && err.name) || "",
+      errorMessage: (err && err.message) || String(err || ""),
+      errorStack: (err && err.stack) || "",
+      stage: stage || ""
+    });
+    fetch("/api/report-viewer-error", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: payload,
+      keepalive: true
+    }).catch(() => {});
+  } catch (e) {
+    // never let diagnostics reporting itself break anything
+  }
+}
+
+function showInlineFallback(url, err) {
+  // Never dead-end on a bare error card. If the enhanced canvas + link
+  // overlay view fails for any reason (seen in the wild on a real
+  // browser even with pdf.js self-hosted -- most likely a privacy /
+  // anti-fingerprinting extension blocking canvas readback, which is
+  // consistent with failing regardless of where pdf.js is served from),
+  // fall back to showing the actual PDF inline via the browser's native
+  // PDF renderer in an iframe. The visitor still lands on this branded
+  // page, still sees the report right here, and still has Download PDF
+  // -- they just lose the forced new-tab link behavior in this fallback
+  // path specifically, since that depends on the canvas overlay working.
+  // Sam's explicit call: never show a status box, error text, or "here's
+  // what went wrong" message to the visitor. Just show the PDF, silently.
+  // The diagnostic still goes to reportViewerError() so we see it, but the
+  // visitor sees nothing except the report.
+  wrapEl.innerHTML = "";
+  pageCountEl.textContent = "";
+  statusEl.innerHTML = "";
+  statusEl.classList.remove("show");
+  const iframe = document.createElement("iframe");
+  iframe.src = url;
+  iframe.style.width = "100%";
+  iframe.style.maxWidth = "900px";
+  iframe.style.height = "calc(100vh - 220px)";
+  iframe.style.minHeight = "600px";
+  iframe.style.border = "1px solid var(--border)";
+  iframe.style.borderRadius = "6px";
+  iframe.style.display = "block";
+  iframe.style.margin = "0 auto";
+  wrapEl.appendChild(iframe);
+}
+
+const rawSrc = getSrcParam();
+const src = validateSrc(rawSrc);
+
+if (!src) {
+  showStatus(
+    "This report link isn't valid. Please reply to the email you received and we'll resend it directly."
+  );
+} else {
+  renderReportWithRetry(src).catch((err) => {
+    console.error("Report render failed after retry:", err);
+    reportViewerError(src, err, "render_failed_after_retry");
+    showInlineFallback(src, err);
+  });
+}
+</script>
+</body>
+</html>
