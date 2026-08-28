@@ -152,14 +152,21 @@ async function renderReport(url) {
     pageContainer.style.width = `${Math.floor(viewport.width)}px`;
     pageContainer.style.height = `${Math.floor(viewport.height)}px`;
     // pdf.js's AnnotationLayer sizes itself with a CSS round() expression
-    // that reads --total-scale-factor (itself --scale-factor * --user-unit)
-    // plus --scale-round-x/-y. Those are normally set by the full
-    // PDFPageView component. We use the lighter AnnotationLayer API
-    // directly, so without setting these ourselves the annotation layer
-    // (and every link inside it) collapses to 0x0 and becomes unclickable
-    // even though the <a> tags are present in the DOM with the right href
-    // and target="_blank". Setting them here on the shared ancestor makes
-    // them cascade to the annotation layer div.
+    // that reads --total-scale-factor plus --scale-round-x/-y. Those are
+    // normally set by the full PDFPageView component via a CSS rule
+    // scoped to ".pdfViewer .page" (which computes --total-scale-factor
+    // from --scale-factor * --user-unit). We use the lighter
+    // AnnotationLayer API directly and never have that class on any
+    // ancestor, so that rule never applies and --total-scale-factor is
+    // never defined at all -- not even as an unresolved reference, the
+    // custom property simply doesn't exist -- which collapses the whole
+    // annotation layer, and every link inside it, to 0x0 even though the
+    // <a> tags render with the right href/target="_blank". Setting
+    // --total-scale-factor directly (bypassing the calc() chain) is what
+    // actually fixes it; --scale-factor/--user-unit alone are not enough
+    // because nothing in our page ever combines them into
+    // --total-scale-factor without that missing rule.
+    pageContainer.style.setProperty("--total-scale-factor", String(scale));
     pageContainer.style.setProperty("--scale-factor", String(scale));
     pageContainer.style.setProperty("--user-unit", "1");
     pageContainer.style.setProperty("--scale-round-x", "1px");
