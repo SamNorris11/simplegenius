@@ -3,9 +3,11 @@
      · with JavaScript off the poster plate, the question and the caption are
        all still there and readable; the play control is hidden by CSS
      · the film autoplays when it is scrolled into view, muted
-     · scrolling it out of view pauses it; scrolling back in restarts it from
-       0:00, carrying over whatever mute state it was already in
-     · the unmute prompt unmutes it and removes itself for the rest of the visit
+     · scrolling it out of view pauses it; scrolling back in resumes from
+       wherever it left off — never a restart
+     · clicking anywhere on the film toggles sound on/off, and the "click to
+       unmute" prompt shows or hides to match — playback never restarts, it
+       just keeps going from where the click caught it
      · prefers-reduced-motion: no autoplay at all, play stays a deliberate act
      · until the MP4 exists there is no data-src, so the composed plate stays
        and the control declares itself unavailable rather than lying
@@ -59,25 +61,25 @@
   if (!reduce && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          video.currentTime = 0;
-          start();
-        } else if (!video.paused) {
-          video.pause();
-        }
+        if (entry.isIntersecting) start();
+        else if (!video.paused) video.pause();
       });
     }, { threshold: 0.4 });
     io.observe(video);
   }
 
-  /* one click: unmute, restart from the top, and the prompt is gone for good
-     — this session never asks again. */
-  if (btn) {
-    btn.addEventListener('click', function () {
-      video.currentTime = 0;
-      video.muted = false;
-      start();
-      btn.remove();
-    }, { once: true });
-  }
+  /* the prompt shows exactly when the film is muted, hides exactly when it
+     is not — no separate on/off markup needed, one state drives both. */
+  var syncPrompt = function () {
+    if (btn) btn.classList.toggle('film__unmute--hidden', !video.muted);
+  };
+  syncPrompt();
+
+  /* click anywhere on the film: toggle sound, sync the prompt, keep playing
+     from the current position. Never resets the clock. */
+  film.addEventListener('click', function () {
+    video.muted = !video.muted;
+    syncPrompt();
+    start();
+  });
 })();

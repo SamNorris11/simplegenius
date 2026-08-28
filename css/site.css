@@ -2525,6 +2525,7 @@ body.is-dark-top .site-header:not(.is-stuck) .btn--primary {
   border-radius: var(--r-md);
   background: var(--c-ink-deep);
   border: var(--bw) solid var(--c-line-dark);
+  cursor: pointer;
 }
 .film__video {
   position: absolute;
@@ -2621,6 +2622,8 @@ body.is-dark-top .site-header:not(.is-stuck) .btn--primary {
 }
 /* with JS off nothing can play, so the control is not shown at all */
 .no-js .film__unmute { display: none; }
+/* sound is already on — let the click-through reach the video underneath */
+.film__unmute--hidden { display: none; }
 .film__caption {
   margin-top: var(--sp-4);
   padding-top: var(--sp-4);
