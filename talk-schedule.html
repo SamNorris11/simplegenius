@@ -10,8 +10,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Competitive AI Scan | Business AI Step One</title>
-<meta name="description" content="The Competitive AI Scan reads your company and your competitors, then delivers a written scan of where AI is already moving in your market and where you sit against it. Start with three fields.">
+<title>Pick a Time | Business AI Step One</title>
+<meta name="description" content="Pick a time that works for you.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
@@ -20,8 +20,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="favicon-16.png?v=1787253912" sizes="16x16" type="image/png">
 <link rel="icon" href="favicon-512.png?v=1787253912" sizes="512x512" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1787253912">
+<style>
+  .schedule-plate { display: flex; flex-direction: column; gap: var(--sp-6); }
+  .schedule-day__head { font-family: var(--ff-sans); font-weight: 600; font-size: .95rem; color: var(--c-ink); margin: 0 0 var(--sp-3); }
+  .schedule-day__slots { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+  .slot-btn {
+    font-family: var(--ff-sans); font-size: .95rem; font-weight: 500; color: var(--c-ink);
+    background: var(--c-white); border: 1px solid var(--c-line); border-radius: var(--r-sm);
+    padding: .7rem 1.1rem; cursor: pointer; transition: border-color .15s ease, background .15s ease;
+  }
+  .slot-btn:hover { border-color: var(--c-line-strong); }
+  .slot-btn.is-selected { border-color: var(--c-gold); background: var(--c-gold-wash); color: var(--c-gold-text); }
+  .schedule-picked { font-family: var(--ff-sans); font-size: .95rem; color: var(--c-steel); margin: 0; }
+  #schedule-confirm[disabled] { opacity: .45; cursor: not-allowed; }
+  /* Not-ready-yet closing band — single CTA, dark ground for contrast */
+  .talk-nudge { text-align: center; max-width: 46ch; margin: 0 auto; }
+  .talk-nudge__title {
+    font-family: 'Playfair Display', serif; font-weight: 500;
+    font-size: clamp(2.25rem, 4.4vw, 3.5rem); line-height: 1.15;
+    letter-spacing: -.015em;
+    color: #F7F7F7; margin: .25rem 0 2.25rem;
+    text-wrap: balance;
+  }
+  .talk-nudge__title em { color: #D4AF37; font-style: italic; }
+</style>
 </head>
-<body>
+<body class="is-dark-top">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P48GRGDB"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -86,7 +110,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Two real assets, swapped by CSS. Never a filter: invert() on the
          wordmark, inverting the gold in "Genius" produced bright blue.
          See DESIGN-SYSTEM.md §9, "Header". -->
-    <a class="logo" href="index.html" aria-label="Simple Genius, home">
+    <a class="logo" href="index.html" aria-label="Simple Genius home">
       <img class="logo__img logo__img--ink" src="img/logo-dark-112h.png"
            srcset="img/logo-dark-56h.png 1x, img/logo-dark-112h.png 2x, img/logo-dark-168h.png 3x"
            width="150" height="56" alt="Simple Genius">
@@ -101,7 +125,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <nav class="nav" id="site-nav" aria-label="Main">      <a class="nav__link" href="how-it-works.html">How It Works</a>
       <a class="nav__link" href="pricing.html">Pricing</a>
-      <a class="nav__link is-current" href="assessment.html">Competitive AI Scan</a>
+      <a class="nav__link" href="try.html">Free Competitor Report</a>
       <a class="nav__link" href="about.html">About</a>    </nav>
 
     <div class="header__actions">
@@ -112,95 +136,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main id="main">
 <!-- ============================================================ B1, HEAD -->
-<section class="page-head">
-  <div class="page-head__glow" aria-hidden="true"></div>
+<section class="page-head page-head--ink">
   <div class="container page-head__inner">
-    <span class="eyebrow">Competitive AI Scan</span>
-    <h1 class="page-head__title">See <em>where AI is already moving</em> in your market.</h1>
-    <p class="page-head__sub">The Competitive AI Scan reads your company and your competitors, then delivers a written scan of where AI is already moving in your market and where you sit against it.</p>
-    <p class="page-head__note">Live this week. Drop your email and we will send it the moment it opens.</p>
+    <span class="eyebrow">Let&rsquo;s talk.</span>
+    <h1 class="page-head__title">Pick a time that works <em>for you.</em></h1>
+    <p class="page-head__sub">Choose an open slot below.</p>
   </div>
 </section>
 
-<!-- ============================================ B2, COMING SOON -->
-<section class="section section--raised section--seam" id="scan-start">
+<!-- ========================================================= B3, SCHEDULE -->
+<section class="section section--tight section--ground section--seam">
   <div class="container container--narrow">
-    <div class="scan-card scan-card--placeholder">
-      <span class="eyebrow eyebrow--ruled scan-card__eyebrow">Competitive AI Scan</span>
-      <h2 class="scan-card__title">Coming soon this week.</h2>
-      <p class="scan-card__lede">We are finishing the last of the scan. It goes live in the next few days. Leave your email and we will send it to you the moment it opens.</p>
-      <form class="scan-form scan-form--placeholder" id="scan-waitlist" method="post" action="#" novalidate>
-        <div class="scan-form__row">
-          <label class="scan-form__label" for="scan-waitlist-email">Work email</label>
-          <input class="scan-form__input" type="email" id="scan-waitlist-email" name="email" autocomplete="email" required>
+    <div class="schedule-plate">
+      <div class="schedule-day">
+        <p class="schedule-day__head">Friday, August 28</p>
+        <div class="schedule-day__slots">
+          <button type="button" class="slot-btn" data-slot="Friday, August 28 at 10:00 AM ET" aria-pressed="false">10:00 AM ET</button>
+          <button type="button" class="slot-btn" data-slot="Friday, August 28 at 1:30 PM ET" aria-pressed="false">1:30 PM ET</button>
+          <button type="button" class="slot-btn" data-slot="Friday, August 28 at 4:00 PM ET" aria-pressed="false">4:00 PM ET</button>
         </div>
-        <div class="scan-form__foot">
-          <button class="btn btn--primary btn--block" type="submit">Notify me</button>
-          <p class="scan-form__note">One email when the scan opens. Nothing else.</p>
+      </div>
+      <div class="schedule-day">
+        <p class="schedule-day__head">Monday, August 31</p>
+        <div class="schedule-day__slots">
+          <button type="button" class="slot-btn" data-slot="Monday, August 31 at 9:30 AM ET" aria-pressed="false">9:30 AM ET</button>
+          <button type="button" class="slot-btn" data-slot="Monday, August 31 at 11:00 AM ET" aria-pressed="false">11:00 AM ET</button>
+          <button type="button" class="slot-btn" data-slot="Monday, August 31 at 3:00 PM ET" aria-pressed="false">3:00 PM ET</button>
         </div>
-      </form>
+      </div>
+      <div class="schedule-day">
+        <p class="schedule-day__head">Tuesday, September 1</p>
+        <div class="schedule-day__slots">
+          <button type="button" class="slot-btn" data-slot="Tuesday, September 1 at 10:30 AM ET" aria-pressed="false">10:30 AM ET</button>
+          <button type="button" class="slot-btn" data-slot="Tuesday, September 1 at 1:00 PM ET" aria-pressed="false">1:00 PM ET</button>
+          <button type="button" class="slot-btn" data-slot="Tuesday, September 1 at 2:30 PM ET" aria-pressed="false">2:30 PM ET</button>
+        </div>
+      </div>
+
+      <p class="schedule-picked" id="schedule-picked" hidden></p>
+
+      <div class="form__actions">
+        <button class="btn btn--primary btn--block" id="schedule-confirm" type="button" disabled>Confirm my meeting <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+        <p class="btn-note">No sequence, no reminders you did not ask for.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================ B3, HOW THE SCAN WORKS -->
-<section class="section section--white">
-  <div class="container container--mid">
-    <div class="section__head section__head--center">
-      <span class="eyebrow eyebrow--ruled">How the scan works</span>
-      <h2 class="display display--lg">Open method. <em>Nothing hidden.</em></h2>
-      <p class="section__lede section__lede--center">Three plain steps. The scan does the work between them.</p>
+<!-- ===================================================== B4, QUIET CLOSE -->
+<section class="section section--ink section--tight section--seam">
+  <div class="container container--narrow">
+    <div class="talk-nudge">
+      <span class="eyebrow eyebrow--center">No pressure</span>
+      <h2 class="talk-nudge__title">Not ready to talk <em>yet?</em></h2>
+      <div class="btn-row btn-row--center">
+        <a class="btn btn--gold" href="try.html">Try Simple Genius for Free <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
-
-    <ol class="scan-steps">
-      <li class="scan-steps__item">
-        <span class="scan-steps__num">1</span>
-        <h3 class="scan-steps__title">Start with three fields.</h3>
-        <p class="scan-steps__body">Company name, company website, work email. That is enough for the scan to begin reading your firm and its competitors in the background.</p>
-      </li>
-      <li class="scan-steps__item">
-        <span class="scan-steps__num">2</span>
-        <h3 class="scan-steps__title">Answer what only you know.</h3>
-        <p class="scan-steps__body">A short set of questions about how your business actually runs. You see the progress readout as the scan works. You can stop at any time and the answers you gave are still used.</p>
-      </li>
-      <li class="scan-steps__item">
-        <span class="scan-steps__num">3</span>
-        <h3 class="scan-steps__title">Read the scan.</h3>
-        <p class="scan-steps__body">You get back a written scan. Where AI is already moving in your market, where your competitors sit, and where the openings are. Every claim is sourced to what the scan read.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ============================================ B4, WHAT YOU GET BACK -->
-<section class="section section--ink">
-  <div class="container container--mid">
-    <div class="section__head section__head--center">
-      <span class="eyebrow">What comes back</span>
-      <h2 class="display display--lg">A written scan. <em>Not a score.</em></h2>
-      <p class="section__lede section__lede--center section__lede--onink">Everything the scan finds shows up as language you can read, forward, and act on. Nothing becomes truth until you approve it.</p>
-    </div>
-
-    <div class="scan-get">
-      <article class="scan-get__card">
-        <h3 class="scan-get__title">Where AI is already moving in your market</h3>
-        <p class="scan-get__body">Named moves your competitors have made, with the source and the date.</p>
-      </article>
-      <article class="scan-get__card">
-        <h3 class="scan-get__title">Where your company sits against it</h3>
-        <p class="scan-get__body">A read on where the openings and the exposures are, tied to what the scan learned about your business.</p>
-      </article>
-      <article class="scan-get__card">
-        <h3 class="scan-get__title">The next steps that fit you</h3>
-        <p class="scan-get__body">A shortlist of specific moves that come out of what the scan read. You decide which ones become work.</p>
-      </article>
-    </div>
-
-    <div class="btn-row btn-row--center btn-row--stack block-after">
-      <a class="btn btn--gold" href="#scan-start">Run the Competitive AI Scan</a>
-      <a class="btn btn--secondary" href="talk.html">Let&rsquo;s talk.</a>
-    </div>
-    <p class="btn-note btn-note--center">Based on what the scan reads and what you tell us. Not a certification, not a legal conclusion.</p>
   </div>
 </section>
 
@@ -209,7 +201,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <div class="site-footer__top">
       <div class="site-footer__brand">
-        <a class="logo" href="index.html" aria-label="Simple Genius, home">
+        <a class="logo" href="index.html" aria-label="Simple Genius home">
           <img class="logo__img" src="img/logo-light-124h.png"
                srcset="img/logo-light-62h.png 1x, img/logo-light-124h.png 2x, img/logo-light-186h.png 3x"
                width="166" height="62" alt="Simple Genius">
@@ -233,7 +225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <nav class="footer-col" aria-label="Product">
         <span class="footer-col__head">Product</span>
         <a class="footer-col__link" href="how-it-works.html">How It Works</a>        <a class="footer-col__link" href="pricing.html">Pricing</a>
-        <a class="footer-col__link" href="assessment.html">Competitive AI Scan</a>
+        <a class="footer-col__link" href="try.html">Try Simple Genius for Free</a>
       </nav>
 <nav class="footer-col" aria-label="Company">
         <span class="footer-col__head">Company</span>
@@ -256,5 +248,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script src="js/site.js?v=1787276638" defer></script>
+<script>
+(function () {
+  var slots = document.querySelectorAll('.slot-btn');
+  var confirmBtn = document.getElementById('schedule-confirm');
+  var picked = document.getElementById('schedule-picked');
+  var selected = null;
+  Array.prototype.forEach.call(slots, function (btn) {
+    btn.addEventListener('click', function () {
+      Array.prototype.forEach.call(slots, function (b) {
+        b.classList.remove('is-selected');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('is-selected');
+      btn.setAttribute('aria-pressed', 'true');
+      selected = btn.getAttribute('data-slot');
+      picked.textContent = 'You picked ' + selected + '.';
+      picked.hidden = false;
+      confirmBtn.disabled = false;
+    });
+  });
+  confirmBtn.addEventListener('click', function () {
+    if (!selected) return;
+    window.location.href = 'talk-confirmed.html?time=' + encodeURIComponent(selected);
+  });
+})();
+</script>
 </body>
 </html>
