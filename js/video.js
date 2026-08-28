@@ -3,7 +3,9 @@
      · with JavaScript off the poster plate, the question and the caption are
        all still there and readable; the play control is hidden by CSS
      · the film autoplays when it is scrolled into view, muted
-     · the control unmutes it, and native controls appear with sound
+     · scrolling it out of view pauses it; scrolling back in restarts it from
+       0:00, carrying over whatever mute state it was already in
+     · the unmute prompt unmutes it and removes itself for the rest of the visit
      · prefers-reduced-motion: no autoplay at all, play stays a deliberate act
      · until the MP4 exists there is no data-src, so the composed plate stays
        and the control declares itself unavailable rather than lying
@@ -57,8 +59,12 @@
   if (!reduce && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) start();
-        else if (!video.paused && video.muted) video.pause();
+        if (entry.isIntersecting) {
+          video.currentTime = 0;
+          start();
+        } else if (!video.paused) {
+          video.pause();
+        }
       });
     }, { threshold: 0.4 });
     io.observe(video);
