@@ -3,8 +3,9 @@
      · with JavaScript off the poster plate, the question and the caption are
        all still there and readable; the play control is hidden by CSS
      · the film autoplays when it is scrolled into view, muted
-     · scrolling it out of view pauses it; scrolling back in resumes from
-       wherever it left off — never a restart
+     · scrolling it out of view pauses it. back within 10 seconds, it resumes
+       right where it left off; away 10 seconds or longer, it starts over from
+       0:00 the next time it comes into view
      · clicking anywhere on the film toggles sound on/off, and the "click to
        unmute" prompt shows or hides to match — playback never restarts, it
        just keeps going from where the click caught it
@@ -58,11 +59,22 @@
     if (p && typeof p.catch === 'function') p.catch(function () { /* blocked; the control still works */ });
   };
 
+  var AWAY_RESET_MS = 10000;
+  var awaySince = null;
+
   if (!reduce && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) start();
-        else if (!video.paused) video.pause();
+        if (entry.isIntersecting) {
+          if (awaySince !== null && Date.now() - awaySince >= AWAY_RESET_MS) {
+            video.currentTime = 0;
+          }
+          awaySince = null;
+          start();
+        } else if (!video.paused) {
+          video.pause();
+          awaySince = Date.now();
+        }
       });
     }, { threshold: 0.4 });
     io.observe(video);
