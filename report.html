@@ -228,10 +228,33 @@ async function renderReportWithRetry(url) {
     await renderReport(url);
   } catch (err) {
     console.error("Report render failed, retrying once:", err);
+    reportViewerError(url, err, "render_failed_first_attempt");
     wrapEl.innerHTML = "";
     pageCountEl.textContent = "";
     await wait(1200);
     await renderReport(url);
+  }
+}
+
+function reportViewerError(url, err, stage) {
+  // Fire-and-forget diagnostics so we can see the exact browser + error the
+  // next time this happens, instead of waiting on a screenshot.
+  try {
+    const payload = JSON.stringify({
+      pdfUrl: url || "",
+      errorName: (err && err.name) || "",
+      errorMessage: (err && err.message) || String(err || ""),
+      errorStack: (err && err.stack) || "",
+      stage: stage || ""
+    });
+    fetch("/api/report-viewer-error", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: payload,
+      keepalive: true
+    }).catch(() => {});
+  } catch (e) {
+    // never let diagnostics reporting itself break anything
   }
 }
 
@@ -279,6 +302,7 @@ if (!src) {
 } else {
   renderReportWithRetry(src).catch((err) => {
     console.error("Report render failed after retry:", err);
+    reportViewerError(src, err, "render_failed_after_retry");
     showInlineFallback(src, err);
   });
 }
