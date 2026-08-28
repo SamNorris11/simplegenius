@@ -151,6 +151,19 @@ async function renderReport(url) {
     pageContainer.className = "pageContainer";
     pageContainer.style.width = `${Math.floor(viewport.width)}px`;
     pageContainer.style.height = `${Math.floor(viewport.height)}px`;
+    // pdf.js's AnnotationLayer sizes itself with a CSS round() expression
+    // that reads --total-scale-factor (itself --scale-factor * --user-unit)
+    // plus --scale-round-x/-y. Those are normally set by the full
+    // PDFPageView component. We use the lighter AnnotationLayer API
+    // directly, so without setting these ourselves the annotation layer
+    // (and every link inside it) collapses to 0x0 and becomes unclickable
+    // even though the <a> tags are present in the DOM with the right href
+    // and target="_blank". Setting them here on the shared ancestor makes
+    // them cascade to the annotation layer div.
+    pageContainer.style.setProperty("--scale-factor", String(scale));
+    pageContainer.style.setProperty("--user-unit", "1");
+    pageContainer.style.setProperty("--scale-round-x", "1px");
+    pageContainer.style.setProperty("--scale-round-y", "1px");
 
     const canvas = document.createElement("canvas");
     canvas.width = Math.floor(viewport.width * outputScale);
