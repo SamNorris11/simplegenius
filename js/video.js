@@ -7,8 +7,9 @@
        right where it left off; away 10 seconds or longer, it starts over from
        0:00 the next time it comes into view
      · clicking anywhere on the film toggles sound on/off, and the "click to
-       unmute" prompt shows or hides to match — playback never restarts, it
-       just keeps going from where the click caught it
+       unmute" prompt shows or hides to match. Unmuting always starts the
+       film over from 0:00 — when in doubt, start at the beginning. Muting
+       back does not restart; it just keeps playing where it was
      · prefers-reduced-motion: no autoplay at all, play stays a deliberate act
      · until the MP4 exists there is no data-src, so the composed plate stays
        and the control declares itself unavailable rather than lying
@@ -87,10 +88,13 @@
   };
   syncPrompt();
 
-  /* click anywhere on the film: toggle sound, sync the prompt, keep playing
-     from the current position. Never resets the clock. */
+  /* click anywhere on the film: toggle sound, sync the prompt. Unmuting
+     always restarts from 0:00 — when in doubt, start at the beginning.
+     Muting back keeps playing from wherever it was. */
   film.addEventListener('click', function () {
-    video.muted = !video.muted;
+    var wasMuted = video.muted;
+    video.muted = !wasMuted;
+    if (wasMuted) video.currentTime = 0;
     syncPrompt();
     start();
   });
