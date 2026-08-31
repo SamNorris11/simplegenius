@@ -284,8 +284,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function () {
   var status = document.getElementById('talk-status');
   if (!status) return;
+  var form = document.getElementById('talk-form');
   var mo = new MutationObserver(function () {
-    if (!status.hidden) window.location.href = 'talk-schedule.html';
+    if (!status.hidden) {
+      var name = form ? (form.querySelector('#talk-name') || {}).value : '';
+      var email = form ? (form.querySelector('#talk-email') || {}).value : '';
+      var q = [];
+      if (name) q.push('name=' + encodeURIComponent(name));
+      if (email) q.push('email=' + encodeURIComponent(email));
+      window.location.href = 'talk-schedule.html' + (q.length ? '?' + q.join('&') : '');
+    }
   });
   mo.observe(status, { attributes: true, attributeFilter: ['hidden'] });
 })();

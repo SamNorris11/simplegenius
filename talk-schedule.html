@@ -21,18 +21,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" href="favicon-512.png?v=1787253912" sizes="512x512" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1787253912">
 <style>
-  .schedule-plate { display: flex; flex-direction: column; gap: var(--sp-6); }
-  .schedule-day__head { font-family: var(--ff-sans); font-weight: 600; font-size: .95rem; color: var(--c-ink); margin: 0 0 var(--sp-3); }
-  .schedule-day__slots { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
-  .slot-btn {
-    font-family: var(--ff-sans); font-size: .95rem; font-weight: 500; color: var(--c-ink);
-    background: var(--c-white); border: 1px solid var(--c-line); border-radius: var(--r-sm);
-    padding: .7rem 1.1rem; cursor: pointer; transition: border-color .15s ease, background .15s ease;
+  .calendly-wrap { display: flex; justify-content: flex-end; align-items: center; }
+  .calendly-inline-widget { width: min(100%, 780px); min-width: 320px; height: 720px; }
+  @media (max-width: 860px) {
+    .calendly-wrap { justify-content: center; }
   }
-  .slot-btn:hover { border-color: var(--c-line-strong); }
-  .slot-btn.is-selected { border-color: var(--c-gold); background: var(--c-gold-wash); color: var(--c-gold-text); }
-  .schedule-picked { font-family: var(--ff-sans); font-size: .95rem; color: var(--c-steel); margin: 0; }
-  #schedule-confirm[disabled] { opacity: .45; cursor: not-allowed; }
   /* Not-ready-yet closing band — single CTA, dark ground for contrast */
   .talk-nudge { text-align: center; max-width: 46ch; margin: 0 auto; }
   .talk-nudge__title {
@@ -146,39 +139,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ========================================================= B3, SCHEDULE -->
 <section class="section section--tight section--ground section--seam">
-  <div class="container container--narrow">
-    <div class="schedule-plate">
-      <div class="schedule-day">
-        <p class="schedule-day__head">Friday, August 28</p>
-        <div class="schedule-day__slots">
-          <button type="button" class="slot-btn" data-slot="Friday, August 28 at 10:00 AM ET" aria-pressed="false">10:00 AM ET</button>
-          <button type="button" class="slot-btn" data-slot="Friday, August 28 at 1:30 PM ET" aria-pressed="false">1:30 PM ET</button>
-          <button type="button" class="slot-btn" data-slot="Friday, August 28 at 4:00 PM ET" aria-pressed="false">4:00 PM ET</button>
-        </div>
-      </div>
-      <div class="schedule-day">
-        <p class="schedule-day__head">Monday, August 31</p>
-        <div class="schedule-day__slots">
-          <button type="button" class="slot-btn" data-slot="Monday, August 31 at 9:30 AM ET" aria-pressed="false">9:30 AM ET</button>
-          <button type="button" class="slot-btn" data-slot="Monday, August 31 at 11:00 AM ET" aria-pressed="false">11:00 AM ET</button>
-          <button type="button" class="slot-btn" data-slot="Monday, August 31 at 3:00 PM ET" aria-pressed="false">3:00 PM ET</button>
-        </div>
-      </div>
-      <div class="schedule-day">
-        <p class="schedule-day__head">Tuesday, September 1</p>
-        <div class="schedule-day__slots">
-          <button type="button" class="slot-btn" data-slot="Tuesday, September 1 at 10:30 AM ET" aria-pressed="false">10:30 AM ET</button>
-          <button type="button" class="slot-btn" data-slot="Tuesday, September 1 at 1:00 PM ET" aria-pressed="false">1:00 PM ET</button>
-          <button type="button" class="slot-btn" data-slot="Tuesday, September 1 at 2:30 PM ET" aria-pressed="false">2:30 PM ET</button>
-        </div>
-      </div>
-
-      <p class="schedule-picked" id="schedule-picked" hidden></p>
-
-      <div class="form__actions">
-        <button class="btn btn--primary btn--block" id="schedule-confirm" type="button" disabled>Confirm my meeting <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
-        <p class="btn-note">No sequence, no reminders you did not ask for.</p>
-      </div>
+  <div class="container">
+    <div class="calendly-wrap">
+      <div class="calendly-inline-widget" id="calendly-embed" data-url=""></div>
     </div>
   </div>
 </section>
@@ -248,29 +211,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script src="js/site.js?v=1787276638" defer></script>
+<script src="https://assets.calendly.com/assets/external/widget.js" defer></script>
 <script>
 (function () {
-  var slots = document.querySelectorAll('.slot-btn');
-  var confirmBtn = document.getElementById('schedule-confirm');
-  var picked = document.getElementById('schedule-picked');
-  var selected = null;
-  Array.prototype.forEach.call(slots, function (btn) {
-    btn.addEventListener('click', function () {
-      Array.prototype.forEach.call(slots, function (b) {
-        b.classList.remove('is-selected');
-        b.setAttribute('aria-pressed', 'false');
-      });
-      btn.classList.add('is-selected');
-      btn.setAttribute('aria-pressed', 'true');
-      selected = btn.getAttribute('data-slot');
-      picked.textContent = 'You picked ' + selected + '.';
-      picked.hidden = false;
-      confirmBtn.disabled = false;
-    });
-  });
-  confirmBtn.addEventListener('click', function () {
-    if (!selected) return;
-    window.location.href = 'talk-confirmed.html?time=' + encodeURIComponent(selected);
+  var params = new URLSearchParams(window.location.search);
+  var name = params.get('name') || '';
+  var email = params.get('email') || '';
+
+  var base = 'https://calendly.com/hello-simplegenius/simple-genius-demo';
+  var q = [
+    'hide_event_type_details=1',
+    'primary_color=D4AF37',
+    'text_color=1D1D1D',
+    'background_color=F7F7F7'
+  ];
+  if (name) q.push('name=' + encodeURIComponent(name));
+  if (email) q.push('email=' + encodeURIComponent(email));
+  var url = base + '?' + q.join('&');
+
+  function initWidget(tries) {
+    var el = document.getElementById('calendly-embed');
+    if (window.Calendly && el) {
+      window.Calendly.initInlineWidget({ url: url, parentElement: el });
+      return;
+    }
+    if ((tries || 0) < 50) setTimeout(function () { initWidget((tries || 0) + 1); }, 100);
+  }
+  initWidget();
+
+  window.addEventListener('message', function (e) {
+    if (e.data && e.data.event === 'calendly.event_scheduled') {
+      window.location.href = 'talk-confirmed.html';
+    }
   });
 })();
 </script>
