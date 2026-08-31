@@ -5,6 +5,7 @@
 // sends only once a real time slot is booked — not on the earlier lead form.
 // Env vars used: AC_URL, AC_KEY
 
+const AUTOMATION_ID = '30';
 const AUTOMATION_NAME = "Let's Talk - Perplexity Automation";
 
 const normalize = (value) => String(value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -13,7 +14,6 @@ async function findAutomationIdByName(AC_URL, AC_KEY, name) {
   const target = normalize(name);
   let offset = 0;
   const limit = 100;
-  const seen = [];
 
   for (let page = 0; page < 5; page++) {
     const res = await fetch(`${AC_URL}/api/3/automations?limit=${limit}&offset=${offset}`, {
@@ -21,13 +21,23 @@ async function findAutomationIdByName(AC_URL, AC_KEY, name) {
     });
     const data = await res.json();
     const automations = data?.automations || [];
-    automations.forEach((a) => seen.push(a.name));
     const match = automations.find((a) => normalize(a.name) === target);
-    if (match) return { id: match.id, seen };
+    if (match) return match.id;
     if (automations.length < limit) break;
     offset += limit;
   }
-  return { id: null, seen };
+  return null;
+}
+
+async function addContactToAutomation(AC_URL, AC_KEY, contactId, automationId) {
+  const res = await fetch(`${AC_URL}/api/3/contactAutomations`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Api-Token': AC_KEY },
+    body: JSON.stringify({ contactAutomation: { contact: contactId, automation: automationId } })
+  });
+  let data = null;
+  try { data = await res.json(); } catch (e) { /* leave null */ }
+  return { ok: res.ok && !!data?.contactAutomation, data };
 }
 
 module.exports = async (req, res) => {
@@ -49,35 +59,46 @@ module.exports = async (req, res) => {
     const AC_URL = process.env.AC_URL || 'https://simplegenius.api-us1.com';
     const AC_KEY = process.env.AC_KEY;
 
-    // 1. Ensure the contact exists / is up to date.
-    const contactRes = await fetch(`${AC_URL}/api/3/contact/sync`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Api-Token': AC_KEY },
-      body: JSON.stringify({ contact: { email, firstName, lastName } })
-    });
-    const contactData = await contactRes.json();
-    const contactId = contactData?.contact?.id;
+    // 1. Ensure the contact exists / is up to date. One retry on transient failure.
+    let contactId = null;
+    for (let attempt = 0; attempt < 2 && !contactId; attempt++) {
+      const contactRes = await fetch(`${AC_URL}/api/3/contact/sync`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Api-Token': AC_KEY },
+        body: JSON.stringify({ contact: { email, firstName, lastName } })
+      });
+      const contactData = await contactRes.json();
+      contactId = contactData?.contact?.id || null;
+    }
 
     if (!contactId) {
-      return res.status(500).json({ ok: false, error: 'Contact sync failed', detail: contactData });
+      return res.status(500).json({ ok: false, error: 'Contact sync failed after retry' });
     }
 
-    // 2. Find the automation by name (self-heals if it's ever recreated).
-    const found = await findAutomationIdByName(AC_URL, AC_KEY, AUTOMATION_NAME);
-    const automationId = found.id;
-    if (!automationId) {
-      return res.status(500).json({ ok: false, error: `Automation "${AUTOMATION_NAME}" not found` });
+    // 2. Enter the contact into the automation. Try the known automation ID
+    //    first (fast path); fall back to a name lookup if that ever fails
+    //    (e.g. the automation gets rebuilt with a new ID), with one retry.
+    let automationId = AUTOMATION_ID;
+    let addResult = await addContactToAutomation(AC_URL, AC_KEY, contactId, automationId);
+
+    if (!addResult.ok) {
+      const foundId = await findAutomationIdByName(AC_URL, AC_KEY, AUTOMATION_NAME);
+      if (foundId) {
+        automationId = foundId;
+        addResult = await addContactToAutomation(AC_URL, AC_KEY, contactId, automationId);
+      }
     }
 
-    // 3. Enter the contact into the automation.
-    const addRes = await fetch(`${AC_URL}/api/3/contactAutomations`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Api-Token': AC_KEY },
-      body: JSON.stringify({ contactAutomation: { contact: contactId, automation: automationId } })
-    });
-    const addData = await addRes.json();
+    if (!addResult.ok) {
+      // Last retry attempt before giving up.
+      addResult = await addContactToAutomation(AC_URL, AC_KEY, contactId, automationId);
+    }
 
-    return res.status(200).json({ ok: true, contactId, automationId, result: addData });
+    if (!addResult.ok) {
+      return res.status(500).json({ ok: false, error: 'Could not add contact to automation', detail: addResult.data });
+    }
+
+    return res.status(200).json({ ok: true, contactId, automationId, result: addResult.data });
   } catch (err) {
     console.error('schedule-confirmed error:', err);
     return res.status(500).json({ ok: false, error: err.message });
