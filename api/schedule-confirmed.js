@@ -1,11 +1,11 @@
 // Vercel serverless function — POST /api/schedule-confirmed
 // Fires when a Calendly booking on talk-schedule.html actually completes
 // (calendly.event_scheduled). Adds the contact to the ActiveCampaign
-// "Let's talk follow-up" automation so the confirmed-time follow-up email
+// "Let's Talk - Perplexity Automation" so the confirmed-time follow-up email
 // sends only once a real time slot is booked — not on the earlier lead form.
 // Env vars used: AC_URL, AC_KEY
 
-const AUTOMATION_NAME = "Let's talk follow-up";
+const AUTOMATION_NAME = "Let's Talk - Perplexity Automation";
 
 const normalize = (value) => String(value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
@@ -66,11 +66,7 @@ module.exports = async (req, res) => {
     const found = await findAutomationIdByName(AC_URL, AC_KEY, AUTOMATION_NAME);
     const automationId = found.id;
     if (!automationId) {
-      return res.status(500).json({
-        ok: false,
-        error: `Automation "${AUTOMATION_NAME}" not found`,
-        availableAutomations: found.seen
-      });
+      return res.status(500).json({ ok: false, error: `Automation "${AUTOMATION_NAME}" not found` });
     }
 
     // 3. Enter the contact into the automation.
