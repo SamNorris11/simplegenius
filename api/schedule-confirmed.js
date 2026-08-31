@@ -13,6 +13,7 @@ async function findAutomationIdByName(AC_URL, AC_KEY, name) {
   const target = normalize(name);
   let offset = 0;
   const limit = 100;
+  const seen = [];
 
   for (let page = 0; page < 5; page++) {
     const res = await fetch(`${AC_URL}/api/3/automations?limit=${limit}&offset=${offset}`, {
@@ -20,12 +21,13 @@ async function findAutomationIdByName(AC_URL, AC_KEY, name) {
     });
     const data = await res.json();
     const automations = data?.automations || [];
+    automations.forEach((a) => seen.push(a.name));
     const match = automations.find((a) => normalize(a.name) === target);
-    if (match) return match.id;
+    if (match) return { id: match.id, seen };
     if (automations.length < limit) break;
     offset += limit;
   }
-  return null;
+  return { id: null, seen };
 }
 
 module.exports = async (req, res) => {
@@ -61,9 +63,14 @@ module.exports = async (req, res) => {
     }
 
     // 2. Find the automation by name (self-heals if it's ever recreated).
-    const automationId = await findAutomationIdByName(AC_URL, AC_KEY, AUTOMATION_NAME);
+    const found = await findAutomationIdByName(AC_URL, AC_KEY, AUTOMATION_NAME);
+    const automationId = found.id;
     if (!automationId) {
-      return res.status(500).json({ ok: false, error: `Automation "${AUTOMATION_NAME}" not found` });
+      return res.status(500).json({
+        ok: false,
+        error: `Automation "${AUTOMATION_NAME}" not found`,
+        availableAutomations: found.seen
+      });
     }
 
     // 3. Enter the contact into the automation.
