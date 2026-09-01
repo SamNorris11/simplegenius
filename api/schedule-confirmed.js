@@ -78,14 +78,17 @@ module.exports = async (req, res) => {
     // 1b. Subscribe to Master Contact List (list 3) — required for AC to
     //     actually deliver automation emails. Without a list subscription,
     //     AC silently skips the send even though the automation step runs.
+    let listDebug = null;
     try {
-      await fetch(`${AC_URL}/api/3/contactLists`, {
+      const listRes = await fetch(`${AC_URL}/api/3/contactLists`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Api-Token': AC_KEY },
         body: JSON.stringify({ contactList: { list: 3, contact: contactId, status: 1 } })
       });
+      const listData = await listRes.json().catch(() => null);
+      listDebug = { status: listRes.status, body: listData };
     } catch (listErr) {
-      console.error('schedule-confirmed list subscribe error:', listErr.message);
+      listDebug = { error: listErr.message };
     }
 
     // 2. Enter the contact into the automation. Try the known automation ID
@@ -111,7 +114,7 @@ module.exports = async (req, res) => {
       return res.status(500).json({ ok: false, error: 'Could not add contact to automation', detail: addResult.data });
     }
 
-    return res.status(200).json({ ok: true, contactId, automationId, result: addResult.data });
+    return res.status(200).json({ ok: true, contactId, automationId, listDebug });
   } catch (err) {
     console.error('schedule-confirmed error:', err);
     return res.status(500).json({ ok: false, error: err.message });
