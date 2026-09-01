@@ -239,12 +239,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   window.addEventListener('message', function (e) {
     if (e.data && e.data.event === 'calendly.event_scheduled') {
       try {
-        fetch('/api/schedule-confirmed', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, name: name }),
-          keepalive: true
-        }).catch(function () {});
+        var payload = JSON.stringify({ email: email, name: name });
+        if (navigator.sendBeacon) {
+          var blob = new Blob([payload], { type: 'application/json' });
+          navigator.sendBeacon('/api/schedule-confirmed', blob);
+        } else {
+          fetch('/api/schedule-confirmed', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payload,
+            keepalive: true
+          }).catch(function () {});
+        }
       } catch (err) {}
       window.location.href = 'talk-confirmed.html';
     }
