@@ -365,7 +365,76 @@
     };
   }
 
-  function trackGaEvent(eventName, params) {
+  var CONVERSION_EVENTS = {
+    call_scheduled: true,
+    free_brief_start: true,
+    free_brief_submit: true,
+    waitlist_submit: true,
+    generate_lead: true,
+    conversation_request: true,
+    demo_request: true,
+    newsletter_signup: true
+  };
+
+  function isQaTraffic() {
+    var touch = {};
+    try {
+      var history = readVisitHistory() || visitHistory;
+      if (history && history.lastTouch) {
+        Object.keys(history.lastTouch).forEach(function (key) {
+          touch[key] = history.lastTouch[key];
+        });
+      }
+    } catch (e) {}
+    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (name) {
+      var value = getQueryParam(name);
+      if (value) touch[name] = value;
+    });
+    var source = String(touch.utm_source || '').toLowerCase();
+    var medium = String(touch.utm_medium || '').toLowerCase();
+    var campaign = String(touch.utm_campaign || '').toLowerCase();
+    if (source === 'verification' || source === 'perplexity') return true;
+    if (medium === 'qa' || medium === 'integration_test') return true;
+    if (campaign === 'ga4_conversion_event' || campaign === 'funnel_events' ||
+        campaign === 'free_brief_crm_validation') return true;
+    return false;
+  }
+
+  function whenGtagReady(cb, tries) {
+    if (typeof window.gtag === 'function') {
+      cb();
+      return;
+    }
+    if ((tries || 0) >= 40) {
+      cb();
+      return;
+    }
+    window.setTimeout(function () { whenGtagReady(cb, (tries || 0) + 1); }, 50);
+  }
+
+  function trackGaEvent(eventName, params, onDone) {
+    var done = typeof onDone === 'function' ? onDone : function () {};
+    var isConversion = !!CONVERSION_EVENTS[eventName];
+
+    // QA UTMs (verification/qa, perplexity/integration_test) were landing in
+    // GA4's Unassigned channel and inflating key-event counts. Skip those
+    // conversions so test traffic does not show up as real pipeline.
+    if (isConversion && isQaTraffic()) {
+      done();
+      return;
+    }
+
+    if (isConversion) {
+      var dedupeKey = 'sg_evt_' + eventName;
+      try {
+        if (window.sessionStorage.getItem(dedupeKey)) {
+          done();
+          return;
+        }
+        window.sessionStorage.setItem(dedupeKey, '1');
+      } catch (e) {}
+    }
+
     var eventData = { event: eventName };
     Object.keys(params || {}).forEach(function (key) {
       eventData[key] = params[key];
@@ -376,15 +445,29 @@
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(eventData);
 
-    if (typeof window.gtag !== 'function') {
-      window.gtag = function () { window.dataLayer.push(arguments); };
-    }
-    var gaParams = {};
-    Object.keys(eventData).forEach(function (key) {
-      if (key !== 'event') gaParams[key] = eventData[key];
+    whenGtagReady(function () {
+      if (typeof window.gtag !== 'function') {
+        done();
+        return;
+      }
+      var gaParams = {};
+      Object.keys(params || {}).forEach(function (key) {
+        gaParams[key] = params[key];
+      });
+      // Do not pass send_to. GTM already loaded G-4Z4HG583H7; a second
+      // collector is what created session-less Unassigned conversions.
+      gaParams.engagement_time_msec = 1;
+      var finished = false;
+      function finish() {
+        if (finished) return;
+        finished = true;
+        done();
+      }
+      gaParams.event_callback = finish;
+      gaParams.event_timeout = 2000;
+      window.gtag('event', eventName, gaParams);
+      window.setTimeout(finish, 2000);
     });
-    gaParams.send_to = 'G-4Z4HG583H7';
-    window.gtag('event', eventName, gaParams);
   }
 
   function trackFormConversion(form, payload) {
@@ -500,9 +583,20 @@
 
   // Calendly's inline embed posts this message only after a booking is
   // completed. The listener is harmless until a Calendly embed is present.
+  // Redirect AFTER the GA hit so call_scheduled stays on this session
+  // instead of arriving as a session-less Unassigned conversion.
   window.addEventListener('message', function (e) {
     if (e.origin !== 'https://calendly.com') return;
     if (!e.data || e.data.event !== 'calendly.event_scheduled') return;
+    if (window.__sgCallScheduled) return;
+    window.__sgCallScheduled = true;
+
+    function goConfirmed() {
+      if (/talk-schedule/i.test(window.location.pathname || '')) {
+        window.location.href = '/talk-confirmed';
+      }
+    }
+
     trackGaEvent('call_scheduled', {
       booking_platform: 'calendly',
       page_location: window.location.href || '',
@@ -512,7 +606,7 @@
       utm_campaign: storedAttribution('utm_campaign'),
       utm_content: storedAttribution('utm_content'),
       utm_term: storedAttribution('utm_term')
-    });
+    }, goConfirmed);
   });
 
   /* ------------------------------------------- pointer-tracked surfaces ---

@@ -207,7 +207,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<script src="js/site.js?v=1787276638" defer></script>
+<script src="js/site.js?v=1788316801" defer></script>
 <script src="https://assets.calendly.com/assets/external/widget.js" defer></script>
 <script>
 (function () {
@@ -237,23 +237,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   initWidget();
 
   window.addEventListener('message', function (e) {
-    if (e.data && e.data.event === 'calendly.event_scheduled') {
-      try {
-        var payload = JSON.stringify({ email: email, name: name });
-        if (navigator.sendBeacon) {
-          var blob = new Blob([payload], { type: 'application/json' });
-          navigator.sendBeacon('/api/schedule-confirmed', blob);
-        } else {
-          fetch('/api/schedule-confirmed', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: payload,
-            keepalive: true
-          }).catch(function () {});
-        }
-      } catch (err) {}
-      window.location.href = 'talk-confirmed.html';
-    }
+    if (e.origin !== 'https://calendly.com') return;
+    if (!e.data || e.data.event !== 'calendly.event_scheduled') return;
+    if (window.__sgScheduleBeaconSent) return;
+    window.__sgScheduleBeaconSent = true;
+    try {
+      var payload = JSON.stringify({ email: email, name: name });
+      if (navigator.sendBeacon) {
+        var blob = new Blob([payload], { type: 'application/json' });
+        navigator.sendBeacon('/api/schedule-confirmed', blob);
+      } else {
+        fetch('/api/schedule-confirmed', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          keepalive: true
+        }).catch(function () {});
+      }
+    } catch (err) {}
+    // Redirect is handled by site.js after call_scheduled is sent to GA4.
+    window.setTimeout(function () {
+      if (!window.__sgCallScheduled) window.location.href = '/talk-confirmed';
+    }, 2500);
   });
 })();
 </script>
