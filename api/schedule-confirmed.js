@@ -75,6 +75,19 @@ module.exports = async (req, res) => {
       return res.status(500).json({ ok: false, error: 'Contact sync failed after retry' });
     }
 
+    // 1b. Subscribe to Master Contact List (list 3) — required for AC to
+    //     actually deliver automation emails. Without a list subscription,
+    //     AC silently skips the send even though the automation step runs.
+    try {
+      await fetch(`${AC_URL}/api/3/contactLists`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Api-Token': AC_KEY },
+        body: JSON.stringify({ contactList: { list: 3, contact: contactId, status: 1 } })
+      });
+    } catch (listErr) {
+      console.error('schedule-confirmed list subscribe error:', listErr.message);
+    }
+
     // 2. Enter the contact into the automation. Try the known automation ID
     //    first (fast path); fall back to a name lookup if that ever fails
     //    (e.g. the automation gets rebuilt with a new ID), with one retry.
