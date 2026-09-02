@@ -34,6 +34,9 @@ const { runQc, normalizeSynthesis, normalizeInsights } = require('../lib/qc');
 
 const MAX_ATTEMPTS = 3;
 
+// TEMP: cost-measurement instrumentation, reset per invocation, removed after use.
+let _usageLog = [];
+
 function trimTrailingSlash(s) {
   return typeof s === 'string' ? s.replace(/\/+$/, '') : s;
 }
@@ -76,7 +79,8 @@ async function callWithRetry(promptFn, label) {
   let lastErr;
   for (let i = 0; i < 4; i++) {
     try {
-      const { content } = await callPerplexity(promptFn());
+      const { content, usage } = await callPerplexity(promptFn());
+      if (usage) _usageLog.push({ label, ...usage });
       return extractJson(content);
     } catch (err) {
       lastErr = err;
@@ -134,7 +138,10 @@ async function runQcStage(job) {
     await setStatus(job.id, 'NEEDS_REVIEW', { qc_result: JSON.stringify(qc) });
     return { ...job, status: 'NEEDS_REVIEW', qc_result: qc };
   }
-  await setStatus(job.id, 'GENERATING_PDF', { qc_result: JSON.stringify(qc) });
+  // TEMP: stash real per-call token usage in last_error (harmless, not an
+  // actual error) so it's readable via the existing /api/try-status
+  // endpoint without needing DB credentials. Removed after measurement.
+  await setStatus(job.id, 'GENERATING_PDF', { qc_result: JSON.stringify(qc), last_error: `DEBUG_USAGE:${JSON.stringify(_usageLog)}` });
   return { ...job, status: 'GENERATING_PDF', qc_result: qc };
 }
 
@@ -190,6 +197,7 @@ module.exports = async (req, res) => {
 
   let job = await getJob(jobId);
   if (!job) return res.status(404).json({ ok: false, error: 'job not found' });
+  _usageLog = []; // TEMP: reset per-invocation for cost measurement, removed after use.
 
   try {
     // Advance through every ready stage in one loop, in-process. Each
