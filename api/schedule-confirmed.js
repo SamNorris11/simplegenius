@@ -3,7 +3,16 @@
 // (calendly.event_scheduled). Adds the contact to the ActiveCampaign
 // "Let's Talk - Perplexity Automation" so the confirmed-time follow-up email
 // sends only once a real time slot is booked — not on the earlier lead form.
-// Env vars used: AC_URL, AC_KEY
+// Also updates the matching Zoho CRM lead (by email) to note the call was
+// scheduled — merged into whatever lead already exists (Try flow, Let's Talk
+// form) rather than overwriting it, and inserted fresh if no lead exists yet.
+// Env vars used: AC_URL, AC_KEY, ZOHO_REFRESH_TOKEN, ZOHO_CLIENT_ID,
+// ZOHO_CLIENT_SECRET, ZOHO_ACCOUNTS_DOMAIN, ZOHO_API_DOMAIN,
+// optional CALENDLY_API_KEY (personal access token) to resolve the actual
+// booked time from the Calendly event URI — without it we log the booking
+// confirmation time instead of the exact call time.
+
+const { appendLeadTouch, upsertZohoLead } = require('../lib/zoho-leads');
 
 const AUTOMATION_ID = '30';
 const AUTOMATION_NAME = "Let's Talk - Perplexity Automation";
@@ -50,11 +59,79 @@ module.exports = async (req, res) => {
     const body = req.body || {};
     const email = String(body.email || '').trim();
     const fullName = String(body.name || '').trim();
+    const eventUri = String(body.eventUri || '').trim();
+    const inviteeUri = String(body.inviteeUri || '').trim();
     const nameParts = fullName.split(' ').filter(Boolean);
     const firstName = nameParts[0] || '';
     const lastName = nameParts.slice(1).join(' ') || '';
 
     if (!email) return res.status(400).json({ ok: false, error: 'Email required' });
+
+    // 0. Zoho CRM — note the call as scheduled on the matching lead. Best
+    //    effort: never let a Zoho hiccup block the AC automation below,
+    //    which is what actually sends the confirmation email.
+    let zoho = null;
+    let zohoError = null;
+    try {
+      let scheduledAtLabel = '';
+      if (eventUri && process.env.CALENDLY_API_KEY) {
+        try {
+          const evtRes = await fetch(eventUri, {
+            headers: { Authorization: `Bearer ${process.env.CALENDLY_API_KEY}` }
+          });
+          const evtData = await evtRes.json().catch(() => ({}));
+          const startTime = evtData?.resource?.start_time;
+          if (startTime) {
+            scheduledAtLabel = new Intl.DateTimeFormat('en-US', {
+              timeZone: 'America/New_York',
+              month: 'short', day: 'numeric', year: 'numeric',
+              hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
+            }).format(new Date(startTime));
+          }
+        } catch (calErr) {
+          console.error('Calendly event lookup failed:', calErr.message);
+        }
+      }
+
+      const confirmedAt = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York',
+        month: 'short', day: 'numeric', year: 'numeric',
+        hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
+      }).format(new Date());
+
+      const descriptionLines = [
+        '--- Call scheduled via Calendly ---',
+        scheduledAtLabel
+          ? `Call time: ${scheduledAtLabel}.`
+          : `Booking confirmed ${confirmedAt}.`
+      ];
+      if (eventUri) descriptionLines.push(`Calendly event: ${eventUri}`);
+      if (inviteeUri) descriptionLines.push(`Calendly invitee: ${inviteeUri}`);
+
+      const merge = await appendLeadTouch(email, {
+        prospectSourceAppend: 'Call Scheduled',
+        descriptionAppend: descriptionLines.join('\n')
+      });
+
+      if (merge.found) {
+        zoho = { id: merge.id, action: merge.action };
+      } else {
+        // No lead exists yet for this email (e.g. talk-form submit failed or
+        // they booked via a direct link) — insert a minimal one so the
+        // scheduled call is still on record.
+        zoho = await upsertZohoLead({
+          First_Name: firstName || fullName || 'Unknown',
+          Last_Name: lastName || firstName || fullName || 'Unknown',
+          Email: email,
+          Lead_Source1: 'Website Direct',
+          Prospect_Source_Detail: 'Call Scheduled',
+          Description: descriptionLines.join('\n')
+        });
+      }
+    } catch (zohoErr) {
+      zohoError = zohoErr.message;
+      console.error('schedule-confirmed Zoho error:', zohoErr.message);
+    }
 
     const AC_URL = process.env.AC_URL || 'https://simplegenius.api-us1.com';
     const AC_KEY = process.env.AC_KEY;
@@ -111,7 +188,7 @@ module.exports = async (req, res) => {
       return res.status(500).json({ ok: false, error: 'Could not add contact to automation', detail: addResult.data });
     }
 
-    return res.status(200).json({ ok: true, contactId, automationId, result: addResult.data });
+    return res.status(200).json({ ok: true, contactId, automationId, result: addResult.data, zoho, zohoError });
   } catch (err) {
     console.error('schedule-confirmed error:', err);
     return res.status(500).json({ ok: false, error: err.message });

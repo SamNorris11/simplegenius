@@ -242,7 +242,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (window.__sgScheduleBeaconSent) return;
     window.__sgScheduleBeaconSent = true;
     try {
-      var payload = JSON.stringify({ email: email, name: name });
+      var evtPayload = e.data.payload || {};
+      var eventUri = (evtPayload.event && evtPayload.event.uri) || '';
+      var inviteeUri = (evtPayload.invitee && evtPayload.invitee.uri) || '';
+      var payload = JSON.stringify({ email: email, name: name, eventUri: eventUri, inviteeUri: inviteeUri });
       if (navigator.sendBeacon) {
         var blob = new Blob([payload], { type: 'application/json' });
         navigator.sendBeacon('/api/schedule-confirmed', blob);

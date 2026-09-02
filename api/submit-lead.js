@@ -8,6 +8,8 @@
 //                 Source Detail = Join the Waitlist, Website (std field) set
 //   default    -> Lead Source = Website Direct, tag lets-talk-inbound (76)
 
+const { appendLeadTouch } = require('../lib/zoho-leads');
+
 const trimTrailingSlash = (value) => String(value || '').replace(/\/+$/, '');
 
 const normalizeUrl = (value) => {
@@ -342,9 +344,8 @@ module.exports = async (req, res) => {
           howHeardVal ? `How they heard: ${howHeardVal}` : ''
         ].filter(Boolean).join('\n\n')
       );
-      if (isWaitlist) {
-        zohoLead.Prospect_Source_Detail = 'Join the Waitlist';
-      }
+      const prospectSourceLabel = isWaitlist ? 'Join the Waitlist' : "Let's Talk";
+      zohoLead.Prospect_Source_Detail = prospectSourceLabel;
       setIfPresent(zohoLead, 'Multi_Line_6', websiteVisitSummary);
       setIfPresent(zohoLead, 'UTM_Source', utm_source);
       setIfPresent(zohoLead, 'UTM_Medium', utm_medium);
@@ -369,7 +370,28 @@ module.exports = async (req, res) => {
         ].filter(Boolean).join('\n');
       }
 
-      zoho = await upsertZohoLead(zohoLead, isWaitlist);
+      // If a lead already exists for this email (e.g. they went through the
+      // Try flow first), merge this touch into that same record instead of
+      // blindly overwriting its Description/Prospect_Source_Detail — both
+      // touches should stay visible on the one lead, matched by email.
+      const mergeExtraFields = Object.assign({}, zohoLead);
+      delete mergeExtraFields.Email;
+      delete mergeExtraFields.Description;
+      delete mergeExtraFields.Prospect_Source_Detail;
+
+      const merge = await appendLeadTouch(email, {
+        prospectSourceAppend: prospectSourceLabel,
+        descriptionAppend: zohoLead.Description
+          ? `--- ${prospectSourceLabel} form submitted ---\n${zohoLead.Description}`
+          : `--- ${prospectSourceLabel} form submitted ---`,
+        extraFields: mergeExtraFields
+      });
+
+      if (merge.found) {
+        zoho = { id: merge.id, action: merge.action, tagAdded: false };
+      } else {
+        zoho = await upsertZohoLead(zohoLead, isWaitlist);
+      }
     } catch (zohoErr) {
       zohoError = zohoErr.message;
       console.error('Zoho error:', zohoErr.message);
