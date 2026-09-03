@@ -74,6 +74,7 @@ module.exports = async (req, res) => {
     let zohoError = null;
     try {
       let scheduledAtLabel = '';
+      let scheduledAtIso = '';
       if (eventUri && process.env.CALENDLY_API_KEY) {
         try {
           const evtRes = await fetch(eventUri, {
@@ -82,6 +83,7 @@ module.exports = async (req, res) => {
           const evtData = await evtRes.json().catch(() => ({}));
           const startTime = evtData?.resource?.start_time;
           if (startTime) {
+            scheduledAtIso = startTime;
             scheduledAtLabel = new Intl.DateTimeFormat('en-US', {
               timeZone: 'America/New_York',
               month: 'short', day: 'numeric', year: 'numeric',
@@ -92,6 +94,12 @@ module.exports = async (req, res) => {
           console.error('Calendly event lookup failed:', calErr.message);
         }
       }
+
+      // Call_Scheduled_At (Zoho Leads, datetime) is the actual booked call
+      // time — only ever set when we resolved a real Calendly start_time.
+      // Never fall back to "now" here; that would silently mislabel the field
+      // with the booking-click time instead of the meeting time.
+      const extraFields = scheduledAtIso ? { Call_Scheduled_At: scheduledAtIso } : undefined;
 
       const confirmedAt = new Intl.DateTimeFormat('en-US', {
         timeZone: 'America/New_York',
@@ -110,7 +118,8 @@ module.exports = async (req, res) => {
 
       const merge = await appendLeadTouch(email, {
         prospectSourceAppend: 'Call Scheduled',
-        descriptionAppend: descriptionLines.join('\n')
+        descriptionAppend: descriptionLines.join('\n'),
+        extraFields
       });
 
       if (merge.found) {
@@ -125,7 +134,8 @@ module.exports = async (req, res) => {
           Email: email,
           Lead_Source1: 'Website Direct',
           Prospect_Source_Detail: 'Call Scheduled',
-          Description: descriptionLines.join('\n')
+          Description: descriptionLines.join('\n'),
+          ...(extraFields || {})
         });
       }
     } catch (zohoErr) {
