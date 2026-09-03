@@ -336,6 +336,7 @@ module.exports = async (req, res) => {
 
       setIfPresent(zohoLead, 'Designation', titleVal);
       setIfPresent(zohoLead, 'Website', normalizeUrl(website));
+      setIfPresent(zohoLead, 'Employee_Range', companySizeVal);
       // Note: 'Industry' (the standard Zoho picklist field) is retired — its
       // display labels map to unrelated legacy actual_values, so it is never
       // written here. The Let's Talk form's free text "Industry" answer goes
