@@ -19,6 +19,24 @@ const AUTOMATION_NAME = "Let's Talk - Perplexity Automation";
 
 const normalize = (value) => String(value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
+// Zoho's v8 API rejects (INVALID_DATA, expected_data_type: "datetime") the
+// raw ISO string Calendly returns for start_time, e.g.
+// "2026-09-04T15:00:00.000000Z" (6-digit microseconds + literal "Z").
+// Reformat to a clean ISO-8601 string with an explicit UTC offset
+// ("2026-09-04T15:00:00+00:00") that Zoho's datetime fields accept.
+function toZohoDateTime(isoString) {
+  const d = new Date(isoString);
+  if (isNaN(d.getTime())) return '';
+  const pad = (n) => String(n).padStart(2, '0');
+  const yyyy = d.getUTCFullYear();
+  const MM = pad(d.getUTCMonth() + 1);
+  const dd = pad(d.getUTCDate());
+  const hh = pad(d.getUTCHours());
+  const mm = pad(d.getUTCMinutes());
+  const ss = pad(d.getUTCSeconds());
+  return `${yyyy}-${MM}-${dd}T${hh}:${mm}:${ss}+00:00`;
+}
+
 async function findAutomationIdByName(AC_URL, AC_KEY, name) {
   const target = normalize(name);
   let offset = 0;
@@ -99,7 +117,7 @@ module.exports = async (req, res) => {
       // time — only ever set when we resolved a real Calendly start_time.
       // Never fall back to "now" here; that would silently mislabel the field
       // with the booking-click time instead of the meeting time.
-      const extraFields = scheduledAtIso ? { Call_Scheduled_At: scheduledAtIso } : undefined;
+      const extraFields = scheduledAtIso ? { Call_Scheduled_At: toZohoDateTime(scheduledAtIso) } : undefined;
 
       const confirmedAt = new Intl.DateTimeFormat('en-US', {
         timeZone: 'America/New_York',
