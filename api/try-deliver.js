@@ -8,7 +8,7 @@
 // (e.g. a bundling issue with the Chromium binary) surfaces as a normal JSON
 // error response instead of an opaque Vercel FUNCTION_INVOCATION_FAILED page
 // with no diagnostic information.
-let put, query, renderBriefHtml, renderPdfFromHtml, syncBriefDelivered, sendBriefReadyEmail, requireError;
+let put, query, renderBriefHtml, renderPdfFromHtml, syncBriefDelivered, sendBriefReadyEmail, recordBriefDeliveryOnLead, requireError;
 try {
   put = require('@vercel/blob').put;
   query = require('../lib/db').query;
@@ -16,6 +16,7 @@ try {
   renderPdfFromHtml = require('../lib/pdf-render').renderPdfFromHtml;
   syncBriefDelivered = require('../lib/activecampaign').syncBriefDelivered;
   sendBriefReadyEmail = require('../lib/sendgrid').sendBriefReadyEmail;
+  recordBriefDeliveryOnLead = require('../lib/zoho-leads').recordBriefDeliveryOnLead;
 } catch (err) {
   requireError = err;
   console.error('try-deliver: module load failed', err);
@@ -35,9 +36,59 @@ async function markNeedsReview(jobId, message) {
 
 async function markDelivered(jobId, pdfUrl) {
   await query(
-    `UPDATE brief_jobs SET status = 'DELIVERED', pdf_url = $2, delivered_at = now(), updated_at = now() WHERE id = $1`,
+    `UPDATE brief_jobs
+     SET status = 'DELIVERED',
+         pdf_url = $2,
+         delivered_at = now(),
+         zoho_pdf_sync_status = 'PENDING',
+         zoho_pdf_sync_error = NULL,
+         updated_at = now()
+     WHERE id = $1`,
     [jobId, pdfUrl]
   );
+}
+
+async function syncPdfToZoho(job, pdfUrl) {
+  await query(
+    `UPDATE brief_jobs
+     SET zoho_pdf_sync_status = 'PROCESSING',
+         zoho_pdf_sync_attempts = zoho_pdf_sync_attempts + 1,
+         updated_at = now()
+     WHERE id = $1`,
+    [job.id]
+  );
+
+  try {
+    const result = await recordBriefDeliveryOnLead({
+      email: job.email,
+      pdfUrl,
+      jobId: job.id,
+      deliveredAt: job.delivered_at || new Date().toISOString()
+    });
+    if (!result.found) throw new Error(`No Zoho Lead matched ${job.email}`);
+
+    await query(
+      `UPDATE brief_jobs
+       SET zoho_pdf_sync_status = 'SYNCED',
+           zoho_pdf_synced_at = now(),
+           zoho_pdf_sync_error = NULL,
+           updated_at = now()
+       WHERE id = $1`,
+      [job.id]
+    );
+    return result;
+  } catch (err) {
+    const error = String(err?.message || err).slice(0, 1000);
+    await query(
+      `UPDATE brief_jobs
+       SET zoho_pdf_sync_status = 'RETRY',
+           zoho_pdf_sync_error = $2,
+           updated_at = now()
+       WHERE id = $1`,
+      [job.id, error]
+    ).catch((dbErr) => console.error(`job ${job.id} Zoho retry state failed:`, dbErr));
+    throw err;
+  }
 }
 
 module.exports = async (req, res) => {
@@ -64,6 +115,22 @@ module.exports = async (req, res) => {
   // Idempotency: only act on jobs actually waiting for PDF generation. A job
   // that's already DELIVERED or elsewhere in the pipeline should not be
   // re-rendered/re-delivered by a duplicate or retried call.
+  if (job.status === 'DELIVERED' && job.pdf_url && job.zoho_pdf_sync_status !== 'SYNCED') {
+    let zoho;
+    try {
+      zoho = await syncPdfToZoho(job, job.pdf_url);
+    } catch (err) {
+      zoho = { found: false, action: 'error', error: String(err?.message || err).slice(0, 500) };
+    }
+    return res.status(200).json({
+      ok: true,
+      jobId,
+      status: 'DELIVERED',
+      pdfUrl: job.pdf_url,
+      zoho,
+      note: zoho.action === 'error' ? 'PDF remains delivered; Zoho writeback will remain retryable' : 'Zoho writeback completed'
+    });
+  }
   if (job.status !== 'GENERATING_PDF') {
     return res.status(200).json({ ok: true, jobId, status: job.status, note: 'no-op: job is not awaiting PDF generation' });
   }
@@ -125,11 +192,27 @@ module.exports = async (req, res) => {
       console.error(`job ${jobId} delivered but Brief Ready email failed:`, emailResult.error);
     }
 
+    // 7. Best-effort Zoho writeback runs only after the customer's email has
+    //    been attempted. Failures are persisted as RETRY and a later call to
+    //    this route can safely retry without regenerating or resending the PDF.
+    let zohoResult = { found: false, action: 'skipped' };
+    try {
+      zohoResult = await syncPdfToZoho({ ...job, id: jobId }, blob.url);
+    } catch (zohoErr) {
+      zohoResult = {
+        found: false,
+        action: 'error',
+        error: String(zohoErr?.message || zohoErr).slice(0, 500)
+      };
+      console.error(`job ${jobId} delivered but Zoho PDF writeback failed:`, zohoResult.error);
+    }
+
     return res.status(200).json({
       ok: true,
       jobId,
       status: 'DELIVERED',
       pdfUrl: blob.url,
+      zoho: zohoResult,
       activeCampaign: acResult,
       email: emailResult,
     });

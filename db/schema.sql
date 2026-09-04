@@ -48,8 +48,17 @@ CREATE TABLE IF NOT EXISTS brief_jobs (
 
   -- delivery
   pdf_url               TEXT,
-  delivered_at          TIMESTAMPTZ
+  delivered_at          TIMESTAMPTZ,
+  zoho_pdf_sync_status  TEXT NOT NULL DEFAULT 'PENDING',
+  zoho_pdf_sync_attempts INT NOT NULL DEFAULT 0,
+  zoho_pdf_sync_error   TEXT,
+  zoho_pdf_synced_at    TIMESTAMPTZ
 );
+
+ALTER TABLE brief_jobs ADD COLUMN IF NOT EXISTS zoho_pdf_sync_status TEXT NOT NULL DEFAULT 'PENDING';
+ALTER TABLE brief_jobs ADD COLUMN IF NOT EXISTS zoho_pdf_sync_attempts INT NOT NULL DEFAULT 0;
+ALTER TABLE brief_jobs ADD COLUMN IF NOT EXISTS zoho_pdf_sync_error TEXT;
+ALTER TABLE brief_jobs ADD COLUMN IF NOT EXISTS zoho_pdf_synced_at TIMESTAMPTZ;
 
 CREATE INDEX IF NOT EXISTS idx_brief_jobs_status ON brief_jobs (status);
 CREATE INDEX IF NOT EXISTS idx_brief_jobs_created_at ON brief_jobs (created_at);
