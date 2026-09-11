@@ -7,8 +7,61 @@
 //   'waitlist' -> Lead Source = Website Direct, tag waitlist-2026, Prospect
 //                 Source Detail = Join the Waitlist, Website (std field) set
 //   default    -> Lead Source = Website Direct, tag lets-talk-inbound (76)
+//
+// Site attribution: every lead is also tagged (Zoho + ActiveCampaign) with
+// which domain it came from, derived from the request host, so consulting
+// and production leads share one CRM/AC account but stay distinguishable.
 
 const { appendLeadTouch } = require('../lib/zoho-leads');
+
+const SITE_TAGS = {
+  zoho: { consulting: 'site-consulting', production: 'site-production' },
+  ac: { consulting: 'Site: Consulting', production: 'Site: Production' }
+};
+
+function detectSite(req) {
+  const host = String(req.headers['x-forwarded-host'] || req.headers.host || '').toLowerCase();
+  return host.includes('consulting.simplegenius.com') ? 'consulting' : 'production';
+}
+
+async function addZohoTag(apiDomain, headers, leadId, tagName) {
+  try {
+    const tagRes = await fetch(`${apiDomain}/crm/v8/Leads/${leadId}/actions/add_tags`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ tags: [{ name: tagName }] })
+    });
+    const tagData = await tagRes.json().catch(() => ({}));
+    const ok = tagRes.ok && tagData?.data?.[0]?.status === 'success';
+    if (!ok) console.error(`Zoho site tag (${tagName}) was not added:`, tagData?.data?.[0]?.code || tagRes.status);
+    return ok;
+  } catch (e) {
+    console.error(`Zoho site tag (${tagName}) error:`, e.message);
+    return false;
+  }
+}
+
+async function findOrCreateAcTag(AC_URL, AC_KEY, tagName) {
+  try {
+    const searchRes = await fetch(`${AC_URL}/api/3/tags?search=${encodeURIComponent(tagName)}`, {
+      headers: { 'Api-Token': AC_KEY }
+    });
+    const searchData = await searchRes.json().catch(() => ({}));
+    const match = (searchData?.tags || []).find(t => (t.tag || '').toLowerCase() === tagName.toLowerCase());
+    if (match) return match.id;
+
+    const createRes = await fetch(`${AC_URL}/api/3/tags`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Api-Token': AC_KEY },
+      body: JSON.stringify({ tag: { tag: tagName, tagType: 'contact', description: 'Auto-created for site attribution' } })
+    });
+    const createData = await createRes.json().catch(() => ({}));
+    return createData?.tag?.id || null;
+  } catch (e) {
+    console.error(`AC site tag (${tagName}) lookup/create error:`, e.message);
+    return null;
+  }
+}
 
 const trimTrailingSlash = (value) => String(value || '').replace(/\/+$/, '');
 
@@ -277,6 +330,7 @@ module.exports = async (req, res) => {
     const isWaitlist = String(source).toLowerCase() === 'waitlist';
     // The current CRM source dictionary uses Website Direct for website forms.
     const leadSource = 'Website Direct';
+    const siteKey = detectSite(req);
 
     // Build a compact attribution block to append to descriptions
     const attrLines = [];
@@ -398,6 +452,16 @@ module.exports = async (req, res) => {
       } else {
         zoho = await upsertZohoLead(zohoLead, isWaitlist);
       }
+
+      if (zoho && zoho.id) {
+        try {
+          const { accessToken, apiDomain } = await getZohoAccess();
+          const zohoHeaders = { 'Authorization': `Zoho-oauthtoken ${accessToken}`, 'Content-Type': 'application/json' };
+          await addZohoTag(apiDomain, zohoHeaders, zoho.id, SITE_TAGS.zoho[siteKey]);
+        } catch (siteTagErr) {
+          console.error('Zoho site-tag step error:', siteTagErr.message);
+        }
+      }
     } catch (zohoErr) {
       zohoError = zohoErr.message;
       console.error('Zoho error:', zohoErr.message);
@@ -495,6 +559,21 @@ module.exports = async (req, res) => {
             headers: { 'Content-Type': 'application/json', 'Api-Token': AC_KEY },
             body: JSON.stringify({ contactTag: { contact: contactId, tag: 76 } })
           });
+        }
+
+        // Site attribution tag (Site: Consulting / Site: Production), applied
+        // to every contact regardless of waitlist/lets-talk branch above.
+        try {
+          const siteTagId = await findOrCreateAcTag(AC_URL, AC_KEY, SITE_TAGS.ac[siteKey]);
+          if (siteTagId) {
+            await fetch(`${AC_URL}/api/3/contactTags`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Api-Token': AC_KEY },
+              body: JSON.stringify({ contactTag: { contact: contactId, tag: siteTagId } })
+            });
+          }
+        } catch (siteTagErr) {
+          console.error('AC site-tag step error:', siteTagErr.message);
         }
       }
     } catch (acErr) {
