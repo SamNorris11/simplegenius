@@ -13,6 +13,7 @@
 // confirmation time instead of the exact call time.
 
 const { appendLeadTouch, upsertZohoLead } = require('../lib/zoho-leads');
+const { removeContactFromAutomation, FOLLOWUP_AUTOMATION_ID } = require('../lib/activecampaign');
 
 const AUTOMATION_ID = '30';
 const AUTOMATION_NAME = "Let's Talk - Perplexity Automation";
@@ -216,7 +217,19 @@ module.exports = async (req, res) => {
       return res.status(500).json({ ok: false, error: 'Could not add contact to automation', detail: addResult.data });
     }
 
-    return res.status(200).json({ ok: true, contactId, automationId, result: addResult.data, zoho, zohoError });
+    // 3. They booked a call — take them out of the "Free Report Follow up"
+    //    sequence (automation 34) so it never emails them again after this
+    //    point. Best-effort: never fails this request if AC hiccups; removing
+    //    a contact who was never in that automation is also a harmless no-op.
+    let removedFromFollowup = false;
+    try {
+      const removeResult = await removeContactFromAutomation(email, FOLLOWUP_AUTOMATION_ID);
+      removedFromFollowup = !!removeResult.ok;
+    } catch (removeErr) {
+      console.error('schedule-confirmed: remove-from-followup error:', removeErr.message);
+    }
+
+    return res.status(200).json({ ok: true, contactId, automationId, result: addResult.data, zoho, zohoError, removedFromFollowup });
   } catch (err) {
     console.error('schedule-confirmed error:', err);
     return res.status(500).json({ ok: false, error: err.message });
