@@ -31,6 +31,10 @@ CREATE TABLE IF NOT EXISTS brief_jobs (
   page_url             TEXT,
   referrer             TEXT,
 
+  -- which domain this lead came from ('consulting' or 'production'), so the
+  -- delivered brief's CTA links/email point back to the right site
+  site                 TEXT NOT NULL DEFAULT 'production',
+
   -- pipeline status machine
   -- SUBMITTED -> RESEARCHING -> SYNTHESIZING -> INSIGHTS -> FACT_CHECKING -> GENERATING_PDF -> DELIVERED
   -- or -> NEEDS_REVIEW (failed QC gate) / FAILED (hard error, exhausted retries)
@@ -59,6 +63,7 @@ ALTER TABLE brief_jobs ADD COLUMN IF NOT EXISTS zoho_pdf_sync_status TEXT NOT NU
 ALTER TABLE brief_jobs ADD COLUMN IF NOT EXISTS zoho_pdf_sync_attempts INT NOT NULL DEFAULT 0;
 ALTER TABLE brief_jobs ADD COLUMN IF NOT EXISTS zoho_pdf_sync_error TEXT;
 ALTER TABLE brief_jobs ADD COLUMN IF NOT EXISTS zoho_pdf_synced_at TIMESTAMPTZ;
+ALTER TABLE brief_jobs ADD COLUMN IF NOT EXISTS site TEXT NOT NULL DEFAULT 'production';
 
 CREATE INDEX IF NOT EXISTS idx_brief_jobs_status ON brief_jobs (status);
 CREATE INDEX IF NOT EXISTS idx_brief_jobs_created_at ON brief_jobs (created_at);

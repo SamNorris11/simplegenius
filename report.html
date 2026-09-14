@@ -81,13 +81,13 @@
   <div class="actions">
     <span id="pageCount"></span>
     <a class="btn" id="downloadBtn" href="#" download>Download PDF</a>
-    <a class="btn gold" href="https://www.simplegenius.com" target="_blank" rel="noopener">Let's talk</a>
+    <a class="btn gold" id="letsTalkBtn" href="https://www.simplegenius.com" target="_blank" rel="noopener">Let's talk</a>
   </div>
 </header>
 
 <div id="status"></div>
 <div id="viewerWrap"></div>
-<footer class="note">Links in this report open in a new tab so you never lose your place. &middot; <a href="https://www.simplegenius.com" style="color:var(--steel)">simplegenius.com</a></footer>
+<footer class="note">Links in this report open in a new tab so you never lose your place. &middot; <a id="footerHomeLink" href="https://www.simplegenius.com" style="color:var(--steel)">simplegenius.com</a></footer>
 
 <script>
   // Compatibility polyfill: our self-hosted pdf.js build (v6.2.108) calls the
@@ -152,6 +152,22 @@ const statusEl = document.getElementById("status");
 const wrapEl = document.getElementById("viewerWrap");
 const pageCountEl = document.getElementById("pageCount");
 const downloadBtn = document.getElementById("downloadBtn");
+
+// Point both the header "Let's talk" button and the footer home link back to
+// whichever domain served this report -- the free-brief CTA should send
+// consulting.simplegenius.com visitors back to consulting, not production,
+// and vice versa. report.html is served per-domain already, so
+// window.location.origin is all that's needed (no backend detection here).
+(function fixHomeLinks() {
+  const origin = window.location.origin;
+  const letsTalk = document.getElementById("letsTalkBtn");
+  const footerHome = document.getElementById("footerHomeLink");
+  if (letsTalk) letsTalk.href = origin;
+  if (footerHome) {
+    footerHome.href = origin;
+    footerHome.textContent = origin.replace(/^https?:\/\//, "");
+  }
+})();
 
 function showStatus(html) {
   statusEl.innerHTML = html;

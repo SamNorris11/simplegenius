@@ -13,16 +13,7 @@
 // and production leads share one CRM/AC account but stay distinguishable.
 
 const { appendLeadTouch } = require('../lib/zoho-leads');
-
-const SITE_TAGS = {
-  zoho: { consulting: 'site-consulting', production: 'site-production' },
-  ac: { consulting: 'Site: Consulting', production: 'Site: Production' }
-};
-
-function detectSite(req) {
-  const host = String(req.headers['x-forwarded-host'] || req.headers.host || '').toLowerCase();
-  return host.includes('consulting.simplegenius.com') ? 'consulting' : 'production';
-}
+const { detectSite, SITE_TAGS, siteSourceLine } = require('../lib/site');
 
 async function addZohoTag(apiDomain, headers, leadId, tagName) {
   try {
@@ -405,7 +396,10 @@ module.exports = async (req, res) => {
         ].filter(Boolean).join('\n\n')
       );
       const prospectSourceLabel = isWaitlist ? 'Join the Waitlist' : "Let's Talk";
-      zohoLead.Prospect_Source_Detail = prospectSourceLabel;
+      zohoLead.Prospect_Source_Detail = `${prospectSourceLabel} (${siteSourceLine(siteKey)})`;
+      // Make the site of origin the unmissable first line of the Description
+      // too, since Lead_Source1 itself stays 'Website Direct' for both sites.
+      zohoLead.Description = [siteSourceLine(siteKey), zohoLead.Description].filter(Boolean).join('\n\n');
       setIfPresent(zohoLead, 'Multi_Line_6', websiteVisitSummary);
       setIfPresent(zohoLead, 'UTM_Source', utm_source);
       setIfPresent(zohoLead, 'UTM_Medium', utm_medium);

@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const { waitUntil } = require('@vercel/functions');
 const { query } = require('../lib/db');
 const { syncTryLead } = require('../lib/zoho-leads');
+const { detectSite } = require('../lib/site');
 
 function trimTrailingSlash(s) {
   return typeof s === 'string' ? s.replace(/\/+$/, '') : s;
@@ -68,6 +69,7 @@ module.exports = async (req, res) => {
     return res.status(500).json({ ok: false, error: 'Could not save your submission. Please try again in a minute.' });
   }
 
+  const site = detectSite(req);
   const id = crypto.randomUUID();
   const params = [
     id,
@@ -86,7 +88,8 @@ module.exports = async (req, res) => {
     body.utm_medium || null,
     body.utm_campaign || null,
     body.page_url || null,
-    body.referrer || null
+    body.referrer || null,
+    site
   ];
 
   try {
@@ -94,8 +97,8 @@ module.exports = async (req, res) => {
       `INSERT INTO brief_jobs (
         id, first_name, last_name, email, role, company, website, socials,
         competitor1_name, competitor1_site, competitor2_name, competitor2_site,
-        utm_source, utm_medium, utm_campaign, page_url, referrer, status
-      ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,'SUBMITTED')`,
+        utm_source, utm_medium, utm_campaign, page_url, referrer, site, status
+      ) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,'SUBMITTED')`,
       params
     );
   } catch (err) {
@@ -109,7 +112,7 @@ module.exports = async (req, res) => {
   let zoho = null;
   let zohoError = null;
   try {
-    zoho = await syncTryLead(body);
+    zoho = await syncTryLead(body, site);
   } catch (err) {
     zohoError = String(err?.message || err).slice(0, 500);
     console.error('try-submit Zoho sync failed (brief pipeline continues):', zohoError);

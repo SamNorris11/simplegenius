@@ -187,6 +187,7 @@ module.exports = async (req, res) => {
       email: job.email,
       firstName: job.first_name,
       pdfUrl: blob.url,
+      site: job.site,
     });
     if (!emailResult.ok && !emailResult.skipped) {
       console.error(`job ${jobId} delivered but Brief Ready email failed:`, emailResult.error);
