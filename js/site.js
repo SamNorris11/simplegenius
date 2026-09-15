@@ -394,7 +394,9 @@
   };
   var META_CUSTOM_EVENTS = {
     free_brief_start: 'competitor_report_start',
-    conversation_start: 'lets_talk_start'
+    conversation_start: 'lets_talk_start',
+    dwell_5s: 'dwell_5s',
+    dwell_120s: 'dwell_120s'
   };
 
   function configureGoogleAdsTag() {
@@ -691,8 +693,36 @@
     });
   }
 
+  function trackDwell() {
+    if (isQaTraffic()) return;
+    var now = Date.now();
+    var started = now;
+    try {
+      started = parseInt(sessionStorage.getItem('sg_session_start') || '0', 10) || now;
+      if (started === now) sessionStorage.setItem('sg_session_start', String(now));
+    } catch (e) {}
+
+    function fireDwell(eventName, storageKey) {
+      try {
+        if (sessionStorage.getItem(storageKey)) return;
+        sessionStorage.setItem(storageKey, '1');
+      } catch (e) {}
+      var path = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
+      trackGaEvent(eventName, {
+        page_location: window.location.href || '',
+        page_path: path
+      });
+    }
+
+    setTimeout(function () { fireDwell('dwell_5s', 'sg_dwell_5s'); }, 5000);
+    var remaining = 120000 - (now - started);
+    if (remaining <= 0) fireDwell('dwell_120s', 'sg_dwell_120s');
+    else setTimeout(function () { fireDwell('dwell_120s', 'sg_dwell_120s'); }, remaining);
+  }
+
   whenGtagReady(configureGoogleAdsTag);
   trackPageIntent();
+  trackDwell();
 
   /* ------------------------------------------- pointer-tracked surfaces ---
      Writes --mx/--my on card-like surfaces so the CSS radial highlight can
