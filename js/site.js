@@ -371,10 +371,56 @@
     free_brief_submit: true,
     waitlist_submit: true,
     generate_lead: true,
+    conversation_start: true,
     conversation_request: true,
     demo_request: true,
     newsletter_signup: true
   };
+
+  var GOOGLE_ADS_TAG_ID = 'AW-18116883985';
+  var META_STANDARD_EVENTS = {
+    free_brief_submit: {
+      name: 'Lead',
+      params: { content_name: 'Competitor Report', content_category: 'Lead Form' }
+    },
+    conversation_request: {
+      name: 'Contact',
+      params: { content_name: "Let's Talk", content_category: 'Lead Form' }
+    },
+    call_scheduled: {
+      name: 'Schedule',
+      params: { content_name: 'Booked Consultation', content_category: 'Booking' }
+    }
+  };
+  var META_CUSTOM_EVENTS = {
+    free_brief_start: 'competitor_report_start',
+    conversation_start: 'lets_talk_start'
+  };
+
+  function configureGoogleAdsTag() {
+    if (window.__sgAdsTag) return;
+    if (typeof window.gtag !== 'function') return;
+    window.__sgAdsTag = true;
+    window.gtag('config', GOOGLE_ADS_TAG_ID, {
+      linker: {
+        domains: ['simplegenius.com', 'www.simplegenius.com', 'consulting.simplegenius.com']
+      }
+    });
+  }
+
+  function trackMetaEvent(eventName, params) {
+    try {
+      if (typeof window.fbq !== 'function') return;
+      window.fbq('track', eventName, params || {});
+    } catch (e) {}
+  }
+
+  function trackMetaCustom(eventName, params) {
+    try {
+      if (typeof window.fbq !== 'function') return;
+      window.fbq('trackCustom', eventName, params || {});
+    } catch (e) {}
+  }
 
   function isQaTraffic() {
     var touch = {};
@@ -444,6 +490,11 @@
     // names, email addresses, company details, messages, or other form PII.
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(eventData);
+
+    var metaStandard = META_STANDARD_EVENTS[eventName];
+    if (metaStandard) trackMetaEvent(metaStandard.name, metaStandard.params);
+    var metaCustom = META_CUSTOM_EVENTS[eventName];
+    if (metaCustom) trackMetaCustom(metaCustom, { content_name: eventName });
 
     whenGtagReady(function () {
       if (typeof window.gtag !== 'function') {
@@ -608,6 +659,40 @@
       utm_term: storedAttribution('utm_term')
     }, goConfirmed);
   });
+
+  function trackPageIntent() {
+    if (isQaTraffic()) return;
+    var path = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
+    var gaEvent = '';
+    var metaContent = '';
+    var metaCategory = 'High Intent';
+    if (path === '/pricing') {
+      gaEvent = 'pricing_view';
+      metaContent = 'Pricing';
+    } else if (path === '/try' || path === '/scan' || path === '/report') {
+      gaEvent = 'competitor_report_view';
+      metaContent = 'Competitor Report';
+    } else if (path === '/talk' || path === '/talk-schedule') {
+      gaEvent = 'lets_talk_view';
+      metaContent = "Let's Talk";
+    } else if (['/business-brain', '/competition-hub', '/strategic-insights', '/workstreams', '/security'].indexOf(path) !== -1) {
+      gaEvent = 'service_view';
+      metaContent = path.slice(1);
+      metaCategory = 'Service';
+    }
+    if (!gaEvent) return;
+    trackGaEvent(gaEvent, {
+      page_location: window.location.href || '',
+      page_path: path
+    });
+    trackMetaEvent('ViewContent', {
+      content_name: metaContent,
+      content_category: metaCategory
+    });
+  }
+
+  whenGtagReady(configureGoogleAdsTag);
+  trackPageIntent();
 
   /* ------------------------------------------- pointer-tracked surfaces ---
      Writes --mx/--my on card-like surfaces so the CSS radial highlight can
