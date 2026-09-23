@@ -147,6 +147,10 @@ if (/[?&]placeholders\b/.test(location.search)) document.documentElement.classLi
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      // Keep this submit away from the legacy GTM "form_submit on /" trigger
+      // (old Webflow demo form: GA4 demo_request + Meta CompleteRegistration).
+      // Conversions for these forms are sent by sg-track.js after the backend succeeds.
+      e.stopPropagation();
       fail.hidden = true;
       expand(false);
       if (!validate(form)) return;
