@@ -536,3 +536,46 @@ html.show-ph .tcard__ph { display: block; }
 }
 @media (prefers-reduced-motion: reduce) { .fi__cue { transition: none; } }
 .fi__cue svg { flex-shrink: 0; width: 16px; height: 16px; }
+
+/* ===== Mobile pass, Sept 23 2026 ===== */
+/* Mobile menu */
+.hd__menu { color: inherit; flex-shrink: 0; }
+.hd__menu span { background: currentColor; }
+.mnav { display: none; }
+@media (max-width: 900px) {
+  .hd__nav { gap: 8px; }
+  .hd__nav .btn--sm { height: 36px; padding: 0 12px; font-size: 11px; letter-spacing: 0.06em; }
+  .hd__menu { margin-right: -10px; }
+  .mnav:not([hidden]) { display: block; background: var(--black); border-top: 1px solid #262522; }
+  .mnav__inner { display: flex; flex-direction: column; padding-block: 8px 24px; }
+  .mnav a { color: #fff; text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 16px 0; border-bottom: 1px solid #262522; }
+  .mnav a:last-child { border-bottom: 0; color: var(--yellow); }
+  .mnav a:active, .mnav a:hover { color: var(--yellow); }
+  .hd.is-open, .hd.is-open.is-scrolled { background: var(--black); color: #fff; border-bottom-color: #262522; }
+  .hd.is-open.is-scrolled .hd__logo img:first-child { opacity: 1; }
+  .hd.is-open.is-scrolled .hd__logo .hd__logo-d { opacity: 0; }
+}
+
+/* Founder story: all body copy plain, same size, no bold */
+.story .prose p, .story .prose strong, .story .prose .story__stanza { font-weight: 400; font-size: 18px; line-height: 1.45; color: var(--ink-2); }
+/* Mobile order: headline, photo, story, CTA */
+@media (max-width: 900px) {
+  .story .story__grid { row-gap: 0; }
+  .story .story__copy { display: contents; }
+  .story .story__h { order: 1; margin: 0 0 28px; }
+  .story .story__media { order: 2; margin-bottom: 32px; }
+  .story .prose { order: 3; }
+  .story .story__cta { order: 4; margin-top: 40px; }
+}
+@media (max-width: 600px) {
+  .story .story__cta-h { font-size: clamp(20px, 6.4vw, 26px); }
+  .story .story__cta-h > span { white-space: nowrap; }
+}
+
+/* Founder insights: right arrow swipe cue on mobile */
+@media (max-width: 600px) {
+  .fins__head { align-items: center; }
+  .fins__nav { display: flex; }
+  .fins__nav [data-fins-prev] { display: none; }
+  .fins__arr { width: 44px; height: 44px; }
+}
