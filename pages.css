@@ -353,3 +353,9 @@ html.lbx-open { overflow: hidden; }
   .lbx__img { max-width: none; max-height: none; width: 230vw; flex: none; }
   .lbx__x { position: fixed; background: rgb(11, 11, 10); }
 }
+
+/* Free Consultation: intro bullets */
+.fc__list { list-style: none; margin: 20px auto 0; padding: 0; width: fit-content; max-width: 560px; text-align: left; display: grid; gap: 10px; }
+.fc__list li { position: relative; padding-left: 22px; text-wrap: pretty; font-size: 17px; line-height: 1.5; color: var(--ink-2); }
+.fc__list li::before { content: ''; position: absolute; left: 0; top: 0.58em; width: 8px; height: 8px; background: var(--yellow); }
+@media (max-width: 767px) { .fc__list { gap: 12px; } .fc__list li { font-size: 16px; } }
