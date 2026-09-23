@@ -1,4 +1,30 @@
-# 🔒 SIMPLEGENIUS.COM — SOURCE OF TRUTH
+# SIMPLEGENIUS.COM — SOURCE OF TRUTH
+
+## September 2026 migration (read first)
+
+On 2026-09-23 the new founder-led site (previewed at sggtm.vercel.app) replaced the previous design on www.simplegenius.com.
+It was deployed into this same Vercel project (`sam-9671s-projects/simple-genius`) so the domain, SSL, env vars, Neon, Blob and API functions are unchanged. No DNS change.
+
+### Rollback (any one of these)
+1. Vercel dashboard > simple-genius > Deployments > `dpl_3yDPSaPP6s7uYEFfQ9yUJ8EkAiUT` (simple-genius-6mkkfjs7b) > Instant Rollback / Promote. Fastest, no rebuild.
+2. Git tag `pre-sept-2026-website` or branch `archive/pre-september-2026-website` (commit e6dfaf7): `git checkout -b restore pre-sept-2026-website`, then merge/force it to `main` to redeploy.
+Label: "Simple Genius - Pre September 2026 Website".
+
+### What changed
+- New pages: index, how-we-work, team, free-consultation, insights, early-founder, established-owner (home.js, motion.js, base/home/pages/process/style/motion.css, assets/).
+- Kept: api/, lib/, db/, img/, vendor/, css/site.css + js/site.js (used by talk-schedule, talk-confirmed, report, data-protection, 404).
+- `js/sg-track.js`: attribution, conversion dedupe, GA4/Meta/Google Ads events extracted verbatim from js/site.js.
+- Free Competitor Report = home `#try-form` -> `/api/try-submit` (same backend as old /try).
+- Free Consultation = `/free-consultation` -> `/api/submit-lead` (source lets-talk) -> `/talk-schedule` (Calendly) -> `/talk-confirmed`. Same flow as old /talk.
+- 301 redirects for retired URLs are in vercel.json.
+
+### Env var names (values live in Vercel only; never commit or print them)
+Production: ZOHO_CLIENT_ID, ZOHO_CLIENT_SECRET, ZOHO_ACCOUNTS_DOMAIN, ZOHO_API_DOMAIN, ZOHO_REFRESH_TOKEN, PERPLEXITY_API_KEY, AC_URL, AC_KEY, SENDGRID_API_KEY, VIEWER_DIAG_KEY, CRM_AGENT_ACCESS_KEY, CRM_AGENT_WEBHOOK_SECRET, CALENDLY_API_KEY.
+Production + Preview: DATABASE_URL, POSTGRES_*, PG*, NEON_*, VITE_NEON_AUTH_URL, BLOB_STORE_ID, BLOB_WEBHOOK_PUBLIC_KEY.
+
+---
+
+## Historical notes (pre September 2026, partly stale)
 
 **This folder is the live site. Do not edit outside Computer. Do not deploy from anywhere else.**
 

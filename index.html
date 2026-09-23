@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-<head>
+<html lang="en">
+  <head>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,742 +8,473 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-P48GRGDB');</script>
 <!-- End Google Tag Manager -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Simple Genius | Consulting Reimagined</title>
-<meta name="description" content="Simple Genius is the first step in AI for business. Software that knows your company, watches your competitors, and helps your whole team use AI every day.">
-<meta property="og:site_name" content="Simple Genius">
-<meta property="og:title" content="Simple Genius | Consulting Reimagined">
-<meta property="og:description" content="Simple Genius is the first step in AI for business.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600;700&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/site.css?v=1787510927">
-<link rel="icon" href="favicon-32.png?v=1787253912" sizes="32x32" type="image/png">
-<link rel="icon" href="favicon-16.png?v=1787253912" sizes="16x16" type="image/png">
-<link rel="icon" href="favicon-512.png?v=1787253912" sizes="512x512" type="image/png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=1787253912">
-<style>
-  /* Homepage section flip: image LEFT, copy RIGHT for Business Brain + Workstreams.
-     Image is BIG: its top-left corner sits at the SECTION's left edge (page
-     margin), bleeding out of the container so the software render dominates.
-     Copy column stays inside the container at a comfortable width. */
-  .section--flip .grid--centred {
-    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr) !important;
-    column-gap: var(--sp-8, 2.75rem) !important;
-    align-items: center !important;
-  }
-  .section--flip .grid--centred > .shot.col--6-12 {
-    grid-column: 1 / span 1 !important;
-    grid-row: 1 !important;
-    align-self: center !important;
-  }
-  .section--flip .grid--centred > .shot.col--6-12 .shot__img {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-  }
-  .section--flip .grid--centred > .split__copy.col--1-5 {
-    grid-column: 2 / span 1 !important;
-    grid-row: 1 !important;
-    align-self: center !important;
-  }
-  /* Software image bleeds out of the container to the section's true left edge
-     (page-margin). Corners rounded, top-left touches the section corner. */
-  .section--flip .grid--centred > .shot.col--6-12.shot--edge,
-  .section--flip .grid--centred > .shot.col--6-12.shot--edge-firm {
-    margin-left: calc(var(--page-margin, 24px) * -1) !important;
-    margin-right: 0 !important;
-    width: calc(100% + var(--page-margin, 24px)) !important;
-    max-width: none !important;
-    border-radius: 16px !important;
-    border: 1px solid rgba(29,29,29,.08) !important;
-    overflow: hidden !important;
-  }
 
-  /* Mirror of section--flip for Competition Hub + Strategic Insights:
-     copy LEFT, image RIGHT, image is the same big size as Business Brain
-     but bleeds out of the container to the section's RIGHT edge. */
-  .section--flip-right .grid--centred {
-    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr) !important;
-    column-gap: var(--sp-8, 2.75rem) !important;
-    align-items: center !important;
-  }
-  .section--flip-right .grid--centred > .split__copy.col--1-5 {
-    grid-column: 1 / span 1 !important;
-    grid-row: 1 !important;
-    align-self: center !important;
-  }
-  .section--flip-right .grid--centred > .shot.col--6-12 {
-    grid-column: 2 / span 1 !important;
-    grid-row: 1 !important;
-    align-self: center !important;
-  }
-  .section--flip-right .grid--centred > .shot.col--6-12 .shot__img {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-  }
-  .section--flip-right .grid--centred > .shot.col--6-12.shot--edge,
-  .section--flip-right .grid--centred > .shot.col--6-12.shot--edge-firm {
-    margin-left: 0 !important;
-    margin-right: calc(var(--page-margin, 24px) * -1) !important;
-    width: calc(100% + var(--page-margin, 24px)) !important;
-    max-width: none !important;
-    border-radius: 16px !important;
-    border: 1px solid rgba(212,175,55,.18) !important;
-    overflow: hidden !important;
-  }
-
-  @media (max-width: 900px) {
-    .section--flip .grid--centred,
-    .section--flip-right .grid--centred {
-      grid-template-columns: 1fr !important;
-    }
-    .section--flip .grid--centred > .shot.col--6-12,
-    .section--flip .grid--centred > .split__copy.col--1-5,
-    .section--flip-right .grid--centred > .shot.col--6-12,
-    .section--flip-right .grid--centred > .split__copy.col--1-5 {
-      grid-column: 1 / -1 !important;
-      grid-row: auto !important;
-      align-self: stretch !important;
-    }
-    /* Reset the desktop bleed on mobile so the image fits the viewport */
-    .section--flip .grid--centred > .shot.col--6-12.shot--edge,
-    .section--flip .grid--centred > .shot.col--6-12.shot--edge-firm,
-    .section--flip-right .grid--centred > .shot.col--6-12.shot--edge,
-    .section--flip-right .grid--centred > .shot.col--6-12.shot--edge-firm {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-      width: 100% !important;
-      border-radius: 14px !important;
-    }
-  }
-
-  /* MOBILE: eyebrow, then image, then headline, then body copy + CTA.
-     Applies to Competition Hub, Business Brain, Strategic Insights, Workstreams.
-     .split__copy and .split__copy-head both use display:contents on mobile so
-     the eyebrow and h2 become independent grid siblings and can be ordered
-     around the image, stacked tight with minimal margin. */
-  @media (max-width: 900px) {
-    #competition .grid--centred > .split__copy,
-    #context .grid--centred > .split__copy,
-    #insights .grid--centred > .split__copy,
-    #work-streams .grid--centred > .split__copy,
-    #competition .split__copy-head,
-    #context .split__copy-head,
-    #insights .split__copy-head,
-    #work-streams .split__copy-head {
-      display: contents !important;
-    }
-    #competition .split__copy-head .eyebrow,
-    #context .split__copy-head .eyebrow,
-    #insights .split__copy-head .eyebrow,
-    #work-streams .split__copy-head .eyebrow {
-      order: 1 !important;
-      grid-column: 1 / -1 !important;
-      margin-bottom: .5rem !important;
-    }
-    #competition .grid--centred > .shot,
-    #context .grid--centred > .shot,
-    #insights .grid--centred > .shot,
-    #work-streams .grid--centred > .shot {
-      order: 2 !important;
-      margin: .5rem 0 !important;
-    }
-    #competition .split__copy-head h2,
-    #context .split__copy-head h2,
-    #insights .split__copy-head h2,
-    #work-streams .split__copy-head h2 {
-      order: 3 !important;
-      grid-column: 1 / -1 !important;
-      margin: .5rem 0 0 !important;
-    }
-    #competition .split__copy-body,
-    #context .split__copy-body,
-    #insights .split__copy-body,
-    #work-streams .split__copy-body {
-      order: 4 !important;
-      grid-column: 1 / -1 !important;
-      margin-top: .5rem !important;
-    }
-    /* The grid's row-gap (sp-8 = 4rem) still applies between each of these
-       now-independent rows even though grid-template-columns collapses to
-       1fr here — kill it so the .5rem margins above are the only spacing. */
-    #competition .grid--centred,
-    #context .grid--centred,
-    #insights .grid--centred,
-    #work-streams .grid--centred {
-      gap: 0 !important;
-    }
-  }
-
-  /* Homepage "Who's behind it" (#about): mobile only — drop the statement
-     line and keep the eyebrow top left (the shared .found-grid mobile rule
-     centers it for the About page, but this section wants it left). */
-  @media (max-width: 900px) {
-    #about .found__close .statement { display: none !important; }
-    #about .found-grid .found-left > .eyebrow { text-align: left !important; }
-  }
-
-  /* Homepage "Who's behind it": too much margin above the eyebrow and
-     between eyebrow/H2/rule/photos on mobile — tighten the whole stack. */
-  @media (max-width: 900px) {
-    #about.found-section { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
-    #about .found-grid { gap: .5rem !important; }
-    #about .found-grid .found-left > .eyebrow { margin-bottom: .25rem !important; }
-    #about .found-grid .found-h2 { margin-top: .25rem !important; margin-bottom: .5rem !important; }
-    #about .found-grid .rule-gold { margin: .5rem auto !important; }
-  }
-
-  /* "Learn more about X" homepage CTAs: yellow bg, black text, one line, centered. */
-  .learnmore-row { text-align: center; }
-  .btn--learnmore {
-    background: #D4AF37 !important;
-    color: #1D1D1D !important;
-    border-color: transparent !important;
-    white-space: nowrap !important;
-  }
-  .btn--learnmore:hover { background: #E6BF41 !important; }
-  @media (max-width: 900px) {
-    .btn--learnmore {
-      width: auto !important;
-      font-size: 1rem !important;
-      font-weight: 700 !important;
-      padding-inline: .85rem !important;
-      min-height: 2.5rem !important;
-      letter-spacing: 0 !important;
-      box-shadow: 0 4px 12px rgba(212,175,55,.35) !important;
-      border-radius: 8px !important;
-    }
-  }
-
-  /* Mobile-only: bolder/bigger "shift" headlines in the 4 product sections
-     (Competition Hub, Business Brain, Strategic Insights, Workstreams), so
-     they pop more against the smaller supporting copy. All 4 share the same
-     size for consistency — Workstreams stacks to 2 lines rather than shrink. */
-  @media (max-width: 900px) {
-    #competition .split__copy-head .display--md,
-    #context .split__copy-head .display--md,
-    #insights .split__copy-head .display--md,
-    #work-streams .split__copy-head .display--md {
-      font-size: 2rem !important;
-      font-weight: 700 !important;
-      line-height: 1.1 !important;
-    }
-  }
-
-  /* Mobile-only: keep "Mark Combs, CFA" on one line under his photo. */
-  @media (max-width: 900px) {
-    .found-grid .founders-photo .founder-card__name {
-      white-space: nowrap !important;
-      font-size: 1rem !important;
-    }
-  }
-
-  /* Guided setup toggle (ported from simple version) */
-  .setup-toggle{max-width:640px;margin:2.5rem auto 0;background:#F7F7F7;border:1px solid rgba(29,29,29,.08);border-radius:16px;padding:1.5rem 1.75rem;display:flex;align-items:center;gap:1.25rem;}
-  .setup-toggle__body{flex:1;}
-  .setup-toggle__title{display:block;font-family:var(--ff-sans);font-size:1.35rem;color:#1D1D1D;line-height:1.25;margin-bottom:.35rem;}
-  .setup-toggle__desc{display:block;color:#5A5A5A;font-size:.98rem;line-height:1.5;}
-  .setup-toggle__control{display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0;}
-  .setup-toggle__price{font-family:var(--ff-sans);font-size:1.4rem;color:#1D1D1D;white-space:nowrap;}
-  .switch{position:relative;display:inline-block;width:52px;height:28px;}
-  .switch input{opacity:0;width:0;height:0;}
-  .switch__slider{position:absolute;cursor:pointer;inset:0;background:#c4c4c4;border-radius:28px;transition:.2s;}
-  .switch__slider::before{content:"";position:absolute;height:22px;width:22px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.15);}
-  .switch input:checked + .switch__slider{background:#D4AF37;}
-  .switch input:checked + .switch__slider::before{transform:translateX(24px);}
-  @media (max-width:600px){.setup-toggle{flex-direction:column;align-items:stretch;}.setup-toggle__control{align-items:flex-start;}}
-
-  /* Who's behind it: bump the right-side prose so it fills the space with the founder photos. */
-  .found-right .prose--lead { font-size: clamp(1.25rem, 1.5vw, 1.5rem) !important; line-height: 1.55 !important; }
-  .found-right .prose--lead > p + p { margin-top: 1.5rem !important; }
-  @media (max-width: 900px) {
-    .found-right .prose--lead { font-size: 1.15rem !important; }
-  }
-</style>
-
-<link rel="canonical" href="https://www.simplegenius.com/">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.simplegenius.com/">
-<meta property="og:image" content="https://www.simplegenius.com/img/og-preview.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Simple Genius | Consulting Reimagined">
-<meta name="twitter:description" content="Simple Genius is the first step in AI for business. Software that knows your company, watches your competitors, and helps your whole team use AI every day.">
-<meta name="twitter:image" content="https://www.simplegenius.com/img/og-preview.jpg">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Simple Genius", "url": "https://www.simplegenius.com/", "logo": "https://www.simplegenius.com/img/logo-dark-112h.png", "description": "Simple Genius is the first step in AI for business. Software that knows your company, watches your competitors, and helps your whole team use AI every day.", "sameAs": ["https://www.linkedin.com/company/112274244/", "https://www.youtube.com/@SG-SimpleGenius", "https://www.facebook.com/profile.php?id=61588162733235", "https://www.instagram.com/simplegenius.co/"]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Simple Genius", "url": "https://www.simplegenius.com/"}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Business AI Step One", "description": "Simple Genius is the first step in AI for business. Software that knows your company, watches your competitors, and helps your whole team use AI every day.", "url": "https://www.simplegenius.com/", "isPartOf": {"@type": "WebSite", "name": "Simple Genius", "url": "https://www.simplegenius.com/"}}</script>
-</head>
-<body>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Genius | You don't have to build it alone.</title>
+    <meta name="description" content="See the business clearly. Decide what matters. Do what you said you'd do." />
+    <link rel="canonical" href="https://www.simplegenius.com/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Simple Genius" />
+    <meta property="og:url" content="https://www.simplegenius.com/" />
+    <meta property="og:title" content="Simple Genius | You don't have to build it alone." />
+    <meta property="og:description" content="See the business clearly. Decide what matters. Do what you said you'd do." />
+    <meta property="og:image" content="https://www.simplegenius.com/img/og-preview.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Simple Genius | You don't have to build it alone." />
+    <meta name="twitter:description" content="See the business clearly. Decide what matters. Do what you said you'd do." />
+    <meta name="twitter:image" content="https://www.simplegenius.com/img/og-preview.jpg" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
+    <link rel="icon" href="/favicon-512.png" sizes="512x512" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Simple Genius", "url": "https://www.simplegenius.com/", "logo": "https://www.simplegenius.com/img/logo-dark-112h.png", "sameAs": ["https://www.linkedin.com/company/112274244/", "https://www.youtube.com/@SG-SimpleGenius", "https://www.facebook.com/profile.php?id=61588162733235", "https://www.instagram.com/simplegenius.co/"]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Simple Genius", "url": "https://www.simplegenius.com/"}</script>
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./base.css" />
+    <link rel="stylesheet" href="./home.css" />
+    <link rel="stylesheet" href="./motion.css" />
+    <link rel="preload" as="image" href="./assets/founder-trent.png" />
+  </head>
+  <body>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P48GRGDB"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P48GRGDB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<!-- SHARED ILLUSTRATION DEFS, THE C STANDARD (css/site.css block 15).
-     Injected by build.py as the first child of <body> on every page.
-     Reference panel: qa/r3/refine-variants.html, panel C. Rules and ship gate:
-     DESIGN-SYSTEM.md §9A. Gate: node qa/r3/c-standard.js all 1440.
 
-     Nothing in here may imply a third line weight, a second tint or a light
-     source. The C standard allows exactly two stroke weights, structural 2.4
-     and hairline 1, so every marker below is sized in USER UNITS, not in
-     multiples of stroke-width: a connector head is the same size whichever of
-     the two weights carries it, and it lands on the element it points to
-     rather than short of it.
+    <a class="skip" href="#main">Skip to content</a>
 
-     BANNED, and deliberately absent: drop/cast shadow filters, feDropShadow,
-     feGaussianBlur, feOffset, lit-face gradients, occlusion ramps, extrusion,
-     emboss, glow. See DESIGN-SYSTEM.md §9A.0 for the full nine-row table. -->
-<svg class="dg-defs" width="0" height="0" aria-hidden="true" focusable="false"
-     xmlns="http://www.w3.org/2000/svg"><defs>
-
-  <!-- 45° drafting hatch. Reserved for an area that is EMPTY or UNVERIFIED ,
-       it is a convention, not a texture. Light and dark grounds. -->
-  <pattern id="dgHatch" width="10" height="10" patternUnits="userSpaceOnUse"
-           patternTransform="rotate(45)">
-    <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(27,27,26.13)" stroke-width="1"/>
-  </pattern>
-  <pattern id="dgHatchD" width="10" height="10" patternUnits="userSpaceOnUse"
-           patternTransform="rotate(45)">
-    <line x1="0" y1="0" x2="0" y2="10" stroke="rgba(237,235,232.15)" stroke-width="1"/>
-  </pattern>
-
-  <!-- Connector head. Open chevron, inherits the line's own stroke. refX 9 in
-       a 10-unit box puts the tip ON the path's last point, which is how a
-       connector terminates exactly on its target (§9A.7). -->
-  <marker id="dgArrow" viewBox="0 0 10 10" refX="9" refY="5"
-          markerWidth="10" markerHeight="10" orient="auto-start-reverse"
-          markerUnits="userSpaceOnUse">
-    <path d="M1 1 L9 5 L1 9" fill="none" stroke="context-stroke"
-          stroke-width="1.6" stroke-linecap="butt" stroke-linejoin="miter"/>
-  </marker>
-
-  <!-- Dimension end cap. A perpendicular tick, the way a measured rule
-       terminates on a drawing. Use on .d-dim via marker-start/marker-end. -->
-  <marker id="dgTick" viewBox="0 0 10 10" refX="5" refY="5"
-          markerWidth="8" markerHeight="8" orient="auto"
-          markerUnits="userSpaceOnUse">
-    <path d="M5 0 V10" fill="none" stroke="context-stroke" stroke-width="2"/>
-  </marker>
-
-  <!-- Terminator dot. Where a reference line lands on the thing it names. -->
-  <marker id="dgNode" viewBox="0 0 10 10" refX="5" refY="5"
-          markerWidth="6" markerHeight="6" orient="auto" markerUnits="userSpaceOnUse">
-    <circle cx="5" cy="5" r="3" fill="context-stroke"/>
-  </marker>
-
-</defs></svg>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="container site-header__inner">
-    <!-- Two real assets, swapped by CSS. Never a filter: invert() on the
-         wordmark, inverting the gold in "Genius" produced bright blue.
-         See DESIGN-SYSTEM.md §9, "Header". -->
-    <a class="logo" href="index.html" aria-label="Simple Genius home">
-      <img class="logo__img logo__img--ink" src="img/logo-dark-112h.png"
-           srcset="img/logo-dark-56h.png 1x, img/logo-dark-112h.png 2x, img/logo-dark-168h.png 3x"
-           width="150" height="56" alt="Simple Genius">
-      <img class="logo__img logo__img--bone" src="img/logo-light-124h.png"
-           srcset="img/logo-light-62h.png 1x, img/logo-light-124h.png 2x, img/logo-light-186h.png 3x"
-           width="166" height="62" alt="" aria-hidden="true">
-    </a>
-
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
-      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
-    </button>
-
-    <nav class="nav" id="site-nav" aria-label="Main">      <a class="nav__link" href="how-it-works.html">How It Works</a>
-      <a class="nav__link" href="pricing.html">Pricing</a>
-      <a class="nav__link" href="try.html">Free Competitor Report</a>
-      <a class="nav__link" href="about.html">About</a>    </nav>
-
-    <div class="header__actions">
-      <a class="btn btn--primary" href="talk.html">Let&rsquo;s talk</a>
+    <header class="hd" data-header>
+      <div class="ctr hd__inner">
+        <a class="hd__logo" href="./index.html" aria-label="Simple Genius home">
+          <img src="./assets/logo-light-124h.png" srcset="./assets/logo-light-62h.png 1x, ./assets/logo-light-124h.png 2x" width="166" height="62" alt="Simple Genius" />
+          <img class="hd__logo-d" src="./assets/logo-dark-56h.png" srcset="./assets/logo-dark-56h.png 1x, ./assets/logo-dark-112h.png 2x" width="150" height="56" alt="" aria-hidden="true" />
+        </a>
+        <nav class="hd__nav" aria-label="Primary">
+          <a href="/how-we-work">How We Work</a>
+          <a href="/team">Our Team</a>
+          <a href="#report">Free Competitor Report</a>
+          <a class="btn btn--sm" href="/free-consultation">Free Consultation</a>
+        </nav>
       </div>
-    </div>
-</header>
+    </header>
 
-<main id="main">
-
-<!-- ============================================================ P1, HERO
-     Single-fold layout: title → film → CTAs → note, all above the fold
-     on a standard laptop (≥900px viewport). Compact spacing throughout. -->
-<section class="hero hero--center hero--fold">
-  <div class="hero__glow" aria-hidden="true"></div>
-  <div class="container hero__inner hero__inner--center hero__inner--fold">
-    <h1 class="hero__title hero__title--first-step hero__title--compact">
-      <span class="hero__line"><span class="hero__word">The</span> <span class="hero__word hero__italic">first</span> <span class="hero__word hero__italic">step</span></span>
-      <span class="hero__line"><span class="hero__word">in</span> <span class="hero__word"><span class="hero__ai">AI</span></span> <span class="hero__word">for</span> <span class="hero__word">business.</span></span>
-    </h1>
-
-
-    <figure class="film film--framed film--fold" data-placeholder="homepage-video">
-      <div class="film__stage" data-src="video/homepage-hero.mp4" data-poster="img/homepage-hero-poster.jpg"></div>
-      <button class="film__unmute" type="button" aria-label="Click to hear this video with sound">
-        <span class="film__unmute-card">
-          <svg class="film__unmute-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18 6a8 8 0 0 1 0 12"/></svg>
-          <span class="film__unmute-title">Your Video Is Playing</span>
-          <span class="film__unmute-sub">Click To Unmute</span>
-        </span>
-      </button>
-    </figure>
-
-    <div class="btn-row hero__actions hero__actions--compact">
-      <a class="btn btn--primary" href="try.html">Try Simple Genius for Free <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn--secondary" href="talk.html">Let&rsquo;s talk</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ===================================================== P2, COMPETITION HUB (LEAD)
-     Ported from simple version. Black background, verbatim copy. -->
-<section class="section section--ink section--tight section--flip-right" id="competition">
-  <div class="container">
-    <div class="grid grid--centred">
-      <div class="col--1-5 split__copy">
-        <div class="split__copy-head">
-          <span class="eyebrow">Competition Hub</span>
-          <h2 class="display display--md">We watch your competitors <em>for you</em>.</h2>
+    <main id="main">
+      <!-- 1. HERO -->
+      <section class="hero">
+        <div class="ctr hero__inner">
+          <h1 class="hero__h1">You don’t <br class="br-m">have to <br class="br-d">build and scale <br>your business <br class="br-m">alone.</h1>
+          <!-- Hero video placeholder. To go live: put a <video> (muted if autoplay) or an <iframe> inside .hero__video,
+               remove the .hero__video--ph class and the .hero__play element. Aspect ratio is held by CSS (16:9). -->
+          <div class="hero__video hero__video--ph" role="img" aria-label="Simple Genius video coming soon">
+            <span class="hero__play" aria-hidden="true"></span>
+          </div>
         </div>
-        <div class="split__copy-body">
-          <p class="section__lede section__lede--left">We track new hires, new products, pricing changes, and other public moves your competitors make. Then we show you what changed, why it matters, and what you may want to do about it.</p>
-          <p class="section__lede section__lede--left">We keep watching and updating, so you always know what&rsquo;s happening.</p>
-          <div class="learnmore-row" style="margin-top:1.5rem;"><a class="btn btn--learnmore" href="competition-hub.html">Learn more about Competition Hub</a></div>
+      </section>
+
+      <!-- 2. FOR THE ONES BUILDING -->
+      <section class="sec sec--white building" id="chasing">
+        <div class="ctr">
+          <h2 class="h2 h2--center h2--one">For the ones chasing more.</h2>
+          <div class="aud">
+            <article class="aud__card aud__card--owner">
+              <img class="aud__img" src="./assets/aud-owner.jpg" alt="An established business owner standing in his warehouse" width="1122" height="1402" loading="lazy" />
+              <a class="aud__more" href="/established-owner">Learn more <span aria-hidden="true">→</span></a>
+              <div class="aud__text">
+                <h3 class="aud__h">Established Owner</h3>
+                <p class="aud__p">Simple Genius helps you see the business clearly, decide what matters now, and turn your goals into action.</p>
+              </div>
+            </article>
+            <article class="aud__card aud__card--founder">
+              <img class="aud__img" src="./assets/aud-founder.jpg" alt="A young founder sketching plans at his desk in a studio workspace" width="1122" height="1402" loading="lazy" />
+              <a class="aud__more" href="/early-founder">Learn more <span aria-hidden="true">→</span></a>
+              <div class="aud__text">
+                <h3 class="aud__h">Early Founder</h3>
+                <p class="aud__p">Simple Genius helps you turn the vision in your head into a business you can actually build and grow.</p>
+              </div>
+            </article>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
-        <img class="shot__img"
-             src="img/sg-competition-hub-1600w.jpg"
-             srcset="img/sg-competition-hub-800w.jpg 800w, img/sg-competition-hub-1600w.jpg 1600w, img/sg-competition-hub-2400w.jpg 2400w"
-             sizes="(max-width: 900px) 100vw, 68vw"
-             width="1600" height="708"
-             alt="Competition Hub: your competitors&rsquo; moves tracked every day."
-             loading="lazy" decoding="async">
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ==================================================== P3, BUSINESS BRAIN (FLIPPED)
-     Layout is reversed via .section--flip: image LEFT, copy RIGHT. Light section. -->
-<section class="section section--white section--seam section--tight section--clip section--flip" id="context">
-  <div class="container">
-    <div class="grid grid--centred">
-      <div class="col--1-5 split__copy">
-        <div class="split__copy-head">
-          <span class="eyebrow">Business Brain</span>
-          <h2 class="display display--md">Everything your company knows, <em>captured</em>.</h2>
-        </div>
-        <div class="split__copy-body">
-          <p class="section__lede section__lede--left">An AI voice model interviews your leaders. It captures valuable intellectual knowledge about your business, from the people who are running it.</p>
-          <p class="section__lede section__lede--left">Upload your documents, playbooks, and process files. Everything lives in one place. If a person leaves, the knowledge stays.</p>
-          <div class="learnmore-row" style="margin-top:1.5rem;"><a class="btn btn--learnmore" href="business-brain.html">Learn more about Business Brain</a></div>
-        </div>
-      </div>
-
-      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
-        <img class="shot__img"
-             src="img/sg-business-brain-1600w.jpg"
-             srcset="img/sg-business-brain-800w.jpg 800w, img/sg-business-brain-1600w.jpg 1600w, img/sg-business-brain-2400w.jpg 2400w"
-             sizes="(max-width: 900px) 100vw, 68vw"
-             width="1600" height="708"
-             alt="Business Brain: interviews and documents that become one written record."
-             loading="lazy" decoding="async">
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- =============================================== P5, STRATEGIC INSIGHTS (BLACK)
-     Ported from simple version. Black background. Copy left, image right. -->
-<section class="section section--ink section--tight section--flip-right" id="insights">
-  <div class="container">
-    <div class="grid grid--centred">
-      <div class="col--1-5 split__copy">
-        <div class="split__copy-head">
-          <span class="eyebrow">Strategic Insights</span>
-          <h2 class="display display--md">We tell you <em>what to do</em> about it.</h2>
-        </div>
-        <div class="split__copy-body">
-          <p class="section__lede section__lede--left">We know your business. We know your competitors. Strategic Insights is where we connect both sides and hand you the move.</p>
-          <p class="section__lede section__lede--left">Every insight is grounded in your context, tied to competitor signals, and written as a clear insight.</p>
-          <div class="learnmore-row" style="margin-top:1.5rem;"><a class="btn btn--learnmore" href="strategic-insights.html">Learn more about Strategic Insights</a></div>
-        </div>
-      </div>
-
-      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
-        <img class="shot__img"
-             src="img/sg-strategic-insights-1600w.jpg"
-             srcset="img/sg-strategic-insights-800w.jpg 800w, img/sg-strategic-insights-1600w.jpg 1600w, img/sg-strategic-insights-2400w.jpg 2400w"
-             sizes="(max-width: 900px) 100vw, 68vw"
-             width="1600" height="800"
-             alt="Strategic Insights: the move to make, grounded in your context and your competitors&rsquo; signals."
-             loading="lazy" decoding="async">
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================ P4, WORKSTREAMS (FLIPPED, RENAMED)
-     Layout: image LEFT, copy RIGHT. Light section. Rooted-in-company-context first,
-     safety second, four walls close. -->
-<section class="section section--white section--seam section--tight section--clip section--flip" id="work-streams">
-  <div class="container">
-    <div class="grid grid--centred">
-      <div class="col--1-5 split__copy">
-        <div class="split__copy-head">
-          <span class="eyebrow">Workstreams</span>
-          <h2 class="display display--md">AI that already knows <em>the business</em>.</h2>
-        </div>
-        <div class="split__copy-body">
-          <p class="section__lede section__lede--left">AI rooted in your company context. Everything your team learns stays inside the four walls of the business.</p>
-          <p class="section__lede section__lede--left">A safe environment for your team to use AI on real work. Nothing they type leaves the platform.</p>
-          <p class="section__lede section__lede--left">When someone walks out the door, what the company learned stays.</p>
-          <div class="learnmore-row" style="margin-top:1.5rem;"><a class="btn btn--learnmore" href="workstreams.html">Learn more about Workstreams</a></div>
-        </div>
-      </div>
-
-      <figure class="shot shot--edge shot--edge-firm shot--zoomable reveal col--6-12">
-        <img class="shot__img"
-             src="img/sg-workstreams-1600w.jpg"
-             srcset="img/sg-workstreams-800w.jpg 800w, img/sg-workstreams-1600w.jpg 1600w, img/sg-workstreams-2400w.jpg 2400w"
-             sizes="(max-width: 900px) 100vw, 68vw"
-             width="1600" height="696"
-             alt="Workstreams: your team&rsquo;s AI, rooted in your company&rsquo;s own context."
-             loading="lazy" decoding="async">
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================ P5.5, SECURITY
-     Typography-only prompt. Black background, gold eyebrow, two large statements.
-     One CTA to /security. Short, not full-screen. -->
-<style>
-  .sec-prompt{background:#000;color:#F7F7F7;padding:clamp(2.25rem,4.5vw,3.5rem) 0;}
-  .sec-prompt__inner{max-width:960px;margin:0 auto;padding:0 clamp(1.25rem,3vw,2.5rem);text-align:center;}
-  .sec-prompt__eyebrow{display:block;font-family:var(--ff-sans);font-weight:600;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#D4AF37;margin-bottom:clamp(1rem,2vw,1.5rem);}
-  .sec-prompt__h{font-family:var(--ff-display);font-weight:500;color:#F7F7F7;font-size:clamp(2.4rem,5.8vw,4.6rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 clamp(.9rem,1.8vw,1.4rem);}
-  .sec-prompt__q{font-family:var(--ff-display);font-weight:400;font-style:italic;color:#D4AF37;font-size:clamp(1.6rem,3.6vw,2.9rem);line-height:1.15;letter-spacing:-.01em;margin:0 auto clamp(1.75rem,3.2vw,2.4rem);max-width:26ch;}
-  .sec-prompt__cta{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--ff-sans);font-weight:600;font-size:.98rem;letter-spacing:.02em;color:#000;background:#D4AF37;padding:.85rem 1.5rem;border-radius:6px;text-decoration:none;transition:transform .18s ease, background .18s ease;}
-  .sec-prompt__cta:hover{background:#E6BF41;transform:translateY(-1px);}
-  .sec-prompt__cta svg{width:14px;height:14px;}
-  @media (max-width:640px){
-    .sec-prompt{padding:2.25rem 0;}
-  }
-</style>
-<section class="sec-prompt" id="security" aria-labelledby="sec-prompt-h">
-  <div class="sec-prompt__inner">
-    <span class="sec-prompt__eyebrow">Security</span>
-    <h2 class="sec-prompt__h" id="sec-prompt-h">Everyone&rsquo;s using AI.</h2>
-    <p class="sec-prompt__q">But where is your company information going?</p>
-    <a class="sec-prompt__cta" href="security.html">Learn About Security
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-</section>
-
-<!-- ============================================ P6, WHO'S BEHIND IT
-     Ported from simple version. Two-column: left = eyebrow + H2 + gold rule
-     + statement + LinkedIn box. Right = prose + paired founder photos. -->
-<section id="about" class="section section--white section--seam section--tall found-section">
-  <div class="container">
-    <div class="grid grid--seam-mid found-grid">
-      <div class="col--1-5 found-left">
-        <span class="eyebrow">Who&rsquo;s behind it</span>
-        <h2 class="display display--lg found-h2">Two operators who&rsquo;ve already done it.</h2>
-
-        <div class="found__close">
-          <div class="rule-gold rule-gold--left" aria-hidden="true"></div>
-          <p class="statement statement--left">Built and sold companies. Now building the tool they wish they had.</p>
-
-          <aside class="linkedin-box" aria-label="Connect with the Simple Genius founders on LinkedIn">
-            <p class="linkedin-box__label">Connect with us on LinkedIn</p>
-            <ul class="linkedin-box__list">
-              <li>
-                <a class="linkedin-row" href="https://www.linkedin.com/in/trent-hiott-27100867/" target="_blank" rel="noopener" aria-label="Trent Hiott on LinkedIn">
-                  <svg class="linkedin-row__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.11 2.06 2.06 0 010 4.11zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.44c.98 0 1.79-.77 1.79-1.72V1.72C24 .77 23.19 0 22.22 0z"/></svg>
-                  <span class="linkedin-row__name">Trent Hiott</span>
-                </a>
-              </li>
-              <li>
-                <a class="linkedin-row" href="https://www.linkedin.com/in/meetmarkcombs/" target="_blank" rel="noopener" aria-label="Mark Combs, CFA on LinkedIn">
-                  <svg class="linkedin-row__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.44v6.3zM5.34 7.43a2.06 2.06 0 110-4.11 2.06 2.06 0 010 4.11zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.44c.98 0 1.79-.77 1.79-1.72V1.72C24 .77 23.19 0 22.22 0z"/></svg>
-                  <span class="linkedin-row__name">Mark Combs, CFA</span>
-                </a>
-              </li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-
-      <div class="col--7-12 found-right">
-        <div class="prose prose--lead">
-          <p>Trent and Mark have spent the last decade building companies, running them, and selling them. They know what it feels like to have every vendor pitching them at once and no clear place to start.</p>
-          <p>They built Simple Genius to be the answer they wanted when they were in your seat. Honest. Sourced. Actually built on your company.</p>
-        </div>
-
-        <figure class="founders-photo founders-photo--split" aria-label="Trent Hiott and Mark Combs, CFA, co-founders of Simple Genius">
-          <div class="founders-photo__pair">
-            <div class="founder-card">
-              <img src="img/founder-trent.jpeg" alt="Portrait of Trent Hiott" width="400" height="400" loading="lazy">
-              <span class="founder-card__name">Trent Hiott</span>
+      <!-- 3. TRENT STORY -->
+      <section class="sec sec--warm story" id="trent">
+        <div class="ctr story__grid">
+          <div class="story__copy">
+            <h2 class="h2 h2--one story__h"><span class="story__h-l">Hello, I’m Trent Hiott,</span><span class="story__h-l">founder of Simple Genius.</span></h2>
+            <div class="prose">
+              <p>I’ve spent nearly two decades building companies, and I’ve been fortunate to have a lot of success along the way, including growing businesses to <span class="nowrap">8-figure</span> outcomes.</p>
+              <p>But the part of business I’ve always loved most is the work behind the growth.</p>
+              <p class="story__stanza">Understanding where a business is going.<br>Seeing what’s getting in the way.<br>Working through the hard decisions.<br>Figuring out what actually matters next.</p>
+              <p>And then helping turn that direction into action.</p>
+              <p><strong>That’s what we built Simple Genius to do.</strong></p>
             </div>
-            <div class="founder-card">
-              <img src="img/founder-mark.jpeg" alt="Portrait of Mark Combs, CFA" width="400" height="400" loading="lazy">
-              <span class="founder-card__name">Mark Combs, CFA</span>
+            <div class="story__cta">
+              <p class="story__cta-h"><span>Let’s look under the hood</span><span>of your business.</span></p>
+              <p class="story__cta-p">Bring us what you’re working through. We’ll take a look together, for free.</p>
+              <a class="btn btn--lg" href="/free-consultation">Free Consultation <span aria-hidden="true">→</span></a>
             </div>
           </div>
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================== P7, PRICING
-     Ported from simple version. 3 plans (Starter/Team/Company), Guided Setup
-     toggle (+$500 one-time), extra seats note ($75/person/mo). -->
-<section id="pricing" class="section section--ground section--seam section--tight">
-  <div class="container">
-    <div class="section__head section__head--tight section__head--centered">
-      <span class="eyebrow">Pricing</span>
-      <h2 class="display display--lg">Simple. <em>Month to month.</em></h2>
-      <p class="section__lede section__lede--center">Pick the plan that matches your size. Cancel any time.</p>
-    </div>
-
-    <div class="plans plans--tight plans--triple">
-      <article class="plan">
-        <span class="plan__name">Starter</span>
-        <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-base="299">299</span><span class="plan__period">/mo</span></span>
-      </article>
-      <article class="plan plan--featured">
-        <span class="plan__tag">Most teams pick this</span>
-        <span class="plan__name">Team</span>
-        <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-base="499">499</span><span class="plan__period">/mo</span></span>
-      </article>
-      <article class="plan">
-        <span class="plan__name">Company</span>
-        <span class="plan__price"><span class="plan__cur">$</span><span class="plan__amt plan__amt--base" data-base="899">899</span><span class="plan__period">/mo</span></span>
-      </article>
-    </div>
-
-    <div class="setup-toggle" role="group" aria-label="Guided setup add-on">
-      <div class="setup-toggle__body">
-        <span class="setup-toggle__title">Add guided setup</span>
-        <span class="setup-toggle__desc">Have one of us walk you through the whole process. Interviews, uploads, tracker setup, everything.</span>
-      </div>
-      <div class="setup-toggle__control">
-        <span class="setup-toggle__price">+$500 one time</span>
-        <label class="switch" aria-label="Toggle guided setup">
-          <input type="checkbox" id="setup-switch">
-          <span class="switch__slider"></span>
-        </label>
-      </div>
-    </div>
-
-    <div class="btn-row btn-row--center btn-row--stack block-after" style="margin-top:2.5rem;">
-      <a class="btn btn--secondary" href="pricing.html">See full pricing</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================================================ P8, CLOSING
-     §3.2. One button. Let's talk. -->
-<section class="section section--ink-deep section--tall">
-  <div class="container">
-    <div class="grid">
-      <div class="col--2-11">
-        <span class="eyebrow eyebrow--center eyebrow--lg">The first step</span>
-        <h2 class="display display--xl display--center">Every decision your business makes has <span class="display__accent">your whole business</span> behind it.</h2>
-      </div>
-
-      <div class="col--3-10">
-        <div class="btn-row btn-row--center btn-row--stack">
-          <a class="btn btn--gold" href="talk.html">Let&rsquo;s talk <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn--secondary btn--on-dark" href="try.html">Try Simple Genius for Free <svg class="btn__arrow" width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+          <div class="story__media">
+            <img src="./assets/trent-office.jpg" alt="Trent Hiott, founder of Simple Genius" width="1122" height="1402" loading="lazy" />
+          </div>
         </div>
+      </section>
+
+      <!-- 4. FREE COMPETITOR REPORT -->
+      <section class="sec quotes" aria-label="Testimonials">
+        <div class="ctr">
+          <div class="quotes__track">
+            <figure class="tcard">
+              <blockquote class="tcard__q">“Trent Hiott gave me the confidence and clarity to start my own business.”</blockquote>
+              <figcaption class="tcard__name">Chad Norris</figcaption>
+            </figure>
+            <figure class="tcard tcard--empty" data-placeholder aria-hidden="true"><span class="tcard__ph">Testimonial coming soon</span></figure>
+            <figure class="tcard tcard--empty" data-placeholder aria-hidden="true"><span class="tcard__ph">Testimonial coming soon</span></figure>
+            <figure class="tcard tcard--empty" data-placeholder aria-hidden="true"><span class="tcard__ph">Testimonial coming soon</span></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. LATEST FOUNDER INSIGHTS: native short-form video carousel.
+           Files live in /assets/insights/ named by Instagram shortcode (CODE.mp4 + CODE.jpg poster), sourced from @simplegenius.co.
+           Each tile's comment names the Instagram post it corresponds to. No Instagram embed is used. -->
+      <section class="sec sec--warm fins" id="insights" aria-roledescription="carousel" aria-label="Latest founder insights">
+        <div class="ctr fins__head">
+          <h2 class="h2">Latest founder insights</h2>
+          <div class="fins__nav">
+            <button class="fins__arr" type="button" data-fins-prev aria-label="Previous videos" aria-controls="fins-track" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button class="fins__arr" type="button" data-fins-next aria-label="Next videos" aria-controls="fins-track"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="fins__vp">
+          <ul class="fins__track" id="fins-track" tabindex="0" aria-label="Founder insight videos, scroll horizontally">
+            <li class="fi" data-fi>
+              <!-- Insight 01: https://www.instagram.com/p/DV_TitbjWpv/  →  /assets/insights/DV_TitbjWpv.mp4 (poster: DV_TitbjWpv.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DV_TitbjWpv.mp4" poster="/assets/insights/DV_TitbjWpv.jpg" data-ig="https://www.instagram.com/p/DV_TitbjWpv/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 1 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 1 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 02: https://www.instagram.com/p/DVtvjOakYb_/  →  /assets/insights/DVtvjOakYb_.mp4 (poster: DVtvjOakYb_.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DVtvjOakYb_.mp4" poster="/assets/insights/DVtvjOakYb_.jpg" data-ig="https://www.instagram.com/p/DVtvjOakYb_/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 2 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 2 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 03: https://www.instagram.com/p/DWOpL-oDSQE/  →  /assets/insights/DWOpL-oDSQE.mp4 (poster: DWOpL-oDSQE.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DWOpL-oDSQE.mp4" poster="/assets/insights/DWOpL-oDSQE.jpg" data-ig="https://www.instagram.com/p/DWOpL-oDSQE/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 3 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 3 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 04: https://www.instagram.com/p/DXJtJEajI6_/  →  /assets/insights/DXJtJEajI6_.mp4 (poster: DXJtJEajI6_.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DXJtJEajI6_.mp4" poster="/assets/insights/DXJtJEajI6_.jpg" data-ig="https://www.instagram.com/p/DXJtJEajI6_/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 4 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 4 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 05: https://www.instagram.com/p/DWFZKZfDZum/  →  /assets/insights/DWFZKZfDZum.mp4 (poster: DWFZKZfDZum.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DWFZKZfDZum.mp4" poster="/assets/insights/DWFZKZfDZum.jpg" data-ig="https://www.instagram.com/p/DWFZKZfDZum/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 5 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 5 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 06: https://www.instagram.com/p/DWXTva4E9SP/  →  /assets/insights/DWXTva4E9SP.mp4 (poster: DWXTva4E9SP.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DWXTva4E9SP.mp4" poster="/assets/insights/DWXTva4E9SP.jpg" data-ig="https://www.instagram.com/p/DWXTva4E9SP/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 6 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 6 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 07: https://www.instagram.com/p/DWpMOATijCh/  →  /assets/insights/DWpMOATijCh.mp4 (poster: DWpMOATijCh.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DWpMOATijCh.mp4" poster="/assets/insights/DWpMOATijCh.jpg" data-ig="https://www.instagram.com/p/DWpMOATijCh/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 7 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 7 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 08: https://www.instagram.com/p/DV1X7mokYpV/  →  /assets/insights/DV1X7mokYpV.mp4 (poster: DV1X7mokYpV.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DV1X7mokYpV.mp4" poster="/assets/insights/DV1X7mokYpV.jpg" data-ig="https://www.instagram.com/p/DV1X7mokYpV/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 8 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 8 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 09: https://www.instagram.com/p/DW3zALSDPpc/  →  /assets/insights/DW3zALSDPpc.mp4 (poster: DW3zALSDPpc.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DW3zALSDPpc.mp4" poster="/assets/insights/DW3zALSDPpc.jpg" data-ig="https://www.instagram.com/p/DW3zALSDPpc/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 9 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 9 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 10: https://www.instagram.com/p/DVyZqqVjY6L/  →  /assets/insights/DVyZqqVjY6L.mp4 (poster: DVyZqqVjY6L.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DVyZqqVjY6L.mp4" poster="/assets/insights/DVyZqqVjY6L.jpg" data-ig="https://www.instagram.com/p/DVyZqqVjY6L/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 10 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 10 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 11: https://www.instagram.com/p/DW9A-V0DORB/  →  /assets/insights/DW9A-V0DORB.mp4 (poster: DW9A-V0DORB.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DW9A-V0DORB.mp4" poster="/assets/insights/DW9A-V0DORB.jpg" data-ig="https://www.instagram.com/p/DW9A-V0DORB/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 11 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 11 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 12: https://www.instagram.com/p/DW63Y0-DGGq/  →  /assets/insights/DW63Y0-DGGq.mp4 (poster: DW63Y0-DGGq.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DW63Y0-DGGq.mp4" poster="/assets/insights/DW63Y0-DGGq.jpg" data-ig="https://www.instagram.com/p/DW63Y0-DGGq/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 12 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 12 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 13: https://www.instagram.com/p/DW1ewjADGrg/  →  /assets/insights/DW1ewjADGrg.mp4 (poster: DW1ewjADGrg.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DW1ewjADGrg.mp4" poster="/assets/insights/DW1ewjADGrg.jpg" data-ig="https://www.instagram.com/p/DW1ewjADGrg/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 13 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 13 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 14: https://www.instagram.com/p/DWy37-YjUiZ/  →  /assets/insights/DWy37-YjUiZ.mp4 (poster: DWy37-YjUiZ.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DWy37-YjUiZ.mp4" poster="/assets/insights/DWy37-YjUiZ.jpg" data-ig="https://www.instagram.com/p/DWy37-YjUiZ/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 14 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 14 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 15: https://www.instagram.com/p/DWrrwr6CUat/  →  /assets/insights/DWrrwr6CUat.mp4 (poster: DWrrwr6CUat.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DWrrwr6CUat.mp4" poster="/assets/insights/DWrrwr6CUat.jpg" data-ig="https://www.instagram.com/p/DWrrwr6CUat/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 15 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 15 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 16: https://www.instagram.com/p/DWm529gDeq0/  →  /assets/insights/DWm529gDeq0.mp4 (poster: DWm529gDeq0.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DWm529gDeq0.mp4" poster="/assets/insights/DWm529gDeq0.jpg" data-ig="https://www.instagram.com/p/DWm529gDeq0/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 16 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 16 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 17: https://www.instagram.com/p/DWkTdd6lerw/  →  /assets/insights/DWkTdd6lerw.mp4 (poster: DWkTdd6lerw.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DWkTdd6lerw.mp4" poster="/assets/insights/DWkTdd6lerw.jpg" data-ig="https://www.instagram.com/p/DWkTdd6lerw/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 17 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 17 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 18: https://www.instagram.com/p/DWhuFByDsYU/  →  /assets/insights/DWhuFByDsYU.mp4 (poster: DWhuFByDsYU.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DWhuFByDsYU.mp4" poster="/assets/insights/DWhuFByDsYU.jpg" data-ig="https://www.instagram.com/p/DWhuFByDsYU/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 18 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 18 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 19: https://www.instagram.com/p/DWfIf2VguyA/  →  /assets/insights/DWfIf2VguyA.mp4 (poster: DWfIf2VguyA.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DWfIf2VguyA.mp4" poster="/assets/insights/DWfIf2VguyA.jpg" data-ig="https://www.instagram.com/p/DWfIf2VguyA/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 19 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 19 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 20: https://www.instagram.com/p/DVd4Wn0jRaz/  →  /assets/insights/DVd4Wn0jRaz.mp4 (poster: DVd4Wn0jRaz.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DVd4Wn0jRaz.mp4" poster="/assets/insights/DVd4Wn0jRaz.jpg" data-ig="https://www.instagram.com/p/DVd4Wn0jRaz/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 20 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 20 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 21: https://www.instagram.com/p/DU8xs_BEZit/  →  /assets/insights/DU8xs_BEZit.mp4 (poster: DU8xs_BEZit.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DU8xs_BEZit.mp4" poster="/assets/insights/DU8xs_BEZit.jpg" data-ig="https://www.instagram.com/p/DU8xs_BEZit/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 21 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 21 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 22: https://www.instagram.com/p/DU5w-lxjW1D/  →  /assets/insights/DU5w-lxjW1D.mp4 (poster: DU5w-lxjW1D.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DU5w-lxjW1D.mp4" poster="/assets/insights/DU5w-lxjW1D.jpg" data-ig="https://www.instagram.com/p/DU5w-lxjW1D/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 22 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 22 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 23: https://www.instagram.com/p/DU3RSUcDak6/  →  /assets/insights/DU3RSUcDak6.mp4 (poster: DU3RSUcDak6.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DU3RSUcDak6.mp4" poster="/assets/insights/DU3RSUcDak6.jpg" data-ig="https://www.instagram.com/p/DU3RSUcDak6/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 23 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 23 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 24: https://www.instagram.com/p/DU1FxTtEd1G/  →  /assets/insights/DU1FxTtEd1G.mp4 (poster: DU1FxTtEd1G.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DU1FxTtEd1G.mp4" poster="/assets/insights/DU1FxTtEd1G.jpg" data-ig="https://www.instagram.com/p/DU1FxTtEd1G/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 24 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 24 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 25: https://www.instagram.com/p/DUqNZyQjXdx/  →  /assets/insights/DUqNZyQjXdx.mp4 (poster: DUqNZyQjXdx.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DUqNZyQjXdx.mp4" poster="/assets/insights/DUqNZyQjXdx.jpg" data-ig="https://www.instagram.com/p/DUqNZyQjXdx/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 25 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 25 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 26: https://www.instagram.com/p/DUoJPb1kU8E/  →  /assets/insights/DUoJPb1kU8E.mp4 (poster: DUoJPb1kU8E.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DUoJPb1kU8E.mp4" poster="/assets/insights/DUoJPb1kU8E.jpg" data-ig="https://www.instagram.com/p/DUoJPb1kU8E/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 26 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 26 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+            <li class="fi" data-fi>
+              <!-- Insight 27: https://www.instagram.com/p/DUbXaFckV0z/  →  /assets/insights/DUbXaFckV0z.mp4 (poster: DUbXaFckV0z.jpg) -->
+              <video class="fi__v" data-src="/assets/insights/DUbXaFckV0z.mp4" poster="/assets/insights/DUbXaFckV0z.jpg" data-ig="https://www.instagram.com/p/DUbXaFckV0z/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 27 of 27"></video>
+              <button class="fi__hit" type="button" aria-label="Play founder insight 27 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
+              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
+              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec sec--stone offer" id="report">
+        <div class="ctr split">
+          <div class="split__copy">
+            <h2 class="h2 offer__h"><span>See what your</span><span>competitors</span><span>are up to.</span></h2>
+            <div class="offer__copy">
+              <p class="offer__lead">Your competitors are making moves every day.</p>
+              <ul class="goal__list offer__list">
+                <li>New hires.</li>
+                <li>New offers.</li>
+                <li>New products.</li>
+                <li>Pricing changes.</li>
+                <li>Positioning changes.</li>
+              </ul>
+              <p class="offer__most">We’ll take a look at what’s happening, pull out what matters, and send you a free competitor report straight to your inbox.</p>
+            </div>
+          </div>
+          <div class="split__form">
+            <form class="form" id="try-form" data-endpoint="/api/try-submit" data-start-event="free_brief_start" data-conversion-event="free_brief_submit" data-status="try-status" data-submitting="Building your report…" data-label="Get My Free Report →" novalidate>
+              <h3 class="form__offer"><span>Track your top</span><span>competitors for free.</span></h3>
+              <p class="form__intro">Tell us about your business and your top competitors.</p>
+              <input type="hidden" name="source" value="try-simple-genius-free" />
+              <input type="hidden" name="utm_source" data-attr="utm_source" />
+              <input type="hidden" name="utm_medium" data-attr="utm_medium" />
+              <input type="hidden" name="utm_campaign" data-attr="utm_campaign" />
+              <input type="hidden" name="utm_content" data-attr="utm_content" />
+              <input type="hidden" name="utm_term" data-attr="utm_term" />
+              <input type="hidden" name="gclid" data-attr="gclid" />
+              <input type="hidden" name="fbclid" data-attr="fbclid" />
+              <input type="hidden" name="li_fat_id" data-attr="li_fat_id" />
+              <input type="hidden" name="page_url" data-attr="page_url" />
+              <input type="hidden" name="referrer" data-attr="referrer" />
+              <input type="hidden" name="ga_client_id" data-attr="ga_client_id" />
+              <input type="hidden" name="landing_page" data-attr="landing_page" />
+              <input type="hidden" name="first_visit" data-attr="first_visit" />
+              <input type="hidden" name="visit_summary" data-attr="visit_summary" />
+
+              <fieldset class="form__set">
+                <legend>About you</legend>
+                <div class="form__pair" data-first>
+                  <div class="field"><label for="try-first">First name <span class="req">*</span></label><input id="try-first" name="firstName" type="text" autocomplete="given-name" required /><span class="err" hidden></span></div>
+                  <div class="field"><label for="try-last">Last name <span class="req">*</span></label><input id="try-last" name="lastName" type="text" autocomplete="family-name" required /><span class="err" hidden></span></div>
+                </div>
+                <div class="form__pair">
+                  <div class="field"><label for="try-email">Work email <span class="req">*</span></label><input id="try-email" name="email" type="email" autocomplete="email" required /><span class="err" hidden></span></div>
+                  <div class="field"><label for="try-title">Role or title <span class="req">*</span></label><input id="try-title" name="role" type="text" autocomplete="organization-title" placeholder="Founder, CEO, VP of Marketing…" required /><span class="err" hidden></span></div>
+                </div>
+              </fieldset>
+
+              <fieldset class="form__set">
+                <legend>Your company</legend>
+                <div class="form__pair">
+                  <div class="field"><label for="try-company">Company name <span class="req">*</span></label><input id="try-company" name="company" type="text" autocomplete="organization" required /><span class="err" hidden></span></div>
+                  <div class="field"><label for="try-website">Company website <span class="req">*</span></label><input id="try-website" name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourcompany.com" required /><span class="err" hidden></span></div>
+                </div>
+                <div class="field"><label for="try-socials">Company socials <span class="opt">(optional)</span></label><textarea id="try-socials" name="socials" rows="2" placeholder="Paste any LinkedIn, X, Instagram, YouTube or other profile URLs, one per line."></textarea><span class="hint">Only what is public. Paste one URL per line.</span></div>
+              </fieldset>
+
+              <button class="more__btn" type="button" data-continue aria-expanded="false" aria-controls="try-more">Click to Continue Form <span aria-hidden="true">↓</span></button>
+              <div class="more" id="try-more" data-more><div class="more__inner">
+              <fieldset class="form__set">
+                <legend>Your competition</legend>
+                <div class="form__pair">
+                  <div class="field"><label for="try-comp1-name">Competitor 1 name <span class="req">*</span></label><input id="try-comp1-name" name="competitor1Name" type="text" required /><span class="err" hidden></span></div>
+                  <div class="field"><label for="try-comp1-site">Competitor 1 website <span class="req">*</span></label><input id="try-comp1-site" name="competitor1Site" type="text" inputmode="url" placeholder="competitor1.com" required /><span class="err" hidden></span></div>
+                </div>
+                <div class="form__pair">
+                  <div class="field"><label for="try-comp2-name">Competitor 2 name <span class="req">*</span></label><input id="try-comp2-name" name="competitor2Name" type="text" required /><span class="err" hidden></span></div>
+                  <div class="field"><label for="try-comp2-site">Competitor 2 website <span class="req">*</span></label><input id="try-comp2-site" name="competitor2Site" type="text" inputmode="url" placeholder="competitor2.com" required /><span class="err" hidden></span></div>
+                </div>
+              </fieldset>
+
+              <p class="form__fail" data-fail hidden></p>
+              <button class="btn btn--lg btn--block" type="submit" data-submit>Get My Free Report <span aria-hidden="true">→</span></button>
+              <p class="form__note">We will research your business and the competitors you chose and send your personalized report to your email. Built from publicly available information.</p>
+            </div></div>
+            </form>
+            <div class="done" id="try-status" role="status" hidden>
+              <p class="label">Your report is being built</p>
+              <h3 class="done__h">Your Simple Genius Report is on the way.</h3>
+              <p>We are researching your business and the competitors you chose. We will send the finished report to <strong data-fill="email">your email</strong>.</p>
+              <p>Keep an eye on your inbox. You can close this page. Your report will show up when it is ready.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FREE CONSULTATION -->
+      <section class="fcta">
+        <div class="ctr">
+          <h2 class="fcta__h"><span>Have something you’re</span><span>working through?</span></h2>
+          <div class="fcta__copy"><p>Bring us the business.</p><p>We’ll start there.</p></div>
+          <a class="btn btn--lg" href="/free-consultation">Free Consultation <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="ft">
+      <div class="ctr ft__top">
+        <div class="ft__brand">
+          <a class="ft__logo" href="./index.html" aria-label="Simple Genius home">
+            <img src="./assets/logo-light-124h.png" srcset="./assets/logo-light-62h.png 1x, ./assets/logo-light-124h.png 2x" width="166" height="62" alt="Simple Genius" />
+          </a>
+          <ul class="ft__social" aria-label="Simple Genius social">
+            <li><a href="https://www.linkedin.com/company/112274244/" target="_blank" rel="noopener noreferrer" aria-label="Simple Genius on LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4V21H3V9.5zM9 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9V9.5z"/></svg></a></li>
+            <li><a href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" rel="noopener noreferrer" aria-label="Simple Genius on YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M22 8.2c-.2-1.3-.9-2.2-2.2-2.4C17.5 5.5 12 5.5 12 5.5s-5.5 0-7.8.3C2.9 6 2.2 6.9 2 8.2 1.7 9.7 1.7 12 1.7 12s0 2.3.3 3.8c.2 1.3.9 2.2 2.2 2.4 2.3.3 7.8.3 7.8.3s5.5 0 7.8-.3c1.3-.2 2-1.1 2.2-2.4.3-1.5.3-3.8.3-3.8s0-2.3-.3-3.8zM10 15V9l5 3-5 3z"/></svg></a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" rel="noopener noreferrer" aria-label="Simple Genius on Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.7c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4v2h-2.7v3h2.7V21h3.1z"/></svg></a></li>
+            <li><a href="https://www.instagram.com/simplegenius.co/" target="_blank" rel="noopener noreferrer" aria-label="Simple Genius on Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></li>
+          </ul>
+          <ul class="ft__founders" aria-label="Founders on LinkedIn">
+            <li><a href="https://www.linkedin.com/in/trent-hiott-27100867/" target="_blank" rel="noopener noreferrer" aria-label="Trent Hiott on LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4V21H3V9.5zM9 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9V9.5z"/></svg><span>Trent Hiott</span></a></li>
+            <li><a href="https://www.linkedin.com/in/meetmarkcombs/" target="_blank" rel="noopener noreferrer" aria-label="Mark Combs on LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4V21H3V9.5zM9 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9V9.5z"/></svg><span>Mark Combs</span></a></li>
+          </ul>
+        </div>
+        <nav class="ft__col" aria-label="Explore">
+          <span class="ft__head">Explore</span>
+          <a href="/how-we-work">How We Work</a>
+          <a href="/team">Our Team</a>
+        </nav>
+        <nav class="ft__col" aria-label="Company">
+          <span class="ft__head">Company</span>
+          <a href="/free-consultation">Free Consultation</a>
+          <a href="#report">Free Competitor Report</a>
+        </nav>
       </div>
-    </div>
-  </div>
-</section>
-
-<script src="js/video.js?v=1787253912" defer></script>
-
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <div class="site-footer__top">
-      <div class="site-footer__brand">
-        <a class="logo" href="index.html" aria-label="Simple Genius home">
-          <img class="logo__img" src="img/logo-light-124h.png"
-               srcset="img/logo-light-62h.png 1x, img/logo-light-124h.png 2x, img/logo-light-186h.png 3x"
-               width="166" height="62" alt="Simple Genius">
-        </a>
-        <ul class="footer-social" aria-label="Simple Genius social">
-          <li><a class="footer-social__link" href="https://www.linkedin.com/company/112274244/" target="_blank" aria-label="Simple Genius on LinkedIn" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4V21H3V9.5zM9 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9V9.5z"/></svg>
-          </a></li>
-          <li><a class="footer-social__link" href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" aria-label="Simple Genius on YouTube" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 8.2c-.2-1.3-.9-2.2-2.2-2.4C17.5 5.5 12 5.5 12 5.5s-5.5 0-7.8.3C2.9 6 2.2 6.9 2 8.2 1.7 9.7 1.7 12 1.7 12s0 2.3.3 3.8c.2 1.3.9 2.2 2.2 2.4 2.3.3 7.8.3 7.8.3s5.5 0 7.8-.3c1.3-.2 2-1.1 2.2-2.4.3-1.5.3-3.8.3-3.8s0-2.3-.3-3.8zM10 15V9l5 3-5 3z"/></svg>
-          </a></li>
-          <li><a class="footer-social__link" href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" aria-label="Simple Genius on Facebook" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.7c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4v2h-2.7v3h2.7V21h3.1z"/></svg>
-          </a></li>
-          <li><a class="footer-social__link" href="https://www.instagram.com/simplegenius.co/" target="_blank" aria-label="Simple Genius on Instagram" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-          </a></li>
-        </ul>
+      <div class="ctr ft__legal">
+        <p>© 2026 Simple Genius LLC. All rights reserved.</p>
+        <a href="https://www.simplegenius.com/data-protection">Privacy Policy</a>
       </div>
+    </footer>
+    <script src="/js/sg-track.js"></script>
 
-      <nav class="footer-col" aria-label="Product">
-        <span class="footer-col__head">Product</span>
-        <a class="footer-col__link" href="how-it-works.html">How It Works</a>        <a class="footer-col__link" href="pricing.html">Pricing</a>
-        <a class="footer-col__link" href="try.html">Try Simple Genius for Free</a>
-      </nav>
-<nav class="footer-col" aria-label="Company">
-        <span class="footer-col__head">Company</span>
-        <a class="footer-col__link" href="about.html">About</a>
-        <a class="footer-col__link" href="talk.html">Let&rsquo;s talk</a>
-      </nav>
-    </div>
-
-    <div class="commit-strip">
-      <span>Month to month</span>
-      <span>You own your data</span>
-      <span>Nothing becomes truth until you approve it</span>
-      <span>Interview your whole team</span>
-    </div>
-
-    <div class="site-footer__legal">
-      <span>&copy; 2026 Simple Genius LLC. All rights reserved.</span>
-    </div>
-  </div>
-</footer>
-
-<script src="js/site.js?v=1789482752" defer></script>
-
-<script>
-(function(){
-  var sw = document.getElementById('setup-switch');
-  var bases = document.querySelectorAll('.plan__amt--base');
-  if(sw && bases.length){
-    function apply(){
-      var add = sw.checked ? 500 : 0;
-      bases.forEach(function(el){
-        var b = parseInt(el.getAttribute('data-base'), 10);
-        el.textContent = (b + add).toString();
-      });
-    }
-    sw.addEventListener('change', apply);
-    apply();
-  }
-})();
-</script>
-</body>
+    <script src="./home.js"></script>
+    <script src="./motion.js" defer></script>
+  </body>
 </html>

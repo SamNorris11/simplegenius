@@ -3,12 +3,118 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "functions": {
-    "api/try-submit.js": { "maxDuration": 30 },
-    "api/try-process.js": { "maxDuration": 280 },
+    "api/try-submit.js": {
+      "maxDuration": 30
+    },
+    "api/try-process.js": {
+      "maxDuration": 280
+    },
     "api/try-deliver.js": {
       "maxDuration": 120,
       "memory": 2048,
       "includeFiles": "node_modules/@sparticuz/chromium/**"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/talk",
+      "destination": "/free-consultation",
+      "permanent": true
+    },
+    {
+      "source": "/talk-preview",
+      "destination": "/free-consultation",
+      "permanent": true
+    },
+    {
+      "source": "/talk-archived",
+      "destination": "/free-consultation",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/free-consultation",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "/free-consultation",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works",
+      "destination": "/how-we-work",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works-preview",
+      "destination": "/how-we-work",
+      "permanent": true
+    },
+    {
+      "source": "/what-you-get",
+      "destination": "/how-we-work",
+      "permanent": true
+    },
+    {
+      "source": "/business-brain",
+      "destination": "/how-we-work",
+      "permanent": true
+    },
+    {
+      "source": "/competition-hub",
+      "destination": "/how-we-work",
+      "permanent": true
+    },
+    {
+      "source": "/strategic-insights",
+      "destination": "/how-we-work",
+      "permanent": true
+    },
+    {
+      "source": "/workstreams",
+      "destination": "/how-we-work",
+      "permanent": true
+    },
+    {
+      "source": "/security",
+      "destination": "/how-we-work",
+      "permanent": true
+    },
+    {
+      "source": "/try",
+      "destination": "/#report",
+      "permanent": true
+    },
+    {
+      "source": "/scan",
+      "destination": "/#report",
+      "permanent": true
+    },
+    {
+      "source": "/assessment",
+      "destination": "/#report",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/team",
+      "permanent": true
+    },
+    {
+      "source": "/insurance",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/benefits",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/results",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }

@@ -1,0 +1,133 @@
+/* Simple Genius interaction + motion layer. Adds response, never new design. */
+:root { --ease: cubic-bezier(0.22, 1, 0.36, 1); }
+html { scroll-padding-top: 72px; }
+
+/* ---------- Header: always visible ---------- */
+.hd { position: fixed; transition: background-color 350ms var(--ease), border-color 350ms var(--ease), color 350ms var(--ease); border-bottom: 1px solid transparent; }
+.hd__inner { transition: height 350ms var(--ease); }
+.hd__logo { position: relative; display: inline-block; }
+.hd__logo img { transition: opacity 300ms var(--ease); }
+.hd__logo .hd__logo-d { position: absolute; left: 0; top: 50%; transform: translateY(-50%); opacity: 0; }
+.hd.is-scrolled { background: rgba(250, 248, 244, 0.95); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom-color: var(--line); color: var(--ink); }
+.hd.is-scrolled .hd__inner { height: 72px; }
+.hd.is-scrolled .hd__logo img:first-child { opacity: 0; }
+.hd.is-scrolled .hd__logo .hd__logo-d { opacity: 1; }
+.hd.is-scrolled .hd__nav > a:not(.btn) { color: var(--ink); }
+.vpage .hd.is-scrolled { background: rgba(11, 11, 10, 0.86); border-bottom-color: #262522; color: #fff; }
+.vpage .hd.is-scrolled .hd__logo img:first-child { opacity: 1; }
+.vpage .hd.is-scrolled .hd__logo .hd__logo-d { opacity: 0; }
+.vpage .hd.is-scrolled .hd__nav > a:not(.btn) { color: #fff; }
+
+/* Nav links: underline reveal */
+.hd__nav > a:not(.btn) { background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px; padding-bottom: 3px; transition: opacity 250ms var(--ease), color 250ms var(--ease), background-size 300ms var(--ease); }
+.hd__nav > a:not(.btn):hover, .hd__nav > a:not(.btn):focus-visible { background-size: 100% 1px; opacity: 1; }
+.hd.is-scrolled .hd__nav > a:not(.btn):hover { color: var(--ink); }
+
+/* Footer text links: same underline reveal */
+.ft__col a, .ft__legal a { background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 1px; padding-bottom: 2px; transition: color 250ms var(--ease), background-size 300ms var(--ease); }
+.ft__col a:hover, .ft__legal a:hover, .ft__col a:focus-visible { background-size: 100% 1px; }
+
+/* ---------- Buttons ---------- */
+.btn { transform: translate3d(var(--mx, 0px), calc(var(--my, 0px) + var(--lift, 0px)), 0); transition: background-color 250ms var(--ease), transform 250ms var(--ease); }
+.btn:hover { --lift: -2px; transform: translate3d(var(--mx, 0px), calc(var(--my, 0px) + var(--lift, 0px)), 0); }
+.btn > span[aria-hidden], .aud__more > span[aria-hidden] { display: inline-block; transition: transform 250ms var(--ease); }
+.btn:hover > span[aria-hidden] { transform: translateX(5px); }
+.more__btn > span[aria-hidden] { display: inline-block; transition: transform 250ms var(--ease); }
+.more__btn:hover > span[aria-hidden] { transform: translateY(3px); }
+
+/* ---------- Forms ---------- */
+.field input, .field textarea, .field select { transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease); }
+.field label { transition: color 200ms var(--ease); }
+.field:focus-within label { color: #000; }
+.field:focus-within label { font-weight: 700; }
+.more { transition: grid-template-rows 320ms var(--ease), opacity 320ms var(--ease); }
+
+/* ---------- Yellow top line draw ---------- */
+.goal__panel, .offer .form, .talk .form.form--talk { position: relative; }
+html.m-on .m-lined { border-top-color: #fff; }
+.m-line { position: absolute; left: -1px; right: -1px; top: -4px; height: 4px; background: var(--yellow); transform-origin: 0 50%; pointer-events: none; }
+html.m-on .m-line { transform: scaleX(0); transition: transform 520ms var(--ease) 160ms; }
+html.m-on .m-in .m-line, html.m-on .m-line.m-in { transform: scaleX(1); }
+
+/* ---------- Section entrances ---------- */
+html.m-on .m-h, html.m-on .m-c, html.m-on .m-p { opacity: 0; transition: opacity 500ms var(--ease), transform 500ms var(--ease); }
+html.m-on .m-h { transform: translateY(22px); }
+html.m-on .m-c { transform: translateY(14px); transition-delay: 100ms; }
+html.m-on .m-p { transform: translateY(12px); transition-delay: 160ms; }
+html.m-on .m-in .m-h, html.m-on .m-in .m-c, html.m-on .m-in .m-p { opacity: 1; transform: none; }
+
+/* ---------- Audience cards ---------- */
+.aud__card { cursor: pointer; }
+.aud__img { transition: transform 450ms var(--ease); }
+.aud__card::after { transition: opacity 450ms var(--ease); }
+.aud__h, .aud__p { transition: transform 450ms var(--ease); }
+.aud__more { opacity: 0.88; transition: opacity 450ms var(--ease), border-color 250ms var(--ease); }
+.aud__card:hover .aud__img { transform: scale(1.025); }
+.aud__card:hover::after { opacity: 0.86; }
+.aud__card:hover .aud__h { transform: translateY(-4px); }
+.aud__card:hover .aud__p { transform: translateY(-2px); }
+.aud__card:hover .aud__more, .aud__more:focus-visible { opacity: 1; border-color: var(--yellow); }
+.aud__card:hover .aud__more > span[aria-hidden], .aud__more:focus-visible > span[aria-hidden] { transform: translateX(5px); }
+
+/* ---------- Goal list rows ---------- */
+#goal .goal__list li, .pp-goals .goal__list li { transition: transform 300ms var(--ease), border-color 300ms var(--ease), color 300ms var(--ease); }
+#goal .goal__list li::before, .pp-goals .goal__list li::before { transition: width 300ms var(--ease); }
+#goal .goal__list li:hover, .pp-goals .goal__list li:hover { transform: translateX(5px); border-bottom-color: #cfc9bd; text-shadow: 0 0 0.45px currentColor; }
+#goal .goal__list li:hover::before, .pp-goals .goal__list li:hover::before { width: 22px; }
+
+/* ---------- 01 / 02 / 03 steps ---------- */
+.goal__step, .pp-three > div { transition: opacity 300ms var(--ease), transform 300ms var(--ease); }
+.goal__panel:has(.goal__step:hover) .goal__step:not(:hover),
+.pp-three:has(> div:hover) > div:not(:hover) { opacity: 0.74; }
+.goal__step:hover, .pp-three > div:hover { transform: translateX(3px); }
+.goal__step:hover .goal__sh, .pp-three > div:hover .pp-three__h { text-shadow: 0 0 0.5px currentColor; }
+
+/* ---------- Video cards ---------- */
+.vid__btn img { transition: transform 450ms var(--ease), opacity 450ms var(--ease); }
+.vid__play { transition: transform 400ms var(--ease), opacity 400ms var(--ease); opacity: 0.92; }
+.vid__t { transition: transform 400ms var(--ease); }
+.vid:hover .vid__btn img { transform: scale(1.025); opacity: 0.9; }
+.vid:hover .vid__play, .vid__btn:focus-visible .vid__play { transform: scale(1.06); opacity: 1; }
+.vid:hover .vid__t { transform: translateY(-2px); }
+.vid__btn:active img { transform: scale(1.01); }
+
+/* ---------- Founder image depth ---------- */
+.story__media { overflow: hidden; border-radius: 2px; }
+.story__media img { transition: transform 600ms var(--ease); }
+.story__id { transition: opacity 400ms var(--ease); opacity: 0.92; }
+.story__media:hover img { transform: scale(1.012); }
+.story__media:hover .story__id { opacity: 1; }
+
+/* ---------- Hero video ---------- */
+.hero__video { transition: filter 400ms var(--ease), border-color 400ms var(--ease); }
+.hero__play { transition: transform 400ms var(--ease); }
+.hero__video:hover { filter: brightness(1.12); border-color: #33322e; }
+.hero__video:hover .hero__play { transform: scale(1.06); }
+
+/* ---------- Testimonial marquee (only when >4 real quotes) ---------- */
+.quotes__track.m-marquee { display: flex; gap: 20px; width: max-content; animation: m-marq var(--marq-dur, 80s) linear infinite; }
+.quotes__track.m-marquee .tcard { width: 300px; flex: 0 0 auto; }
+.quotes__viewport { overflow: hidden; }
+.quotes__viewport:hover .m-marquee, .quotes__viewport:focus-within .m-marquee, .quotes__viewport.is-paused .m-marquee { animation-play-state: paused; }
+@keyframes m-marq { to { transform: translateX(-50%); } }
+
+/* ---------- Cursor bubble ---------- */
+.m-cursor { position: fixed; left: 0; top: 0; z-index: 60; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: var(--yellow); color: var(--black); display: flex; align-items: center; justify-content: center; font-family: var(--font-body); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; pointer-events: none; opacity: 0; transform: translate3d(-100px, -100px, 0) scale(0.6); transition: opacity 250ms var(--ease), scale 250ms var(--ease); }
+.m-cursor.is-on { opacity: 1; }
+
+/* ---------- Touch / small screens: no hover motion ---------- */
+@media (hover: none), (max-width: 900px) {
+  .aud__card:hover .aud__img, .vid:hover .vid__btn img, .story__media:hover img { transform: none; }
+  .aud__card:hover .aud__h, .aud__card:hover .aud__p, .vid:hover .vid__t { transform: none; }
+  .aud__card:active .aud__img { transform: scale(1.015); }
+  .vid__btn:active img { opacity: 0.85; }
+  .m-cursor { display: none; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 1ms !important; animation: none !important; }
+  .btn, .btn:hover, .aud__img, .aud__h, .aud__p, .vid__btn img, .vid__t, .vid__play, .story__media img, .goal__step, .pp-three > div, .goal__list li, .feel__step, .hero__play, .btn > span[aria-hidden], .aud__more > span[aria-hidden] { transform: none !important; }
+  .m-cursor { display: none !important; }
+}
+
