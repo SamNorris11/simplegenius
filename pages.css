@@ -321,3 +321,19 @@
 .hwp { padding-bottom: 72px; }
 @media (max-width: 1023px) { .hwp { padding-bottom: 64px; } }
 @media (max-width: 767px) { .hwp { padding-bottom: 56px; } }
+/* Sept 23: "We ..." titles, smaller, centered */
+.hwp-box { text-align: center; }
+.hwp-h { font-size: 23px; margin-bottom: 16px; }
+.hwp-p { font-size: 16px; }
+@media (min-width: 1024px) and (max-width: 1199px) { .hwp-h { font-size: 21px; } .hwp-p { font-size: 15px; } }
+@media (max-width: 767px) {
+  .hwp-box { text-align: left; }
+  .hwp-h { font-size: 22px; }
+  .hwp-body { text-align: center; }
+  .hwp-p { font-size: 15.5px; }
+  .hwp-mk { top: 3px; }
+  .hwp-step::after { top: 10.5px; }
+  .hwp-step:first-child::before { top: 11px; }
+  .hwp-step:last-child::before { height: 11px; }
+}
+.hwp-h { letter-spacing: 0; }
