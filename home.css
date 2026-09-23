@@ -579,3 +579,14 @@ html.show-ph .tcard__ph { display: block; }
   .fins__nav [data-fins-prev] { display: none; }
   .fins__arr { width: 44px; height: 44px; }
 }
+
+/* Three-line menu icon, placed between logo and Free Consultation */
+.hd__menu span:nth-child(1) { top: 14px; }
+.hd__menu span:nth-child(2) { top: 21px; transition: opacity 150ms; }
+.hd__menu span:nth-child(3) { top: 28px; }
+.hd.is-open .hd__menu span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.hd.is-open .hd__menu span:nth-child(2) { opacity: 0; }
+.hd.is-open .hd__menu span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+@media (max-width: 900px) {
+  .hd__menu { order: -1; margin-right: 0; }
+}
