@@ -308,3 +308,16 @@
   .hwp-p { font-size: 16px; line-height: 1.5; }
   .hwp-lbl { padding-top: 18px; font-size: 11px; }
 }
+/* Sept 23: numbers and labels removed */
+.hwp-h { margin: 0 0 18px; }
+.hw-feat__h { margin-top: 0; }
+@media (max-width: 767px) {
+  .hwp-h { margin: 0 0 14px; }
+  .hwp-mk { top: 5px; }
+  .hwp-step::after { top: 12.5px; }
+  .hwp-step:first-child::before { top: 13px; }
+  .hwp-step:last-child::before { height: 13px; }
+}
+.hwp { padding-bottom: 72px; }
+@media (max-width: 1023px) { .hwp { padding-bottom: 64px; } }
+@media (max-width: 767px) { .hwp { padding-bottom: 56px; } }
