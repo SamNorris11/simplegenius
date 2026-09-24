@@ -91,10 +91,10 @@ section[id] { scroll-margin-top: 24px; }
 .pr__n { margin: 0 0 16px; font: 700 13px/1 var(--font-body); letter-spacing: 0.14em; color: var(--muted); }
 .pr__h { margin: 0 0 14px; font: 800 clamp(30px, 2.8vw, 40px)/1 var(--font-display); letter-spacing: -0.025em; text-transform: uppercase; }
 .pr__p { margin: 0; max-width: 28ch; font-size: 19px; line-height: 1.55; color: var(--ink-2); }
-.proc__close { margin: 104px 0 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 64px; align-items: end; padding: 64px; background: var(--black); color: #fff; }
+.proc__close { margin: 104px 0 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 64px; align-items: center; padding: 64px; background: var(--black); color: #fff; }
 .proc__stmt { margin: 0; max-width: 20em; font: 800 clamp(30px, 3vw, 44px)/1.06 var(--font-display); letter-spacing: -0.03em; text-transform: uppercase; color: #fff; }
 .proc__go .btn { white-space: nowrap; }
-.proc__go { display: grid; justify-items: start; gap: 18px; padding-left: 40px; border-left: 1px solid #34332f; }
+.proc__go { display: grid; justify-items: start; align-content: center; gap: 18px; padding-left: 40px; align-self: stretch; border-left: 1px solid #34332f; }
 .proc__go-t { margin: 0; font: 700 13px/1 var(--font-body); letter-spacing: 0.14em; text-transform: uppercase; color: #bdb8ad; }
 
 /* Process draws itself in once, when it enters view */
