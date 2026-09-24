@@ -11,19 +11,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Free Consultation | Simple Genius</title>
-    <meta name="description" content="Talk to the Simple Genius team about your business, where you’re trying to go, and what’s getting in the way. The conversation is free." />
-    <link rel="canonical" href="https://www.simplegenius.com/free-consultation" />
+    <title>Free Competitor Report | Simple Genius</title>
+    <meta name="description" content="New hires, new offers, new products, pricing and positioning changes. We’ll pull out what matters and send you a free competitor report." />
+    <link rel="canonical" href="https://www.simplegenius.com/free-competitor-report" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Simple Genius" />
-    <meta property="og:url" content="https://www.simplegenius.com/free-consultation" />
-    <meta property="og:title" content="Free Consultation | Simple Genius" />
-    <meta property="og:description" content="Talk to the Simple Genius team about your business, where you’re trying to go, and what’s getting in the way. The conversation is free." />
+    <meta property="og:url" content="https://www.simplegenius.com/free-competitor-report" />
+    <meta property="og:title" content="Free Competitor Report | Simple Genius" />
+    <meta property="og:description" content="New hires, new offers, new products, pricing and positioning changes. We’ll pull out what matters and send you a free competitor report." />
     <meta property="og:image" content="https://www.simplegenius.com/img/og-preview.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Free Consultation | Simple Genius" />
-    <meta name="twitter:description" content="Talk to the Simple Genius team about your business, where you’re trying to go, and what’s getting in the way. The conversation is free." />
+    <meta name="twitter:title" content="Free Competitor Report | Simple Genius" />
+    <meta name="twitter:description" content="New hires, new offers, new products, pricing and positioning changes. We’ll pull out what matters and send you a free competitor report." />
     <meta name="twitter:image" content="https://www.simplegenius.com/img/og-preview.jpg" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
@@ -54,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <a href="/about">About</a>
           <a href="/pricing">Pricing</a>
           <a href="/insights">Founder Insights</a>
-          <a href="/free-competitor-report">Free Competitor Report</a>
+          <a href="/free-competitor-report" aria-current="page">Free Competitor Report</a>
           <a class="btn btn--sm" href="/free-consultation">Free Consultation</a>
           <button class="hd__menu" type="button" data-mnav aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><span></span><span></span><span></span></button>
         </nav>
@@ -75,23 +75,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <main id="main">
       <section class="x-phero x-phero--short">
         <div class="ctr x-phero__in">
-          <h1 class="x-phero__h">What’s on your mind?</h1>
+          <h1 class="x-phero__h">Know what your competitors are doing.</h1>
         </div>
       </section>
 
-      <section class="x-talk x-talk--page" id="consultation">
-        <div class="ctr x-talk__grid">
-          <div class="x-talk__intro">
-            <h2 class="x-talk__h x-talk__h--sm">Bring us what you’re working through.</h2>
-            <div class="x-talk__copy">
-              <p>Talk to the Simple Genius team about your business, where you’re trying to go, what’s getting in the way, or simply what’s keeping you up at night.</p>
-              <p>We’ll get to know you and your business and share what we see.</p>
-            </div>
-            <p class="x-talk__free">The conversation is free.</p>
+      <section class="x-rep sec--stone offer" id="report">
+        <div class="ctr x-rep__grid">
+          <div class="x-rep__copy">
+            <p class="x-learn__lbl">What we look at</p>
+            <ul class="x-watch">
+              <li class="x-watch__i">New hires</li>
+              <li class="x-watch__i">New offers</li>
+              <li class="x-watch__i">New products</li>
+              <li class="x-watch__i">Pricing changes</li>
+              <li class="x-watch__i">Positioning changes</li>
+            </ul>
+            <p class="x-rep__p">We’ll take a look at what’s happening, pull out what matters, and send you a free competitor report straight to your inbox.</p>
           </div>
-          <div class="x-talk__form">
-            <form class="form form--talk" id="consult-form" data-endpoint="/api/submit-lead" data-status="consult-status" data-required-message="invite" data-start-event="conversation_start" data-conversion-event="conversation_request" data-redirect="/talk-schedule" data-submitting="Scheduling…" novalidate>
-              <input type="hidden" name="source" value="lets-talk" />
+          <div class="x-rep__form split__form">
+            <form class="form" id="try-form" data-endpoint="/api/try-submit" data-start-event="free_brief_start" data-conversion-event="free_brief_submit" data-status="try-status" data-submitting="Building your report…" data-label="Get My Free Report →" novalidate>
+              <h3 class="form__offer"><span>Track your top</span><span>competitors for free.</span></h3>
+              <p class="form__intro">Tell us about your business and your top competitors.</p>
+              <input type="hidden" name="source" value="try-simple-genius-free" />
               <input type="hidden" name="utm_source" data-attr="utm_source" />
               <input type="hidden" name="utm_medium" data-attr="utm_medium" />
               <input type="hidden" name="utm_campaign" data-attr="utm_campaign" />
@@ -106,25 +111,54 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <input type="hidden" name="landing_page" data-attr="landing_page" />
               <input type="hidden" name="first_visit" data-attr="first_visit" />
               <input type="hidden" name="visit_summary" data-attr="visit_summary" />
-              <div class="field"><label for="fc-name">Your name</label><input id="fc-name" name="fullName" type="text" autocomplete="name" required /><span class="err" hidden></span></div>
-              <div class="field"><label for="fc-email">Work email</label><input id="fc-email" name="email" type="email" autocomplete="email" required /><span class="err" hidden></span></div>
-              <div class="form__pair">
-                <div class="field"><label for="fc-company">Company name</label><input id="fc-company" name="company" type="text" autocomplete="organization" required /><span class="err" hidden></span></div>
-                <div class="field"><label for="fc-website">Company website, optional</label><input id="fc-website" name="website" type="text" inputmode="url" placeholder="yourcompany.com" /><span class="err" hidden></span></div>
-              </div>
-              <div class="form__pair">
-                <div class="field"><label for="fc-role">Your role</label><input id="fc-role" name="role" type="text" autocomplete="organization-title" required /><span class="err" hidden></span></div>
-                <div class="field"><label for="fc-industry">Industry</label><input id="fc-industry" name="industry" type="text" required /><span class="err" hidden></span></div>
-              </div>
-              <div class="field"><label for="fc-size">Company size</label><select id="fc-size" name="companySize" required><option value="" disabled selected>Select employee range</option><option value="1-9">1 to 9</option><option value="10-49">10 to 49</option><option value="50-99">50 to 99</option><option value="100-249">100 to 249</option><option value="250+">250 or more</option></select><span class="err" hidden></span></div>
-              <div class="field"><label for="fc-prompt">Anything you want us to know before the call? (optional)</label><input id="fc-prompt" name="challenge" type="text" aria-describedby="fc-prompt-hint" /><span class="fc__hint" id="fc-prompt-hint">One line is plenty.</span><span class="err" hidden></span></div>
+
+              <fieldset class="form__set">
+                <legend>About you</legend>
+                <div class="form__pair" data-first>
+                  <div class="field"><label for="try-first">First name <span class="req">*</span></label><input id="try-first" name="firstName" type="text" autocomplete="given-name" required /><span class="err" hidden></span></div>
+                  <div class="field"><label for="try-last">Last name <span class="req">*</span></label><input id="try-last" name="lastName" type="text" autocomplete="family-name" required /><span class="err" hidden></span></div>
+                </div>
+                <div class="form__pair">
+                  <div class="field"><label for="try-email">Work email <span class="req">*</span></label><input id="try-email" name="email" type="email" autocomplete="email" required /><span class="err" hidden></span></div>
+                  <div class="field"><label for="try-title">Role or title <span class="req">*</span></label><input id="try-title" name="role" type="text" autocomplete="organization-title" placeholder="Founder, CEO, VP of Marketing…" required /><span class="err" hidden></span></div>
+                </div>
+              </fieldset>
+
+              <fieldset class="form__set">
+                <legend>Your company</legend>
+                <div class="form__pair">
+                  <div class="field"><label for="try-company">Company name <span class="req">*</span></label><input id="try-company" name="company" type="text" autocomplete="organization" required /><span class="err" hidden></span></div>
+                  <div class="field"><label for="try-website">Company website <span class="req">*</span></label><input id="try-website" name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourcompany.com" required /><span class="err" hidden></span></div>
+                </div>
+                <div class="field"><label for="try-socials">Company socials <span class="opt">(optional)</span></label><textarea id="try-socials" name="socials" rows="2" placeholder="Paste any LinkedIn, X, Instagram, YouTube or other profile URLs, one per line."></textarea><span class="hint">Only what is public. Paste one URL per line.</span></div>
+              </fieldset>
+
+              <button class="more__btn" type="button" data-continue aria-expanded="false" aria-controls="try-more">Click to Continue Form <span aria-hidden="true">↓</span></button>
+              <div class="more" id="try-more" data-more><div class="more__inner">
+              <fieldset class="form__set">
+                <legend>Your competition</legend>
+                <div class="form__pair">
+                  <div class="field"><label for="try-comp1-name">Competitor 1 name <span class="req">*</span></label><input id="try-comp1-name" name="competitor1Name" type="text" required /><span class="err" hidden></span></div>
+                  <div class="field"><label for="try-comp1-site">Competitor 1 website <span class="req">*</span></label><input id="try-comp1-site" name="competitor1Site" type="text" inputmode="url" placeholder="competitor1.com" required /><span class="err" hidden></span></div>
+                </div>
+                <div class="form__pair">
+                  <div class="field"><label for="try-comp2-name">Competitor 2 name <span class="req">*</span></label><input id="try-comp2-name" name="competitor2Name" type="text" required /><span class="err" hidden></span></div>
+                  <div class="field"><label for="try-comp2-site">Competitor 2 website <span class="req">*</span></label><input id="try-comp2-site" name="competitor2Site" type="text" inputmode="url" placeholder="competitor2.com" required /><span class="err" hidden></span></div>
+                </div>
+              </fieldset>
+
               <p class="form__fail" data-fail hidden></p>
-              <button class="btn btn--lg btn--block fc__submit" type="submit" data-submit>Schedule a time <span aria-hidden="true">→</span></button>
-              <p class="form__note fc__note">Next, pick a time on the calendar.</p>
+              <button class="btn btn--lg btn--block" type="submit" data-submit>Get My Free Report <span aria-hidden="true">→</span></button>
+              <p class="form__note">We will research your business and the competitors you chose and send your personalized report to your email. Built from publicly available information.</p>
+            </div></div>
             </form>
-            <div class="done" id="consult-status" role="status" hidden>
-              <h3 class="done__h">Taking you to the calendar…</h3>
+            <div class="done" id="try-status" role="status" hidden>
+              <p class="label">Your report is being built</p>
+              <h3 class="done__h">Your Simple Genius Report is on the way.</h3>
+              <p>We are researching your business and the competitors you chose. We will send the finished report to <strong data-fill="email">your email</strong>.</p>
+              <p>Keep an eye on your inbox. You can close this page. Your report will show up when it is ready.</p>
             </div>
+          
           </div>
         </div>
       </section>

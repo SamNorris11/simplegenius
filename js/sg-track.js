@@ -453,7 +453,7 @@
     if (path === '/pricing') {
       gaEvent = 'pricing_view';
       metaContent = 'Pricing';
-    } else if (path === '/try' || path === '/scan' || path === '/report') {
+    } else if (path === '/try' || path === '/scan' || path === '/report' || path === '/free-competitor-report') {
       gaEvent = 'competitor_report_view';
       metaContent = 'Competitor Report';
     } else if (path === '/talk' || path === '/talk-schedule' || path === '/free-consultation') {
@@ -513,13 +513,15 @@
     if (isQaTraffic()) return;
     var form = document.getElementById('try-form');
     if (!form) return;
+    var here = (window.location.pathname || '/').replace(/\/+$/, '') || '/';
+    if (here === '/free-competitor-report') return; // page view already fires competitor_report_view
     var fired = false;
     function fire() {
       if (fired) return;
       fired = true;
       trackGaEvent('competitor_report_view', {
         page_location: window.location.href || '',
-        page_path: '/#report'
+        page_path: here + '#report'
       });
       trackMetaEvent('ViewContent', {
         content_name: 'Competitor Report',

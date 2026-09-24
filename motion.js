@@ -32,8 +32,8 @@
   /* Section entrances */
   if (!reduce && 'IntersectionObserver' in window) {
     var H = 'h1, h2';
-    var C = '.pp-hero__sub, .pp-hero__line, .pp-eyebrow, .prose, .goal__copy, .offer__copy, .talk__copy, .pp-copy, .pp-goals, .pp-yours, .pp-yours__p, .pp-dark__lead, .pp-adjust, .pp-cta__sub, .pp-cta__copy, .fcta__copy, .fc__copy, .cred, .hw-flow, .hw-soft__copy, .hw-areas, .tm-p__body';
-    var P = '.hero__video, .aud__grid, .aud, .story__media, .quotes__track, .goal__panel, .split__form, .vids, .pp-three, .pp-big, .pp-cta .btn, .vbox, .hw-feat__shot';
+    var C = '.pp-hero__sub, .pp-hero__line, .pp-eyebrow, .prose, .goal__copy, .offer__copy, .talk__copy, .pp-copy, .pp-goals, .pp-yours, .pp-yours__p, .pp-dark__lead, .pp-adjust, .pp-cta__sub, .pp-cta__copy, .fcta__copy, .fc__copy, .cred, .hw-flow, .hw-soft__copy, .hw-areas, .tm-p__body, .x-prose, .x-proc__sub, .x-talk__copy, .x-cred, .x-flow, .x-qs, .x-learn, .x-plan, .x-stay, .x-loop, .x-chron, .x-yours, .x-watch, .x-band__copy, .x-team__list, .x-price__grid';
+    var P = '.hero__video, .aud__grid, .aud, .story__media, .quotes__track, .goal__panel, .split__form, .vids, .pp-three, .pp-big, .pp-cta .btn, .vbox, .hw-feat__shot, .x-film, .x-duo, .x-q, .x-talk__form, .x-rep__form';
     var secs = document.querySelectorAll('main > section:not(.feel), .vpage__main');
     secs.forEach(function (s) {
       var h = s.querySelector(H); if (h) h.classList.add('m-h');
