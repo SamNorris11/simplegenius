@@ -60,8 +60,7 @@
 .sp-stage { position: relative; z-index: 1; padding-block: 144px; }
 .sp-stage + .sp-stage:not(.sp-stage--dark) { border-top: 1px solid var(--line); }
 .sp-stage--dark + .sp-stage { border-top: 0; }
-.sp-stage__grid { display: grid; grid-template-columns: var(--sp-cols); justify-content: center; column-gap: var(--sp-gap); }
-.sp-stage__body { grid-column: 2; }
+.sp-stage__grid { max-width: calc(790px + var(--pad-x) * 2); }
 .sp-stage__num { margin: 0 0 28px; font: 800 clamp(64px, 6vw, 96px)/0.8 var(--font-display); letter-spacing: -0.06em; color: var(--ink); }
 .sp-stage--dark { background: var(--black); color: #fff; padding-block: 168px; }
 .sp-stage--dark .sp-stage__num { color: #fff; }
