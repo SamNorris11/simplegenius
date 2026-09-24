@@ -12,18 +12,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Simple Genius | You don’t have to build it alone.</title>
-    <meta name="description" content="Trent Hiott and Mark Combs turned decades of building and selling businesses into the Simple Genius Process. A team in your corner, from conversation to game plan to execution." />
+    <meta name="description" content="Simple Genius gives ambitious owners a proven process for figuring out where they’re going, what is standing in the way, and what to do next." />
     <link rel="canonical" href="https://www.simplegenius.com/" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Simple Genius" />
     <meta property="og:url" content="https://www.simplegenius.com/" />
     <meta property="og:title" content="Simple Genius | You don’t have to build it alone." />
-    <meta property="og:description" content="Trent Hiott and Mark Combs turned decades of building and selling businesses into the Simple Genius Process. A team in your corner, from conversation to game plan to execution." />
+    <meta property="og:description" content="Simple Genius gives ambitious owners a proven process for figuring out where they’re going, what is standing in the way, and what to do next." />
     <meta property="og:image" content="https://www.simplegenius.com/img/og-preview.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Simple Genius | You don’t have to build it alone." />
-    <meta name="twitter:description" content="Trent Hiott and Mark Combs turned decades of building and selling businesses into the Simple Genius Process. A team in your corner, from conversation to game plan to execution." />
+    <meta name="twitter:description" content="Simple Genius gives ambitious owners a proven process for figuring out where they’re going, what is standing in the way, and what to do next." />
     <meta name="twitter:image" content="https://www.simplegenius.com/img/og-preview.jpg" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
@@ -37,6 +37,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" href="/home.css" />
     <link rel="stylesheet" href="/motion.css" />
     <link rel="stylesheet" href="/sg.css" />
+    <link rel="stylesheet" href="/css/hp.css" />
   </head>
   <body>
 <!-- Google Tag Manager (noscript) -->
@@ -45,161 +46,248 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <a class="skip" href="#main">Skip to content</a>
 
-    <header class="hd" data-header>
+    <header class="hd hd--light" data-header>
       <div class="ctr hd__inner">
         <a class="hd__logo" href="/" aria-label="Simple Genius home">
           <img src="/assets/logo-light-124h.png" srcset="/assets/logo-light-62h.png 1x, /assets/logo-light-124h.png 2x" width="166" height="62" alt="Simple Genius" />
           <img class="hd__logo-d" src="/assets/logo-dark-56h.png" srcset="/assets/logo-dark-56h.png 1x, /assets/logo-dark-112h.png 2x" width="150" height="56" alt="" aria-hidden="true" />
         </a>
         <nav class="hd__nav" aria-label="Primary">
-          <a href="/process">The Process</a>
+          <a href="/process">Process</a>
           <a href="/about">About</a>
+          <a href="/insights">Insights</a>
           <a href="/pricing">Pricing</a>
-          <a href="/insights">Founder Insights</a>
-          <a href="/free-competitor-report">Free Competitor Report</a>
-          <a class="btn btn--sm" href="/free-consultation">Free Consultation</a>
+          <a class="hp-btn hp-btn--sm" href="#start">Start a Conversation</a>
           <button class="hd__menu" type="button" data-mnav aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><span></span><span></span><span></span></button>
         </nav>
       </div>
       <nav class="mnav" id="mnav" aria-label="Mobile" hidden>
         <div class="ctr mnav__inner">
           <a href="/">Home</a>
-          <a href="/process">The Process</a>
+          <a href="/process">Process</a>
           <a href="/about">About</a>
+          <a href="/insights">Insights</a>
           <a href="/pricing">Pricing</a>
-          <a href="/insights">Founder Insights</a>
-          <a href="/free-competitor-report">Free Competitor Report</a>
-          <a href="/free-consultation">Free Consultation</a>
+          <a href="#start">Start a Conversation</a>
         </div>
       </nav>
     </header>
 
     <main id="main">
-      <!-- 1 + 2. HERO and OVERVIEW VIDEO share one dark environment -->
-      <section class="x-open" aria-label="Introduction">
-        <div class="ctr x-hero">
-          <h1 class="x-hero__h"><span>You don’t have to</span> <span>build it alone.</span></h1>
-        </div>
-        <div class="ctr x-film">
-          <!-- OVERVIEW VIDEO placeholder. To go live: replace the contents of .x-film__frame with a <video controls preload="none" poster="..."> (or an iframe),
-               and remove the x-film__frame--ph class. The 16:9 ratio is held by CSS. -->
-          <div class="x-film__frame x-film__frame--ph" role="img" aria-label="Simple Genius overview video, coming soon">
-            <span class="x-film__play" aria-hidden="true"></span>
-            <span class="x-film__lbl">Overview video</span>
+      <!-- 2. HERO -->
+      <section class="hp-hero" aria-labelledby="hp-h1">
+        <div class="hp-w">
+          <h1 class="hp-hero__h" id="hp-h1">You don’t have to build it alone.</h1>
+          <p class="hp-hero__p">Simple Genius gives ambitious owners a proven process for figuring out where they’re going, what is standing in the way, and what to do next.</p>
+          <div class="hp-acts">
+            <a class="hp-btn" href="#start">Start a Conversation</a>
+            <a class="hp-link" href="#process">See the Process <span aria-hidden="true">→</span></a>
           </div>
         </div>
       </section>
 
-      <!-- 3. TRENT + MARK -->
-      <section class="x-found" id="founders">
-        <div class="ctr x-found__grid">
-          <div class="x-found__media">
-            <figure class="x-duo">
-              <div class="x-duo__im"><img src="/assets/team-trent-960.jpg" srcset="/assets/team-trent-480.jpg 480w, /assets/team-trent-960.jpg 960w" sizes="(max-width: 767px) 50vw, 28vw" width="960" height="1200" alt="Trent Hiott, cofounder of Simple Genius" loading="lazy" /><figcaption>Trent Hiott</figcaption></div>
-              <div class="x-duo__im"><img src="/assets/team-mark-960.jpg" srcset="/assets/team-mark-480.jpg 480w, /assets/team-mark-960.jpg 960w" sizes="(max-width: 767px) 50vw, 28vw" width="960" height="1200" alt="Mark Combs, CFA, cofounder of Simple Genius" loading="lazy" /><figcaption>Mark Combs, CFA</figcaption></div>
-            </figure>
+      <!-- 3. THE SIMPLE GENIUS PROCESS: the brand asset -->
+      <section class="hp-sec hp-proc" id="process" aria-labelledby="proc-h">
+        <div class="hp-w">
+          <div class="hp-split" data-rv>
+            <div>
+              <p class="hp-lbl">The Simple Genius Process</p>
+              <h2 class="hp-h2" id="proc-h">A process built to keep your business moving.</h2>
+            </div>
+            <p class="hp-body">Every business is different. The questions are not. Where are you trying to go? What is standing in the way? What matters most right now? The Simple Genius Process creates the discipline to answer those questions and act on them.</p>
           </div>
-          <div class="x-found__copy">
-            <h2 class="x-h2">We’ve been in your seat.</h2>
-            <dl class="x-cred">
-              <div class="x-cred__i"><dt>40+ years</dt><dd>Combined business experience</dd></div>
-              <div class="x-cred__i"><dt>Multiple <span class="nowrap">8-figure</span></dt><dd>Exits</dd></div>
-            </dl>
-            <div class="x-prose">
-              <p>Trent Hiott and Mark Combs have spent more than 40 combined years building, operating, growing and selling businesses, including multiple <span class="nowrap">8-figure</span> exits.</p>
-              <p>They know what it’s like when the decisions ultimately come back to you.</p>
-              <p class="x-prose__beat">The people. The problems. The opportunities. The pressure. Where the business is today and where you’re trying to take it.</p>
-              <p>Over the years, they learned that knowing what to do is rarely the whole problem.</p>
-              <p>The harder part is seeing the business clearly, determining what matters now, turning direction into action, and consistently following through.</p>
-              <p>So they took what they’d learned from decades of doing it themselves and built a repeatable way to help other business owners do the same.</p>
+          <div class="pr" data-pr>
+            <div class="pr__loop" aria-hidden="true"><span class="pr__loop-t">Learn <i>→</i> Adjust <i>→</i> Conversation</span></div>
+            <ol class="pr__row" aria-label="The four stages of the Simple Genius Process. After Execute + Adjust, the Process returns to Conversation.">
+            <li class="pr__s" style="--i:0">
+              <span class="pr__node" aria-hidden="true"></span>
+              <p class="pr__n">01</p>
+              <h3 class="pr__h">Conversation</h3>
+              <p class="pr__p">Understand where you are and where you want to go.</p>
+            </li>
+            <li class="pr__s" style="--i:1">
+              <span class="pr__node" aria-hidden="true"></span>
+              <p class="pr__n">02</p>
+              <h3 class="pr__h">Perspective</h3>
+              <p class="pr__p">See what is hard to see from inside the business.</p>
+            </li>
+            <li class="pr__s" style="--i:2">
+              <span class="pr__node" aria-hidden="true"></span>
+              <p class="pr__n">03</p>
+              <h3 class="pr__h">Game Plan</h3>
+              <p class="pr__p">Turn what matters into clear priorities and actions.</p>
+            </li>
+            <li class="pr__s" style="--i:3">
+              <span class="pr__node" aria-hidden="true"></span>
+              <p class="pr__n">04</p>
+              <h3 class="pr__h">Execute + Adjust</h3>
+              <p class="pr__p">Move, learn, adjust, and keep going.</p>
+            </li>
+            </ol>
+            <p class="pr__again" aria-hidden="true"><span class="pr__again-i"></span><span>Learn <i>→</i> Adjust <i>→</i> back to Conversation</span></p>
+          </div>
+          <a class="hp-link hp-after" href="/process">Explore the Process <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
+
+      <!-- 4. FOUNDER CREDIBILITY -->
+      <section class="hp-sec hp-found" id="experience" aria-labelledby="found-h">
+        <div class="hp-w">
+          <div class="hp-head" data-rv>
+            <p class="hp-lbl">Built from experience</p>
+            <h2 class="hp-h2" id="found-h">Experience turned into a process.</h2>
+          </div>
+          <div class="hp-found__g">
+            <div class="hp-found__im" data-rv>
+              <figure><img src="/assets/team-trent-960.jpg" srcset="/assets/team-trent-480.jpg 480w, /assets/team-trent-960.jpg 960w" sizes="(max-width: 767px) 46vw, 25vw" width="960" height="1200" alt="Trent Hiott, cofounder of Simple Genius" loading="lazy" /><figcaption>Trent Hiott</figcaption></figure>
+              <figure><img src="/assets/team-mark-960.jpg" srcset="/assets/team-mark-480.jpg 480w, /assets/team-mark-960.jpg 960w" sizes="(max-width: 767px) 46vw, 25vw" width="960" height="1200" alt="Mark Combs, CFA, cofounder of Simple Genius" loading="lazy" /><figcaption>Mark Combs, CFA</figcaption></figure>
+            </div>
+            <div class="hp-found__c">
+              <dl class="hp-stats" data-rv>
+                <div><dt>40+ years</dt><dd>Combined business experience</dd></div>
+                <div><dt>Multiple <span class="nowrap">8-figure</span> exits</dt><dd>Companies built, grown and sold</dd></div>
+              </dl>
+              <div class="hp-prose" data-rv>
+                <p>Trent Hiott and Mark Combs spent decades building, operating, growing, and exiting companies. Over time, they saw the same challenges appear again and again: unclear priorities, difficult decisions, missed opportunities, growing complexity and owners carrying too much on their shoulders.</p>
+                <p>They turned what they learned into something repeatable.</p>
+              </div>
+              <p class="hp-found__iso" data-rv>The Simple Genius Process.</p>
+              <div class="hp-prose" data-rv>
+                <p>Today, the Process is delivered by Simple Genius and built on the lessons Trent and Mark learned doing it themselves.</p>
+              </div>
+              <a class="hp-link hp-after" href="/about">Our Story <span aria-hidden="true">→</span></a>
             </div>
           </div>
         </div>
-        <div class="ctr x-bridge">
-          <span class="x-bridge__rule" aria-hidden="true"></span>
-          <p class="x-bridge__t">That became the Simple Genius Process.</p>
+      </section>
+
+      <!-- 5. FOR THE AMBITIOUS ONES -->
+      <section class="hp-sec hp-who" id="who" aria-labelledby="who-h">
+        <div class="hp-w">
+          <div class="hp-split" data-rv>
+            <div>
+              <p class="hp-lbl">Who it’s for</p>
+              <h2 class="hp-h2" id="who-h">For the ambitious ones.</h2>
+            </div>
+            <p class="hp-lead">The Process changes with the business. The need for clarity does not.</p>
+          </div>
+          <div class="hp-stages">
+          <article class="hp-stage" data-rv style="--d:0">
+            <p class="hp-stage__k">Builder</p>
+            <h3 class="hp-stage__h">You’re creating momentum.</h3>
+            <p class="hp-stage__p">You are selling, hiring, solving problems and trying to turn an idea into something durable.</p><p class="hp-stage__p">Your biggest challenge is knowing what deserves your attention.</p>
+          </article>
+          <article class="hp-stage" data-rv style="--d:1">
+            <p class="hp-stage__k">Owner</p>
+            <h3 class="hp-stage__h">The business works. Now it needs to work better.</h3>
+            <p class="hp-stage__p">Growth creates complexity. People, systems, margins, structure and priorities matter more than ever.</p><p class="hp-stage__p">Your challenge is building a stronger company without being at the center of everything.</p>
+          </article>
+          <article class="hp-stage" data-rv style="--d:2">
+            <p class="hp-stage__k">Leader</p>
+            <h3 class="hp-stage__h">You’re thinking about what comes next.</h3>
+            <p class="hp-stage__p">Expansion. Leadership. Enterprise value. Succession. Acquisitions. An exit. Another chapter.</p><p class="hp-stage__p">The decisions become fewer, but more important.</p>
+          </article>
+          </div>
+          <p class="hp-close" data-rv>Different stage. Same need: clarity about where you’re going and a process for getting there.</p>
         </div>
       </section>
 
-      <!-- 4. THE SIMPLE GENIUS PROCESS -->
-      <section class="x-proc" id="process" aria-labelledby="proc-h">
-        <div class="ctr">
-          <div class="x-proc__head">
-            <h2 class="x-h2" id="proc-h">The Simple Genius Process.</h2>
-            <p class="x-proc__sub">Your business is unique. The Process gives you a repeatable way to figure out what matters, what happens next, and keep moving toward where you said you want to go.</p>
+      <!-- 6. WHAT CHANGES -->
+      <section class="hp-sec hp-chg" aria-labelledby="chg-h">
+        <div class="hp-w">
+          <div class="hp-head" data-rv>
+            <p class="hp-lbl">What changes</p>
+            <h2 class="hp-h2 hp-h2--w">From where you are to where you’re trying to go.</h2>
           </div>
-          <ol class="x-flow" aria-label="The four stages of the Simple Genius Process">
-            <li class="x-step">
-              <span class="x-step__mk" aria-hidden="true"></span>
-              <div class="x-step__box">
-                <p class="x-step__n">01</p>
-                <h3 class="x-step__h">Conversation</h3>
-                <p class="x-step__lead">It starts with you.</p>
-                <p class="x-step__p">We talk about your business. Where you’ve been. Where you’re trying to go. What’s working. What’s not. And what’s putting pressure on you right now.</p>
-              </div>
-            </li>
-            <li class="x-step">
-              <span class="x-step__mk" aria-hidden="true"></span>
-              <div class="x-step__box">
-                <p class="x-step__n">02</p>
-                <h3 class="x-step__h">Perspective</h3>
-                <p class="x-step__lead">Then we get to work.</p>
-                <p class="x-step__p">We bring together what we’ve learned about you and your business and help you see what can be difficult to see when you’re inside it every day.</p>
-              </div>
-            </li>
-            <li class="x-step">
-              <span class="x-step__mk" aria-hidden="true"></span>
-              <div class="x-step__box">
-                <p class="x-step__n">03</p>
-                <h3 class="x-step__h">Game Plan</h3>
-                <p class="x-step__lead">We turn direction into action.</p>
-                <p class="x-step__p">We determine what needs to happen, in what order, and build an actionable plan around where you’re trying to go.</p>
-              </div>
-            </li>
-            <li class="x-step">
-              <span class="x-step__mk" aria-hidden="true"></span>
-              <div class="x-step__box">
-                <p class="x-step__n">04</p>
-                <h3 class="x-step__h">Execute + Adjust</h3>
-                <p class="x-step__lead">Then we stay with you.</p>
-                <p class="x-step__p">You execute. We stay beside you, keep you accountable, work through problems with you, measure what’s happening, and adjust the plan as your business changes.</p>
-              </div>
-            </li>
-          </ol>
-          <div class="x-yours">
-            <p class="x-yours__h"><span>Your business.</span> <span>Your goals.</span> <span>Your path.</span></p>
-            <p class="x-yours__p">The Simple Genius Process exists to help you keep moving toward them.</p>
-            <a class="x-link" href="/process">See the full Process <span aria-hidden="true">→</span></a>
-          </div>
+          <div class="hp-chg__cols" aria-hidden="true"><span>Before</span><span></span><span>After</span></div>
+          <ul class="hp-chg__l" id="chg-h-list">
+          <li class="hp-chg__r" data-rv>
+            <span class="hp-chg__b">Too many priorities</span>
+            <span class="hp-chg__ar" aria-hidden="true">→</span>
+            <span class="hp-chg__a"><span class="vh">becomes </span>Clear direction</span>
+          </li>
+          <li class="hp-chg__r" data-rv>
+            <span class="hp-chg__b">Reacting constantly</span>
+            <span class="hp-chg__ar" aria-hidden="true">→</span>
+            <span class="hp-chg__a"><span class="vh">becomes </span>Intentional decisions</span>
+          </li>
+          <li class="hp-chg__r" data-rv>
+            <span class="hp-chg__b">Ideas everywhere</span>
+            <span class="hp-chg__ar" aria-hidden="true">→</span>
+            <span class="hp-chg__a"><span class="vh">becomes </span>A focused game plan</span>
+          </li>
+          <li class="hp-chg__r" data-rv>
+            <span class="hp-chg__b">Planning without movement</span>
+            <span class="hp-chg__ar" aria-hidden="true">→</span>
+            <span class="hp-chg__a"><span class="vh">becomes </span>Execution and adjustment</span>
+          </li>
+          <li class="hp-chg__r" data-rv>
+            <span class="hp-chg__b">The owner carrying everything</span>
+            <span class="hp-chg__ar" aria-hidden="true">→</span>
+            <span class="hp-chg__a"><span class="vh">becomes </span>A stronger business</span>
+          </li>
+          </ul>
         </div>
       </section>
 
-      <!-- 5. PROOF. Only real testimonials. To add more, copy a .x-q figure into .x-proof__more (and remove its hidden attribute). -->
-      <section class="x-proof" aria-labelledby="proof-h">
-        <div class="ctr x-proof__grid">
-          <h2 class="x-proof__h" id="proof-h">What business owners say about the Process.</h2>
-          <figure class="x-q x-q--lead">
-            <blockquote class="x-q__t"><p>“Trent Hiott gave me the confidence and clarity to start my own business.”</p></blockquote>
-            <figcaption class="x-q__by">Chad Norris</figcaption>
+      <!-- 7. EXECUTE + ADJUST -->
+      <section class="hp-sec hp-dark" aria-labelledby="dif-h">
+        <div class="hp-w">
+          <div class="hp-dark__g">
+            <div data-rv>
+              <p class="hp-lbl">The difference</p>
+              <h2 class="hp-h2" id="dif-h">We don’t hand you a plan and disappear.</h2>
+              <p class="hp-lead">A plan only matters if something happens next.</p>
+              <p class="hp-body">Simple Genius stays in the Process as priorities become action, results come in, circumstances change and new decisions need to be made.</p>
+            </div>
+            <figure class="hp-cyc" data-rv aria-label="Execute, Learn, Adjust, then Execute again">
+            <svg viewBox="0 0 440 440" role="img" aria-labelledby="cyc-t">
+              <title id="cyc-t">Execute → Learn → Adjust → Execute</title>
+              <defs><marker id="cyc-a" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M1 1 L8 5 L1 9" fill="none" stroke="#F7F6F2" stroke-width="1.4"/></marker></defs>
+              <circle class="hp-cyc__ring" cx="220" cy="220" r="150"/>
+              <path class="hp-cyc__arc" d="M 240.9 71.5 A 150 150 0 0 1 359.1 276.2" marker-end="url(#cyc-a)"/>
+              <path class="hp-cyc__arc" d="M 338.2 312.3 A 150 150 0 0 1 101.8 312.3" marker-end="url(#cyc-a)"/>
+              <path class="hp-cyc__arc" d="M 80.9 276.2 A 150 150 0 0 1 199.1 71.5" marker-end="url(#cyc-a)"/>
+              <rect class="hp-cyc__n hp-cyc__n--y" x="213" y="63" width="14" height="14"/>
+              <rect class="hp-cyc__n" x="342.9" y="288" width="14" height="14"/>
+              <rect class="hp-cyc__n" x="83.1" y="288" width="14" height="14"/>
+              <text x="220" y="38" text-anchor="middle">EXECUTE</text>
+              <text x="372" y="350" text-anchor="middle">LEARN</text>
+              <text x="68" y="350" text-anchor="middle">ADJUST</text>
+            </svg>
           </figure>
-          <div class="x-proof__more" hidden></div>
+          </div>
+          <p class="hp-close hp-close--dark" data-rv>That is why Execute + Adjust is not the final step. It keeps the Process moving.</p>
         </div>
       </section>
 
-      <!-- 6. FREE CONSULTATION + FORM (same form, endpoint, fields and redirect as /free-consultation) -->
-      <section class="x-talk" id="consultation">
-        <div class="ctr x-talk__grid">
-          <div class="x-talk__intro">
-            <h2 class="x-talk__h">What’s on your mind?</h2>
-            <p class="x-talk__kick">It starts with a conversation.</p>
-            <div class="x-talk__copy">
-              <p>Talk to the Simple Genius team about your business. Where you’re trying to go. What’s getting in the way. Or simply the thing that’s keeping you up at night.</p>
-              <p>We’ll listen, ask questions, and share what we see.</p>
-            </div>
-            <p class="x-talk__free">The conversation is free.</p>
+      <!-- 8. PROOF OF THE PROCESS.
+           PLACEHOLDER: no verified client case study exists yet. Replace each [data-pending] paragraph with real, approved client material only.
+           The Chad Norris quote is intentionally not used here (it centers Trent personally). -->
+      <section class="hp-sec hp-proof" aria-labelledby="proof-h">
+        <div class="hp-w">
+          <div class="hp-head" data-rv>
+            <p class="hp-lbl">Proof of the Process</p>
+            <h2 class="hp-h2 hp-h2--w" id="proof-h">What happens when the Process gets to work.</h2>
           </div>
-          <div class="x-talk__form">
-            <form class="form form--talk" id="consult-form" data-endpoint="/api/submit-lead" data-status="consult-status" data-required-message="invite" data-start-event="conversation_start" data-conversion-event="conversation_request" data-redirect="/talk-schedule" data-submitting="Scheduling…" novalidate>
+          <div class="hp-case" data-rv>
+            <div class="hp-case__c"><h3 class="hp-case__h">The Situation</h3><p class="hp-case__q">What was happening?</p><p class="hp-case__p" data-pending>Verified client example pending approval.</p></div>
+            <div class="hp-case__c"><h3 class="hp-case__h">What We Saw</h3><p class="hp-case__q">What did the Process uncover?</p><p class="hp-case__p" data-pending>Verified client example pending approval.</p></div>
+            <div class="hp-case__c"><h3 class="hp-case__h">What Changed</h3><p class="hp-case__q">What happened afterward?</p><p class="hp-case__p" data-pending>Verified client example pending approval.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. START THE PROCESS (same endpoint, tracking fields and redirect as the full consultation form) -->
+      <section class="hp-sec hp-start" id="start" aria-labelledby="start-h">
+        <div class="hp-w hp-start__g">
+          <div data-rv>
+            <p class="hp-lbl">Start here</p>
+            <h2 class="hp-h2" id="start-h">Every Process starts with a conversation.</h2>
+            <p class="hp-lead">Tell us where you’re trying to go. We’ll start there.</p>
+          </div>
+          <div class="hp-start__f" data-rv>
+            <form class="form hp-form" id="consult-form" data-endpoint="/api/submit-lead" data-status="consult-status" data-required-message="invite" data-start-event="conversation_start" data-conversion-event="conversation_request" data-redirect="/talk-schedule" data-submitting="Sending…" novalidate>
               <input type="hidden" name="source" value="lets-talk" />
               <input type="hidden" name="utm_source" data-attr="utm_source" />
               <input type="hidden" name="utm_medium" data-attr="utm_medium" />
@@ -215,21 +303,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               <input type="hidden" name="landing_page" data-attr="landing_page" />
               <input type="hidden" name="first_visit" data-attr="first_visit" />
               <input type="hidden" name="visit_summary" data-attr="visit_summary" />
-              <div class="field"><label for="fc-name">Your name</label><input id="fc-name" name="fullName" type="text" autocomplete="name" required /><span class="err" hidden></span></div>
-              <div class="field"><label for="fc-email">Work email</label><input id="fc-email" name="email" type="email" autocomplete="email" required /><span class="err" hidden></span></div>
-              <div class="form__pair">
-                <div class="field"><label for="fc-company">Company name</label><input id="fc-company" name="company" type="text" autocomplete="organization" required /><span class="err" hidden></span></div>
-                <div class="field"><label for="fc-website">Company website, optional</label><input id="fc-website" name="website" type="text" inputmode="url" placeholder="yourcompany.com" /><span class="err" hidden></span></div>
-              </div>
-              <div class="form__pair">
-                <div class="field"><label for="fc-role">Your role</label><input id="fc-role" name="role" type="text" autocomplete="organization-title" required /><span class="err" hidden></span></div>
-                <div class="field"><label for="fc-industry">Industry</label><input id="fc-industry" name="industry" type="text" required /><span class="err" hidden></span></div>
-              </div>
-              <div class="field"><label for="fc-size">Company size</label><select id="fc-size" name="companySize" required><option value="" disabled selected>Select employee range</option><option value="1-9">1 to 9</option><option value="10-49">10 to 49</option><option value="50-99">50 to 99</option><option value="100-249">100 to 249</option><option value="250+">250 or more</option></select><span class="err" hidden></span></div>
-              <div class="field"><label for="fc-prompt">Anything you want us to know before the call? (optional)</label><input id="fc-prompt" name="challenge" type="text" aria-describedby="fc-prompt-hint" /><span class="fc__hint" id="fc-prompt-hint">One line is plenty.</span><span class="err" hidden></span></div>
+              <div class="field"><label for="fc-name">Name</label><input id="fc-name" name="fullName" type="text" autocomplete="name" required /><span class="err" hidden></span></div>
+              <div class="field"><label for="fc-email">Email</label><input id="fc-email" name="email" type="email" autocomplete="email" required /><span class="err" hidden></span></div>
+              <div class="field"><label for="fc-company">Company</label><input id="fc-company" name="company" type="text" autocomplete="organization" required /><span class="err" hidden></span></div>
+              <div class="field"><label for="fc-goal">What are you trying to accomplish?</label><textarea id="fc-goal" name="challenge" rows="4"></textarea><span class="err" hidden></span></div>
               <p class="form__fail" data-fail hidden></p>
-              <button class="btn btn--lg btn--block fc__submit" type="submit" data-submit>Schedule a time <span aria-hidden="true">→</span></button>
-              <p class="form__note fc__note">Next, pick a time on the calendar.</p>
+              <button class="hp-btn hp-btn--block" type="submit" data-submit>Start a Conversation</button>
+              <p class="hp-form__note">Next, pick a time on the calendar.</p>
             </form>
             <div class="done" id="consult-status" role="status" hidden>
               <h3 class="done__h">Taking you to the calendar…</h3>
@@ -238,218 +318,69 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </section>
 
-      <!-- 7. FOUNDER INSIGHTS -->
-      <section class="sec sec--warm fins" id="insights" aria-roledescription="carousel" aria-label="Latest founder insights">
-        <div class="ctr fins__head">
-          <h2 class="h2 x-fins__h">Latest founder insights</h2>
-          <div class="fins__nav">
-            <button class="fins__arr" type="button" data-fins-prev aria-label="Previous videos" aria-controls="fins-track" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-            <button class="fins__arr" type="button" data-fins-next aria-label="Next videos" aria-controls="fins-track"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <!-- 10. SIMPLE GENIUS INSIGHTS: three featured pieces only -->
+      <section class="hp-sec hp-ins fins" id="insights" aria-labelledby="ins-h">
+        <div class="hp-w hp-ins__g">
+          <div class="hp-ins__c" data-rv>
+            <p class="hp-lbl">Simple Genius Insights</p>
+            <h2 class="hp-h2" id="ins-h">Ideas for people building businesses.</h2>
+            <a class="hp-link hp-after" href="/insights">Explore Insights <span aria-hidden="true">→</span></a>
           </div>
-        </div>
-        <div class="fins__vp">
-          <ul class="fins__track" id="fins-track" tabindex="0" aria-label="Founder insight videos, scroll horizontally">
-            <li class="fi" data-fi>
+          <ol class="hp-ins__l fins__track" data-rv>
+          <li class="hp-ins__it">
+            <ul class="hp-ins__one">
+  <li class="fi" data-fi>
               <!-- Insight 01: https://www.instagram.com/p/DV_TitbjWpv/  →  /assets/insights/DV_TitbjWpv.mp4 (poster: DV_TitbjWpv.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DV_TitbjWpv.mp4" poster="/assets/insights/DV_TitbjWpv.jpg" data-ig="https://www.instagram.com/p/DV_TitbjWpv/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 1 of 27"></video>
+              <video class="fi__v" data-src="/assets/insights/DV_TitbjWpv.mp4" poster="/assets/insights/DV_TitbjWpv.jpg" data-ig="https://www.instagram.com/p/DV_TitbjWpv/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Simple Genius insight by Trent Hiott"></video>
               <button class="fi__hit" type="button" aria-label="Play founder insight 1 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
               <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
               <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
             </li>
-            <li class="fi" data-fi>
-              <!-- Insight 02: https://www.instagram.com/p/DVtvjOakYb_/  →  /assets/insights/DVtvjOakYb_.mp4 (poster: DVtvjOakYb_.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DVtvjOakYb_.mp4" poster="/assets/insights/DVtvjOakYb_.jpg" data-ig="https://www.instagram.com/p/DVtvjOakYb_/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 2 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 2 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
+            </ul>
+            <p class="hp-ins__by">By Trent Hiott</p>
+          </li>
+          <li class="hp-ins__it">
+            <ul class="hp-ins__one">
+  <li class="fi" data-fi>
               <!-- Insight 03: https://www.instagram.com/p/DWOpL-oDSQE/  →  /assets/insights/DWOpL-oDSQE.mp4 (poster: DWOpL-oDSQE.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DWOpL-oDSQE.mp4" poster="/assets/insights/DWOpL-oDSQE.jpg" data-ig="https://www.instagram.com/p/DWOpL-oDSQE/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 3 of 27"></video>
+              <video class="fi__v" data-src="/assets/insights/DWOpL-oDSQE.mp4" poster="/assets/insights/DWOpL-oDSQE.jpg" data-ig="https://www.instagram.com/p/DWOpL-oDSQE/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Simple Genius insight by Mark Combs"></video>
               <button class="fi__hit" type="button" aria-label="Play founder insight 3 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
               <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
               <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
             </li>
-            <li class="fi" data-fi>
-              <!-- Insight 04: https://www.instagram.com/p/DXJtJEajI6_/  →  /assets/insights/DXJtJEajI6_.mp4 (poster: DXJtJEajI6_.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DXJtJEajI6_.mp4" poster="/assets/insights/DXJtJEajI6_.jpg" data-ig="https://www.instagram.com/p/DXJtJEajI6_/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 4 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 4 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 05: https://www.instagram.com/p/DWFZKZfDZum/  →  /assets/insights/DWFZKZfDZum.mp4 (poster: DWFZKZfDZum.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DWFZKZfDZum.mp4" poster="/assets/insights/DWFZKZfDZum.jpg" data-ig="https://www.instagram.com/p/DWFZKZfDZum/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 5 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 5 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 06: https://www.instagram.com/p/DWXTva4E9SP/  →  /assets/insights/DWXTva4E9SP.mp4 (poster: DWXTva4E9SP.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DWXTva4E9SP.mp4" poster="/assets/insights/DWXTva4E9SP.jpg" data-ig="https://www.instagram.com/p/DWXTva4E9SP/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 6 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 6 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 07: https://www.instagram.com/p/DWpMOATijCh/  →  /assets/insights/DWpMOATijCh.mp4 (poster: DWpMOATijCh.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DWpMOATijCh.mp4" poster="/assets/insights/DWpMOATijCh.jpg" data-ig="https://www.instagram.com/p/DWpMOATijCh/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 7 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 7 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 08: https://www.instagram.com/p/DV1X7mokYpV/  →  /assets/insights/DV1X7mokYpV.mp4 (poster: DV1X7mokYpV.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DV1X7mokYpV.mp4" poster="/assets/insights/DV1X7mokYpV.jpg" data-ig="https://www.instagram.com/p/DV1X7mokYpV/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 8 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 8 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 09: https://www.instagram.com/p/DW3zALSDPpc/  →  /assets/insights/DW3zALSDPpc.mp4 (poster: DW3zALSDPpc.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DW3zALSDPpc.mp4" poster="/assets/insights/DW3zALSDPpc.jpg" data-ig="https://www.instagram.com/p/DW3zALSDPpc/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 9 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 9 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 10: https://www.instagram.com/p/DVyZqqVjY6L/  →  /assets/insights/DVyZqqVjY6L.mp4 (poster: DVyZqqVjY6L.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DVyZqqVjY6L.mp4" poster="/assets/insights/DVyZqqVjY6L.jpg" data-ig="https://www.instagram.com/p/DVyZqqVjY6L/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 10 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 10 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 11: https://www.instagram.com/p/DW9A-V0DORB/  →  /assets/insights/DW9A-V0DORB.mp4 (poster: DW9A-V0DORB.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DW9A-V0DORB.mp4" poster="/assets/insights/DW9A-V0DORB.jpg" data-ig="https://www.instagram.com/p/DW9A-V0DORB/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 11 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 11 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
+            </ul>
+            <p class="hp-ins__by">By Mark Combs</p>
+          </li>
+          <li class="hp-ins__it">
+            <ul class="hp-ins__one">
+  <li class="fi" data-fi>
               <!-- Insight 12: https://www.instagram.com/p/DW63Y0-DGGq/  →  /assets/insights/DW63Y0-DGGq.mp4 (poster: DW63Y0-DGGq.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DW63Y0-DGGq.mp4" poster="/assets/insights/DW63Y0-DGGq.jpg" data-ig="https://www.instagram.com/p/DW63Y0-DGGq/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 12 of 27"></video>
+              <video class="fi__v" data-src="/assets/insights/DW63Y0-DGGq.mp4" poster="/assets/insights/DW63Y0-DGGq.jpg" data-ig="https://www.instagram.com/p/DW63Y0-DGGq/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Simple Genius insight by Trent Hiott"></video>
               <button class="fi__hit" type="button" aria-label="Play founder insight 12 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
               <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
               <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
             </li>
-            <li class="fi" data-fi>
-              <!-- Insight 13: https://www.instagram.com/p/DW1ewjADGrg/  →  /assets/insights/DW1ewjADGrg.mp4 (poster: DW1ewjADGrg.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DW1ewjADGrg.mp4" poster="/assets/insights/DW1ewjADGrg.jpg" data-ig="https://www.instagram.com/p/DW1ewjADGrg/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 13 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 13 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 14: https://www.instagram.com/p/DWy37-YjUiZ/  →  /assets/insights/DWy37-YjUiZ.mp4 (poster: DWy37-YjUiZ.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DWy37-YjUiZ.mp4" poster="/assets/insights/DWy37-YjUiZ.jpg" data-ig="https://www.instagram.com/p/DWy37-YjUiZ/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 14 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 14 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 15: https://www.instagram.com/p/DWrrwr6CUat/  →  /assets/insights/DWrrwr6CUat.mp4 (poster: DWrrwr6CUat.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DWrrwr6CUat.mp4" poster="/assets/insights/DWrrwr6CUat.jpg" data-ig="https://www.instagram.com/p/DWrrwr6CUat/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 15 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 15 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 16: https://www.instagram.com/p/DWm529gDeq0/  →  /assets/insights/DWm529gDeq0.mp4 (poster: DWm529gDeq0.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DWm529gDeq0.mp4" poster="/assets/insights/DWm529gDeq0.jpg" data-ig="https://www.instagram.com/p/DWm529gDeq0/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 16 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 16 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 17: https://www.instagram.com/p/DWkTdd6lerw/  →  /assets/insights/DWkTdd6lerw.mp4 (poster: DWkTdd6lerw.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DWkTdd6lerw.mp4" poster="/assets/insights/DWkTdd6lerw.jpg" data-ig="https://www.instagram.com/p/DWkTdd6lerw/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 17 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 17 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 18: https://www.instagram.com/p/DWhuFByDsYU/  →  /assets/insights/DWhuFByDsYU.mp4 (poster: DWhuFByDsYU.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DWhuFByDsYU.mp4" poster="/assets/insights/DWhuFByDsYU.jpg" data-ig="https://www.instagram.com/p/DWhuFByDsYU/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 18 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 18 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 19: https://www.instagram.com/p/DWfIf2VguyA/  →  /assets/insights/DWfIf2VguyA.mp4 (poster: DWfIf2VguyA.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DWfIf2VguyA.mp4" poster="/assets/insights/DWfIf2VguyA.jpg" data-ig="https://www.instagram.com/p/DWfIf2VguyA/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 19 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 19 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 20: https://www.instagram.com/p/DVd4Wn0jRaz/  →  /assets/insights/DVd4Wn0jRaz.mp4 (poster: DVd4Wn0jRaz.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DVd4Wn0jRaz.mp4" poster="/assets/insights/DVd4Wn0jRaz.jpg" data-ig="https://www.instagram.com/p/DVd4Wn0jRaz/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 20 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 20 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 21: https://www.instagram.com/p/DU8xs_BEZit/  →  /assets/insights/DU8xs_BEZit.mp4 (poster: DU8xs_BEZit.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DU8xs_BEZit.mp4" poster="/assets/insights/DU8xs_BEZit.jpg" data-ig="https://www.instagram.com/p/DU8xs_BEZit/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 21 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 21 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 22: https://www.instagram.com/p/DU5w-lxjW1D/  →  /assets/insights/DU5w-lxjW1D.mp4 (poster: DU5w-lxjW1D.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DU5w-lxjW1D.mp4" poster="/assets/insights/DU5w-lxjW1D.jpg" data-ig="https://www.instagram.com/p/DU5w-lxjW1D/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 22 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 22 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 23: https://www.instagram.com/p/DU3RSUcDak6/  →  /assets/insights/DU3RSUcDak6.mp4 (poster: DU3RSUcDak6.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DU3RSUcDak6.mp4" poster="/assets/insights/DU3RSUcDak6.jpg" data-ig="https://www.instagram.com/p/DU3RSUcDak6/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 23 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 23 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 24: https://www.instagram.com/p/DU1FxTtEd1G/  →  /assets/insights/DU1FxTtEd1G.mp4 (poster: DU1FxTtEd1G.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DU1FxTtEd1G.mp4" poster="/assets/insights/DU1FxTtEd1G.jpg" data-ig="https://www.instagram.com/p/DU1FxTtEd1G/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 24 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 24 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 25: https://www.instagram.com/p/DUqNZyQjXdx/  →  /assets/insights/DUqNZyQjXdx.mp4 (poster: DUqNZyQjXdx.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DUqNZyQjXdx.mp4" poster="/assets/insights/DUqNZyQjXdx.jpg" data-ig="https://www.instagram.com/p/DUqNZyQjXdx/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 25 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 25 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 26: https://www.instagram.com/p/DUoJPb1kU8E/  →  /assets/insights/DUoJPb1kU8E.mp4 (poster: DUoJPb1kU8E.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DUoJPb1kU8E.mp4" poster="/assets/insights/DUoJPb1kU8E.jpg" data-ig="https://www.instagram.com/p/DUoJPb1kU8E/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 26 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 26 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-            <li class="fi" data-fi>
-              <!-- Insight 27: https://www.instagram.com/p/DUbXaFckV0z/  →  /assets/insights/DUbXaFckV0z.mp4 (poster: DUbXaFckV0z.jpg) -->
-              <video class="fi__v" data-src="/assets/insights/DUbXaFckV0z.mp4" poster="/assets/insights/DUbXaFckV0z.jpg" data-ig="https://www.instagram.com/p/DUbXaFckV0z/" preload="none" playsinline muted loop disablepictureinpicture aria-label="Founder insight 27 of 27"></video>
-              <button class="fi__hit" type="button" aria-label="Play founder insight 27 of 27 with sound"><span class="fi__play" aria-hidden="true"></span></button>
-              <span class="fi__cue" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg><span class="fi__cue-d">Click for sound</span><span class="fi__cue-t">Tap for sound</span></span>
-              <button class="fi__mute" type="button" aria-label="Mute" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="fi__wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/><path class="fi__x" d="M16 9l6 6M22 9l-6 6"/></svg></button>
-            </li>
-          </ul>
+            </ul>
+            <p class="hp-ins__by">By Trent Hiott</p>
+          </li>
+          </ol>
+          <button type="button" data-fins-prev hidden></button><button type="button" data-fins-next hidden></button>
         </div>
       </section>
 
-      <!-- 8. FREE COMPETITOR REPORT: secondary, compact band. Form lives on /free-competitor-report -->
-      <section class="x-band" id="report">
-        <div class="ctr x-band__in">
-          <div class="x-band__copy">
-            <h2 class="x-band__h">Keep an eye on the competition.</h2>
-            <p class="x-band__p">We’ll track your top competitors, identify what matters, and send you a competitor report for free.</p>
+      <!-- 11. COMPETITOR REPORT: a resource, deliberately smaller -->
+      <section class="hp-sec hp-sec--sm hp-rep" id="report" aria-labelledby="rep-h">
+        <div class="hp-w">
+          <div class="hp-rep__g" data-rv>
+            <div>
+              <p class="hp-lbl">Free resource</p>
+              <h2 class="hp-h3" id="rep-h">See what your competitors are doing.</h2>
+            </div>
+            <div>
+              <p class="hp-body">Get a free competitor report built around your business and your market.</p>
+              <a class="hp-link hp-after" href="/free-competitor-report">Get Your Report <span aria-hidden="true">→</span></a>
+            </div>
           </div>
-          <a class="x-link x-link--lg" href="/free-competitor-report">Get your free competitor report <span aria-hidden="true">→</span></a>
         </div>
       </section>
     </main>
@@ -460,24 +391,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <a class="ft__logo" href="/" aria-label="Simple Genius home">
             <img src="/assets/logo-light-124h.png" srcset="/assets/logo-light-62h.png 1x, /assets/logo-light-124h.png 2x" width="166" height="62" alt="Simple Genius" loading="lazy" />
           </a>
-          <ul class="ft__social" aria-label="Simple Genius social">
-            <li><a href="https://www.linkedin.com/company/112274244/" target="_blank" rel="noopener noreferrer" aria-label="Simple Genius on LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4V21H3V9.5zM9 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9V9.5z"/></svg></a></li>
-            <li><a href="https://www.youtube.com/@SG-SimpleGenius" target="_blank" rel="noopener noreferrer" aria-label="Simple Genius on YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M22 8.2c-.2-1.3-.9-2.2-2.2-2.4C17.5 5.5 12 5.5 12 5.5s-5.5 0-7.8.3C2.9 6 2.2 6.9 2 8.2 1.7 9.7 1.7 12 1.7 12s0 2.3.3 3.8c.2 1.3.9 2.2 2.2 2.4 2.3.3 7.8.3 7.8.3s5.5 0 7.8-.3c1.3-.2 2-1.1 2.2-2.4.3-1.5.3-3.8.3-3.8s0-2.3-.3-3.8zM10 15V9l5 3-5 3z"/></svg></a></li>
-            <li><a href="https://www.facebook.com/profile.php?id=61588162733235" target="_blank" rel="noopener noreferrer" aria-label="Simple Genius on Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.7c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4v2h-2.7v3h2.7V21h3.1z"/></svg></a></li>
-            <li><a href="https://www.instagram.com/simplegenius.co/" target="_blank" rel="noopener noreferrer" aria-label="Simple Genius on Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></li>
-          </ul>
-          <ul class="ft__founders" aria-label="Founders on LinkedIn">
-            <li><a href="https://www.linkedin.com/in/trent-hiott-27100867/" target="_blank" rel="noopener noreferrer" aria-label="Trent Hiott on LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4V21H3V9.5zM9 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9V9.5z"/></svg><span>Trent Hiott</span></a></li>
-            <li><a href="https://www.linkedin.com/in/meetmarkcombs/" target="_blank" rel="noopener noreferrer" aria-label="Mark Combs on LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9.5h4V21H3V9.5zM9 9.5h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H17.5v-5c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9V9.5z"/></svg><span>Mark Combs</span></a></li>
-          </ul>
+          <p class="x-ft__st">A proven process for building a better business.</p>
         </div>
         <nav class="x-ft__nav" aria-label="Footer">
-          <a href="/process">The Process</a>
+          <a href="/process">Process</a>
           <a href="/about">About</a>
+          <a href="/insights">Insights</a>
           <a href="/pricing">Pricing</a>
-          <a href="/insights">Founder Insights</a>
-          <a href="/free-competitor-report">Free Competitor Report</a>
-          <a href="/free-consultation">Free Consultation</a>
+          <a href="/free-consultation">Start a Conversation</a>
         </nav>
       </div>
       <div class="ctr ft__legal">
@@ -490,7 +411,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </footer>
     <script src="/js/sg-track.js"></script>
     <script src="/home.js"></script>
-    <script src="/motion.js" defer></script>
     <script src="/js/mnav.js" defer></script>
+    <script src="/js/hp.js" defer></script>
   </body>
 </html>
