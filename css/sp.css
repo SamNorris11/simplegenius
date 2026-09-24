@@ -39,9 +39,9 @@
 @keyframes sp-draw-y { from { transform: scaleY(0); } to { transform: none; } }
 
 /* ---------- The spine and its sticky number indicator ---------- */
-.sp-spine { position: relative; background: var(--white); color: var(--ink); }
+.sp-spine { --sp-cols: 230px minmax(0, 790px); --sp-gap: 64px; position: relative; background: var(--white); color: var(--ink); }
 .sp-rail { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
-.sp-rail__ctr { height: 100%; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: 64px; }
+.sp-rail__ctr { height: 100%; display: grid; grid-template-columns: var(--sp-cols); justify-content: center; column-gap: var(--sp-gap); }
 .sp-rail__in { position: sticky; top: calc(50vh - 120px); align-self: start; display: grid; grid-template-columns: 2px minmax(0, 1fr); column-gap: 28px; margin-top: 150px; }
 .sp-rail__track { position: relative; background: #dcd7cc; transition: background 400ms ease; }
 .sp-rail__fill { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: var(--ink); transform-origin: top; transform: scaleY(var(--fill, 0)); transition: background 400ms ease; }
@@ -60,7 +60,7 @@
 .sp-stage { position: relative; z-index: 1; padding-block: 144px; }
 .sp-stage + .sp-stage:not(.sp-stage--dark) { border-top: 1px solid var(--line); }
 .sp-stage--dark + .sp-stage { border-top: 0; }
-.sp-stage__grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: 64px; }
+.sp-stage__grid { display: grid; grid-template-columns: var(--sp-cols); justify-content: center; column-gap: var(--sp-gap); }
 .sp-stage__body { grid-column: 2; }
 .sp-stage__num { margin: 0 0 28px; font: 800 clamp(64px, 6vw, 96px)/0.8 var(--font-display); letter-spacing: -0.06em; color: var(--ink); }
 .sp-stage--dark { background: var(--black); color: #fff; padding-block: 168px; }
@@ -205,7 +205,7 @@
 @media (max-width: 1100px) {
   .sp-sec, .sp-stage { padding-block: 120px; }
   .sp-stage--dark { padding-block: 144px; }
-  .sp-rail__ctr, .sp-stage__grid { column-gap: 40px; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); }
+  .sp-spine { --sp-cols: 150px minmax(0, 1fr); --sp-gap: 40px; }
   .sp-bridge { column-gap: 16px; grid-template-columns: auto minmax(40px, 100px) auto minmax(40px, 100px) auto; }
   .sp-bridge__pt--p { padding: 26px 28px; }
   .sp-env__w { font-size: 12px; letter-spacing: 0.08em; }
