@@ -38,42 +38,42 @@
     },
     {
       "source": "/how-it-works",
-      "destination": "/#process",
+      "destination": "/process",
       "permanent": true
     },
     {
       "source": "/how-it-works-preview",
-      "destination": "/#process",
+      "destination": "/process",
       "permanent": true
     },
     {
       "source": "/what-you-get",
-      "destination": "/#process",
+      "destination": "/process",
       "permanent": true
     },
     {
       "source": "/business-brain",
-      "destination": "/#process",
+      "destination": "/process",
       "permanent": true
     },
     {
       "source": "/competition-hub",
-      "destination": "/#process",
+      "destination": "/process",
       "permanent": true
     },
     {
       "source": "/strategic-insights",
-      "destination": "/#process",
+      "destination": "/process",
       "permanent": true
     },
     {
       "source": "/workstreams",
-      "destination": "/#process",
+      "destination": "/process",
       "permanent": true
     },
     {
       "source": "/security",
-      "destination": "/#process",
+      "destination": "/process",
       "permanent": true
     },
     {
@@ -108,7 +108,7 @@
     },
     {
       "source": "/how-we-work",
-      "destination": "/#process",
+      "destination": "/process",
       "permanent": true
     },
     {
