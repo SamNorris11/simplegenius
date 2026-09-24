@@ -71,14 +71,16 @@ section[id] { scroll-margin-top: 24px; }
 .bfe__stats dd { align-self: start; margin: 12px 0 0; font: 500 15px/1.4 var(--font-body); color: var(--muted); }
 .bfe__copy { display: grid; gap: 22px; font-size: 19px; line-height: 1.6; color: var(--ink-2); }
 .bfe__copy p { margin: 0; max-width: 34em; }
-.bfe__iso { margin: 14px 0 !important; padding: 6px 0 6px 24px; border-left: 3px solid var(--yellow); font: 800 clamp(30px, 2.8vw, 40px)/1 var(--font-display) !important; letter-spacing: -0.03em; text-transform: uppercase; color: var(--ink) !important; }
-.bfe__cta { margin-top: 18px; }
+.bfe__bridge { margin-top: 72px; padding-top: 48px; border-top: 1px solid var(--ink); align-items: center; }
+.bfe__iso { margin: 0; padding: 4px 0 4px 28px; border-left: 4px solid var(--yellow); font: 800 clamp(36px, 3.6vw, 52px)/0.98 var(--font-display); letter-spacing: -0.03em; text-transform: uppercase; color: var(--ink); max-width: none; }
+.bfe__today { display: grid; gap: 22px; font-size: 19px; line-height: 1.6; color: var(--ink-2); }
+.bfe__today p { margin: 0; max-width: 34em; }
+.bfe__cta { margin-top: 4px !important; }
 
 /* ---------- 3. The Simple Genius Process ---------- */
 .proc { background: var(--white); padding-top: 104px; }
 .proc__h { margin: 0; max-width: none; }
 .proc__sub { margin: 18px 0 0; font: 700 clamp(24px, 2.4vw, 34px)/1.15 var(--font-display); letter-spacing: -0.02em; color: var(--ink-2); }
-.proc__sub span { background: linear-gradient(var(--yellow), var(--yellow)) left 82% / 100% 0.26em no-repeat; padding: 0 0.04em; }
 .pr { position: relative; margin-top: 88px; --node: 14px; --lw: 2px; }
 .pr__row { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 56px; }
 .pr__row::before { content: ''; position: absolute; left: 0; right: 0; top: calc(var(--node) / 2 - var(--lw) / 2); height: var(--lw); background: var(--ink); transform-origin: left; }
@@ -124,6 +126,7 @@ section[id] { scroll-margin-top: 24px; }
   .hero--ph .hero__h1 { max-width: 10ch; font-size: clamp(52px, 9vw, 76px); }
   .bfe__h { white-space: normal; font-size: clamp(40px, 7.4vw, 60px); max-width: 12ch; }
   .bfe__grid { grid-template-columns: 1fr; row-gap: 48px; }
+  .bfe__bridge { margin-top: 56px; padding-top: 40px; row-gap: 28px; }
   .bfe__photos { max-width: 640px; }
   .pr { margin-top: 56px; }
   .pr__row { grid-template-columns: 1fr; }
@@ -149,7 +152,8 @@ section[id] { scroll-margin-top: 24px; }
   .bfe__stats { column-gap: 16px; padding-bottom: 22px; }
   .bfe__stats dt { font-size: clamp(19px, 5.2vw, 24px); }
   .bfe__stats dd { font-size: 14px; }
-  .bfe__copy { font-size: 18px; }
+  .bfe__copy, .bfe__today { font-size: 18px; }
+  .bfe__iso { font-size: clamp(32px, 9vw, 40px); padding-left: 20px; }
   .pr__h { font-size: 28px; }
   .proc__close { padding: 36px 24px; }
   .proc__stmt { font-size: clamp(26px, 7.4vw, 32px); }
