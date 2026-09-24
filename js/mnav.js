@@ -12,5 +12,5 @@
   btn.addEventListener('click', function () { set(panel.hidden); });
   panel.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) { set(false); btn.focus(); } });
-  window.addEventListener('resize', function () { if (window.innerWidth > 900 && !panel.hidden) set(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 1180 && !panel.hidden) set(false); });
 })();

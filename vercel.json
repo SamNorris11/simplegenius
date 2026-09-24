@@ -37,68 +37,58 @@
       "permanent": true
     },
     {
-      "source": "/pricing",
-      "destination": "/free-consultation",
-      "permanent": true
-    },
-    {
       "source": "/how-it-works",
-      "destination": "/how-we-work",
+      "destination": "/#process",
       "permanent": true
     },
     {
       "source": "/how-it-works-preview",
-      "destination": "/how-we-work",
+      "destination": "/#process",
       "permanent": true
     },
     {
       "source": "/what-you-get",
-      "destination": "/how-we-work",
+      "destination": "/#process",
       "permanent": true
     },
     {
       "source": "/business-brain",
-      "destination": "/how-we-work",
+      "destination": "/#process",
       "permanent": true
     },
     {
       "source": "/competition-hub",
-      "destination": "/how-we-work",
+      "destination": "/#process",
       "permanent": true
     },
     {
       "source": "/strategic-insights",
-      "destination": "/how-we-work",
+      "destination": "/#process",
       "permanent": true
     },
     {
       "source": "/workstreams",
-      "destination": "/how-we-work",
+      "destination": "/#process",
       "permanent": true
     },
     {
       "source": "/security",
-      "destination": "/how-we-work",
+      "destination": "/#process",
       "permanent": true
     },
     {
       "source": "/try",
-      "destination": "/#report",
+      "destination": "/#competitor-report",
       "permanent": true
     },
     {
       "source": "/scan",
-      "destination": "/#report",
+      "destination": "/#competitor-report",
       "permanent": true
     },
     {
       "source": "/assessment",
-      "destination": "/#report",
-      "permanent": true
-    },
-    {
-      "source": "/about",
-      "destination": "/team",
+      "destination": "/#competitor-report",
       "permanent": true
     },
     {
@@ -114,6 +104,26 @@
     {
       "source": "/results",
       "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/how-we-work",
+      "destination": "/#process",
+      "permanent": true
+    },
+    {
+      "source": "/team",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/free-competitor-report",
+      "destination": "/#competitor-report",
+      "permanent": true
+    },
+    {
+      "source": "/competitor-report",
+      "destination": "/#competitor-report",
       "permanent": true
     }
   ]

@@ -12,18 +12,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Simple Genius | You don't have to build it alone.</title>
-    <meta name="description" content="See the business clearly. Decide what matters. Do what you said you'd do." />
+    <meta name="description" content="Simple Genius gives business owners a proven process for figuring out where they're going, what is standing in the way, and what to do next." />
     <link rel="canonical" href="https://www.simplegenius.com/" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Simple Genius" />
     <meta property="og:url" content="https://www.simplegenius.com/" />
     <meta property="og:title" content="Simple Genius | You don't have to build it alone." />
-    <meta property="og:description" content="See the business clearly. Decide what matters. Do what you said you'd do." />
+    <meta property="og:description" content="Simple Genius gives business owners a proven process for figuring out where they're going, what is standing in the way, and what to do next." />
     <meta property="og:image" content="https://www.simplegenius.com/img/og-preview.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Simple Genius | You don't have to build it alone." />
-    <meta name="twitter:description" content="See the business clearly. Decide what matters. Do what you said you'd do." />
+    <meta name="twitter:description" content="Simple Genius gives business owners a proven process for figuring out where they're going, what is standing in the way, and what to do next." />
     <meta name="twitter:image" content="https://www.simplegenius.com/img/og-preview.jpg" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png" />
@@ -36,8 +36,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" href="./base.css" />
     <link rel="stylesheet" href="./home.css" />
     <link rel="stylesheet" href="./motion.css" />
-    <link rel="preload" as="image" href="./assets/founder-trent.png" />
-  </head>
+    <link rel="stylesheet" href="/css/ph.css" />
+      </head>
   <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P48GRGDB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -47,14 +47,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <header class="hd" data-header>
       <div class="ctr hd__inner">
-        <a class="hd__logo" href="./index.html" aria-label="Simple Genius home">
+        <a class="hd__logo" href="/" aria-label="Simple Genius home">
           <img src="./assets/logo-light-124h.png" srcset="./assets/logo-light-62h.png 1x, ./assets/logo-light-124h.png 2x" width="166" height="62" alt="Simple Genius" />
           <img class="hd__logo-d" src="./assets/logo-dark-56h.png" srcset="./assets/logo-dark-56h.png 1x, ./assets/logo-dark-112h.png 2x" width="150" height="56" alt="" aria-hidden="true" />
         </a>
         <nav class="hd__nav" aria-label="Primary">
-          <a href="/how-we-work">How We Work</a>
-          <a href="/team">Our Team</a>
-          <a href="#report">Free Competitor Report</a>
+          <a href="#process">Process</a>
+          <a href="/about">About</a>
+          <a href="#insights">Insights</a>
+          <a href="/pricing">Pricing</a>
+          <a href="#competitor-report">Free Competitor Report</a>
           <a class="btn btn--sm" href="/free-consultation">Free Consultation</a>
           <button class="hd__menu" type="button" data-mnav aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><span></span><span></span><span></span></button>
         </nav>
@@ -62,9 +64,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <nav class="mnav" id="mnav" aria-label="Mobile" hidden>
         <div class="ctr mnav__inner">
           <a href="/">Home</a>
-          <a href="/how-we-work">How We Work</a>
-          <a href="/team">Our Team</a>
-          <a href="#report">Free Competitor Report</a>
+          <a href="#process">Process</a>
+          <a href="/about">About</a>
+          <a href="#insights">Insights</a>
+          <a href="/pricing">Pricing</a>
+          <a href="#competitor-report">Free Competitor Report</a>
           <a href="/free-consultation">Free Consultation</a>
         </div>
       </nav>
@@ -72,87 +76,111 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <main id="main">
       <!-- 1. HERO -->
-      <section class="hero">
+      <section class="hero hero--ph">
         <div class="ctr hero__inner">
-          <h1 class="hero__h1">You don’t <br class="br-m">have to <br class="br-d">build and scale <br>your business <br class="br-m">alone.</h1>
-          <!-- Hero video placeholder. To go live: put a <video> (muted if autoplay) or an <iframe> inside .hero__video,
-               remove the .hero__video--ph class and the .hero__play element. Aspect ratio is held by CSS (16:9). -->
-          <div class="hero__video hero__video--ph" role="img" aria-label="Simple Genius video coming soon">
-            <span class="hero__play" aria-hidden="true"></span>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2. FOR THE ONES BUILDING -->
-      <section class="sec sec--white building" id="chasing">
-        <div class="ctr">
-          <h2 class="h2 h2--center h2--one">For the ones chasing more.</h2>
-          <div class="aud">
-            <article class="aud__card aud__card--owner">
-              <img class="aud__img" src="./assets/aud-owner.jpg" alt="An established business owner standing in his warehouse" width="1122" height="1402" loading="lazy" />
-              <a class="aud__more" href="/established-owner">Learn more <span aria-hidden="true">→</span></a>
-              <div class="aud__text">
-                <h3 class="aud__h">Established Owner</h3>
-                <p class="aud__p">Simple Genius helps you see the business clearly, decide what matters now, and turn your goals into action.</p>
-              </div>
-            </article>
-            <article class="aud__card aud__card--founder">
-              <img class="aud__img" src="./assets/aud-founder.jpg" alt="A young founder sketching plans at his desk in a studio workspace" width="1122" height="1402" loading="lazy" />
-              <a class="aud__more" href="/early-founder">Learn more <span aria-hidden="true">→</span></a>
-              <div class="aud__text">
-                <h3 class="aud__h">Early Founder</h3>
-                <p class="aud__p">Simple Genius helps you turn the vision in your head into a business you can actually build and grow.</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3. TRENT STORY -->
-      <section class="sec sec--warm story" id="trent">
-        <div class="ctr story__grid">
-          <div class="story__copy">
-            <h2 class="h2 h2--one story__h"><span class="story__h-l">Hello, I’m Trent Hiott,</span><span class="story__h-l">founder of Simple Genius.</span></h2>
-            <div class="prose">
-              <p>I’ve spent nearly two decades building companies, and I’ve been fortunate to have a lot of success along the way, including growing businesses to <span class="nowrap">8-figure</span> outcomes.</p>
-              <p>But the part of business I’ve always loved most is the work behind the growth.</p>
-              <p>Understanding where a business is going. Seeing what’s getting in the way. Working through the hard decisions. Figuring out what actually matters next.</p>
-              <p>And then helping turn that direction into action.</p>
-              <p>That’s what we built Simple Genius to do.</p>
-            </div>
-            <div class="story__cta">
-              <p class="story__cta-h"><span>Let’s look under the hood</span><span>of your business.</span></p>
-              <p class="story__cta-p">Bring us what you’re working through. We’ll take a look together, for free.</p>
-              <a class="btn btn--lg" href="/free-consultation">Free Consultation <span aria-hidden="true">→</span></a>
+          <div class="hero__copy">
+            <h1 class="hero__h1">You don’t have to build it alone.</h1>
+            <p class="hero__sub">Simple Genius gives business owners a proven process for figuring out where they’re going, what is standing in the way, and what to do next.</p>
+            <div class="hero__ctas">
+              <a class="btn btn--lg" href="/free-consultation">Start a Conversation</a>
+              <a class="ph-link ph-link--light" href="#process">See the Process <span aria-hidden="true">→</span></a>
             </div>
           </div>
-          <div class="story__media">
-            <img src="./assets/trent-office.jpg" alt="Trent Hiott, founder of Simple Genius" width="1122" height="1402" loading="lazy" />
+          <!-- Hero brand video. To go live, replace the .hero__ph element with:
+               <video src="/video/FILE.mp4" poster="/video/FILE.jpg" autoplay muted loop playsinline disablepictureinpicture preload="auto" aria-label="Simple Genius brand video"></video>
+               No controls attribute, so no player interface is shown. Frame is 16:9. -->
+          <div class="hero__video" data-hero-video>
+            <div class="hero__ph" role="img" aria-label="Simple Genius brand video placeholder">
+              <span class="hero__ph-t">Simple Genius brand video</span>
+              <span class="hero__ph-s">Placeholder. Autoplay, muted, looping. 16:9.</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 4. FREE COMPETITOR REPORT -->
-      <section class="sec quotes" aria-label="Testimonials">
+      <!-- 2. BUILT FROM EXPERIENCE -->
+      <section class="ph-sec bfe" id="experience">
         <div class="ctr">
-          <div class="quotes__track">
-            <figure class="tcard">
-              <blockquote class="tcard__q">“Trent Hiott gave me the confidence and clarity to start my own business.”</blockquote>
-              <figcaption class="tcard__name">Chad Norris</figcaption>
-            </figure>
-            <figure class="tcard tcard--empty" data-placeholder aria-hidden="true"><span class="tcard__ph">Testimonial coming soon</span></figure>
-            <figure class="tcard tcard--empty" data-placeholder aria-hidden="true"><span class="tcard__ph">Testimonial coming soon</span></figure>
-            <figure class="tcard tcard--empty" data-placeholder aria-hidden="true"><span class="tcard__ph">Testimonial coming soon</span></figure>
+          <p class="ph-label">Built from experience</p>
+          <h2 class="h2 bfe__h">Experience taught us the Process.</h2>
+          <div class="bfe__grid">
+            <div class="bfe__media">
+              <div class="bfe__photos">
+                <figure class="bfe__ph">
+                  <img src="/assets/team-trent-480.jpg" srcset="/assets/team-trent-480.jpg 480w, /assets/team-trent-960.jpg 960w" sizes="(max-width: 900px) 50vw, 330px" width="480" height="600" alt="Trent Hiott" loading="lazy" />
+                  <figcaption>Trent Hiott</figcaption>
+                </figure>
+                <figure class="bfe__ph">
+                  <img src="/assets/team-mark-480.jpg" srcset="/assets/team-mark-480.jpg 480w, /assets/team-mark-960.jpg 960w" sizes="(max-width: 900px) 50vw, 330px" width="480" height="600" alt="Mark Combs" loading="lazy" />
+                  <figcaption>Mark Combs</figcaption>
+                </figure>
+              </div>
+              <dl class="bfe__stats">
+                <dt>40+ years</dt>
+                <dd>Combined business experience</dd>
+                <dt>Multiple<br /><span class="nowrap">8-figure</span> exits</dt>
+                <dd>Companies built, grown and sold</dd>
+              </dl>
+            </div>
+            <div class="bfe__copy">
+              <p>Trent Hiott and Mark Combs spent decades building, operating, growing, and exiting companies together.</p>
+              <p>Over time, they experienced the same challenges business owners face every day: unclear priorities, difficult decisions, missed opportunities, growing complexity, and the weight of knowing the biggest decisions ultimately came back to them.</p>
+              <p>They lived the pressure themselves. They learned from it. And they turned those hard-earned lessons into something repeatable.</p>
+              <p class="bfe__iso">The Simple Genius Process.</p>
+              <p>Today, the Process is delivered by Simple Genius and built on the lessons Trent and Mark learned doing it themselves.</p>
+              <p class="bfe__cta"><a class="ph-link" href="/about">About <span aria-hidden="true">→</span></a></p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 5. LATEST FOUNDER INSIGHTS: native short-form video carousel.
+      <!-- 3. THE SIMPLE GENIUS PROCESS -->
+      <section class="ph-sec proc" id="process">
+        <div class="ctr">
+          <p class="ph-label">The Simple Genius Process</p>
+          <p class="proc__def">The Simple Genius Process is a repeatable way to help business owners get clear on where they’re going, understand what’s standing in the way, decide what matters most, and then keep moving through execution and adjustment.</p>
+          <div class="pr" data-pr>
+            <div class="pr__loop" aria-hidden="true"><span class="pr__loop-t">Execute <i>→</i> Learn <i>→</i> Adjust <i>→</i> Repeat</span></div>
+            <ol class="pr__row" aria-label="Conversation, Perspective, Game Plan, Execute + Adjust. Then execute, learn, adjust and repeat.">
+              <li class="pr__s" style="--i:0">
+                <span class="pr__node" aria-hidden="true"></span>
+                <p class="pr__n">01</p>
+                <h3 class="pr__h">Conversation</h3>
+                <p class="pr__p">Understand the business, the owner, and the destination.</p>
+              </li>
+              <li class="pr__s" style="--i:1">
+                <span class="pr__node" aria-hidden="true"></span>
+                <p class="pr__n">02</p>
+                <h3 class="pr__h">Perspective</h3>
+                <p class="pr__p">Step outside the day-to-day and see the real issues, opportunities, and blind spots.</p>
+              </li>
+              <li class="pr__s" style="--i:2">
+                <span class="pr__node" aria-hidden="true"></span>
+                <p class="pr__n">03</p>
+                <h3 class="pr__h">Game Plan</h3>
+                <p class="pr__p">Turn that perspective into clear priorities and next actions.</p>
+              </li>
+              <li class="pr__s" style="--i:3">
+                <span class="pr__node" aria-hidden="true"></span>
+                <p class="pr__n">04</p>
+                <h3 class="pr__h">Execute + Adjust</h3>
+                <p class="pr__p">Put the plan into motion, learn from what happens, adjust, and continue.</p>
+              </li>
+            </ol>
+            <p class="pr__again" aria-hidden="true"><span class="pr__again-i"></span><span>Execute <i>→</i> Learn <i>→</i> Adjust <i>→</i> Repeat</span></p>
+          </div>
+          <div class="proc__close">
+            <p>The Simple Genius Process helps owners see clearly, decide what matters, and keep the business moving toward where they want it to go.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. LATEST FOUNDER INSIGHTS: native short-form video carousel.
            Files live in /assets/insights/ named by Instagram shortcode (CODE.mp4 + CODE.jpg poster), sourced from @simplegenius.co.
            Each tile's comment names the Instagram post it corresponds to. No Instagram embed is used. -->
-      <section class="sec sec--warm fins" id="insights" aria-roledescription="carousel" aria-label="Latest founder insights">
+      <section class="sec sec--warm fins" id="insights" aria-roledescription="carousel" aria-label="Latest Founder Insights">
         <div class="ctr fins__head">
-          <h2 class="h2">Latest founder insights</h2>
+          <h2 class="h2">Latest Founder Insights</h2>
           <div class="fins__nav">
             <button class="fins__arr" type="button" data-fins-prev aria-label="Previous videos" aria-controls="fins-track" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
             <button class="fins__arr" type="button" data-fins-next aria-label="Next videos" aria-controls="fins-track"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -353,7 +381,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </section>
 
-      <section class="sec sec--stone offer" id="report">
+      <!-- 5. FREE COMPETITOR REPORT -->
+      <section class="sec sec--stone offer" id="competitor-report">
+        <span id="report" aria-hidden="true"></span>
         <div class="ctr split">
           <div class="split__copy">
             <h2 class="h2 offer__h"><span>See what your</span><span>competitors</span><span>are up to.</span></h2>
@@ -439,12 +469,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </section>
 
-      <!-- 7. FREE CONSULTATION -->
+      <!-- 6. FREE CONSULTATION -->
       <section class="fcta">
         <div class="ctr">
           <h2 class="fcta__h"><span>Have something you’re</span><span>working through?</span></h2>
-          <div class="fcta__copy"><p>Bring us the business.</p><p>We’ll start there.</p></div>
-          <a class="btn btn--lg" href="/free-consultation">Free Consultation <span aria-hidden="true">→</span></a>
+          <div class="fcta__copy"><p>Bring us a business. We’ll start there.</p></div>
+          <a class="btn btn--lg" href="/free-consultation">Free Consultation</a>
         </div>
       </section>
     </main>
@@ -452,7 +482,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <footer class="ft">
       <div class="ctr ft__top">
         <div class="ft__brand">
-          <a class="ft__logo" href="./index.html" aria-label="Simple Genius home">
+          <a class="ft__logo" href="/" aria-label="Simple Genius home">
             <img src="./assets/logo-light-124h.png" srcset="./assets/logo-light-62h.png 1x, ./assets/logo-light-124h.png 2x" width="166" height="62" alt="Simple Genius" />
           </a>
           <ul class="ft__social" aria-label="Simple Genius social">
@@ -468,13 +498,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <nav class="ft__col" aria-label="Explore">
           <span class="ft__head">Explore</span>
-          <a href="/how-we-work">How We Work</a>
-          <a href="/team">Our Team</a>
+          <a href="#process">Process</a>
+          <a href="/about">About</a>
+          <a href="#insights">Insights</a>
+          <a href="/pricing">Pricing</a>
         </nav>
         <nav class="ft__col" aria-label="Company">
           <span class="ft__head">Company</span>
           <a href="/free-consultation">Free Consultation</a>
-          <a href="#report">Free Competitor Report</a>
+          <a href="#competitor-report">Free Competitor Report</a>
         </nav>
       </div>
       <div class="ctr ft__legal">
@@ -486,6 +518,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <script src="./home.js"></script>
     <script src="./motion.js" defer></script>
+    <script src="/js/ph.js" defer></script>
       <script src="/js/mnav.js" defer></script>
   </body>
 </html>

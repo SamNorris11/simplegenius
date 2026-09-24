@@ -11,18 +11,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Our Team | Simple Genius</title>
+    <title>About | Simple Genius</title>
     <meta name="description" content="People who have built businesses, too. Simple Genius was built by people who understand what it feels like to be responsible for the whole thing." />
-    <link rel="canonical" href="https://www.simplegenius.com/team" />
+    <link rel="canonical" href="https://www.simplegenius.com/about" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Simple Genius" />
-    <meta property="og:url" content="https://www.simplegenius.com/team" />
-    <meta property="og:title" content="Our Team | Simple Genius" />
+    <meta property="og:url" content="https://www.simplegenius.com/about" />
+    <meta property="og:title" content="About | Simple Genius" />
     <meta property="og:description" content="People who have built businesses, too. Simple Genius was built by people who understand what it feels like to be responsible for the whole thing." />
     <meta property="og:image" content="https://www.simplegenius.com/img/og-preview.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Our Team | Simple Genius" />
+    <meta name="twitter:title" content="About | Simple Genius" />
     <meta name="twitter:description" content="People who have built businesses, too. Simple Genius was built by people who understand what it feels like to be responsible for the whole thing." />
     <meta name="twitter:image" content="https://www.simplegenius.com/img/og-preview.jpg" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
@@ -36,6 +36,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="stylesheet" href="/process.css" />
     <link rel="stylesheet" href="/pages.css" />
     <link rel="stylesheet" href="/motion.css" />
+    <link rel="stylesheet" href="/css/ph.css" />
   </head>
   <body class="pp pg-tm">
 <!-- Google Tag Manager (noscript) -->
@@ -50,9 +51,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <img class="hd__logo-d" src="/assets/logo-dark-56h.png" srcset="/assets/logo-dark-56h.png 1x, /assets/logo-dark-112h.png 2x" width="150" height="56" alt="" aria-hidden="true" />
         </a>
         <nav class="hd__nav" aria-label="Primary">
-          <a href="/how-we-work">How We Work</a>
-          <a href="/team">Our Team</a>
-          <a href="/#report">Free Competitor Report</a>
+          <a href="/#process">Process</a>
+          <a href="/about">About</a>
+          <a href="/#insights">Insights</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/#competitor-report">Free Competitor Report</a>
           <a class="btn btn--sm" href="/free-consultation">Free Consultation</a>
           <button class="hd__menu" type="button" data-mnav aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><span></span><span></span><span></span></button>
         </nav>
@@ -60,9 +63,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <nav class="mnav" id="mnav" aria-label="Mobile" hidden>
         <div class="ctr mnav__inner">
           <a href="/">Home</a>
-          <a href="/how-we-work">How We Work</a>
-          <a href="/team">Our Team</a>
-          <a href="/#report">Free Competitor Report</a>
+          <a href="/#process">Process</a>
+          <a href="/about">About</a>
+          <a href="/#insights">Insights</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/#competitor-report">Free Competitor Report</a>
           <a href="/free-consultation">Free Consultation</a>
         </div>
       </nav>
@@ -90,19 +95,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <p class="tm-c__title">Advising Founder</p>
             <p class="tm-c__bio">Mark has spent his career building, operating, and selling businesses, including multiple <span class="nowrap">8-figure</span> exits alongside Trent. A CFA and former Wofford football player, Mark brings decades of business knowledge and a sharp business mind to the Simple Genius team and its clients. He still appreciates competition and a good bourbon.</p>
           </article>
-          <article class="tm-c">
-            <img class="tm-c__img" src="/assets/team-sam-v2-480.jpg" srcset="/assets/team-sam-v2-480.jpg 480w, /assets/team-sam-v2-960.jpg 960w" sizes="(max-width: 900px) 100vw, 380px" width="480" height="600" alt="Sam Norris, Sales and Marketing at Simple Genius" loading="eager" />
-            <h2 class="tm-c__name">Sam Norris</h2>
-            <p class="tm-c__title">Sales &amp; Marketing</p>
-            <p class="tm-c__bio">Sam has spent the past two years being mentored by Trent and Mark and now helps bring what he’s learned to Simple Genius clients. A former college golfer at Anderson University, Sam brings a competitive mindset and a passion for building relationships to the team. On Saturdays, you’ll probably find him pulling for the Georgia Bulldogs.</p>
-          </article>
         </div>
       </section>
+
+      <!-- About: longer company and founder story goes here (copy to come). -->
+      <section class="pp-sec abt-story" id="story" hidden></section>
 
       <section class="fcta">
         <div class="ctr">
           <h2 class="fcta__h"><span>Have something you’re</span><span>working through?</span></h2>
-          <div class="fcta__copy"><p>Bring us the business.</p><p>We’ll start there.</p></div>
+          <div class="fcta__copy"><p>Bring us a business. We’ll start there.</p></div>
           <a class="btn btn--lg" href="/free-consultation">Free Consultation <span aria-hidden="true">→</span></a>
           
         </div>
@@ -128,14 +130,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <nav class="ft__col" aria-label="Explore">
           <span class="ft__head">Explore</span>
-          <a href="/how-we-work">How We Work</a>
-          <a href="/team">Our Team</a>
-          <a href="/insights.html">Insights</a>
+          <a href="/#process">Process</a>
+          <a href="/about">About</a>
+          <a href="/#insights">Insights</a>
+          <a href="/pricing">Pricing</a>
         </nav>
         <nav class="ft__col" aria-label="Company">
           <span class="ft__head">Company</span>
           <a href="/free-consultation">Free Consultation</a>
-          <a href="/#report">Free Competitor Report</a>
+          <a href="/#competitor-report">Free Competitor Report</a>
         </nav>
       </div>
       <div class="ctr ft__legal">
