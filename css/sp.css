@@ -177,7 +177,8 @@
 .sp-close4 + .sp-copy { margin-top: 24px; }
 
 /* ---------- Closing ---------- */
-.sp-end { background: var(--white); border-top: 1px solid var(--line); }
+.sp-end { background: var(--white); border-top: 1px solid var(--line); padding-block: 96px !important; }
+@media (max-width: 640px) { .sp-end { padding-block: 64px !important; } }
 .sp-end__in { text-align: center; }
 .sp-full__big { margin: 0 auto; max-width: 15em; font: 800 clamp(40px, 5vw, 76px)/0.95 var(--font-display); letter-spacing: -0.04em; text-transform: uppercase; color: var(--ink); text-wrap: balance; }
 .sp-end__sub { margin: 32px auto 0; max-width: 36em; font-size: clamp(18px, 1.4vw, 20px); line-height: 1.6; color: var(--ink-2); }
