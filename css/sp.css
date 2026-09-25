@@ -341,3 +341,15 @@
 }
 @media (min-width: 901px) and (max-width: 1100px) { .sp-head .sp-h { max-width: 13.6em; } }
 .sp-build.is-done .sp-build__merge > path { stroke-dasharray: none; stroke-dashoffset: 0; }
+
+/* ---------- Desktop refinement: tighter stages, supporting copy in a panel ---------- */
+@media (min-width: 901px) {
+  .sp-stage, .sp-stage--dark, .sp-stage[data-stage="02"] { min-height: 0; padding-block: 88px; }
+  .sp-stage__body > .sp-copy { align-self: center; position: relative; padding: 36px 40px 38px; background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--yellow); font-size: clamp(19px, 1.5vw, 22px); line-height: 1.55; color: var(--ink); box-shadow: 0 24px 48px -32px rgba(18, 17, 15, 0.28); }
+  .sp-stage--dark .sp-stage__body > .sp-copy { background: #161513; border-color: #2c2b27; border-top-color: var(--yellow); color: #e9e5dc; box-shadow: none; }
+  .sp-stage__body > .sp-copy .sp-copy__sub { padding-top: 18px; border-top: 1px solid var(--line); font-size: 0.78em; }
+  .sp-env { height: 380px; }
+  .sp-env__box { top: 80%; }
+  .sp-stage--last .sp-stage__body { row-gap: 64px; }
+  .sp-stage--last .sp-pair { align-self: end; }
+}
