@@ -71,11 +71,12 @@
       if (max > 0) h.style.width = Math.ceil(max + 2) + 'px';
     });
     /* Desktop: scale a stage down only if it would not fit one screen under the header. */
-    if (window.innerWidth > 900) {
-      var avail = window.innerHeight - 72 - 64;
+    var hd = document.querySelector('.hd'), hh = hd ? hd.getBoundingClientRect().height : 72;
+    if (window.innerWidth > 900 || window.innerWidth <= 600) {
+      var avail = window.innerHeight - hh - (window.innerWidth > 900 ? 64 : 20);
       bodies.forEach(function (b) {
         var hgt = b.getBoundingClientRect().height;
-        if (hgt > avail) b.style.zoom = Math.max(0.68, avail / hgt).toFixed(3);
+        if (hgt > avail) b.style.zoom = Math.max(window.innerWidth > 900 ? 0.68 : 0.84, avail / hgt).toFixed(3);
       });
     }
   }
