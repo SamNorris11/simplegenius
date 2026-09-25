@@ -65,9 +65,9 @@
 .sp-stage__grid { max-width: calc(790px + var(--pad-x) * 2); }
 /* Stage head: large number + headline, one composition, same width every stage, centered on the page */
 .sp-head { position: relative; left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100vw - var(--pad-x) * 2);
-  display: grid; grid-template-columns: 1.3em minmax(0, 12.4em); column-gap: 0.42em; align-items: center; font-size: clamp(38px, 3.9vw, 58px); }
+  display: grid; grid-template-columns: 1.3em auto; column-gap: 0.42em; align-items: center; font-size: clamp(38px, 3.9vw, 58px); }
 .sp-head__n { font: 800 2.45em/0.74 var(--font-display); letter-spacing: -0.06em; color: var(--ink); text-align: left; }
-.sp-head .sp-h { font-size: 1em; }
+.sp-head .sp-h { font-size: 1em; max-width: 12.4em; }
 .sp-stage--dark .sp-head__n { color: #fff; }
 .sp-stage--dark { background: var(--black); color: #fff; padding-block: 144px; }
 .sp-stage--dark .sp-copy { color: #cfcac0; }
@@ -75,7 +75,7 @@
 .sp-stage--last { overflow-x: clip; }
 
 /* ---------- 01 Everything flows into a conversation ---------- */
-.sp-ctx { --p: 0; margin: 64px 0 0; display: grid; grid-template-columns: auto minmax(60px, 1fr) auto; align-items: center; }
+.sp-ctx { --p: 0; margin: 64px 0 0; display: grid; grid-template-columns: auto minmax(60px, 240px) auto; justify-content: center; align-items: center; }
 .sp-ctx__in { list-style: none; margin: 0; padding: 0; display: grid; grid-template-rows: repeat(4, 84px); }
 .sp-ctx__in li { white-space: nowrap; display: flex; align-items: center; font: 800 clamp(24px, 2.4vw, 36px)/1 var(--font-display); letter-spacing: -0.025em; text-transform: uppercase;
   opacity: calc(0.25 + 0.75 * var(--p)); transform: translate(calc((1 - var(--p)) * var(--sx, -56px)), calc((1 - var(--p)) * var(--dy, 0px))); }

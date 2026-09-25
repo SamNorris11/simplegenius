@@ -55,3 +55,21 @@
   window.addEventListener('resize', onScroll);
   frame();
 })();
+
+/* Stage heads: shrink each headline box to its real line width so every number + headline composition centers on what you actually see. */
+(function () {
+  var hs = [].slice.call(document.querySelectorAll('.sp-head .sp-h'));
+  if (!hs.length) return;
+  function fit() {
+    hs.forEach(function (h) {
+      h.style.width = '';
+      var r = document.createRange(); r.selectNodeContents(h);
+      var rects = [].slice.call(r.getClientRects()), left = h.getBoundingClientRect().left, max = 0;
+      rects.forEach(function (x) { if (x.right - left > max) max = x.right - left; });
+      if (max > 0) h.style.width = Math.ceil(max + 2) + 'px';
+    });
+  }
+  fit();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 120); });
+})();
