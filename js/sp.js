@@ -30,7 +30,7 @@
     if (!reduce) {
       gathers.forEach(function (g) {
         var r = g.getBoundingClientRect();
-        var p = clamp((vh * 0.92 - r.top) / (vh * 0.62));
+        var p = clamp((vh * 0.95 - r.top) / (vh * 0.55));
         g.style.setProperty('--p', ease(p).toFixed(3));
         g.classList.toggle('is-done', p > 0.98);
       });
@@ -60,7 +60,9 @@
 (function () {
   var hs = [].slice.call(document.querySelectorAll('.sp-head .sp-h'));
   if (!hs.length) return;
+  var bodies = [].slice.call(document.querySelectorAll('.sp-stage__body'));
   function fit() {
+    bodies.forEach(function (b) { b.style.zoom = ''; });
     hs.forEach(function (h) {
       h.style.width = '';
       var r = document.createRange(); r.selectNodeContents(h);
@@ -68,6 +70,14 @@
       rects.forEach(function (x) { if (x.right - left > max) max = x.right - left; });
       if (max > 0) h.style.width = Math.ceil(max + 2) + 'px';
     });
+    /* Desktop: scale a stage down only if it would not fit one screen under the header. */
+    if (window.innerWidth > 900) {
+      var avail = window.innerHeight - 72 - 64;
+      bodies.forEach(function (b) {
+        var hgt = b.getBoundingClientRect().height;
+        if (hgt > avail) b.style.zoom = Math.max(0.68, avail / hgt).toFixed(3);
+      });
+    }
   }
   fit();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);

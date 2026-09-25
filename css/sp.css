@@ -295,3 +295,48 @@
   .sp-pair__dot { display: none; }
   .sp-full__big { font-size: clamp(34px, 9.6vw, 44px); }
 }
+
+/* ---------- Desktop: every stage fits in one screen ---------- */
+@media (min-width: 901px) {
+  .sp-stage, .sp-stage--dark, .sp-stage[data-stage="02"] { min-height: calc(100vh - 72px); min-height: calc(100svh - 72px); padding-block: 40px; display: flex; align-items: center; }
+  .sp-stage__grid { width: 100%; max-width: calc(1180px + var(--pad-x) * 2); }
+  .sp-stage__body { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 72px; row-gap: 44px; align-items: center; }
+  .sp-head { grid-column: 1 / -1; font-size: clamp(34px, 3.3vw, 50px); }
+  .sp-stage__body > figure { grid-column: 1; margin: 0; }
+  .sp-stage__body > .sp-copy { grid-column: 2; margin: 0; max-width: none; font-size: clamp(18px, 1.35vw, 21px); gap: 18px; }
+
+  /* 01 */
+  .sp-ctx { grid-template-columns: auto minmax(40px, 140px) auto; }
+  .sp-ctx__in { grid-template-rows: repeat(4, 70px); }
+  .sp-ctx__in li { font-size: clamp(20px, 1.9vw, 28px); }
+  .sp-ctx__lines { height: 280px; }
+  .sp-ctx__out { padding: 16px 20px; font-size: clamp(20px, 1.9vw, 28px); }
+
+  /* 02 */
+  .sp-env { height: 430px; }
+  .sp-env__w { font-size: 12px; letter-spacing: 0.08em; }
+  .sp-env__w::before { margin-right: 10px; }
+  .sp-env__w--l::after { margin-left: 10px; }
+  .sp-env__box { top: 78%; width: min(400px, 84%); padding: 18px 22px; font-size: clamp(18px, 1.7vw, 24px); }
+
+  /* 03 */
+  .sp-build__src { padding: 16px 12px; font-size: clamp(16px, 1.5vw, 22px); }
+  .sp-build__merge { height: 84px; }
+  .sp-build__proc { padding: 24px 28px 20px; }
+  .sp-build__name { font-size: clamp(26px, 2.5vw, 38px); }
+  .sp-build__for { margin-top: 16px; padding-top: 14px; font-size: 12px; }
+  .sp-build__out li { padding-top: 52px; font-size: clamp(22px, 2.1vw, 32px); }
+  .sp-build__out li::before { top: 10px; height: 26px; }
+  .sp-build__out li::after { top: 34px; }
+
+  /* 04 */
+  .sp-stage--last .sp-stage__body { grid-template-rows: auto auto auto; }
+  .sp-stage--last .sp-pair { grid-row: 2; align-self: end; column-gap: 20px; }
+  .sp-stage--last .sp-run { grid-column: 1; grid-row: 3; align-self: start; margin-top: 16px; }
+  .sp-stage--last .sp-copy { grid-row: 2 / 4; }
+  .sp-pair__who { font-size: clamp(24px, 2.3vw, 34px); }
+  .sp-pair__do { font-size: 12px; }
+  .sp-run::before { right: 0; }
+  .sp-run__row li { padding-top: 40px; font-size: clamp(18px, 1.6vw, 24px); }
+}
+@media (min-width: 901px) and (max-width: 1100px) { .sp-head .sp-h { max-width: 13.6em; } }
