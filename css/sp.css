@@ -416,3 +416,5 @@
   .sp-env { height: 290px; }
   .sp-stage, .sp-stage--dark, .sp-stage[data-stage="02"] { padding-block: 32px; }
 }
+.sp-build__name, .sp-build__for { max-width: none; margin-left: 0; margin-right: 0; text-align: center; }
+.sp-build__for { text-indent: 0.14em; }
