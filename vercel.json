@@ -125,6 +125,16 @@
       "source": "/competitor-report",
       "destination": "/#competitor-report",
       "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/free-consultation",
+      "permanent": true
+    },
+    {
+      "source": "/article-executive-knowledge",
+      "destination": "/insights",
+      "permanent": true
     }
   ]
 }
