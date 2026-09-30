@@ -81,14 +81,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="hero__copy">
             <h1 class="hero__h1" aria-label="Know your business, run it better."><span class="w"><span style="--d:0">Know</span></span> <span class="w"><span style="--d:1">your</span></span><br class="br-m" /> <span class="w"><span style="--d:2">business,</span></span><br class="br-m" /> <span class="w w--end"><span style="--d:3">run</span></span> <span class="w w--end"><span style="--d:4">it</span></span> <span class="w w--end"><span style="--d:5">better.</span></span></h1>
           </div>
-          <!-- Hero brand video. To go live, replace the .hero__ph element with:
-               <video src="/video/FILE.mp4" poster="/video/FILE.jpg" autoplay muted loop playsinline disablepictureinpicture preload="auto" aria-label="Simple Genius brand video"></video>
-               No controls attribute, so no player interface is shown. Frame is 16:9. -->
+          <!-- Hero brand video: YouTube a1JARqEtn9c. Poster loads first; the player loads on click (js/ph.js). -->
           <div class="hero__video" data-hero-video>
-            <div class="hero__ph" role="img" aria-label="Simple Genius brand video placeholder">
-              <span class="hero__ph-t">Simple Genius brand video</span>
-              <span class="hero__ph-s">Placeholder. Autoplay, muted, looping. 16:9.</span>
-            </div>
+            <button type="button" class="hero__yt" data-yt="a1JARqEtn9c" aria-label="Play video: Simple Genius, Know Your Business. Run It Better.">
+              <img src="/assets/hero-video-poster.jpg" alt="Simple Genius video: Know your business, run it better." width="1280" height="720" fetchpriority="high" />
+              <span class="hero__yt-play" aria-hidden="true"></span>
+            </button>
           </div>
           <p class="hero__sub">Simple Genius gives business owners a proven process for figuring out where they’re going, what’s standing in the way, and what to do next.</p>
         </div>
