@@ -11,16 +11,12 @@
   io.observe(pr);
 })();
 
-/* Hero YouTube: swap the poster for the player on click */
+/* Hero video: autoplays muted; the sound button restarts it from the beginning with audio */
 (function () {
-  var b = document.querySelector('.hero__yt'); if (!b) return;
+  var b = document.querySelector('.hero__snd'), v = document.querySelector('.hero__mp4'); if (!b || !v) return;
+  var p = v.play && v.play(); if (p && p.catch) p.catch(function () {});
   b.addEventListener('click', function () {
-    var id = b.getAttribute('data-yt'), f = document.createElement('iframe');
-    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
-    f.title = 'Simple Genius: Know Your Business. Run It Better.';
-    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-    f.referrerPolicy = 'strict-origin-when-cross-origin'; f.allowFullscreen = true;
-    b.parentNode.replaceChild(f, b);
-    if (window.dataLayer) window.dataLayer.push({ event: 'hero_video_play', video_id: id });
+    v.currentTime = 0; v.muted = false; v.loop = false; v.controls = true; v.play(); b.remove();
+    if (window.dataLayer) window.dataLayer.push({ event: 'hero_video_sound', video: 'simple-genius-homepage' });
   });
 })();

@@ -81,11 +81,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div class="hero__copy">
             <h1 class="hero__h1" aria-label="Know your business, run it better."><span class="w"><span style="--d:0">Know</span></span> <span class="w"><span style="--d:1">your</span></span><br class="br-m" /> <span class="w"><span style="--d:2">business,</span></span><br class="br-m" /> <span class="w w--end"><span style="--d:3">run</span></span> <span class="w w--end"><span style="--d:4">it</span></span> <span class="w w--end"><span style="--d:5">better.</span></span></h1>
           </div>
-          <!-- Hero brand video: YouTube a1JARqEtn9c. Poster loads first; the player loads on click (js/ph.js). -->
+          <!-- Hero brand video: self hosted /video/simple-genius-homepage.mp4 (source: Drive "WebsiteHomepage").
+               Autoplays muted on a loop. The sound button restarts it from the beginning with audio (js/ph.js). -->
           <div class="hero__video" data-hero-video>
-            <button type="button" class="hero__yt" data-yt="a1JARqEtn9c" aria-label="Play video: Simple Genius, Know Your Business. Run It Better.">
-              <img src="/assets/hero-video-poster.jpg" alt="Simple Genius video: Know your business, run it better." width="1280" height="720" fetchpriority="high" />
-              <span class="hero__yt-play" aria-hidden="true"></span>
+            <video class="hero__mp4" src="/video/simple-genius-homepage.mp4" poster="/video/simple-genius-homepage.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-label="Simple Genius video: Know your business, run it better."></video>
+            <button type="button" class="hero__snd" aria-label="Play with sound from the beginning">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              <span>Tap for sound</span>
             </button>
           </div>
           <p class="hero__sub">Simple Genius gives business owners a proven process for figuring out where they’re going, what’s standing in the way, and what to do next.</p>
