@@ -298,8 +298,9 @@ html.show-ph .tcard__ph { display: block; }
 .ft__head { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #8f8b83; margin-bottom: 4px; }
 .ft__col a, .ft__legal a { color: #e3dfd7; text-decoration: none; font-size: 15px; }
 .ft__col a:hover, .ft__legal a:hover { color: var(--yellow); }
-.ft__legal { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 24px; font-size: 14px; color: #8f8b83; }
+.ft__legal { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; padding-top: 24px; font-size: 14px; color: #8f8b83; }
 .ft__legal a { font-size: 14px; color: #b9b4ab; }
+.ft__legal-links { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; }
 
 /* Tablet */
 @media (max-width: 1100px) {

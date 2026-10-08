@@ -17,6 +17,11 @@
   },
   "redirects": [
     {
+      "source": "/privacy",
+      "destination": "/privacy-policy",
+      "permanent": true
+    },
+    {
       "source": "/talk",
       "destination": "/free-consultation",
       "permanent": true
